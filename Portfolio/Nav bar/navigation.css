@@ -1,0 +1,394 @@
+/* Navigation styles are scoped to .portfolio-nav to avoid changing your page.
+ * Change these values to match your own colours and typography. */
+.portfolio-nav {
+  --paper: #e9e4d8;
+  --muted: #aaa99f;
+  --line: rgba(233, 228, 216, 0.18);
+  --font-mono: "Courier New", Courier, monospace;
+  color: var(--paper);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+.portfolio-nav *,
+.portfolio-nav *::before,
+.portfolio-nav *::after {
+  box-sizing: border-box;
+}
+.portfolio-nav a:focus-visible,
+.portfolio-nav button:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+}
+/* Header, navigation, mobile menu and keyboard skip link.
+ * Loaded in the order documented in styles.css.
+ */
+
+.portfolio-nav .skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform 140ms ease;
+}
+
+.portfolio-nav .skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Fixed header shared by every route. */
+.portfolio-nav .site-header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  padding: 0 clamp(20px, 4vw, 64px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  mix-blend-mode: normal;
+}
+
+.portfolio-nav .header-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(170px, 1fr) auto minmax(170px, 1fr);
+  align-items: center;
+  gap: 30px;
+}
+
+.portfolio-nav .wordmark {
+  font-family: var(--font-mono);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.portfolio-nav .wordmark-short {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+}
+
+.portfolio-nav .wordmark-long {
+  white-space: nowrap;
+}
+
+/* Desktop navigation layout. */
+.portfolio-nav .main-navigation > ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.2vw, 36px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.portfolio-nav .nav-item {
+  position: relative;
+}
+
+.portfolio-nav .nav-item > a {
+  position: relative;
+  display: block;
+  padding: 28px 0 25px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease;
+}
+
+.portfolio-nav .nav-item > a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--paper);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.portfolio-nav .nav-item > a:hover,
+.portfolio-nav .nav-item > a[aria-current="page"] {
+  color: var(--paper);
+}
+
+.portfolio-nav .nav-item > a:hover::after,
+.portfolio-nav .nav-item > a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+.portfolio-nav .menu-toggle {
+  display: none;
+}
+
+/* Foundations dropdown; visibility is controlled by hover and focus. */
+.portfolio-nav .mega-menu {
+  position: fixed;
+  top: 76px;
+  right: clamp(20px, 4vw, 64px);
+  left: clamp(20px, 4vw, 64px);
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.97);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease,
+    visibility 160ms ease;
+}
+
+.portfolio-nav .has-mega-menu:hover .mega-menu,
+.portfolio-nav .has-mega-menu:focus-within .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.portfolio-nav .mega-menu-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.portfolio-nav .mega-menu-header a {
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.portfolio-nav .mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px 48px;
+  padding-top: 24px;
+}
+
+.portfolio-nav .mega-column {
+  display: grid;
+  gap: 7px;
+}
+
+.portfolio-nav .mega-column > span:not(.mega-title) {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.portfolio-nav .mega-column a:hover {
+  color: var(--paper);
+}
+
+.portfolio-nav .mega-title {
+  margin-bottom: 5px;
+  color: var(--paper);
+  font-size: 0.875rem;
+}
+
+.portfolio-nav .mega-column a {
+  color: var(--muted);
+  line-height: 1.5;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.portfolio-nav .site-header .main-navigation > ul > li > a {
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1080px) {
+  .portfolio-nav .header-inner {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+@media (max-width: 1080px) {
+  .portfolio-nav .wordmark-long {
+    display: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .portfolio-nav .main-navigation > ul {
+    justify-content: center;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .site-header {
+    height: 64px;
+    padding: 0 18px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .header-inner {
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .wordmark-long {
+    display: inline;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .wordmark-short {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .menu-toggle {
+    position: relative;
+    z-index: 12;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .menu-icon {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    transition: transform 180ms ease;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .menu-icon::before {
+    display: block;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    transition: transform 180ms ease;
+    content: "";
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .menu-toggle[aria-expanded="true"] .menu-icon {
+    transform: rotate(45deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .menu-toggle[aria-expanded="true"] .menu-icon::before {
+    transform: rotate(-90deg);
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .main-navigation {
+    position: fixed;
+    z-index: 11;
+    inset: 64px 0 0;
+    display: none;
+    overflow-y: auto;
+    padding: 24px 18px 48px;
+    background: rgba(0, 0, 0, 0.99);
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .main-navigation.is-open,
+  .portfolio-nav .main-navigation > ul {
+    display: block;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .nav-item > a {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--paper);
+    font-size: clamp(26px, 9vw, 46px);
+    letter-spacing: -0.035em;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .portfolio-nav .nav-item > a::after,
+  .portfolio-nav .mega-menu {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  body.portfolio-menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-nav .nav-item > a::after,
+  .portfolio-nav .mega-menu,
+  .portfolio-nav .menu-icon,
+  .portfolio-nav .menu-icon::before,
+  .portfolio-nav .skip-link {
+    transition: none;
+  }
+}
+
+/* With a blurred fixed header, size the mobile panel explicitly to the viewport. */
+@media (max-width: 760px) {
+  .portfolio-nav .main-navigation {
+    bottom: auto;
+    height: calc(100vh - 64px);
+    height: calc(100dvh - 64px);
+  }
+}

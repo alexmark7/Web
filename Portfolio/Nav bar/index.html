@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alex Portfolio — navigation only</title>
+    <link rel="stylesheet" href="navigation.css" />
+    <style>
+      body {
+        margin: 0;
+        background: hsl(0, 0%, 0%);
+        color: #e9e4d8;
+        font:
+          16px/1.6 Arial,
+          sans-serif;
+      }
+      main {
+        padding: 110px 6vw 60px;
+        max-width: 1000px;
+      }
+      section {
+        padding: 45px 0;
+        border-top: 1px solid #333;
+      }
+      [id] {
+        scroll-margin-top: 100px;
+      }
+      p {
+        color: #aaa99f;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Copy this whole block into your page, before the main content. -->
+    <div class="portfolio-nav" data-portfolio-navigation>
+      <a class="skip-link" href="#page-content">Skip to main content</a>
+      <header class="site-header" aria-label="Site header">
+        <div class="header-inner">
+          <a class="wordmark" href="#journey" aria-label="Alex Portfolio — home">
+            <span class="wordmark-short">A/M</span><span class="wordmark-long">Alex Portfolio</span>
+          </a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="main-navigation"
+            aria-label="Open navigation menu"
+          >
+            <span>Menu</span><span class="menu-icon" aria-hidden="true"></span>
+          </button>
+          <nav class="main-navigation" id="main-navigation" aria-label="Main navigation">
+            <ul>
+              <li class="nav-item">
+                <a href="#journey" aria-current="page">Journey</a>
+              </li>
+              <li class="nav-item">
+                <a href="#study">Study</a>
+              </li>
+              <li class="nav-item has-mega-menu">
+                <a href="#foundations">Foundations</a>
+                <div class="mega-menu">
+                  <div class="mega-menu-header">
+                    <span>Foundations</span><a href="#foundations">View all →</a>
+                  </div>
+                  <div class="mega-grid">
+                    <div class="mega-column">
+                      <span class="mega-title">Computer Science</span>
+                      <a href="#foundations-computer-science-data-structures">Data Structures</a
+                      ><a href="#foundations-computer-science-algorithms">Algorithms</a
+                      ><a href="#foundations-computer-science-big-o">Big O</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Programming</span>
+                      <a href="#foundations-programming-variables">Variables</a
+                      ><a href="#foundations-programming-data-types">Data Types</a
+                      ><a href="#foundations-programming-functions-methods">Functions / Methods</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Web</span>
+                      <a href="#foundations-web-how-the-web-works">How the Web Works</a
+                      ><a href="#foundations-web-http">HTTP</a
+                      ><a href="#foundations-web-https">HTTPS</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Networking</span>
+                      <a href="#foundations-networking-dns">DNS</a
+                      ><a href="#foundations-networking-ip">IP</a
+                      ><a href="#foundations-networking-tcp">TCP</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Operating Systems</span>
+                      <a href="#foundations-operating-systems-processes">Processes</a
+                      ><a href="#foundations-operating-systems-threads">Threads</a
+                      ><a href="#foundations-operating-systems-memory">Memory</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Databases</span>
+                      <a href="#foundations-databases-sql">SQL</a
+                      ><a href="#foundations-databases-relational-databases">Relational Databases</a
+                      ><a href="#foundations-databases-indexes">Indexes</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Distributed Systems</span>
+                      <a href="#foundations-distributed-systems-fundamentals">Fundamentals</a
+                      ><a href="#foundations-distributed-systems-replication">Replication</a
+                      ><a href="#foundations-distributed-systems-sharding">Sharding</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Software Engineering</span>
+                      <a href="#foundations-software-engineering-git">Git</a
+                      ><a href="#foundations-software-engineering-testing">Testing</a
+                      ><a href="#foundations-software-engineering-ci-cd">CI/CD</a>
+                    </div>
+                    <div class="mega-column">
+                      <span class="mega-title">Security</span>
+                      <a href="#foundations-security-authentication">Authentication</a
+                      ><a href="#foundations-security-authorization">Authorization</a
+                      ><a href="#foundations-security-hashing">Hashing</a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a href="#practice">Practice</a>
+              </li>
+              <li class="nav-item">
+                <a href="#projects">Projects</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+    <main id="page-content" tabindex="-1">
+      <h1>Navigation-only demo</h1>
+      <p>
+        This page demonstrates the extracted header. Resize below 761px to use the mobile menu. The
+        links point to demo sections below.
+      </p>
+      <section id="journey">
+        <h2>Journey</h2>
+        <p>
+          Demo destination for the Journey navigation link. Replace the href with your own page when
+          integrating.
+        </p>
+      </section>
+      <section id="study">
+        <h2>Study</h2>
+        <p>
+          Demo destination for the Study navigation link. Replace the href with your own page when
+          integrating.
+        </p>
+      </section>
+      <section id="foundations">
+        <h2>Foundations</h2>
+        <p>
+          Demo destination for the Foundations navigation link. Replace the href with your own page
+          when integrating.
+        </p>
+        <p id="foundations-computer-science-data-structures">Data Structures</p>
+        <p id="foundations-computer-science-algorithms">Algorithms</p>
+        <p id="foundations-computer-science-big-o">Big O</p>
+        <p id="foundations-programming-variables">Variables</p>
+        <p id="foundations-programming-data-types">Data Types</p>
+        <p id="foundations-programming-functions-methods">Functions / Methods</p>
+        <p id="foundations-web-how-the-web-works">How the Web Works</p>
+        <p id="foundations-web-http">HTTP</p>
+        <p id="foundations-web-https">HTTPS</p>
+        <p id="foundations-networking-dns">DNS</p>
+        <p id="foundations-networking-ip">IP</p>
+        <p id="foundations-networking-tcp">TCP</p>
+        <p id="foundations-operating-systems-processes">Processes</p>
+        <p id="foundations-operating-systems-threads">Threads</p>
+        <p id="foundations-operating-systems-memory">Memory</p>
+        <p id="foundations-databases-sql">SQL</p>
+        <p id="foundations-databases-relational-databases">Relational Databases</p>
+        <p id="foundations-databases-indexes">Indexes</p>
+        <p id="foundations-distributed-systems-fundamentals">Fundamentals</p>
+        <p id="foundations-distributed-systems-replication">Replication</p>
+        <p id="foundations-distributed-systems-sharding">Sharding</p>
+        <p id="foundations-software-engineering-git">Git</p>
+        <p id="foundations-software-engineering-testing">Testing</p>
+        <p id="foundations-software-engineering-ci-cd">CI/CD</p>
+        <p id="foundations-security-authentication">Authentication</p>
+        <p id="foundations-security-authorization">Authorization</p>
+        <p id="foundations-security-hashing">Hashing</p>
+      </section>
+      <section id="practice">
+        <h2>Practice</h2>
+        <p>
+          Demo destination for the Practice navigation link. Replace the href with your own page
+          when integrating.
+        </p>
+      </section>
+      <section id="projects">
+        <h2>Projects</h2>
+        <p>
+          Demo destination for the Projects navigation link. Replace the href with your own page
+          when integrating.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
