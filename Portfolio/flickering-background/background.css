@@ -1,0 +1,32 @@
+/* Only the background and explicitly opted-in foreground are styled. */
+.ascii-star-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #000;
+}
+
+#ascii-stars {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: rgba(233, 228, 216, 0.82); /* Change the final number for brightness. */
+  font-family: "Courier New", Courier, monospace;
+  font-size: 10px; /* JavaScript measures the viewport and sets the final size. */
+  font-weight: 400;
+  line-height: 0.86;
+  letter-spacing: 0;
+  white-space: pre;
+  user-select: none;
+  text-shadow: none;
+}
+
+/* Add this class to your content wrapper to place it above the stars. */
+.ascii-star-content {
+  position: relative;
+  z-index: 1;
+}
