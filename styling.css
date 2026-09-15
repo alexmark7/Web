@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(0, 0, 0);
+  background-image: url("");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.header {
+  padding: 0px 2vw;
+  margin-left: -10vw;
+  margin-right: -10vw;
+
+  background-color: rgba(91, 91, 91, 0.328);
+
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+}
+
+.portfolio {
+  color: rgb(255, 255, 255);
+
+  text-decoration: none;
+
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.nav-link {
+  color: rgb(247, 0, 0);
+
+  text-decoration: none;
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+
+  padding: 10px 15px;
+
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.text {
+  color: rgb(255, 255, 255);
+  padding: 0px 10vw;
+
+  text-decoration: none;
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/*  Top navigation bar */
+/* ----------------------------------------------------------------------------------------- /*
+
+
+/* Fixed top navigation bar */
+.top-navbar {
+  position: fixed; /*Makes it stay in place as you scroll */
+  top: 0;
+  left: 0; /* Fixed top navigation bar */
+  z-index: 1000; /* Fixed top navigation bar */
+
+  width: 100%;
+  height: 76px;
+  padding: 0 4vw; /* vw = viewport width. 4vw = 4% of the browser window's width. */
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.72);
+  border-bottom: 1px solid rgba(233, 228, 216, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Portfolio title - stays on the left */
+.portfolio-name {
+  grid-column: 1;
+  justify-self: start;
+
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Navigation buttons stays in the center */
+.top-navbar nav {
+  grid-column: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+/* The middle buttons */
+.top-navbar nav a {
+  color: #aaa99f;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  font-weight: lighter;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+  transition: transform 200ms ease;
+}
+
+/* The hovered state */
+.top-navbar nav a:hover {
+  color: #e9e4d8;
+  transform: scale(1.15);
+}
+
+/* Stops page content from hiding underneath the fixed bar */
+main {
+  padding-top: 110px;
+}

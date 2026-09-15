@@ -1,31 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+  <link rel="stylesheet" href="styling.css">
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
   </head>
+
+<style>
+  body {
+        margin: 0;
+        background: hsl(0, 0%, 0%);
+        color: #e9e4d8;
+        font:
+          16px/1.6 Arial,
+          sans-serif;
+      }
+      main {
+        padding: 110px 6vw 60px;
+        max-width: 1000px;
+      }
+      section {
+        padding: 45px 0;
+        border-top: 1px solid #333;
+      }
+      [id] {
+        scroll-margin-top: 100px;
+      }
+      p {
+        color: #aaa99f;
+      }
+</style>
   
-  <body>
+  <header class="header">
     <table>
      <tr>
-    <header>
-            <td><h1>My Portfolio</h1></td>
+            <td><a class="portfolio" href= "index.html"><h1>Portfolio</h1></a></td>
   
             <td width="50"></td>
 
-            <td><h3> <a href="Portfolio/about.html"> About me</a> /h3></td>
+            <td><a class="nav-link" href="Portfolio/about.html">About me</a></td>
 
             <td width="50"></td>
 
-            <td><h3>Interests</h3></td>
+            <td> <a class="nav-link" href="Portfolio/interests.html">Interests</a></td>
      </tr>
-    </header>
     </table>
+  </header>
 
 
+
+
+
+
+
+ <body class="text">
     <main>
-      <h2>About Me</h2>
+      <h2>Hello and Welcome</h2>
       <p>Welcome to my portfolio.</p>
     </main>
 
