@@ -135,7 +135,7 @@
   transform: scale(1.15);
 }
 
-/* Stops page content from hiding underneath the fixed bar */
+/* Stops page content from hiding underneath the fixed nav bar */
 main {
   padding-top: 110px;
 }
