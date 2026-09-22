@@ -1,39 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <link rel="stylesheet" href="../styling.css">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styling.css" />
     <title>My Portfolio</title>
   </head>
-  
-
-      <!-- calls .header in CSS -->
-  <header class="header">
-    <table>
-     <tr>
-            <td><a class="portfolio" href= "../index.html"><h1>Portfolio</h1></a></td>
-  
-            <td width="50"></td>
-
-            <td><a class="nav-link" href="./about.html">About me</a></td>
-
-            <td width="50"></td>
-
-            <td> <a class="nav-link" href="interests.html">Interests</a></td>
-     </tr>
-    </table>
-  </header>
-
-
 
   <body class="text">
-    <main>
+    <!-- Shared top navigation. -->
+    <header class="top-navbar">
+      <a class="portfolio-name" href="../index.html">Portfolio</a>
+
+      <nav aria-label="Main navigation">
+        <a href="../index.html"><span>Home</span></a>
+        <a href="./about.html"><span>About Me</span></a>
+        <a href="./interests.html" aria-current="page"><span>Interests</span></a>
+      </nav>
+    </header>
+
+    <main class="content">
       <h2>These are my interests</h2>
       <p>AYO.</p>
     </main>
 
-    <footer>
+    <footer class="content">
       <p>&copy; 2026 My Portfolio</p>
     </footer>
   </body>

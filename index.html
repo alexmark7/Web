@@ -1,66 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <link rel="stylesheet" href="styling.css">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styling.css" />
     <title>My Portfolio</title>
   </head>
 
-<style>
-  body {
-        margin: 0;
-        background: hsl(0, 0%, 0%);
-        color: #e9e4d8;
-        font:
-          16px/1.6 Arial,
-          sans-serif;
-      }
-      main {
-        padding: 110px 6vw 60px;
-        max-width: 1000px;
-      }
-      section {
-        padding: 45px 0;
-        border-top: 1px solid #333;
-      }
-      [id] {
-        scroll-margin-top: 100px;
-      }
-      p {
-        color: #aaa99f;
-      }
-</style>
-  
-  <header class="header">
-    <table>
-     <tr>
-            <td><a class="portfolio" href= "index.html"><h1>Portfolio</h1></a></td>
-  
-            <td width="50"></td>
+  <body class="text">
+    <!-- Shared top navigation. -->
+    <header class="top-navbar">
+      <a class="portfolio-name" href="index.html">Portfolio</a>
 
-            <td><a class="nav-link" href="Portfolio/about.html">About me</a></td>
+      <nav aria-label="Main navigation">
+        <a href="index.html" aria-current="page"><span>Home</span></a>
+        <a href="Portfolio/about.html"><span>About Me</span></a>
+        <a href="Portfolio/interests.html"><span>Interests</span></a>
+      </nav>
+    </header>
 
-            <td width="50"></td>
-
-            <td> <a class="nav-link" href="Portfolio/interests.html">Interests</a></td>
-     </tr>
-    </table>
-  </header>
-
-
-
-
-
-
-
- <body class="text">
-    <main>
+    <main class="content">
       <h2>Hello and Welcome</h2>
       <p>Welcome to my portfolio.</p>
     </main>
 
-    <footer>
+    <footer class="content">
       <p>&copy; 2026 My Portfolio</p>
     </footer>
   </body>

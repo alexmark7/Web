@@ -13,45 +13,19 @@
       <pre id="background-stars"></pre> 
     </div>
 
+    <!-- Shared top navigation. -->
     <header class="top-navbar">
-      <!-- calls .top-navbar in CSS -->
       <a class="portfolio-name" href="../index.html">Portfolio</a>
 
-      <!-- uses ".top-navbar nav" to style specifically the <nav> block -->
-      <nav>
-        <!-- uses ".top-navbar nav a" to style specifically the <a> block -->
-        <a href="../index.html">Home</a>
-        <a href="./about.html">About Me</a>
-        <a href="./interests.html">Interests</a>
+      <nav aria-label="Main navigation">
+        <a href="../index.html"><span>Home</span></a>
+        <a href="./about.html" aria-current="page"><span>About Me</span></a>
+        <a href="./interests.html"><span>Interests</span></a>
       </nav>
     </header>
 
     <main class="content">
-      <!-- Page content goes here -->
-
-      hello
-
-      <header class="header">
-        <!-- calls .header in CSS -->
-        <table>
-          <tr>
-            <td>
-              <a class="portfolio" href="../index.html"><h1>Portfolio</h1></a>
-            </td>
-
-            <td width="50"></td>
-
-            <td><a class="nav-link" href="about.html">About me</a></td>
-
-            <td width="50"></td>
-
-            <td><a class="nav-link" href="./interests.html">Interests</a></td>
-          </tr>
-        </table>
-      </header>
-
-      <main>
-        <h2>About Me</h2>
+      <h2>About Me</h2>
         <p>
           I am making this sentence to test have the transparrent navigation bar
         </p>
@@ -187,10 +161,9 @@
         <p>
           I am making this sentence to test have the transparrent navigation bar
         </p>
-      </main>
     </main>
 
-    <footer>
+    <footer class="content">
       <p>&copy; 2026 My Portfolio</p>
     </footer>
   </body>
