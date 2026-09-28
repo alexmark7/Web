@@ -6,8 +6,8 @@ fonts, npm, server or internet connection is required.
 
 This is a standalone ASCII star background. Every star is placed separately at
 a random horizontal and vertical position, so the stars are not limited to a
-text grid. During each pulse, a scattered group changes brightness and symbol,
-and some of those stars move to new random positions.
+text grid. During each pulse, a scattered group fades out and then returns in
+new random positions away from where the stars disappeared.
 
 ## Files
 
@@ -57,12 +57,15 @@ Edit SETTINGS near the top of background.js:
   equal-width characters. The default is `.`, `·`, `:`, `*`, `+`.
 - `pulseMilliseconds`: time between pulses; larger values flicker more slowly.
 - `changeFraction`: fraction of stars changed per pulse (0–1).
-- `moveFraction`: fraction of changing stars that move to a new position.
 - `pixelsPerStar`: controls how many stars are made for the screen size. A
   smaller value creates more stars.
 - `minimumStars` and `maximumStars`: limits for small and large screens.
 - `minimumSize` and `maximumSize`: size range for the ASCII symbols.
 - `minimumOpacity` and `maximumOpacity`: brightness range for the stars.
+- `hiddenMilliseconds`: how long a moved star stays hidden before returning.
+- `minimumMoveDistance`: how far a star must move from its old position.
+- `minimumRepeatMilliseconds`: minimum wait before the same star can change
+  again.
 
 Change `color` in background.css to give the stars another colour. Change
 `minimumOpacity` and `maximumOpacity` in background.js to make them dimmer or

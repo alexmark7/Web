@@ -24,7 +24,7 @@
   line-height: 1;
   opacity: var(--star-opacity, 0.6);
   transform: translate(-50%, -50%);
-  transition: opacity 90ms ease;
+  transition: opacity 160ms ease;
   user-select: none;
 }
 

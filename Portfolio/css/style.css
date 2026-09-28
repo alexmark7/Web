@@ -419,6 +419,20 @@ h3 {
   margin-bottom: 0;
 }
 
+/* Places the Selected projects heading beside its button. */
+.featured-heading-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Removes extra heading space inside the Selected projects row. */
+.featured-heading-row h2 {
+  margin-bottom: 0;
+}
+
 /* Shows three equal information boxes in a row on larger screens. */
 .information-grid {
   display: grid;
