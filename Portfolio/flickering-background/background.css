@@ -8,21 +8,29 @@
   background: #000;
 }
 
+/* Fills the background with the stars made by JavaScript. */
 #ascii-stars {
   position: absolute;
   inset: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  color: rgba(233, 228, 216, 0.82); /* Change the final number for brightness. */
+  overflow: hidden;
+}
+
+/* Styles each separate ASCII star. */
+.ascii-star {
+  position: absolute;
+  color: #e9e4d8;
   font-family: "Courier New", Courier, monospace;
-  font-size: 10px; /* JavaScript measures the viewport and sets the final size. */
   font-weight: 400;
-  line-height: 0.86;
-  letter-spacing: 0;
-  white-space: pre;
+  line-height: 1;
+  opacity: var(--star-opacity, 0.6);
+  transform: translate(-50%, -50%);
+  transition: opacity 90ms ease;
   user-select: none;
-  text-shadow: none;
+}
+
+/* Hides a star briefly while it moves to a new random place. */
+.ascii-star.is-changing {
+  opacity: 0;
 }
 
 /* Add this class to your content wrapper to place it above the stars. */

@@ -220,7 +220,15 @@ h3 {
 /* Stops the introduction on CV and Projects from becoming too wide. */
 .page-heading {
   max-width: 760px;
+  padding-top: 18px;
   margin-bottom: 55px;
+}
+
+/* Makes the main headings on Projects, CV, and About Me larger. */
+.page-heading h1,
+.hero-copy h1 {
+  font-size: clamp(2.3rem, 4.5vw, 4rem);
+  letter-spacing: -0.03em;
 }
 
 /* Removes the extra space below the last item in a page introduction. */
@@ -240,6 +248,7 @@ h3 {
 .home-hero {
   display: flex;
   align-items: center;
+  padding-top: 40px;
   padding-bottom: 40px;
 }
 
@@ -320,6 +329,7 @@ h3 {
   grid-template-columns: minmax(0, 1fr) minmax(250px, 0.45fr);
   gap: 60px;
   align-items: center;
+  padding-top: 18px;
   padding-bottom: 40px;
 }
 
