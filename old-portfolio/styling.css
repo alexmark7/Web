@@ -109,6 +109,9 @@
 /* Makes the link for the page you are currently viewing brighter. */
 .top-navbar nav a[aria-current="page"] {
   color: #e9e4d8;
+  cursor: pointer; /* Makes the browser think the its a clickable button */
+  user-select: none; /* Makes the text non selectable by the user */
+  -webkit-user-select: none; /* Support for older Safari versions. */
 }
 
 /* Draws a line underneath only the link marked as the current page. */

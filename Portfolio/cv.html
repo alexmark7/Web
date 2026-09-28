@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8">
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Short description of the page. -->
+    <meta name="description" content="Education, experience, skills, and qualifications.">
+    <!-- Connects the page to the CSS file. -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Name shown on the browser tab. -->
+    <title>CV | My Portfolio</title>
+  </head>
+
+  <body>
+
+    <!-- Top navigation bar used on every page. -->
+    <header class="top-navbar">
+      <!-- Portfolio name that links back to the Home page. -->
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+
+      <!-- Navigation items for the four pages. -->
+      <nav aria-label="Main navigation">
+        <a href="index.html"><span>Home</span></a>
+        <a href="projects.html"><span>Projects</span></a>
+        <!-- Shows that CV is the page currently open. -->
+        <a class="cv-link" aria-current="page"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- Main part of the CV page. -->
+    <main id="main-content" class="content">
+      <!-- Page heading, introduction, and CV download button. -->
+      <header class="page-heading">
+        <h1>Experience and education</h1>
+        <p>
+          Motivated and goal-oriented, reliable and honest, with a broad understanding of technical
+          and creative fields and strong problem-solving skills.
+        </p>
+        <!-- Holds the CV button. -->
+        <div class="cv-actions">
+          <!-- Downloads my CV as a PDF file. -->
+          <a class="button" href="files/alexander-mankvard-cv.pdf" download>Download CV</a>
+        </div>
+      </header>
+
+      <!-- Skills shown before my work experience and education. -->
+      <section class="cv-skills" aria-label="Skills and software">
+        <!-- Development, computer system, networking, and hardware skills. -->
+        <section aria-labelledby="skills-heading">
+          <h2 id="skills-heading">Development and systems</h2>
+          <!-- Coloured labels for each skill. -->
+          <ul class="tag-list">
+            <li class="skill-html">HTML</li>
+            <li class="skill-css">CSS</li>
+            <li class="skill-javascript">JavaScript</li>
+            <li class="skill-java">Java</li>
+            <li class="skill-git">Git</li>
+            <li class="skill-linux">Linux</li>
+            <li class="skill-windows">Windows</li>
+            <li class="skill-networking">Networking</li>
+            <li class="skill-pc-hardware">PC Hardware</li>
+            <li class="skill-embedded-hardware">Embedded Hardware</li>
+          </ul>
+        </section>
+
+        <!-- Business, coding, and creative programs. -->
+        <section aria-labelledby="software-heading">
+          <h2 id="software-heading">Software and tools</h2>
+          <ul class="tag-list">
+            <li class="skill-excel">Excel</li>
+            <li class="skill-business-central">Business Central</li>
+            <li class="skill-sap">SAP</li>
+            <li class="skill-salesforce">Salesforce</li>
+            <li class="skill-superoffice">SuperOffice</li>
+            <li class="skill-vscode">VS Code</li>
+            <li class="skill-intellij">IntelliJ IDEA</li>
+            <li class="skill-jetbrains">JetBrains Suite</li>
+            <li class="skill-photoshop">Photoshop</li>
+            <li class="skill-premiere">Premiere Pro</li>
+            <li class="skill-illustrator">Illustrator</li>
+            <li class="skill-adobe">Adobe Creative Suite</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Holds the two columns used for the CV. -->
+      <div class="cv-layout">
+        <!-- Left column with work experience and education. -->
+        <div>
+          <!-- My current and previous jobs. -->
+          <section class="cv-section" aria-labelledby="experience-heading">
+            <h2 id="experience-heading">Work experience</h2>
+
+            <!-- My current job at Avnet Silica. -->
+            <article class="timeline-entry">
+              <!-- Holds the job title and dates together. -->
+              <div class="entry-heading">
+                <h3>Internal Sales Specialist</h3>
+                <!-- Marks 2026 as a date. -->
+                <p><time datetime="2026">2026</time> - Present</p>
+              </div>
+              <p class="entry-place">Avnet Silica</p>
+              <ul>
+                <li>Work with Account Managers to develop opportunities and grow market share.</li>
+                <li>Respond to customer enquiries, negotiate, and close business.</li>
+                <li>Resolve customer issues and manage forecasts and logistics.</li>
+                <li>
+                  Coordinate with engineers and suppliers on design opportunities, quotes, and
+                  pricing.
+                </li>
+              </ul>
+            </article>
+
+            <!-- My previous job at G.R.A.S. Acoustics. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Internal Sales Specialist</h3>
+                <p><time datetime="2025">2025</time> - <time datetime="2026">2026</time></p>
+              </div>
+              <p class="entry-place">G.R.A.S. Acoustics</p>
+              <ul>
+                <li>Prepared quotations and followed customer orders from request to completion.</li>
+                <li>Handled customer service enquiries and complaints.</li>
+                <li>Supported technical sales and sales-area development.</li>
+                <li>Managed CRM records and the sales pipeline.</li>
+              </ul>
+            </article>
+
+            <!-- My previous job at Nohau. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Internal Sales</h3>
+                <p><time datetime="2022">2022</time> - <time datetime="2025">2025</time></p>
+              </div>
+              <p class="entry-place">Nohau Danmark A/S</p>
+              <ul>
+                <li>Managed licence renewals and provided sales and marketing support.</li>
+                <li>Produced marketing material and newsletters.</li>
+                <li>Worked with CRM and ERP systems.</li>
+              </ul>
+            </article>
+
+            <!-- My previous job at the photography shop. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Store Employee</h3>
+                <p><time datetime="2019">2019</time> - <time datetime="2022">2022</time></p>
+              </div>
+              <p class="entry-place">C.P. Foto - Click Hillerød</p>
+              <ul>
+                <li>Handled inventory management and staff scheduling.</li>
+                <li>Produced online media.</li>
+                <li>Supported customers and managed store facilities.</li>
+              </ul>
+            </article>
+
+            <!-- My previous production job. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Production Worker</h3>
+                <p><time datetime="2018">2018</time></p>
+              </div>
+              <p class="entry-place">Tronex A/S</p>
+              <ul>
+                <li>Handled production equipment.</li>
+                <li>Completed assembly and inspection work.</li>
+              </ul>
+            </article>
+          </section>
+
+          <!-- My current and previous education. -->
+          <section class="cv-section" aria-labelledby="education-heading">
+            <h2 id="education-heading">Education</h2>
+
+            <!-- My current software engineering education. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Software Engineer Trainee</h3>
+                <p><time datetime="2026">2026</time> - Present</p>
+              </div>
+              <p class="entry-place">VIA University College</p>
+            </article>
+
+            <!-- My business school education. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Business School</h3>
+                <p><time datetime="2020">2020</time> - <time datetime="2022">2022</time></p>
+              </div>
+              <p class="entry-place">AABC</p>
+              <ul>
+                <li>Sales operations and selling skills.</li>
+                <li>Customer satisfaction.</li>
+              </ul>
+            </article>
+
+            <!-- My previous electrical engineering studies. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Electrical Engineering - Two Semesters</h3>
+                <p><time datetime="2018">2018</time> - <time datetime="2019">2019</time></p>
+              </div>
+              <p class="entry-place">SDU University</p>
+              <ul>
+                <li>PCB design.</li>
+                <li>Component selection and construction.</li>
+                <li>Platform testing.</li>
+              </ul>
+            </article>
+
+            <!-- My education at H.C. Ørsted Gymnasium. -->
+            <article class="timeline-entry">
+              <div class="entry-heading">
+                <h3>Communication and IT</h3>
+                <p><time datetime="2015">2015</time> - <time datetime="2018">2018</time></p>
+              </div>
+              <p class="entry-place">H.C. Ørsted Gymnasium</p>
+              <ul>
+                <li>IT and marketing.</li>
+                <li>English and Mathematics at A level.</li>
+                <li>General electronics and application development.</li>
+              </ul>
+            </article>
+          </section>
+        </div>
+
+        <!-- Right column with extra information. -->
+        <aside class="cv-sidebar" aria-label="Additional qualifications">
+          <!-- Other useful skills and experience. -->
+          <section aria-labelledby="proficiencies-heading">
+            <h2 id="proficiencies-heading">Other proficiencies</h2>
+            <ul class="simple-list">
+              <li>Marketing and web design</li>
+              <li>Photography and video</li>
+              <li>PC building and troubleshooting</li>
+              <li>Embedded hardware</li>
+              <li>CRM and ERP management</li>
+              <li>Customer service and sales</li>
+              <li>Driving licence</li>
+            </ul>
+          </section>
+
+          <!-- Languages and how well I speak them. -->
+          <section aria-labelledby="languages-heading">
+            <h2 id="languages-heading">Languages</h2>
+            <dl class="language-list">
+              <!-- Each language is shown next to its skill level. -->
+              <div><dt>Danish</dt><dd>Native</dd></div>
+              <div><dt>English</dt><dd>Fluent</dd></div>
+            </dl>
+          </section>
+
+          <!-- Certifications I am working towards. -->
+          <section aria-labelledby="certifications-heading">
+            <h2 id="certifications-heading">Certifications</h2>
+            <p>Certifications im chasing:</p>
+             <ul class="simple-list">
+              <li>Cisco CCNA</li>
+              <li>AWS Certified Solutions Architect – Associate</li>
+              <li>AWS Certified Developer – Associate</li>
+              <li>Red Hat Certified System Administrator (RHCSA)</li>
+              <li>Certified Kubernetes Application Developer (CKAD)</li>
+              <li>Certified Kubernetes Administrator (CKA)</li>
+              <li>Red Hat Certified Engineer (RHCE)</li>
+              <li>CompTIA Security+</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="site-footer content">
+      <!-- Links to the main pages. -->
+      <nav class="footer-navigation" aria-labelledby="footer-navigation-heading">
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- Links to each project. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links">
+          <a href="projects.html#home-server">Home Server Dashboard</a>
+          <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
+          <a href="projects.html#weather-dashboard">Weather Dashboard</a>
+          <a href="projects.html#study-planner">Study Planner</a>
+          <a href="projects.html#habit-tracker">Habit Tracker</a>
+          <a href="projects.html#photography-gallery">Photography Gallery</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <!-- Holds the three social icons together. -->
+        <div class="footer-social-links">
+          <!-- The social links open in a new tab. -->
+          <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <!-- Instagram icon. The link already has the Instagram name. -->
+            <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="images/linkedin-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-github" href="https://github.com/alexmark7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="images/github-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>

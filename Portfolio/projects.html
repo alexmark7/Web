@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8">
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Short description of the page. -->
+    <meta name="description" content="A selection of school, web-development, and personal projects.">
+    <!-- Connects the page to the CSS file. -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Name shown on the browser tab. -->
+    <title>Projects | My Portfolio</title>
+  </head>
+
+  <body>
+
+    <!-- Top navigation bar used on every page. -->
+    <header class="top-navbar">
+      <!-- Portfolio name that links back to the Home page. -->
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+
+      <!-- Navigation items for the four pages. -->
+      <nav aria-label="Main navigation">
+        <a href="index.html"><span>Home</span></a>
+        <!-- Shows that Projects is the page currently open. -->
+        <a aria-current="page"><span>Projects</span></a>
+        <a class="cv-link" href="cv.html"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- Main part of the Projects page. -->
+    <main id="main-content" class="content">
+      <!-- Page heading and short introduction. -->
+      <header class="page-heading">
+        <h1>Projects</h1>
+        <p>
+          A mix of school projects, practical experiments, and example ideas showing the skills and
+          technologies I am developing. 
+        </p>
+        <p>
+          I want to learn:
+          TypeScript / JavaScript, React, Svelte, HTML / CSS, Java / Springboot, SQL / PostgreSQL, 
+          Git, REST, Docker, AWS, Linux, Networking, CI/CD, Kubernetes
+        </p>
+
+      </header>
+
+      <!-- Holds all project boxes and changes the columns to fit the screen. -->
+      <section class="project-grid" aria-label="Project collection">
+        <!-- Home Server Dashboard project box. -->
+        <article id="home-server" class="project-card">
+          <img
+            draggable="false"
+            src="images/project-three.svg"
+            alt="Abstract preview of a home server dashboard"
+            width="800"
+            height="500"
+          >
+          <div class="project-content">
+            <p class="project-number">Project 01</p>
+            <h2>Home Server Dashboard</h2>
+            <p>
+              A responsive dashboard concept for viewing the status of self-hosted services,
+              storage, and recent activity in one place.
+            </p>
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+              <li class="skill-git">Git</li>
+            </ul>
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+        <!-- Pokémon Card Collector project box. -->
+        <article id="pokemon-card-collector" class="project-card">
+          <img
+            draggable="false"
+            src="images/project-six.svg"
+            alt="Abstract preview of a Pokémon card collection application"
+            width="800"
+            height="500"
+          >
+          <div class="project-content">
+            <p class="project-number">Project 02</p>
+            <h2>Pokémon Card Collector</h2>
+            <p>
+              A first-year school project for registering, searching, and organising Pokémon cards
+              in a personal collection.
+            </p>
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-java">Java</li>
+              <li class="skill-git">Git</li>
+            </ul>
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+        <!-- Weather Dashboard project box. -->
+        <article id="weather-dashboard" class="project-card">
+          <!-- Preview image for the project. -->
+          <img
+            draggable="false"
+            src="images/project-one.svg"
+            alt="Abstract preview of a weather dashboard"
+            width="800"
+            height="500"
+          >
+          <!-- Project name, description, skills, and link. -->
+          <div class="project-content">
+            <p class="project-number">Project 03</p>
+            <h2>Weather Dashboard</h2>
+            <p>A responsive dashboard that presents current conditions and a weekly forecast.</p>
+            <!-- Coloured labels for the skills used in the project. -->
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+            </ul>
+            <!-- Keeps the link text visible, but it does not open anything yet. -->
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+        <!-- Study Planner project box. -->
+        <article id="study-planner" class="project-card">
+          <img
+            draggable="false"
+            src="images/project-two.svg"
+            alt="Abstract preview of a study planner"
+            width="800"
+            height="500"
+          >
+          <div class="project-content">
+            <p class="project-number">Project 04</p>
+            <h2>Study Planner</h2>
+            <p>A weekly planning interface for organising assignments, deadlines, and study goals.</p>
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+            </ul>
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+        <!-- Habit Tracker project box. -->
+        <article id="habit-tracker" class="project-card">
+          <img
+            draggable="false"
+            src="images/project-four.svg"
+            alt="Abstract preview of a habit tracker"
+            width="800"
+            height="500"
+          >
+          <div class="project-content">
+            <p class="project-number">Project 05</p>
+            <h2>Habit Tracker</h2>
+            <p>A minimal tool that helps users record daily habits and review their progress.</p>
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+            </ul>
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+        <!-- Photography Gallery project box. -->
+        <article id="photography-gallery" class="project-card">
+          <img
+            draggable="false"
+            src="images/project-five.svg"
+            alt="Abstract preview of a photography gallery"
+            width="800"
+            height="500"
+          >
+          <div class="project-content">
+            <p class="project-number">Project 06</p>
+            <h2>Photography Gallery</h2>
+            <p>A responsive image collection with category filters and an uncluttered presentation.</p>
+            <ul class="technology-list" aria-label="Technologies used">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+            </ul>
+            <a class="project-link project-link-disabled" aria-disabled="true">View project →</a>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="site-footer content">
+      <!-- Links to the main pages. -->
+      <nav class="footer-navigation" aria-labelledby="footer-navigation-heading">
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- Links to each project. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links">
+          <a href="projects.html#home-server">Home Server Dashboard</a>
+          <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
+          <a href="projects.html#weather-dashboard">Weather Dashboard</a>
+          <a href="projects.html#study-planner">Study Planner</a>
+          <a href="projects.html#habit-tracker">Habit Tracker</a>
+          <a href="projects.html#photography-gallery">Photography Gallery</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <!-- Holds the three social icons together. -->
+        <div class="footer-social-links">
+          <!-- The social links open in a new tab. -->
+          <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <!-- Instagram icon. The link already has the Instagram name. -->
+            <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="images/linkedin-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-github" href="https://github.com/alexmark7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="images/github-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>

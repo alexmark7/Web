@@ -1,0 +1,1102 @@
+/*  Background and Content */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Makes widths easier to control on every element. */
+* {
+  box-sizing: border-box; /* Width includes padding and borders. */
+}
+
+/* Stops the navbar moving sideways when the scrollbar appears or disappears. */
+html {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+
+  /* Grey moving part and black background for the scrollbar. */
+  scrollbar-color: #aaa99f #000;
+}
+
+/* Main colours, spacing and text style used on every page. */
+body {
+  color: rgb(255, 255, 255);
+  background: #000;
+  margin: 0; /* Removes the browser's default gap around the page. */
+  padding: 0 10vw;
+  cursor: default; /* Uses the normal arrow instead of the text cursor over page content. */
+
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Kept ready for the background that will be added later. */
+/* Covers the screen with the background and lets clicks pass through it. */
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #000;
+}
+
+/* Places the page content in front of the background. */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Stops an image from becoming wider than the space around it. */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none; /* Stops the image itself from being selected with the mouse. */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Gives normal paragraphs the grey text colour. */
+p {
+  color: #aaa99f;
+}
+
+/* Links use the same colour as the text around them. */
+a {
+  color: inherit;
+  cursor: pointer; /* Shows that links can be clicked. */
+}
+
+/*  Top navigation bar */
+/* ----------------------------------------------------------------------------------------- */
+
+/* The bar at the top of every page. */
+.top-navbar {
+  position: fixed; /* Keeps the navbar visible while scrolling. */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  isolation: isolate; /* Helps the browser redraw the navbar separately from the page behind it. */
+  transform: translateZ(0); /* Prevents temporary lines while the blurred background is changing. */
+
+  width: 100%;
+  height: 76px;
+  padding: 0 4vw; /* 4vw = 4% of the browser window's width. */
+
+  display: grid; /* Uses Grid to arrange the title and links. */
+  grid-template-columns: 1fr auto 1fr; /* Same space on both sides keeps the links in the centre. */
+  align-items: center; /* Centers everything from top to bottom. */
+
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid hsla(42, 28%, 88%, 0.18);
+  -webkit-backdrop-filter: blur(10px); /* Support for older Safari browsers. */
+  backdrop-filter: blur(10px);
+}
+
+/* Keeps the Portfolio title on the left. */
+.portfolio-name {
+  grid-column: 1; /* Puts Portfolio in the left column. */
+  justify-self: start; /* Moves it to the left side of the column. */
+
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Keeps the page links in the centre. */
+.top-navbar nav {
+  grid-column: 2; /* Puts the page links in the middle column. */
+
+  display: flex; /* Places the links next to each other. */
+  align-items: center; /* Centers the links from top to bottom. */
+  justify-content: center; /* Centers the whole group of links. */
+  gap: clamp(18px, 4.5vw, 38px); /* Adds space between links but still lets them fit on small screens. */
+}
+
+/* Styles each page link in the navbar. */
+.top-navbar nav a {
+  position: relative; /* Gives the underline a starting point. */
+  white-space: nowrap; /* Keeps each link on one line. */
+
+  color: #aaa99f;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  font-weight: lighter;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease;
+}
+
+/* Changes a page link when the mouse is over it. */
+.top-navbar nav a:hover,
+.top-navbar nav a:focus-visible {
+  color: #e9e4d8;
+}
+
+/* Lets the text grow without changing the line underneath it. */
+.top-navbar nav a span {
+  display: inline-block; /* Lets the text grow when the mouse is over it. */
+  transition: transform 200ms ease;
+}
+
+/* Makes the text slightly larger when the mouse is over a link. */
+.top-navbar nav a:hover span {
+  transform: scale(1.15);
+}
+
+/* Makes the link for the page you are currently viewing brighter. */
+.top-navbar nav a[aria-current="page"] {
+  color: #e9e4d8;
+  cursor: pointer; /* Shows the normal link cursor. */
+  user-select: none; /* Stops the link text being highlighted by accident. */
+  -webkit-user-select: none; /* Support for older Safari versions. */
+}
+
+/* Adds a line under the page that is currently open. */
+.top-navbar nav a[aria-current="page"]::after {
+  content: ""; /* Creates the empty shape used for the line. */
+  position: absolute; /* Moves the line without moving the text. */
+  left: 0;
+  bottom: -29px; /* Change this value to move the line up or down. */
+
+  width: 100%; /* Makes the line the same width as the link. */
+  height: 2px; /* Sets how thick the line is. */
+  background-color: #e9e4d8;
+}
+
+/* Makes the short CV underline a little wider without changing the text. */
+.top-navbar nav a.cv-link[aria-current="page"]::after {
+  left: 50%;
+  width: calc(100% + 24px);
+  transform: translateX(-50%); /* Keeps the extra line length equal on both sides. */
+}
+
+/* Shows a clear outline when links are selected with the keyboard. */
+.top-navbar a:focus-visible,
+.button:focus-visible,
+.featured-card:focus-visible,
+.site-footer a:focus-visible {
+  outline: 2px solid #e9e4d8;
+  outline-offset: 4px;
+}
+
+/*  Shared page layout */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Adds space so the page does not hide behind the navbar. */
+main {
+  min-height: calc(100vh - 170px);
+  padding-top: 110px;
+  padding-bottom: 60px;
+}
+
+/* Removes the extra space browsers add above text. */
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+/* Uses the same close line spacing for all headings. */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+/* Small capital-letter text used for role details and project numbers. */
+.eyebrow,
+.project-number {
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Stops the introduction on CV and Projects from becoming too wide. */
+.page-heading {
+  max-width: 760px;
+  margin-bottom: 55px;
+}
+
+/* Removes the extra space below the last item in a page introduction. */
+.page-heading > :last-child {
+  margin-bottom: 0;
+}
+
+/* Adds space above the CV download button. */
+.cv-actions {
+  margin-top: 22px;
+}
+
+/*  Home page */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Adds space between the Home introduction and the next divider. */
+.home-hero {
+  display: flex;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+/* Stops the Home introduction from becoming too wide. */
+.home-copy {
+  max-width: 960px;
+}
+
+/* Makes the main Home heading stand out from the headings on the other pages. */
+.home-copy h1 {
+  max-width: 900px;
+  margin-bottom: 24px;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  letter-spacing: -0.04em;
+}
+
+/* Stops the technology introduction from becoming too wide. */
+.technology-heading {
+  max-width: 720px;
+}
+
+/* Shows the technology categories beside each other on larger screens. */
+.technology-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+/* Uses a simple line to show each branch of the technology list. */
+.technology-group {
+  padding-left: 20px;
+  border-left: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+.technology-group h3 {
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* Places the two featured projects next to each other. */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Makes each featured project a large link without changing the shared design. */
+.featured-card {
+  display: block;
+  padding: 26px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
+}
+
+.featured-card:hover,
+.featured-card:focus-visible {
+  border-color: #e9e4d8;
+  background-color: hsla(42, 28%, 88%, 0.06);
+}
+
+.featured-card span {
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+}
+
+/*  About Me page */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Places the introduction beside the profile image on larger screens. */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.45fr);
+  gap: 60px;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+/* Stops the main About Me text from becoming too wide. */
+.hero-copy {
+  max-width: 720px;
+}
+
+/* Makes the short introduction slightly larger than normal paragraph text. */
+.hero-introduction {
+  font-size: 1.1rem;
+}
+
+/* Keeps the profile image at a steady size and centres it in its column. */
+.profile-card {
+  width: 100%;
+  max-width: 350px;
+  margin: 0;
+  justify-self: center;
+}
+
+/* Makes the profile image fill its column and adds the shared light border. */
+.profile-card img {
+  width: 100%;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Small grey note below the profile image. */
+.profile-card figcaption {
+  margin-top: 10px;
+  color: #aaa99f;
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+}
+
+/* Places groups of main page buttons next to each other. */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+/* Style shared by the main buttons on the Home and About Me pages. */
+.button {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid hsla(42, 28%, 88%, 0.3);
+  background-color: transparent;
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+/* Fades the button to a light colour when the mouse or keyboard selects it. */
+.button:hover,
+.button:focus-visible {
+  border-color: #e9e4d8;
+  background-color: #e9e4d8;
+  color: #000;
+}
+
+/* Adds space and a line above sections on the Home and About Me pages. */
+.section {
+  padding-top: 60px;
+  border-top: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Adds breathing room when two bordered sections follow each other. */
+.section + .section {
+  margin-top: 40px;
+}
+
+/* Adds space between a section heading and the content below it. */
+.section-heading {
+  margin-bottom: 28px;
+}
+
+/* Keeps the space below every section heading the same. */
+.section-heading > :last-child {
+  margin-bottom: 0;
+}
+
+/* Shows three equal information boxes in a row on larger screens. */
+.information-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Adds space and a border around each About Me information box. */
+.information-card {
+  padding: 22px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Removes the extra paragraph space at the bottom of each information box. */
+.information-card > :last-child {
+  margin-bottom: 0;
+}
+
+/* Holds the future contact form message and email button. */
+.contact-placeholder {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 30px;
+  align-items: center;
+  padding: 26px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+.contact-placeholder p {
+  max-width: 720px;
+  margin-bottom: 0;
+}
+
+/*  CV page */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Shows the skills box above work experience and education. */
+.cv-skills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  padding: 22px;
+  margin-bottom: 55px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Keeps both skill-box headings small and consistent. */
+.cv-skills h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+/* Adds a little more space between the coloured skill labels on the CV. */
+.cv-skills .tag-list {
+  gap: 10px;
+}
+
+/* Places the main CV details beside the smaller information box. */
+.cv-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.8fr);
+  gap: 60px;
+  align-items: start;
+}
+
+/* Stops either CV column from pushing outside the page. */
+.cv-layout > * {
+  min-width: 0;
+}
+
+/* Adds a little more space between the bullet points on the CV. */
+.cv-layout li + li {
+  margin-top: 6px;
+}
+
+/* Adds space below each main CV section. */
+.cv-section {
+  padding-bottom: 45px;
+}
+
+/* Adds a line before every CV section after the first one. */
+.cv-section + .cv-section {
+  padding-top: 45px;
+  border-top: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Separates each job or education entry with a thin line. */
+.timeline-entry {
+  padding: 24px 0;
+  border-top: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Keeps the space below every job and education entry the same. */
+.timeline-entry > :last-child {
+  margin-bottom: 0;
+}
+
+/* Places the title on the left and the date on the right. */
+.entry-heading {
+  display: flex;
+  gap: 24px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+/* Keeps the role and date close to the company name below them. */
+.entry-heading h3,
+.entry-heading p {
+  margin-bottom: 6px;
+}
+
+/* Uses Courier New for dates and company names. */
+.entry-heading p,
+.entry-place {
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+}
+
+/* Holds languages and other skills beside the main CV details. */
+.cv-sidebar {
+  position: sticky; /* Keeps this box visible while the CV is being scrolled. */
+  top: 105px;
+  padding: 22px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Adds lines between groups in the smaller CV box. */
+.cv-sidebar section + section {
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Removes extra space at the bottom of each smaller CV section. */
+.cv-sidebar section > :last-child {
+  margin-bottom: 0;
+}
+
+/* Makes headings in the smaller CV box short and capitalised. */
+.cv-sidebar h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+/* Places skill labels next to each other and moves them down when needed. */
+.tag-list,
+.technology-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Basic style used by skill labels and project technology labels. */
+.tag-list li,
+.technology-list li {
+  padding: 4px 8px;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+  color: #aaa99f;
+  font-family: "Courier New", monospace;
+  font-size: 0.7rem;
+}
+
+/* Gives each skill or technology a colour similar to its logo. */
+/* HTML label - orange, based on the HTML5 logo. */
+li.skill-html {
+  border-color: #e34f26;
+  background: rgba(227, 79, 38, 0.1);
+  color: #f06a43;
+}
+
+/* CSS label - blue, based on the CSS logo. */
+li.skill-css {
+  border-color: #2965f1;
+  background: rgba(41, 101, 241, 0.1);
+  color: #5d87ee;
+}
+
+/* JavaScript label - yellow, based on the JS logo. */
+li.skill-javascript {
+  border-color: #f7df1e;
+  background: rgba(247, 223, 30, 0.08);
+  color: #f7df1e;
+}
+
+/* Java label - warm orange, based on the Java coffee-cup colours. */
+li.skill-java {
+  border-color: #e76f00;
+  background: rgba(231, 111, 0, 0.1);
+  color: #f18a2a;
+}
+
+/* Git label - orange-red, based on the Git logo. */
+li.skill-git {
+  border-color: #f05032;
+  background: rgba(240, 80, 50, 0.1);
+  color: #f06a50;
+}
+
+/* Linux label - yellow, based on the Linux mascot colours. */
+li.skill-linux {
+  border-color: #fcc624;
+  background: rgba(252, 198, 36, 0.1);
+  color: #ffd95a;
+}
+
+/* Windows label - blue, based on the Windows logo. */
+li.skill-windows {
+  border-color: #0078d4;
+  background: rgba(0, 120, 212, 0.12);
+  color: #46a9ee;
+}
+
+/* Networking label - teal, to separate it from the operating systems. */
+li.skill-networking {
+  border-color: #00a99d;
+  background: rgba(0, 169, 157, 0.12);
+  color: #42d2c7;
+}
+
+/* PC hardware label - cyan, to keep it clear beside the operating-system labels. */
+li.skill-pc-hardware {
+  border-color: #00b8f0;
+  background: rgba(0, 184, 240, 0.12);
+  color: #45d0f7;
+}
+
+/* Embedded hardware label - green, inspired by circuit-board colours. */
+li.skill-embedded-hardware {
+  border-color: #63b946;
+  background: rgba(99, 185, 70, 0.12);
+  color: #8bd36f;
+}
+
+/* VS Code label - blue, based on the editor logo. */
+li.skill-vscode {
+  border-color: #007acc;
+  background: rgba(0, 122, 204, 0.12);
+  color: #40aeea;
+}
+
+/* IntelliJ IDEA label - pink, based on one of its main logo colours. */
+li.skill-intellij {
+  border-color: #fe315d;
+  background: rgba(254, 49, 93, 0.1);
+  color: #ff6b89;
+}
+
+/* JetBrains Suite label - purple, based on the JetBrains brand colours. */
+li.skill-jetbrains {
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.12);
+  color: #c58af9;
+}
+
+/* Excel label - green, based on the Microsoft Excel icon. */
+li.skill-excel {
+  border-color: #217346;
+  background: rgba(33, 115, 70, 0.14);
+  color: #45a873;
+}
+
+/* Business Central label - purple, similar to its logo. */
+li.skill-business-central {
+  border-color: #7354a3;
+  background: rgba(115, 84, 163, 0.14);
+  color: #a387cd;
+}
+
+/* SuperOffice label - red, so it stands out from the other tools. */
+li.skill-superoffice {
+  border-color: #dc3b3b;
+  background: rgba(220, 59, 59, 0.1);
+  color: #e66c6c;
+}
+
+/* Salesforce label - cyan-blue, based on the cloud logo. */
+li.skill-salesforce {
+  border-color: #00a1e0;
+  background: rgba(0, 161, 224, 0.1);
+  color: #3bc3f7;
+}
+
+/* SAP label - blue, based on the SAP logo. */
+li.skill-sap {
+  border-color: #0a6ed1;
+  background: rgba(10, 110, 209, 0.1);
+  color: #4b9ce8;
+}
+
+/* Photoshop label - light blue, based on the Ps icon. */
+li.skill-photoshop {
+  border-color: #31a8ff;
+  background: rgba(49, 168, 255, 0.1);
+  color: #65bdff;
+}
+
+/* Premiere Pro label - purple, based on the Pr icon. */
+li.skill-premiere {
+  border-color: #9999ff;
+  background: rgba(153, 153, 255, 0.1);
+  color: #b6b6ff;
+}
+
+/* Illustrator label - orange, based on the Ai icon. */
+li.skill-illustrator {
+  border-color: #ff9a00;
+  background: rgba(255, 154, 0, 0.1);
+  color: #ffb23e;
+}
+
+/* Adobe Suite label - red, based on Adobe's main brand colour. */
+li.skill-adobe {
+  border-color: #ed2224;
+  background: rgba(237, 34, 36, 0.1);
+  color: #f05b5d;
+}
+
+/* Adds normal bullet spacing to the other-skills list. */
+.simple-list {
+  padding-left: 18px;
+  color: #aaa99f;
+}
+
+/* Removes the extra space browsers add around the language list. */
+.language-list {
+  margin: 0;
+}
+
+/* Places each language on the left and its level on the right. */
+.language-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Removes extra left space and makes the language level grey. */
+.language-list dd {
+  margin: 0;
+  color: #aaa99f;
+}
+
+/*  Projects page */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Shows two project boxes in each row on larger screens. */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* Places each part of a project box underneath the previous part. */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Lets project images resize without stretching or cropping them. */
+.project-card img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  border-bottom: 1px solid hsla(42, 28%, 88%, 0.18);
+}
+
+/* Lets the text area use the rest of the project box. */
+.project-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 24px;
+}
+
+/* Adds space around the technology labels in a project box. */
+.technology-list {
+  margin: 10px 0 24px;
+}
+
+/* Keeps the project link or status text at the bottom so the boxes line up. */
+.project-link {
+  width: max-content;
+  margin-top: auto;
+  color: #e9e4d8;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+  text-underline-offset: 4px;
+}
+
+/* Keeps unfinished project links visible without making them clickable. */
+.project-link-disabled {
+  cursor: default;
+  text-decoration: underline;
+}
+
+/*  Footer */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Main footer style used on every page. */
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(240px, 280px) minmax(100px, 130px) minmax(170px, 220px) minmax(120px, 160px);
+  grid-template-areas: "info navigation projects socials";
+  gap: 30px;
+  align-items: start;
+  justify-content: center; /* Keeps the footer columns together in the centre of the page. */
+  padding: 30px 0 36px;
+  border-top: 1px solid hsla(42, 28%, 88%, 0.18);
+  color: #aaa99f;
+  font-family: "Courier New", monospace;
+  font-size: 0.75rem;
+}
+
+/* Keeps the copyright and email together. */
+.footer-info {
+  display: grid;
+  gap: 12px;
+  grid-area: info;
+  justify-items: start;
+  text-align: left;
+}
+
+/* Gives each footer group the same heading style. */
+.footer-navigation h2,
+.footer-projects h2,
+.footer-socials h2 {
+  margin-bottom: 4px;
+  color: #e9e4d8;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Places the four page links underneath their footer heading. */
+.footer-navigation {
+  display: grid;
+  grid-area: navigation;
+  gap: 10px;
+}
+
+/* Gives the navigation links the same simple colour change. */
+.footer-navigation a {
+  color: #aaa99f;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.footer-navigation a:hover,
+.footer-navigation a:focus-visible {
+  color: #e9e4d8;
+}
+
+/* Displays the projects as part of the same footer grid. */
+.footer-projects {
+  display: grid;
+  grid-area: projects;
+  gap: 10px;
+}
+
+.footer-project-links {
+  display: grid;
+  gap: 8px;
+}
+
+.footer-project-links a {
+  color: #aaa99f;
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.footer-project-links a:hover,
+.footer-project-links a:focus-visible {
+  color: #e9e4d8;
+}
+
+/* Keeps the Socials heading and icons together. */
+.footer-socials {
+  display: grid;
+  grid-area: socials;
+  gap: 10px;
+}
+
+/* Places the three social icons next to each other. */
+.footer-social-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Gives each social icon a small button area. */
+.footer-socials a {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid hsla(42, 28%, 88%, 0.18);
+  transition: border-color 200ms ease;
+}
+
+/* Each social button uses a colour connected to that website. */
+.footer-socials .social-instagram {
+  border-color: #e1306c;
+  background: rgba(225, 48, 108, 0.12);
+}
+
+.footer-socials .social-linkedin {
+  border-color: #0a66c2;
+  background: rgba(10, 102, 194, 0.12);
+}
+
+.footer-socials .social-github {
+  border-color: #a371f7;
+  background: rgba(163, 113, 247, 0.12);
+}
+
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+  border-color: #e9e4d8;
+}
+
+/* Sets the size of the social icons. */
+.footer-socials img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Removes the paragraph margin that would make the footer uneven. */
+.site-footer p {
+  margin: 0;
+}
+
+/* Moves the email underline slightly away from the text. */
+.site-footer a {
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere; /* Stops long links from leaving the footer on small screens. */
+}
+
+/*  Screen size changes */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Moves the copyright and email below the other columns on smaller screens. */
+@media (max-width: 950px) {
+  .site-footer {
+    grid-template-columns: minmax(100px, 130px) minmax(170px, 220px) minmax(120px, 160px);
+    grid-template-areas:
+      "navigation projects socials"
+      "info info info";
+  }
+
+  .footer-info {
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+/* Changes the layout when the screen is 768px wide or smaller. */
+@media (max-width: 768px) {
+  /* Shows the About Me and CV sections in one column. */
+  .hero,
+  .cv-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Uses a smaller gap around the About Me introduction. */
+  .hero {
+    gap: 40px;
+    padding-bottom: 30px;
+  }
+
+  /* Matches the Home introduction spacing to the About Me introduction. */
+  .home-hero {
+    padding-bottom: 30px;
+  }
+
+  /* Uses a smaller gap after the main CV column when both columns are stacked. */
+  .cv-layout {
+    gap: 40px;
+  }
+
+  /* Shows information and project boxes one per row. */
+  .information-grid,
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Moves the smaller CV box below the main CV details. */
+  .cv-sidebar {
+    position: static;
+  }
+}
+
+/* Changes the layout when the screen is 600px wide or smaller. */
+@media (max-width: 600px) {
+  /* Uses less empty space at the sides on small screens. */
+  body {
+    padding: 0 5vw;
+  }
+
+  /* Uses slightly smaller page spacing on phone-sized screens. */
+  main {
+    padding-top: 100px;
+    padding-bottom: 48px;
+  }
+
+  /* Keeps the space after page introductions smaller on phones. */
+  .page-heading {
+    margin-bottom: 44px;
+  }
+
+  /* Scales the spacing around section dividers down on phones. */
+  .section {
+    padding-top: 48px;
+  }
+
+  .section + .section {
+    margin-top: 32px;
+  }
+
+  /* Hides the Portfolio title so it does not touch the page links. */
+  .portfolio-name {
+    display: none;
+  }
+
+  /* Keeps the Home page groups in one column on phone-sized screens. */
+  .technology-groups,
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Shows development skills above software skills. */
+  .cv-skills {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 44px;
+  }
+
+  /* Puts CV dates below the title without leaving a large gap. */
+  .entry-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Places the contact message above its email button. */
+  .contact-placeholder {
+    grid-template-columns: 1fr;
+  }
+
+  /* Keeps the three footer groups beside each other on small screens. */
+  .site-footer {
+    grid-template-columns: minmax(70px, 0.75fr) minmax(100px, 1.25fr) minmax(60px, 0.65fr);
+    grid-template-areas:
+      "navigation projects socials"
+      "info info info";
+    column-gap: 16px;
+    row-gap: 24px;
+  }
+
+  /* Stacks the three social icons from top to bottom. */
+  .footer-social-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Centres the links and headings inside each mobile footer column. */
+  .footer-navigation,
+  .footer-projects,
+  .footer-socials {
+    justify-items: center;
+    text-align: center;
+  }
+}
+
+/* Turns off movement if the visitor has reduced motion turned on. */
+@media (prefers-reduced-motion: reduce) {
+  .top-navbar nav a,
+  .top-navbar nav a span,
+  .button,
+  .featured-card,
+  .footer-project-links a,
+  .footer-navigation a,
+  .footer-socials a {
+    transition: none;
+  }
+}

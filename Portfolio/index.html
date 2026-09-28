@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8">
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Short description of the page. -->
+    <meta
+      name="description"
+      content="Personal CV and portfolio website for a software engineering trainee."
+    >
+    <!-- Connects the page to the CSS file. -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Name shown on the browser tab. -->
+    <title>Home | My Portfolio</title>
+  </head>
+
+  <body>
+
+    <!-- Top navigation bar used on every page. -->
+    <header class="top-navbar">
+      <!-- Portfolio name on the left side of the navigation bar. -->
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+
+      <!-- Navigation items for the four pages. -->
+      <nav aria-label="Main navigation">
+        <!-- Shows that Home is the page currently open. -->
+        <a aria-current="page"><span>Home</span></a>
+        <a href="projects.html"><span>Projects</span></a>
+        <a class="cv-link" href="cv.html"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- Main part of the Home page. -->
+    <main id="main-content" class="content">
+      <!-- Large introduction at the top of the page. -->
+      <section class="home-hero" aria-labelledby="home-heading">
+        <!-- Holds the heading, introduction, and buttons. -->
+        <div class="home-copy">
+          <h1 id="home-heading">Software engineering, computer systems, and technical sales.</h1>
+          <!-- Short line about my current roles and location. -->
+          <p class="eyebrow">Software engineering trainee · Sales and marketing · Based in Denmark</p>
+          <!-- Main introduction below the heading. -->
+          <p class="hero-introduction">
+            I’m Alexander Mankvard. I study software engineering at VIA University College and work as
+            an Internal Sales Specialist. My experience combines software
+            development, computer hardware, business systems, and customer-focused technical sales and marketing.
+          </p>
+
+          <!-- Holds the two buttons together. -->
+          <div class="button-row">
+            <a class="button" href="projects.html">See my projects</a>
+            <!-- Downloads my CV as a PDF file. -->
+            <a class="button" href="files/alexander-mankvard-cv.pdf" download>Download CV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technologies and programs I have experience with. -->
+      <section class="section" aria-labelledby="toolkit-heading">
+        <!-- Heading and short text for this section. -->
+        <div class="section-heading technology-heading">
+          <h2 id="toolkit-heading">Current technologies</h2>
+          <p>
+            My experience covers development, computer systems, business software, and creative
+            tools.
+          </p>
+        </div>
+
+        <!-- Holds the three groups of skills. -->
+        <div class="technology-groups">
+          <!-- Programming and web development skills. -->
+          <section class="technology-group" aria-labelledby="development-tools-heading">
+            <h3 id="development-tools-heading">Development</h3>
+            <!-- Coloured labels for each skill. -->
+            <ul class="tag-list">
+              <li class="skill-html">HTML</li>
+              <li class="skill-css">CSS</li>
+              <li class="skill-javascript">JavaScript</li>
+              <li class="skill-java">Java</li>
+              <li class="skill-git">Git</li>
+            </ul>
+          </section>
+
+          <!-- Operating systems, hardware, and coding programs. -->
+          <section class="technology-group" aria-labelledby="systems-tools-heading">
+            <h3 id="systems-tools-heading">Systems and development tools</h3>
+            <ul class="tag-list">
+              <li class="skill-linux">Linux</li>
+              <li class="skill-windows">Windows</li>
+              <li class="skill-networking">Networking</li>
+              <li class="skill-pc-hardware">PC Hardware</li>
+              <li class="skill-embedded-hardware">Embedded Hardware</li>
+              <li class="skill-vscode">VS Code</li>
+              <li class="skill-intellij">IntelliJ IDEA</li>
+              <li class="skill-jetbrains">JetBrains Suite</li>
+            </ul>
+          </section>
+
+          <!-- Programs used for business, sales, and creative work. -->
+          <section class="technology-group" aria-labelledby="professional-tools-heading">
+            <h3 id="professional-tools-heading">Business and creative tools</h3>
+            <ul class="tag-list">
+              <li class="skill-excel">Excel</li>
+              <li class="skill-business-central">Business Central</li>
+              <li class="skill-sap">SAP</li>
+              <li class="skill-salesforce">Salesforce</li>
+              <li class="skill-superoffice">SuperOffice</li>
+              <li class="skill-photoshop">Photoshop</li>
+              <li class="skill-premiere">Premiere Pro</li>
+              <li class="skill-illustrator">Illustrator</li>
+              <li class="skill-adobe">Adobe Creative Suite</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <!-- A selection of projects shown on the Home page. -->
+      <section class="section" aria-labelledby="featured-heading">
+        <div class="section-heading">
+          <h2 id="featured-heading">Selected projects</h2>
+        </div>
+
+        <!-- Holds the project boxes and lets them stack on smaller screens. -->
+        <div class="featured-grid">
+          <!-- Clicking this whole box opens the Home Server project. -->
+          <a class="featured-card" href="projects.html#home-server">
+            <p class="project-number">Featured 01</p>
+            <h3>Home Server Dashboard</h3>
+            <p>A practical dashboard concept for keeping an eye on services and storage at home.</p>
+            <span>View project →</span>
+          </a>
+
+          <!-- Clicking this whole box opens the Pokémon project. -->
+          <a class="featured-card" href="projects.html#pokemon-card-collector">
+            <p class="project-number">Featured 02</p>
+            <h3>Pokémon Card Collector</h3>
+            <p>A first-year Java project for registering, searching, and organising a card collection.</p>
+            <span>View project →</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="site-footer content">
+      <!-- Links to the main pages. -->
+      <nav class="footer-navigation" aria-labelledby="footer-navigation-heading">
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- Links to each project. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links">
+          <a href="projects.html#home-server">Home Server Dashboard</a>
+          <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
+          <a href="projects.html#weather-dashboard">Weather Dashboard</a>
+          <a href="projects.html#study-planner">Study Planner</a>
+          <a href="projects.html#habit-tracker">Habit Tracker</a>
+          <a href="projects.html#photography-gallery">Photography Gallery</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <!-- Holds the three social icons together. -->
+        <div class="footer-social-links">
+          <!-- The social links open in a new tab. -->
+          <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <!-- Instagram icon. The link already has the Instagram name. -->
+            <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="images/linkedin-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-github" href="https://github.com/alexmark7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="images/github-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>
