@@ -176,8 +176,8 @@ a {
 /* Shows a clear outline when links are selected with the keyboard. */
 .top-navbar a:focus-visible,
 .button:focus-visible,
-.featured-card:focus-visible,
-.site-footer a:focus-visible {
+.selected-project-box:focus-visible,
+.footer a:focus-visible {
   outline: 2px solid #e9e4d8;
   outline-offset: 4px;
 }
@@ -208,7 +208,7 @@ h3 {
 }
 
 /* Small capital-letter text used for role details and project numbers. */
-.eyebrow,
+.role-line,
 .project-number {
   color: #e9e4d8;
   font-family: "Courier New", monospace;
@@ -226,7 +226,7 @@ h3 {
 
 /* Makes the main headings on Projects, CV, and About Me larger. */
 .page-heading h1,
-.hero-copy h1 {
+.about-introduction-text h1 {
   font-size: clamp(2.3rem, 4.5vw, 4rem);
   letter-spacing: -0.03em;
 }
@@ -237,7 +237,7 @@ h3 {
 }
 
 /* Adds space above the CV download button. */
-.cv-actions {
+.cv-button-area {
   margin-top: 22px;
 }
 
@@ -245,7 +245,7 @@ h3 {
 /* ----------------------------------------------------------------------------------------- */
 
 /* Adds space between the Home introduction and the next divider. */
-.home-hero {
+.home-introduction {
   display: flex;
   align-items: center;
   padding-top: 40px;
@@ -253,12 +253,12 @@ h3 {
 }
 
 /* Stops the Home introduction from becoming too wide. */
-.home-copy {
+.home-introduction-text {
   max-width: 960px;
 }
 
 /* Makes the main Home heading stand out from the headings on the other pages. */
-.home-copy h1 {
+.home-introduction-text h1 {
   max-width: 900px;
   margin-bottom: 24px;
   font-size: clamp(2.5rem, 6vw, 5.5rem);
@@ -266,38 +266,38 @@ h3 {
 }
 
 /* Stops the technology introduction from becoming too wide. */
-.technology-heading {
+.skills-introduction {
   max-width: 720px;
 }
 
 /* Shows the technology categories beside each other on larger screens. */
-.technology-groups {
+.skill-groups {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
 }
 
 /* Uses a simple line to show each branch of the technology list. */
-.technology-group {
+.skill-group {
   padding-left: 20px;
   border-left: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
-.technology-group h3 {
+.skill-group h3 {
   margin-bottom: 16px;
   font-size: 0.9rem;
   text-transform: uppercase;
 }
 
-/* Places the two featured projects next to each other. */
-.featured-grid {
+/* Places the two selected projects next to each other. */
+.selected-projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
-/* Makes each featured project a large link without changing the shared design. */
-.featured-card {
+/* Makes each selected project a large link without changing the shared design. */
+.selected-project-box {
   display: block;
   padding: 26px;
   border: 1px solid hsla(42, 28%, 88%, 0.18);
@@ -308,13 +308,13 @@ h3 {
     border-color 200ms ease;
 }
 
-.featured-card:hover,
-.featured-card:focus-visible {
+.selected-project-box:hover,
+.selected-project-box:focus-visible {
   border-color: #e9e4d8;
   background-color: hsla(42, 28%, 88%, 0.06);
 }
 
-.featured-card span {
+.selected-project-box span {
   color: #e9e4d8;
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
@@ -324,7 +324,7 @@ h3 {
 /* ----------------------------------------------------------------------------------------- */
 
 /* Places the introduction beside the profile image on larger screens. */
-.hero {
+.about-introduction {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(250px, 0.45fr);
   gap: 60px;
@@ -334,17 +334,17 @@ h3 {
 }
 
 /* Stops the main About Me text from becoming too wide. */
-.hero-copy {
+.about-introduction-text {
   max-width: 720px;
 }
 
 /* Makes the short introduction slightly larger than normal paragraph text. */
-.hero-introduction {
+.introduction-paragraph {
   font-size: 1.1rem;
 }
 
 /* Keeps the profile image at a steady size and centres it in its column. */
-.profile-card {
+.profile-box {
   width: 100%;
   max-width: 350px;
   margin: 0;
@@ -352,13 +352,13 @@ h3 {
 }
 
 /* Makes the profile image fill its column and adds the shared light border. */
-.profile-card img {
+.profile-box img {
   width: 100%;
   border: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
 /* Small grey note below the profile image. */
-.profile-card figcaption {
+.profile-box figcaption {
   margin-top: 10px;
   color: #aaa99f;
   font-family: "Courier New", monospace;
@@ -366,7 +366,7 @@ h3 {
 }
 
 /* Places groups of main page buttons next to each other. */
-.button-row {
+.button-group {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -420,7 +420,7 @@ h3 {
 }
 
 /* Places the Selected projects heading beside its button. */
-.featured-heading-row {
+.selected-projects-heading {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
@@ -429,30 +429,30 @@ h3 {
 }
 
 /* Removes extra heading space inside the Selected projects row. */
-.featured-heading-row h2 {
+.selected-projects-heading h2 {
   margin-bottom: 0;
 }
 
 /* Shows three equal information boxes in a row on larger screens. */
-.information-grid {
+.information-boxes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
 /* Adds space and a border around each About Me information box. */
-.information-card {
+.information-box {
   padding: 22px;
   border: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
 /* Removes the extra paragraph space at the bottom of each information box. */
-.information-card > :last-child {
+.information-box > :last-child {
   margin-bottom: 0;
 }
 
 /* Holds the future contact form message and email button. */
-.contact-placeholder {
+.contact-box {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 30px;
@@ -461,7 +461,7 @@ h3 {
   border: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
-.contact-placeholder p {
+.contact-box p {
   max-width: 720px;
   margin-bottom: 0;
 }
@@ -486,12 +486,12 @@ h3 {
 }
 
 /* Adds a little more space between the coloured skill labels on the CV. */
-.cv-skills .tag-list {
+.cv-skills .skill-list {
   gap: 10px;
 }
 
 /* Places the main CV details beside the smaller information box. */
-.cv-layout {
+.cv-columns {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(240px, 0.8fr);
   gap: 60px;
@@ -499,12 +499,12 @@ h3 {
 }
 
 /* Stops either CV column from pushing outside the page. */
-.cv-layout > * {
+.cv-columns > * {
   min-width: 0;
 }
 
 /* Adds a little more space between the bullet points on the CV. */
-.cv-layout li + li {
+.cv-columns li + li {
   margin-top: 6px;
 }
 
@@ -520,18 +520,18 @@ h3 {
 }
 
 /* Separates each job or education entry with a thin line. */
-.timeline-entry {
+.cv-entry {
   padding: 24px 0;
   border-top: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
 /* Keeps the space below every job and education entry the same. */
-.timeline-entry > :last-child {
+.cv-entry > :last-child {
   margin-bottom: 0;
 }
 
 /* Places the title on the left and the date on the right. */
-.entry-heading {
+.cv-entry-heading {
   display: flex;
   gap: 24px;
   align-items: baseline;
@@ -539,20 +539,20 @@ h3 {
 }
 
 /* Keeps the role and date close to the company name below them. */
-.entry-heading h3,
-.entry-heading p {
+.cv-entry-heading h3,
+.cv-entry-heading p {
   margin-bottom: 6px;
 }
 
 /* Uses Courier New for dates and company names. */
-.entry-heading p,
-.entry-place {
+.cv-entry-heading p,
+.cv-entry-place {
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
 
 /* Holds languages and other skills beside the main CV details. */
-.cv-sidebar {
+.cv-extra-information {
   position: sticky; /* Keeps this box visible while the CV is being scrolled. */
   top: 105px;
   padding: 22px;
@@ -560,26 +560,26 @@ h3 {
 }
 
 /* Adds lines between groups in the smaller CV box. */
-.cv-sidebar section + section {
+.cv-extra-information section + section {
   padding-top: 24px;
   margin-top: 24px;
   border-top: 1px solid hsla(42, 28%, 88%, 0.18);
 }
 
 /* Removes extra space at the bottom of each smaller CV section. */
-.cv-sidebar section > :last-child {
+.cv-extra-information section > :last-child {
   margin-bottom: 0;
 }
 
 /* Makes headings in the smaller CV box short and capitalised. */
-.cv-sidebar h2 {
+.cv-extra-information h2 {
   font-size: 1rem;
   text-transform: uppercase;
 }
 
 /* Places skill labels next to each other and moves them down when needed. */
-.tag-list,
-.technology-list {
+.skill-list,
+.project-skill-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -589,8 +589,8 @@ h3 {
 }
 
 /* Basic style used by skill labels and project technology labels. */
-.tag-list li,
-.technology-list li {
+.skill-list li,
+.project-skill-list li {
   padding: 4px 8px;
   border: 1px solid hsla(42, 28%, 88%, 0.18);
   color: #aaa99f;
@@ -754,7 +754,7 @@ li.skill-adobe {
 }
 
 /* Adds normal bullet spacing to the other-skills list. */
-.simple-list {
+.bullet-list {
   padding-left: 18px;
   color: #aaa99f;
 }
@@ -781,14 +781,14 @@ li.skill-adobe {
 /* ----------------------------------------------------------------------------------------- */
 
 /* Shows two project boxes in each row on larger screens. */
-.project-grid {
+.project-boxes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
 /* Places each part of a project box underneath the previous part. */
-.project-card {
+.project-box {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -797,7 +797,7 @@ li.skill-adobe {
 }
 
 /* Lets project images resize without stretching or cropping them. */
-.project-card img {
+.project-box img {
   width: 100%;
   height: auto;
   flex-shrink: 0;
@@ -805,7 +805,7 @@ li.skill-adobe {
 }
 
 /* Lets the text area use the rest of the project box. */
-.project-content {
+.project-details {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -813,7 +813,7 @@ li.skill-adobe {
 }
 
 /* Adds space around the technology labels in a project box. */
-.technology-list {
+.project-skill-list {
   margin: 10px 0 24px;
 }
 
@@ -828,7 +828,7 @@ li.skill-adobe {
 }
 
 /* Keeps unfinished project links visible without making them clickable. */
-.project-link-disabled {
+.project-link-unavailable {
   cursor: default;
   text-decoration: underline;
 }
@@ -837,7 +837,7 @@ li.skill-adobe {
 /* ----------------------------------------------------------------------------------------- */
 
 /* Main footer style used on every page. */
-.site-footer {
+.footer {
   display: grid;
   grid-template-columns: minmax(240px, 280px) minmax(100px, 130px) minmax(170px, 220px) minmax(120px, 160px);
   grid-template-areas: "info navigation projects socials";
@@ -966,12 +966,12 @@ li.skill-adobe {
 }
 
 /* Removes the paragraph margin that would make the footer uneven. */
-.site-footer p {
+.footer p {
   margin: 0;
 }
 
 /* Moves the email underline slightly away from the text. */
-.site-footer a {
+.footer a {
   text-underline-offset: 4px;
   overflow-wrap: anywhere; /* Stops long links from leaving the footer on small screens. */
 }
@@ -981,7 +981,7 @@ li.skill-adobe {
 
 /* Moves the copyright and email below the other columns on smaller screens. */
 @media (max-width: 950px) {
-  .site-footer {
+  .footer {
     grid-template-columns: minmax(100px, 130px) minmax(170px, 220px) minmax(120px, 160px);
     grid-template-areas:
       "navigation projects socials"
@@ -997,35 +997,35 @@ li.skill-adobe {
 /* Changes the layout when the screen is 768px wide or smaller. */
 @media (max-width: 768px) {
   /* Shows the About Me and CV sections in one column. */
-  .hero,
-  .cv-layout {
+  .about-introduction,
+  .cv-columns {
     grid-template-columns: 1fr;
   }
 
   /* Uses a smaller gap around the About Me introduction. */
-  .hero {
+  .about-introduction {
     gap: 40px;
     padding-bottom: 30px;
   }
 
   /* Matches the Home introduction spacing to the About Me introduction. */
-  .home-hero {
+  .home-introduction {
     padding-bottom: 30px;
   }
 
   /* Uses a smaller gap after the main CV column when both columns are stacked. */
-  .cv-layout {
+  .cv-columns {
     gap: 40px;
   }
 
   /* Shows information and project boxes one per row. */
-  .information-grid,
-  .project-grid {
+  .information-boxes,
+  .project-boxes {
     grid-template-columns: 1fr;
   }
 
   /* Moves the smaller CV box below the main CV details. */
-  .cv-sidebar {
+  .cv-extra-information {
     position: static;
   }
 }
@@ -1063,8 +1063,8 @@ li.skill-adobe {
   }
 
   /* Keeps the Home page groups in one column on phone-sized screens. */
-  .technology-groups,
-  .featured-grid {
+  .skill-groups,
+  .selected-projects-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1076,19 +1076,19 @@ li.skill-adobe {
   }
 
   /* Puts CV dates below the title without leaving a large gap. */
-  .entry-heading {
+  .cv-entry-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 0;
   }
 
   /* Places the contact message above its email button. */
-  .contact-placeholder {
+  .contact-box {
     grid-template-columns: 1fr;
   }
 
   /* Keeps the three footer groups beside each other on small screens. */
-  .site-footer {
+  .footer {
     grid-template-columns: minmax(70px, 0.75fr) minmax(100px, 1.25fr) minmax(60px, 0.65fr);
     grid-template-areas:
       "navigation projects socials"
@@ -1117,7 +1117,7 @@ li.skill-adobe {
   .top-navbar nav a,
   .top-navbar nav a span,
   .button,
-  .featured-card,
+  .selected-project-box,
   .footer-project-links a,
   .footer-navigation a,
   .footer-socials a {

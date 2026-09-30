@@ -37,20 +37,20 @@
     <!-- Main part of the Home page. -->
     <main id="main-content" class="content">
       <!-- Large introduction at the top of the page. -->
-      <section class="home-hero" aria-labelledby="home-heading">
+      <section class="home-introduction" aria-labelledby="home-heading">
         <!-- Holds the heading, introduction, and buttons. -->
-        <div class="home-copy">
+        <div class="home-introduction-text">
           <h1 id="home-heading">Software Engineering, Computer Systems, and Technical Sales.</h1>
           <!-- Short line about my current roles and location. -->
-          <p class="eyebrow">Software engineering trainee · Sales and marketing · Based in Denmark</p>
+          <p class="role-line">Software engineering trainee · Sales and marketing · Based in Denmark</p>
           <!-- Main introduction below the heading. -->
-          <p class="hero-introduction">
+          <p class="introduction-paragraph">
             I’m Alexander Mankvard. I study software engineering at VIA University College and work as
             an Internal Sales Specialist. My experience combines software
             development, computer hardware, business systems, and customer-focused technical sales and marketing.
           </p>
           <!-- Holds the two buttons together. -->
-          <div class="button-row">
+          <div class="button-group">
             <a class="button" href="projects.html">See my projects</a>
             <!-- Downloads my CV as a PDF file. -->
             <a class="button" href="files/alexander-mankvard-cv.pdf" download>Download CV</a>
@@ -61,7 +61,7 @@
       <!-- Technologies and programs I have experience with. -->
       <section class="section" aria-labelledby="toolkit-heading">
         <!-- Heading and short text for this section. -->
-        <div class="section-heading technology-heading">
+        <div class="section-heading skills-introduction">
           <h2 id="toolkit-heading">Current Technologies</h2>
           <p>
             My experience covers development, computer systems, business software, and creative
@@ -70,12 +70,12 @@
         </div>
 
         <!-- Holds the three groups of skills. -->
-        <div class="technology-groups">
+        <div class="skill-groups">
           <!-- Programming and web development skills. -->
-          <section class="technology-group" aria-labelledby="development-tools-heading">
+          <section class="skill-group" aria-labelledby="development-tools-heading">
             <h3 id="development-tools-heading">Development</h3>
             <!-- Coloured labels for each skill. -->
-            <ul class="tag-list">
+            <ul class="skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
@@ -85,9 +85,9 @@
           </section>
 
           <!-- Operating systems, hardware, and coding programs. -->
-          <section class="technology-group" aria-labelledby="systems-tools-heading">
+          <section class="skill-group" aria-labelledby="systems-tools-heading">
             <h3 id="systems-tools-heading">Systems and development tools</h3>
-            <ul class="tag-list">
+            <ul class="skill-list">
               <li class="skill-linux">Linux</li>
               <li class="skill-windows">Windows</li>
               <li class="skill-networking">Networking</li>
@@ -100,9 +100,9 @@
           </section>
 
           <!-- Programs used for business, sales, and creative work. -->
-          <section class="technology-group" aria-labelledby="professional-tools-heading">
+          <section class="skill-group" aria-labelledby="professional-tools-heading">
             <h3 id="professional-tools-heading">Business and creative tools</h3>
-            <ul class="tag-list">
+            <ul class="skill-list">
               <li class="skill-excel">Excel</li>
               <li class="skill-business-central">Business Central</li>
               <li class="skill-sap">SAP</li>
@@ -120,15 +120,15 @@
       <!-- A selection of projects shown on the Home page. -->
       <section class="section" aria-labelledby="featured-heading">
         <!-- Holds the section heading and the link to the full Projects page. -->
-        <div class="section-heading featured-heading-row">
+        <div class="section-heading selected-projects-heading">
           <h2 id="featured-heading">Selected Projects</h2>
           <a class="button" href="projects.html">View all projects</a>
         </div>
 
         <!-- Holds the project boxes and lets them stack on smaller screens. -->
-        <div class="featured-grid">
+        <div class="selected-projects-grid">
           <!-- Clicking this whole box opens the Home Server project. -->
-          <a class="featured-card" href="projects.html#home-server">
+          <a class="selected-project-box" href="projects.html#home-server">
             <p class="project-number">Featured 01</p>
             <h3>Home Server Dashboard</h3>
             <p>A practical dashboard concept for keeping an eye on services and storage at home.</p>
@@ -136,7 +136,7 @@
           </a>
 
           <!-- Clicking this whole box opens the Pokémon project. -->
-          <a class="featured-card" href="projects.html#pokemon-card-collector">
+          <a class="selected-project-box" href="projects.html#pokemon-card-collector">
             <p class="project-number">Featured 02</p>
             <h3>Pokémon Card Collector</h3>
             <p>A first-year Java project for registering, searching, and organising a card collection.</p>
@@ -147,7 +147,7 @@
     </main>
 
     <!-- Footer used on every page. -->
-    <footer class="site-footer content">
+    <footer class="footer content">
       <!-- Links to the main pages. -->
       <nav class="footer-navigation" aria-labelledby="footer-navigation-heading">
         <h2 id="footer-navigation-heading">Navigate</h2>
