@@ -32,7 +32,7 @@ jobs:
       - name: Upload the Portfolio folder
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./Portfolio"
+          path: "./Portfolio Web"
 
       - name: Publish the website
         id: deployment
