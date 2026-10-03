@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+  <title id="title">Portfolio website preview</title>
+  <desc id="description">A simple drawing of the portfolio's navigation, heading, skill labels, and project boxes.</desc>
+  <rect width="800" height="500" fill="#000000"/>
+  <rect x="72" y="48" width="656" height="404" fill="#050505" stroke="#77736b" stroke-width="2"/>
+  <path d="M72 100h656" stroke="#514e48" stroke-width="2"/>
+  <text x="98" y="82" fill="#e9e4d8" font-family="monospace" font-size="21" font-weight="bold">PORTFOLIO</text>
+  <g fill="#aaa99f" font-family="monospace" font-size="13">
+    <text x="420" y="80">HOME</text>
+    <text x="492" y="80">PROJECTS</text>
+    <text x="592" y="80">CV</text>
+    <text x="632" y="80">ABOUT</text>
+  </g>
+  <path d="M420 98h42" stroke="#e9e4d8" stroke-width="3"/>
+  <g fill="#e9e4d8" font-family="Arial, sans-serif" font-size="33" font-weight="bold">
+    <text x="104" y="164">Software engineering,</text>
+    <text x="104" y="204">computer systems, and</text>
+    <text x="104" y="244">technical sales.</text>
+  </g>
+  <g fill="#aaa99f" font-family="Arial, sans-serif" font-size="15">
+    <text x="106" y="279">A portfolio built with HTML, CSS and design.</text>
+  </g>
+  <g fill="none" stroke-width="2">
+    <rect x="106" y="315" width="92" height="26" stroke="#e34f26"/>
+    <rect x="210" y="315" width="74" height="26" stroke="#2965f1"/>
+    <rect x="296" y="315" width="128" height="26" stroke="#ff9a00"/>
+    <rect x="106" y="369" width="274" height="51" stroke="#514e48"/>
+    <rect x="394" y="369" width="274" height="51" stroke="#514e48"/>
+  </g>
+  <g font-family="monospace" font-size="13" font-weight="bold">
+    <text x="128" y="333" fill="#f06a43">HTML</text>
+    <text x="232" y="333" fill="#5d87ee">CSS</text>
+    <text x="309" y="333" fill="#ffb23e">ILLUSTRATOR</text>
+    <text x="127" y="399" fill="#e9e4d8">SELECTED PROJECTS</text>
+    <text x="415" y="399" fill="#e9e4d8">EXPERIENCE</text>
+  </g>
+</svg>

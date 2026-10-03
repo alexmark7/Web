@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+  <title id="title">Pokémon card collector placeholder</title>
+  <desc id="description">An abstract collection of cards with a ball symbol.</desc>
+  <rect width="800" height="500" fill="#000000"/>
+  <g fill="#111111" stroke="#aaa99f" stroke-width="3">
+    <rect x="105" y="75" width="210" height="350" rx="14" transform="rotate(-7 210 250)"/>
+    <rect x="295" y="75" width="210" height="350" rx="14"/>
+    <rect x="485" y="75" width="210" height="350" rx="14" transform="rotate(7 590 250)"/>
+  </g>
+  <circle cx="400" cy="225" r="88" fill="none" stroke="#e9e4d8" stroke-width="10"/>
+  <path d="M312 225h176" fill="none" stroke="#e9e4d8" stroke-width="10"/>
+  <circle cx="400" cy="225" r="28" fill="#000000" stroke="#e9e4d8" stroke-width="10"/>
+  <g stroke="#aaa99f" stroke-width="7">
+    <path d="M340 350h120"/>
+    <path d="M350 380h100"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+  <title id="title">Photography gallery placeholder</title>
+  <desc id="description">An abstract collection of framed landscape photographs.</desc>
+  <rect width="800" height="500" fill="#000000"/>
+  <g stroke="#aaa99f" stroke-width="2">
+    <rect x="70" y="65" width="290" height="165" fill="#111111"/>
+    <rect x="390" y="65" width="340" height="270" fill="#1a1a1a"/>
+    <rect x="70" y="260" width="290" height="175" fill="#111111"/>
+    <rect x="390" y="365" width="340" height="70" fill="#1a1a1a"/>
+  </g>
+  <circle cx="145" cy="118" r="25" fill="#e9e4d8"/>
+  <path d="M70 206l88-74 66 54 48-35 88 55M70 412l82-95 60 55 55-42 93 82M390 305l95-112 74 62 55-91 116 141" fill="none" stroke="#e9e4d8" stroke-width="7"/>
+</svg>

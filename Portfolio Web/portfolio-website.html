@@ -1,0 +1,836 @@
+<!doctype html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8" />
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The steps I took to build my portfolio website, with screenshots and code examples."
+    />
+    <!-- Connects this page to the same CSS and background as the rest of the site. -->
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Portfolio Website | My Portfolio</title>
+  </head>
+
+  <body>
+    <!-- Decorative background behind the page content. -->
+    <div class="background" aria-hidden="true"></div>
+
+    <!-- Projects stays highlighted because this is one of my project pages. -->
+    <header class="top-navbar">
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+      <nav aria-label="Main navigation">
+        <a href="index.html"><span>Home</span></a>
+        <a href="projects.html" aria-current="location"
+          ><span>Projects</span></a
+        >
+        <a class="cv-link" href="cv.html"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- The story of how this website changed as I worked on it. -->
+    <main id="main-content" class="content">
+      <header class="page-heading website-heading">
+        <h1>Building this portfolio</h1>
+        <p>
+          I started with three pages and kept adding to them as I learned more
+          HTML and CSS. I also edited the illustrations in
+          Illustrator. These are the main steps, with screenshots and bits of
+          code from along the way.
+        </p>
+        <a class="button" href="projects.html">Back to projects</a>
+      </header>
+
+      <!-- Each section has a title, the skills used, and code or screenshots from that step. -->
+      <div class="website-steps">
+        <section
+          class="website-step"
+          id="first-layout"
+          aria-labelledby="first-layout-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #01</p>
+            <div class="website-step-title">
+              <h2 id="first-layout-heading">The first three pages</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            The first screenshot shows the rough Home page: a grey banner, red
+            links, and a lot of space that I had not worked out yet. I was
+            trying different ways to place links and get the three pages
+            connected.
+          </p>
+          <p>
+            I used the same stylesheet for all three pages. Home linked to About
+            Me and Interests, and one CSS change could update the look of every
+            page.
+          </p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">link</span> <span class="code-attribute">rel</span>=<span class="code-string">"stylesheet"</span> <span class="code-attribute">href</span>=<span class="code-string">"styling.css"</span>&gt;
+&lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"about.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;About Me&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+&lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"interests.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Interests&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;</code></pre>
+          <p>The shared CSS set the same font and page spacing:</p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.text</span> {
+  <span class="code-property">margin</span>: <span class="code-value">0</span>;
+  <span class="code-property">padding</span>: <span class="code-value">0px 10vw</span>;
+  <span class="code-property">font-family</span>: <span class="code-value">Arial, sans-serif</span>;
+}</code></pre>
+          <!-- Screenshot from the first Home page with red navigation links. -->
+          <figure class="website-picture blurred-box">
+            <figcaption class="website-picture-label">
+              Screenshot · First Home page
+            </figcaption>
+            <img
+              src="images/portfolio-first-home.png"
+              alt="Early Home page with a dark banner, red About Me and Interests links, and a short welcome message"
+              width="1099"
+              height="1004"
+              loading="lazy"
+              draggable="false"
+            />
+          </figure>
+        </section>
+
+        <section
+          class="website-step"
+          id="navigation"
+          aria-labelledby="navigation-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #02</p>
+            <div class="website-step-title">
+              <h2 id="navigation-heading">
+                Making the navigation stay in place
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I replaced the rough banner with a bar that stays at the top while
+            scrolling. Grid gave me a left area for the Portfolio name, a
+            centered area for the links, and the same amount of space on the
+            right. I put repeated text on About Me to test the blur as content
+            passed behind the bar.
+          </p>
+          <p>
+            The HTML gave the Portfolio name and page links their places in the
+            bar:
+          </p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">header</span> <span class="code-attribute">class</span>=<span class="code-string">"top-navbar"</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">class</span>=<span class="code-string">"portfolio-name"</span> <span class="code-attribute">href</span>=<span class="code-string">"index.html"</span>&gt;Portfolio&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">nav</span> <span class="code-attribute">aria-label</span>=<span class="code-string">"Main navigation"</span>&gt;
+    &lt;<span class="code-tag">a</span> <span class="code-attribute">aria-current</span>=<span class="code-string">"page"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Home&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+    &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"about.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;About Me&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+    &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"interests.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Interests&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+  &lt;/<span class="code-tag">nav</span>&gt;
+&lt;/<span class="code-tag">header</span>&gt;</code></pre>
+          <p>
+            This CSS kept the bar in place while the page moved underneath it:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.top-navbar</span> {
+  <span class="code-property">position</span>: <span class="code-value">fixed</span>;
+  <span class="code-property">top</span>: <span class="code-value">0</span>;
+  <span class="code-property">left</span>: <span class="code-value">0</span>;
+  <span class="code-property">width</span>: <span class="code-value">100%</span>;
+  <span class="code-property">display</span>: <span class="code-value">grid</span>;
+  <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr auto 1fr</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
+}</code></pre>
+          <!-- The repeated text was used to test scrolling behind the top bar. -->
+          <figure class="website-picture blurred-box">
+            <figcaption class="website-picture-label">
+              Screenshot · Testing the fixed navbar
+            </figcaption>
+            <img
+              src="images/portfolio-navigation-test.png"
+              alt="Early About Me page with the fixed navigation bar above repeated text used for a scrolling test"
+              width="1099"
+              height="1004"
+              loading="lazy"
+              draggable="false"
+            />
+          </figure>
+        </section>
+
+        <section
+          class="website-step"
+          id="navigation-details"
+          aria-labelledby="navigation-details-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #03</p>
+            <div class="website-step-title">
+              <h2 id="navigation-details-heading">
+                The line under the current page
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            Next I added a small line under the page you are on. At first the
+            hover effect moved both the text and the line, so I changed it to
+            scale only the span around the text. The line is its own shape below
+            the link, and its bottom value sets the distance from the words. I
+            also kept the active link from reloading the page when clicked.
+          </p>
+          <p>
+            The link marks the current page, and the span lets me scale just the
+            text:
+          </p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">a</span> <span class="code-attribute">aria-current</span>=<span class="code-string">"page"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Home&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;</code></pre>
+          <p>
+            These CSS rules kept the hover effect on the text and placed the
+            line below it:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.top-navbar nav a:hover span</span> {
+  <span class="code-property">transform</span>: <span class="code-value">scale(1.15)</span>;
+}
+
+<span class="code-selector">.top-navbar nav a[aria-current="page"]::after</span> {
+  <span class="code-property">content</span>: <span class="code-string">""</span>;
+  <span class="code-property">position</span>: <span class="code-value">absolute</span>;
+  <span class="code-property">bottom</span>: <span class="code-value">-29px</span>;
+  <span class="code-property">height</span>: <span class="code-value">2px</span>;
+}</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="new-pages"
+          aria-labelledby="new-pages-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #04</p>
+            <div class="website-step-title">
+              <h2 id="new-pages-heading">
+                Changing the site into a CV and portfolio
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I changed the navigation to Home, Projects, CV, and About Me, and
+            moved the personal introduction onto its own page. The pages share
+            one style.css file, so the navbar, buttons, spacing, and footer stay
+            consistent.
+          </p>
+          <p>
+            The active page has aria-current="page". It does not need a link to
+            itself, which also stops an unnecessary refresh when clicking the
+            page you are already on.
+          </p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">nav</span> <span class="code-attribute">aria-label</span>=<span class="code-string">"Main navigation"</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"index.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Home&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">aria-current</span>=<span class="code-string">"page"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Projects&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"cv.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;CV&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"about-me.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;About Me&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+&lt;/<span class="code-tag">nav</span>&gt;</code></pre>
+          <p>
+            Shared CSS also kept the space above and below each page consistent:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">main</span> {
+  <span class="code-property">min-height</span>: <span class="code-value">calc(100vh - 170px)</span>;
+  <span class="code-property">padding-top</span>: <span class="code-value">110px</span>;
+  <span class="code-property">padding-bottom</span>: <span class="code-value">60px</span>;
+}</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="cv-page"
+          aria-labelledby="cv-page-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #05</p>
+            <div class="website-step-title">
+              <h2 id="cv-page-heading">Putting the CV together</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I put coloured skill labels near the top, then split the rest of the
+            CV into clear sections. Each work or education item has its own
+            entry, and I added a button to download the PDF.
+          </p>
+          <p>
+            I used a time element for the dates, then adjusted the spacing
+            between entries and list items so the page is easier to scan. The
+            VIA education entry is structured like this:
+          </p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">div</span> <span class="code-attribute">class</span>=<span class="code-string">"cv-entry-heading"</span>&gt;
+  &lt;<span class="code-tag">h3</span>&gt;Software Engineer Trainee&lt;/<span class="code-tag">h3</span>&gt;
+  &lt;<span class="code-tag">p</span>&gt;&lt;<span class="code-tag">time</span> <span class="code-attribute">datetime</span>=<span class="code-string">"2026"</span>&gt;2026&lt;/<span class="code-tag">time</span>&gt; - Present&lt;/<span class="code-tag">p</span>&gt;
+&lt;/<span class="code-tag">div</span>&gt;
+&lt;<span class="code-tag">p</span> <span class="code-attribute">class</span>=<span class="code-string">"cv-entry-place"</span>&gt;VIA University College&lt;/<span class="code-tag">p</span>&gt;</code></pre>
+          <p>
+            I used Grid to place the main CV entries beside a smaller
+            information box:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.cv-columns</span> {
+  <span class="code-property">display</span>: <span class="code-value">grid</span>;
+  <span class="code-property">grid-template-columns</span>: <span class="code-value">minmax(0, 2fr) minmax(240px, 0.8fr)</span>;
+  <span class="code-property">gap</span>: <span class="code-value">60px</span>;
+}</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="skill-labels"
+          aria-labelledby="skill-labels-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #06</p>
+            <div class="website-step-title">
+              <h2 id="skill-labels-heading">
+                Adding coloured skill labels to the CV
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I made the skills at the top of the CV into a list, then gave each
+            item a class for its colour. I used Flexbox to line up the labels
+            and let them wrap when there is less room. I could use the same
+            colours on other pages later.
+          </p>
+          <p>These are the first two items in the CV skill list:</p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">ul</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-list"</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-html"</span>&gt;HTML&lt;/<span class="code-tag">li</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-css"</span>&gt;CSS&lt;/<span class="code-tag">li</span>&gt;
+&lt;/<span class="code-tag">ul</span>&gt;</code></pre>
+          <p>
+            These rules line up the labels and move them onto another row when
+            needed:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.skill-list</span> {
+  <span class="code-property">display</span>: <span class="code-value">flex</span>;
+  <span class="code-property">flex-wrap</span>: <span class="code-value">wrap</span>;
+  <span class="code-property">gap</span>: <span class="code-value">8px</span>;
+}</code></pre>
+          <p>The CSS gives the HTML skill label its colour:</p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">li.skill-html</span> {
+  <span class="code-property">border-color</span>: <span class="code-value">#e34f26</span>;
+  <span class="code-property">background-color</span>: <span class="code-value">#170804</span>;
+  <span class="code-property">color</span>: <span class="code-value">#f06a43</span>;
+}</code></pre>
+          <!-- A small crop shows how the coloured labels wrap onto new lines. -->
+          <figure class="website-picture blurred-box">
+            <figcaption class="website-picture-label">
+              Screenshot · Checking label spacing
+            </figcaption>
+            <img
+              src="images/portfolio-skill-labels.png"
+              alt="Business and creative skill labels with different bright outline colours"
+              width="234"
+              height="268"
+              loading="lazy"
+              draggable="false"
+            />
+          </figure>
+        </section>
+
+        <section
+          class="website-step"
+          id="project-cards"
+          aria-labelledby="project-cards-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #07</p>
+            <div class="website-step-title">
+              <h2 id="project-cards-heading">Building the Projects page</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+                <li class="skill-illustrator">Illustrator</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I made a row for each project with a picture, description,
+            technology labels, and a button. Getting the pictures to fit took a
+            few tries: they were too large at first, then looked awkward when
+            the rows were side by side. I settled on one project per row, with a
+            smaller image beside the details on wide screens. I kept the same
+            structure for each project so I can add more without changing the
+            layout.
+          </p>
+          <p>The technology labels use the same classes I added for the CV:</p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">ul</span> <span class="code-attribute">class</span>=<span class="code-string">"project-skill-list"</span> <span class="code-attribute">aria-label</span>=<span class="code-string">"Technologies used"</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-html"</span>&gt;HTML&lt;/<span class="code-tag">li</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-css"</span>&gt;CSS&lt;/<span class="code-tag">li</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-git"</span>&gt;Git&lt;/<span class="code-tag">li</span>&gt;
+&lt;/<span class="code-tag">ul</span>&gt;</code></pre>
+          <p>Flexbox puts the picture beside the details on wider screens:</p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.project-box</span> {
+  <span class="code-property">display</span>: <span class="code-value">flex</span>;
+  <span class="code-property">flex-direction</span>: <span class="code-value">row</span>;
+}</code></pre>
+          <p>
+            These CSS rules keep the pictures compact without cutting them off:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.project-box img</span> {
+  <span class="code-property">width</span>: <span class="code-value">300px</span>;
+  <span class="code-property">max-width</span>: <span class="code-value">32%</span>;
+  <span class="code-property">height</span>: <span class="code-value">190px</span>;
+  <span class="code-property">object-fit</span>: <span class="code-value">contain</span>;
+}</code></pre>
+          <p>
+            I also created SVG illustrations in Illustrator,
+            including the project previews, game pictures, and small icons. I
+            could adjust the artwork visually, then keep it as SVG so it stays
+            sharp when the project pictures change size.
+          </p>
+          <!-- Two of the illustrations I edited for the project pictures. -->
+          <div class="website-picture-group">
+            <figure class="website-picture blurred-box">
+              <figcaption class="website-picture-label">
+                Illustration · Portfolio website
+              </figcaption>
+              <img
+                src="images/portfolio-website.svg"
+                alt="Portfolio preview showing the navigation, heading, skill labels, and project boxes"
+                width="800"
+                height="500"
+                loading="lazy"
+                draggable="false"
+              />
+            </figure>
+            <figure class="website-picture blurred-box">
+              <figcaption class="website-picture-label">
+                Illustration · Browser games
+              </figcaption>
+              <img
+                src="images/browser-game.svg"
+                alt="Browser games preview showing Pong, Space Defender, and Snake"
+                width="800"
+                height="500"
+                loading="lazy"
+                draggable="false"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section
+          class="website-step"
+          id="footer-layout"
+          aria-labelledby="footer-layout-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #08</p>
+            <div class="website-step-title">
+              <h2 id="footer-layout-heading">A footer with useful links</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I added page links, project links, social icons, and contact details
+            to the footer, then worked on balancing the columns. The screenshot
+            captures that spacing work. On smaller screens, the contact details
+            move below the other columns. I kept the project list short in the
+            footer and added a link to the full Projects page.
+          </p>
+          <p>The footer navigation uses the same page links as the top bar:</p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">nav</span> <span class="code-attribute">class</span>=<span class="code-string">"footer-navigation footer-links"</span> <span class="code-attribute">aria-labelledby</span>=<span class="code-string">"footer-navigation-heading"</span>&gt;
+  &lt;<span class="code-tag">h2</span> <span class="code-attribute">id</span>=<span class="code-string">"footer-navigation-heading"</span>&gt;Navigate&lt;/<span class="code-tag">h2</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"index.html"</span>&gt;Home&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"projects.html"</span>&gt;Projects&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"cv.html"</span>&gt;CV&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"about-me.html"</span>&gt;About Me&lt;/<span class="code-tag">a</span>&gt;
+&lt;/<span class="code-tag">nav</span>&gt;</code></pre>
+          <p>
+            The footer uses one layout on wide screens and another below 950px:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.footer</span> {
+  <span class="code-property">display</span>: <span class="code-value">grid</span>;
+  <span class="code-property">grid-template-areas</span>: <span class="code-string">"info navigation projects socials"</span>;
+}
+
+<span class="code-selector">@media</span> (<span class="code-property">max-width</span>: <span class="code-value">950px</span>) {
+  <span class="code-selector">.footer</span> {
+    <span class="code-property">grid-template-areas</span>:
+      <span class="code-string">"navigation projects socials"</span>
+      <span class="code-string">"info info info"</span>;
+  }
+}</code></pre>
+          <!-- The footer screenshot shows the added links and social icons. -->
+          <figure class="website-picture blurred-box">
+            <figcaption class="website-picture-label">
+              Screenshot · Arranging the footer
+            </figcaption>
+            <img
+              src="images/portfolio-footer-progress.png"
+              alt="Portfolio footer with separate Navigate, Projects, and Socials columns"
+              width="662"
+              height="341"
+              loading="lazy"
+              draggable="false"
+            />
+          </figure>
+        </section>
+
+        <section
+          class="website-step"
+          id="home-rework"
+          aria-labelledby="home-rework-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #09</p>
+            <div class="website-step-title">
+              <h2 id="home-rework-heading">Reworking the Home page</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            Home began as a short “Hello and Welcome” page. I moved the longer
+            personal information to About Me and gave Home a clearer
+            introduction, a Projects link, and a CV download. Below that I added
+            the grouped technologies and a small selection of projects, with a
+            link to see the whole list.
+          </p>
+          <p>The Projects link sits beside the section heading:</p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">div</span> <span class="code-attribute">class</span>=<span class="code-string">"section-heading selected-projects-heading"</span>&gt;
+  &lt;<span class="code-tag">h2</span> <span class="code-attribute">id</span>=<span class="code-string">"selected-projects-heading"</span>&gt;Selected projects&lt;/<span class="code-tag">h2</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">class</span>=<span class="code-string">"button"</span> <span class="code-attribute">href</span>=<span class="code-string">"projects.html"</span>&gt;View all projects&lt;/<span class="code-tag">a</span>&gt;
+&lt;/<span class="code-tag">div</span>&gt;</code></pre>
+          <p>
+            I tried a few fonts and kept a boxier one for the larger headings.
+            The heading size changes with the screen width instead of using one
+            fixed size:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.home-introduction-text h1</span> {
+  <span class="code-property">max-width</span>: <span class="code-value">900px</span>;
+  <span class="code-property">font-size</span>: <span class="code-value">clamp(2.5rem, 3vw, 5.5rem)</span>;
+}</code></pre>
+          <p>
+            Grid places the skill groups beside each other when there is room:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.skill-groups</span> {
+  <span class="code-property">display</span>: <span class="code-value">grid</span>;
+  <span class="code-property">grid-template-columns</span>: <span class="code-value">repeat(auto-fit, minmax(240px, 1fr))</span>;
+  <span class="code-property">gap</span>: <span class="code-value">28px</span>;
+}</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="screen-sizes"
+          aria-labelledby="screen-sizes-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #10</p>
+            <div class="website-step-title">
+              <h2 id="screen-sizes-heading">
+                Fixing the layout at different widths
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-css">CSS</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            After adding the Home introduction, coloured skill groups, selected
+            projects, CV, and project rows, I tested the pages in narrower
+            windows. The navigation links needed to stay on one line, while the
+            Home groups and CV skills needed room to stack. Project pictures
+            also needed to move above their text instead of squeezing the
+            description.
+          </p>
+          <p>
+            I used media queries for these changes rather than making separate
+            mobile pages. The two screenshots show another Home spacing problem:
+            the heading sat too low, then a divider ran behind the buttons after
+            I moved it up. I adjusted the spacing around the introduction and
+            the next section to clear the divider.
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">@media</span> (<span class="code-property">max-width</span>: <span class="code-value">768px</span>) {
+  <span class="code-selector">.project-box</span> {
+    <span class="code-property">flex-direction</span>: <span class="code-value">column</span>;
+  }
+
+  <span class="code-selector">.project-box img</span> {
+    <span class="code-property">width</span>: <span class="code-value">100%</span>;
+    <span class="code-property">max-width</span>: <span class="code-value">none</span>;
+  }
+}</code></pre>
+          <p>
+            On smaller phones, the Home and CV groups become one column, and the
+            navbar has more room:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">@media</span> (<span class="code-property">max-width</span>: <span class="code-value">600px</span>) {
+  <span class="code-selector">.portfolio-name</span> {
+    <span class="code-property">display</span>: <span class="code-value">none</span>;
+  }
+
+  <span class="code-selector">.skill-groups,</span>
+  <span class="code-selector">.selected-projects-grid,</span>
+  <span class="code-selector">.cv-skills</span> {
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr</span>;
+  }
+}</code></pre>
+          <!-- The two narrow screenshots make the spacing change easier to see. -->
+          <div class="website-picture-group">
+            <figure class="website-picture blurred-box">
+              <figcaption class="website-picture-label">
+                Screenshot · Heading too low
+              </figcaption>
+              <img
+                src="images/portfolio-home-spacing-before.png"
+                alt="Narrow Home page with a large empty gap above the main heading"
+                width="772"
+                height="1238"
+                loading="lazy"
+                draggable="false"
+              />
+            </figure>
+            <figure class="website-picture blurred-box">
+              <figcaption class="website-picture-label">
+                Screenshot · Heading moved up
+              </figcaption>
+              <img
+                src="images/portfolio-home-responsive-after.png"
+                alt="Narrow Home page with the heading higher and the technologies section visible below it"
+                width="760"
+                height="1253"
+                loading="lazy"
+                draggable="false"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <section
+          class="website-step"
+          id="publishing"
+          aria-labelledby="publishing-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #11</p>
+            <div class="website-step-title">
+              <h2 id="publishing-heading">Putting it on GitHub Pages</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-git">Git</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I kept the site inside the Portfolio Web folder with my other school
+            work. The HTML pages, CSS, images, and PDF all use paths relative to
+            that folder. A publishing workflow can upload it to GitHub Pages.
+          </p>
+          <p>This part of the workflow points Pages at that folder:</p>
+          <pre
+            class="website-code blurred-box"
+          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload the Portfolio Web folder</span>
+  <span class="code-property">uses</span>: <span class="code-value">actions/upload-pages-artifact@v4</span>
+  <span class="code-property">with</span>:
+    <span class="code-property">path</span>: <span class="code-string">"./Portfolio Web"</span></code></pre>
+        </section>
+
+      </div>
+
+      <!-- A short ending after the last step, with a link back to the start. -->
+      <section class="website-thanks" aria-labelledby="website-thanks-heading">
+        <h2 id="website-thanks-heading">Thanks for reading!</h2>
+        <p>You made it all the way down. You deserve a little cookie 🍪</p>
+        <a class="button" href="#main-content">Back to top ↑</a>
+      </section>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="footer content">
+      <!-- Links to the main pages. -->
+      <nav
+        class="footer-navigation footer-links"
+        aria-labelledby="footer-navigation-heading"
+      >
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- A few projects, with a link to the full list. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links footer-links">
+          <a href="projects.html#portfolio-website">Portfolio Website</a>
+          <a href="projects.html#forms-project">Forms Project</a>
+          <a href="projects.html#browser-game">Browser Game</a>
+          <a href="projects.html#pokemon-card-collector"
+            >Pokémon Card Collector</a
+          >
+          <a href="projects.html">View all projects →</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <div class="footer-social-links">
+          <a
+            class="social-instagram"
+            href="https://www.instagram.com/alex.b_m/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+          >
+            <img
+              src="images/instagram-icon.svg"
+              alt=""
+              width="16"
+              height="16"
+              draggable="false"
+            />
+          </a>
+          <a
+            class="social-linkedin"
+            href="https://www.linkedin.com/in/alexander-mankvard-874a15248/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              src="images/linkedin-icon.svg"
+              alt=""
+              width="16"
+              height="16"
+              draggable="false"
+            />
+          </a>
+          <a
+            class="social-github"
+            href="https://github.com/alexmark7"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <img
+              src="images/github-icon.svg"
+              alt=""
+              width="16"
+              height="16"
+              draggable="false"
+            />
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com"
+          >alexander.mankvard@gmail.com</a
+        >
+      </div>
+    </footer>
+  </body>
+</html>

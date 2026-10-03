@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8">
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Previews of Pong, Space Defender, and Snake for a planned browser game project.">
+    <!-- Sets up the fade between pages. -->
+    <script src="js/page-transition.js"></script>
+    <!-- Connects the page to the shared CSS and background. -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/background.js" defer></script>
+    <!-- Adds the occasional ASCII flying saucer. -->
+    <script src="js/ufo.js" defer></script>
+    <!-- Lets the game cards show which one was selected. -->
+    <script src="js/game-selector.js" defer></script>
+    <title>Browser Games | My Portfolio</title>
+  </head>
+
+  <body>
+    <!-- The stars stay behind the page and do not block clicks. -->
+    <div class="background" aria-hidden="true">
+      <div id="ascii-stars"></div>
+    </div>
+
+    <!-- The Projects link stays highlighted while viewing a project page. -->
+    <header class="top-navbar">
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+      <nav aria-label="Main navigation">
+        <a href="index.html"><span>Home</span></a>
+        <a href="projects.html" aria-current="location"><span>Projects</span></a>
+        <a class="cv-link" href="cv.html"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- Game previews until the playable versions are ready. -->
+    <main id="main-content" class="content">
+      <header class="page-heading">
+        <h1>Browser Games</h1>
+        <a class="button" href="projects.html">Back to projects</a>
+      </header>
+
+      <!-- The three games use the same pictures shown in the Projects preview. -->
+      <section class="game-section" aria-label="Choose a game">
+        <!-- Clicking a card selects it and shows the Coming soon button below. -->
+        <div class="game-choices">
+          <button class="game-choice blurred-box" type="button" value="Pong" aria-pressed="false">
+            <img src="images/pong-preview.svg" alt="" width="192" height="292" draggable="false">
+            <span>Pong</span>
+          </button>
+
+          <button class="game-choice blurred-box" type="button" value="Space Defender" aria-pressed="false">
+            <img src="images/space-defender-preview.svg" alt="" width="192" height="292" draggable="false">
+            <span>Space Defender</span>
+          </button>
+
+          <button class="game-choice blurred-box" type="button" value="Snake" aria-pressed="false">
+            <img src="images/snake-preview.svg" alt="" width="192" height="292" draggable="false">
+            <span>Snake</span>
+          </button>
+        </div>
+
+        <!-- The button appears after a game is selected, but cannot be clicked yet. -->
+        <div id="game-action" class="game-action">
+          <div class="game-button-entry">
+            <button class="button game-play-button" type="button" disabled>Coming soon</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="footer content">
+      <!-- Links to the main pages. -->
+      <nav class="footer-navigation footer-links" aria-labelledby="footer-navigation-heading">
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- A few projects, with a link to the full list. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links footer-links">
+          <a href="projects.html#portfolio-website">Portfolio Website</a>
+          <a href="projects.html#forms-project">Forms Project</a>
+          <a href="projects.html#browser-game">Browser Game</a>
+          <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
+          <a href="projects.html">View all projects →</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <div class="footer-social-links">
+          <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="images/linkedin-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-github" href="https://github.com/alexmark7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="images/github-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>

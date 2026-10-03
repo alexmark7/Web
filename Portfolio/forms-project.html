@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!-- Sets the page language to English. -->
+<html lang="en">
+  <head>
+    <!-- Allows special letters and symbols to display correctly. -->
+    <meta charset="UTF-8">
+    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Placeholder page for the Forms Project.">
+    <!-- Sets up the fade between pages. -->
+    <script src="js/page-transition.js"></script>
+    <!-- Connects the page to the shared CSS and background. -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/background.js" defer></script>
+    <!-- Adds the occasional ASCII flying saucer. -->
+    <script src="js/ufo.js" defer></script>
+    <title>Forms Project | My Portfolio</title>
+  </head>
+
+  <body>
+    <!-- The stars stay behind the page and do not block clicks. -->
+    <div class="background" aria-hidden="true">
+      <div id="ascii-stars"></div>
+    </div>
+
+    <!-- The Projects link stays highlighted while viewing a project page. -->
+    <header class="top-navbar">
+      <a class="portfolio-name" href="index.html">Portfolio</a>
+      <nav aria-label="Main navigation">
+        <a href="index.html"><span>Home</span></a>
+        <a href="projects.html" aria-current="location"><span>Projects</span></a>
+        <a class="cv-link" href="cv.html"><span>CV</span></a>
+        <a href="about-me.html"><span>About Me</span></a>
+      </nav>
+    </header>
+
+    <!-- Temporary project page until the form is ready. -->
+    <main id="main-content" class="content">
+      <header class="page-heading">
+        <h1>Forms Project</h1>
+        <p>This project page is a placeholder. I’ll add the form here when it is ready.</p>
+        <a class="button" href="projects.html">Back to projects</a>
+      </header>
+    </main>
+
+    <!-- Footer used on every page. -->
+    <footer class="footer content">
+      <!-- Links to the main pages. -->
+      <nav class="footer-navigation footer-links" aria-labelledby="footer-navigation-heading">
+        <h2 id="footer-navigation-heading">Navigate</h2>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="about-me.html">About Me</a>
+      </nav>
+
+      <!-- A few projects, with a link to the full list. -->
+      <nav class="footer-projects" aria-labelledby="footer-projects-heading">
+        <h2 id="footer-projects-heading">Projects</h2>
+        <div class="footer-project-links footer-links">
+          <a href="projects.html#portfolio-website">Portfolio Website</a>
+          <a href="projects.html#forms-project">Forms Project</a>
+          <a href="projects.html#browser-game">Browser Game</a>
+          <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
+          <a href="projects.html">View all projects →</a>
+        </div>
+      </nav>
+
+      <!-- Links to my social media pages. -->
+      <nav class="footer-socials" aria-labelledby="footer-socials-heading">
+        <h2 id="footer-socials-heading">Socials</h2>
+        <div class="footer-social-links">
+          <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="images/linkedin-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+          <a class="social-github" href="https://github.com/alexmark7" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="images/github-icon.svg" alt="" width="16" height="16" draggable="false">
+          </a>
+        </div>
+      </nav>
+
+      <!-- Copyright and email at the bottom of the footer. -->
+      <div class="footer-info">
+        <p>&copy; 2026 My Portfolio</p>
+        <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>
+      </div>
+    </footer>
+  </body>
+</html>

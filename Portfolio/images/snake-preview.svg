@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="515 119 192 292" role="img" aria-labelledby="title description">
+  <title id="title">Snake preview</title>
+  <desc id="description">A green square-bodied snake moving towards a red apple.</desc>
+  <rect x="516" y="120" width="190" height="290" fill="#070707" stroke="#4b4b4b"/>
+  <text x="611" y="154" fill="#e9e4d8" font-family="Courier New, monospace" font-size="18" text-anchor="middle">SNAKE</text>
+  <circle cx="566" cy="206" r="11" fill="#e66c6c"/>
+  <path d="M566 195v-8m0 3c5-5 10-4 13-3" fill="none" stroke="#77c98c" stroke-width="3"/>
+  <path d="M552 349h76v-65h38" fill="none" stroke="#77c98c" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="658" y="275" width="19" height="19" fill="#77c98c"/>
+  <circle cx="669" cy="281" r="2" fill="#07150c"/>
+</svg>

@@ -11,33 +11,21 @@
       name="description"
       content="Personal CV and portfolio website for a software engineering trainee."
     >
-    <!-- Sets up the fade between pages. -->
-    <script src="js/page-transition.js"></script>
     <!-- Connects the page to the CSS file. -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Starts Home at the top when the page is refreshed. -->
-    <script src="js/home-scroll.js"></script>
-    <!-- Shows the navbar line after scrolling starts. -->
-    <script src="js/navbar.js" defer></script>
-    <!-- Adds the moving stars behind this page. -->
-    <script src="js/background.js" defer></script>
-    <!-- Adds the occasional ASCII flying saucer. -->
-    <script src="js/ufo.js" defer></script>
     <!-- Name shown on the browser tab. -->
     <title>Home | My Portfolio</title>
   </head>
 
   <body>
 
-    <!-- The stars stay behind the page and cannot be clicked or selected. -->
-    <div class="background" aria-hidden="true">
-      <div id="ascii-stars"></div>
-    </div>
+    <!-- Decorative background behind the page content. -->
+    <div class="background" aria-hidden="true"></div>
 
     <!-- Top navigation bar used on every page. -->
     <header class="top-navbar">
       <!-- Portfolio name on the left side of the navigation bar. -->
-      <a class="portfolio-name" aria-current="page">Portfolio</a>
+      <a class="portfolio-name" href="index.html">Portfolio</a>
 
       <!-- Navigation items for the four pages. -->
       <nav aria-label="Main navigation">
@@ -93,7 +81,6 @@
             <ul class="skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
-              <li class="skill-javascript">JavaScript</li>
               <li class="skill-java">Java</li>
               <li class="skill-git">Git</li>
             </ul>

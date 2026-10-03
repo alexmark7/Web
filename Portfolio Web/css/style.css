@@ -32,7 +32,7 @@ body {
   font-weight: 500;
 }
 
-/* Covers the whole page so the stars move when the page scrolls. */
+/* Keeps the black background ready behind the page content. */
 .background {
   position: absolute;
   inset: 0;
@@ -42,112 +42,10 @@ body {
   background: #000;
 }
 
-/* Fills the background with stars made by background.js. */
-#ascii-stars {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-}
-
-/* Gives the stars a cooler colour so they look different from the text. */
-.ascii-star {
-  position: absolute;
-  color: #9fb8cb;
-  font-family: "Courier New", monospace;
-  font-weight: 400;
-  line-height: 1;
-  opacity: var(--star-opacity, 0.6);
-  transform: translate(-50%, -50%);
-  transition: opacity 550ms ease-in-out;
-  user-select: none;
-}
-
-/* Hides a star briefly before it appears somewhere else. */
-.ascii-star.is-changing {
-  opacity: 0;
-}
-
-/* Shows the UFO above the stars but behind the page content. */
-.ascii-ufo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  color: #b6d5e6;
-  font:
-    600 10px/1.05 "Courier New",
-    monospace;
-  white-space: pre;
-  text-shadow: 0 0 6px rgba(159, 184, 203, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  touch-action: none;
-  user-select: none;
-  transform: translate(-50%, -50%);
-}
-
-/* Lets the UFO be grabbed without changing the mouse cursor. */
-.ascii-ufo.is-active {
-  pointer-events: auto;
-  cursor: default;
-}
-
-/* Keeps the UFO in front until all its red characters fade back. */
-.ascii-ufo.is-in-front {
-  z-index: 1001;
-  pointer-events: none;
-}
-
-/* Still lets the UFO be dragged while it is in front. */
-.ascii-ufo.is-grabbed {
-  pointer-events: auto;
-}
-
-/* Slowly fades each red UFO character back to its normal colour. */
-.ufo-changing {
-  transition:
-    color 2600ms ease,
-    text-shadow 2600ms ease;
-}
-
-/* Makes the characters turn red right away when the UFO is grabbed. */
-.ascii-ufo.is-grabbed .ufo-changing {
-  transition: none;
-}
-
-.ufo-changing.is-red {
-  color: #ff6262;
-  text-shadow: 0 0 8px rgba(255, 98, 98, 0.65);
-}
-
 /* Places the page content in front of the background. */
 .content {
   position: relative;
   z-index: 1;
-}
-
-/* Starts the new page slightly lower while the navbar and stars stay still. */
-.page-transition .content {
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 280ms ease-out,
-    transform 280ms ease-out;
-}
-
-/* Fades the page in and gently brings it up to its normal place. */
-.page-transition.page-ready .content {
-  opacity: 1;
-  transform: none;
-}
-
-/* Fades the old page out without moving it again. */
-.page-transition.page-leaving .content {
-  opacity: 0;
-  transform: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
 }
 
 /* Stops an image from becoming wider than the space around it. */
@@ -193,21 +91,10 @@ a {
   grid-template-columns: 1fr auto 1fr; /* Same space on both sides keeps the links in the centre. */
   align-items: center; /* Centers everything from top to bottom. */
 
-  background: rgba(
-    0,
-    0,
-    0,
-    0.4
-  ); /* Lets the stars show softly behind the bar. */
-  border-bottom: 1px solid transparent; /* Keeps the line hidden at the top of the page. */
-  transition: border-bottom-color 450ms ease;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(235, 235, 235, 0.36);
   -webkit-backdrop-filter: blur(3px); /* Support for older Safari browsers. */
   backdrop-filter: blur(3px);
-}
-
-/* Fades in the navbar's full-width line after the page starts scrolling. */
-.top-navbar.scrolled {
-  border-bottom-color: rgba(235, 235, 235, 0.36);
 }
 
 /* Keeps the Portfolio title on the left. */
@@ -299,11 +186,6 @@ a {
   to {
     transform: translateX(-50%) scaleX(1);
   }
-}
-
-/* Keeps the line still when moving between the Projects list and a project page. */
-.same-nav-page .top-navbar nav a[aria-current]::after {
-  animation: none;
 }
 
 /* Makes the short CV underline a little wider without changing the text. */
@@ -794,12 +676,6 @@ li.skill-css {
   color: #5d87ee;
 }
 
-li.skill-javascript {
-  border-color: #f7df1e;
-  background-color: #141202;
-  color: #f7df1e;
-}
-
 li.skill-java {
   border-color: #e76f00;
   background-color: #170b00;
@@ -1067,10 +943,6 @@ li.skill-adobe {
   border-color: #2965f1;
 }
 
-.website-code.code-js {
-  border-color: #f7df1e;
-}
-
 .website-code code {
   font: inherit;
 }
@@ -1081,8 +953,7 @@ li.skill-adobe {
 }
 
 .website-code .code-attribute,
-.website-code .code-property,
-.website-code .code-function {
+.website-code .code-property {
   color: #65bdff;
 }
 
@@ -1094,8 +965,7 @@ li.skill-adobe {
   color: #f7df1e;
 }
 
-.website-code .code-value,
-.website-code .code-keyword {
+.website-code .code-value {
   color: #c58af9;
 }
 
@@ -1204,8 +1074,8 @@ li.skill-adobe {
   background-color: rgba(42, 39, 32, 0.25);
 }
 
-/* Keeps the chosen game highlighted after the mouse moves away. */
-.game-choice[aria-pressed="true"] {
+/* Highlights a game while its card has keyboard or mouse focus. */
+.game-choice:focus {
   border-color: #f1f2f2;
   background-color: rgba(42, 39, 32, 0.25);
 }
@@ -1223,7 +1093,7 @@ li.skill-adobe {
   display: inline-block;
 }
 
-/* Makes the button larger and hides it until a game has been chosen. */
+/* Makes the button larger and hides it until a game has focus. */
 .game-play-button:disabled {
   min-width: 220px;
   padding: 17px 36px;
@@ -1231,6 +1101,9 @@ li.skill-adobe {
   visibility: hidden;
   opacity: 0;
   cursor: not-allowed;
+  border-color: #5d87ee;
+  background-color: rgba(93, 135, 238, 0.18);
+  color: #5d87ee;
   transition:
     background-color 300ms ease-in-out,
     border-color 300ms ease-in-out,
@@ -1239,8 +1112,8 @@ li.skill-adobe {
     transform 300ms ease-in-out;
 }
 
-/* Shows the button after a game is selected. JavaScript moves the extra div. */
-.game-action.is-visible .game-play-button {
+/* Shows the button while one of the game cards has focus. */
+.game-choices:focus-within + .game-action .game-play-button {
   visibility: visible;
   opacity: 1;
 }
@@ -1251,31 +1124,12 @@ li.skill-adobe {
   transform: scale(1.06);
 }
 
-/* Each game gives the button a colour from its preview picture. */
-.game-action[data-game="Pong"] .game-play-button {
-  border-color: #5d87ee;
-  background-color: rgba(93, 135, 238, 0.18);
-  color: #5d87ee;
-}
-
-.game-action[data-game="Space Defender"] .game-play-button {
-  border-color: #f18a2a;
-  background-color: rgba(241, 138, 42, 0.18);
-  color: #f18a2a;
-}
-
-.game-action[data-game="Snake"] .game-play-button {
-  border-color: #77c98c;
-  background-color: rgba(119, 201, 140, 0.18);
-  color: #77c98c;
-}
-
 /*  Footer */
 /* ----------------------------------------------------------------------------------------- */
 
 /* Main footer style used on every page. */
 .footer {
-  position: relative; /* Keeps the footer text in front of the UFO. */
+  position: relative; /* Keeps the footer text in front of the background. */
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(240px, 280px) minmax(100px, 130px) minmax(
@@ -1580,13 +1434,6 @@ li.skill-adobe {
 @media (prefers-reduced-motion: reduce) {
   .top-navbar nav a[aria-current]::after {
     animation: none;
-  }
-
-  .page-transition .content,
-  .page-transition.page-leaving .content {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 
   .top-navbar,
