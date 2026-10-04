@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="92 57 616 386" role="img" aria-labelledby="title description">
   <title id="title">Forms project placeholder</title>
   <desc id="description">An abstract web form with three fields and a button.</desc>
-  <rect width="800" height="500" fill="#000000"/>
   <rect x="95" y="60" width="610" height="380" rx="18" fill="#111111" stroke="#aaa99f" stroke-width="2"/>
   <rect x="130" y="95" width="220" height="15" rx="5" fill="#e9e4d8"/>
   <g fill="none" stroke="#777777" stroke-width="2">

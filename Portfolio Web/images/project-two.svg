@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="81 67 638 366" role="img" aria-labelledby="title description">
   <title id="title">Study planner placeholder</title>
   <desc id="description">An abstract weekly calendar with highlighted tasks.</desc>
-  <rect width="800" height="500" fill="#000000"/>
   <rect x="84" y="70" width="632" height="360" rx="18" fill="#111111" stroke="#aaa99f" stroke-width="2"/>
   <path d="M84 145h632M210 145v285M336 145v285M462 145v285M588 145v285" stroke="#555555" stroke-width="2"/>
   <g fill="#e9e4d8"><rect x="108" y="178" width="78" height="54" rx="8"/><rect x="360" y="256" width="78" height="90" rx="8"/><rect x="612" y="180" width="78" height="120" rx="8"/></g>

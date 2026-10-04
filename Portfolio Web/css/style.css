@@ -93,8 +93,8 @@ a {
 
   background: rgba(0, 0, 0, 0.4);
   border-bottom: 1px solid rgba(235, 235, 235, 0.36);
-  -webkit-backdrop-filter: blur(3px); /* Support for older Safari browsers. */
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(8px); /* Support for older Safari browsers. */
+  backdrop-filter: blur(8px);
 }
 
 /* Keeps the Portfolio title on the left. */
@@ -443,18 +443,19 @@ main h1,
   max-width: 720px;
 }
 
-/* Keeps the profile image at a steady size and centres it in its column. */
+/* Keeps the portrait at a steady size, with its frame against the shoulders. */
 .profile-box {
   width: 100%;
-  max-width: 350px;
+  max-width: 340px;
   margin: 0;
   justify-self: center;
+  border: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Makes the profile image fill its column and adds the shared light border. */
+/* Shows the full portrait without cutting off the face or shoulders. */
 .profile-box img {
   width: 100%;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  height: auto;
 }
 
 /* Shows three equal information boxes in a row on larger screens. */
@@ -822,11 +823,12 @@ li.skill-adobe {
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Keeps each project picture compact and shows the whole image. */
+/* Keeps each project picture compact, with space between it and the box edges. */
 .project-box img {
   width: 300px;
   max-width: 32%;
   height: 190px;
+  padding: 16px;
   object-fit: contain;
   align-self: center;
   flex-shrink: 0;

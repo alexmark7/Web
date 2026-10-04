@@ -4,20 +4,26 @@
   <head>
     <!-- Allows special letters and symbols to display correctly. -->
     <meta charset="UTF-8">
+    <!-- Uses a dark background while the stylesheet is loading. -->
+    <meta name="color-scheme" content="dark">
     <!-- Helps the page fit phone and tablet screens. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Short description of the page. -->
     <meta name="description" content="Background, interests, and contact details for Alex.">
-    <!-- Sets up the fade between pages. -->
+    <!-- Loads page content without restarting the navbar or background. -->
     <script src="js/page-transition.js"></script>
     <!-- Connects the page to the CSS file. -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- Shows my logo in the browser tab. -->
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
     <!-- Shows the navbar line after scrolling starts. -->
     <script src="js/navbar.js" defer></script>
     <!-- Adds the moving stars behind this page. -->
     <script src="js/background.js" defer></script>
     <!-- Adds the occasional ASCII flying saucer. -->
     <script src="js/ufo.js" defer></script>
+    <!-- Keeps the game selector ready when its page is opened. -->
+    <script src="js/game-selector.js" defer></script>
     <!-- Name shown on the browser tab. -->
     <title>About Me | My Portfolio</title>
   </head>
@@ -65,14 +71,14 @@
           </div>
         </div>
 
-        <!-- Holds the profile picture and the text below it. -->
-        <figure class="profile-box">
+        <!-- Shows my portrait beside the introduction. -->
+        <figure class="profile-box blurred-box">
           <img
             draggable="false"
-            src="images/profile-placeholder.svg"
-            alt="Placeholder profile portrait"
-            width="350"
-            height="350"
+            src="images/profile-headshot.webp"
+            alt="Portrait of Alexander Mankvard"
+            width="1086"
+            height="1448"
           >
         </figure>
       </section>

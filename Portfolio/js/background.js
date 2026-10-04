@@ -24,6 +24,7 @@
   };
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const savedBackgroundKey = "portfolio-star-background";
   let stars = [];
   let pulseTimer = 0;
   let builtWidth = 0;
@@ -39,7 +40,7 @@
     return minimum + random() * (maximum - minimum);
   }
 
-  /* Starts every page with the same pattern of stars. */
+  /* Creates repeatable positions when new stars need to be added. */
   function startingRandom() {
     let number = 2026;
     return () => {
@@ -103,6 +104,76 @@
     return star;
   }
 
+  // Saves the current stars so another page can continue with the same pattern.
+  function saveStars() {
+    try {
+      const savedStars = stars.map((star) => ({
+        left: star.style.left,
+        top: star.style.top,
+        character: star.textContent,
+        size: star.style.fontSize,
+        opacity: star.style.getPropertyValue("--star-opacity"),
+        changedAt: lastChanged.get(star) || 0,
+      }));
+      window.sessionStorage.setItem(savedBackgroundKey, JSON.stringify({
+        width: builtWidth,
+        height: builtHeight,
+        spaceBetweenStars,
+        nextStarIndex,
+        stars: savedStars,
+        previousChange,
+      }));
+    } catch {
+      // The background still works if the browser does not allow session storage.
+    }
+  }
+
+  // Restores stars saved by the previous page in this browser tab.
+  function restoreStars() {
+    try {
+      const saved = JSON.parse(window.sessionStorage.getItem(savedBackgroundKey));
+      if (!saved || !Array.isArray(saved.stars) || !saved.stars.length) return false;
+
+      const height = display.clientHeight;
+      const group = document.createDocumentFragment();
+      stars = [];
+      display.replaceChildren();
+
+      for (const savedStar of saved.stars) {
+        const top = Number.parseFloat(savedStar.top);
+        if (!Number.isFinite(top) || top < 0) continue;
+        const star = document.createElement("span");
+        star.className = "ascii-star";
+        star.style.left = savedStar.left;
+        star.style.top = savedStar.top;
+        star.style.fontSize = savedStar.size;
+        star.style.setProperty("--star-opacity", savedStar.opacity);
+        star.textContent = SETTINGS.characters.includes(savedStar.character)
+          ? savedStar.character : ".";
+        if (Number.isFinite(savedStar.changedAt)) lastChanged.set(star, savedStar.changedAt);
+        stars.push(star);
+        group.append(star);
+      }
+
+      display.append(group);
+      builtWidth = display.clientWidth;
+      // Keep stars below a shorter page, ready for another longer page.
+      builtHeight = Number(saved.height) || height;
+      spaceBetweenStars = Number(saved.spaceBetweenStars) > 0
+        ? Number(saved.spaceBetweenStars) : SETTINGS.pixelsPerStar / Math.max(Number(saved.width) || builtWidth, 1);
+      nextStarIndex = Number.isInteger(saved.nextStarIndex) && saved.nextStarIndex >= 0
+        ? saved.nextStarIndex : Math.max(0, Math.floor((builtHeight - 8) / spaceBetweenStars));
+      placementRandom = startingRandom();
+      // Move the repeatable number generator to the point used for new stars.
+      for (let index = 0; index < nextStarIndex * 5; index++) placementRandom();
+      previousChange = saved.previousChange || null;
+      if (height > builtHeight) addStars();
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   function clearChangeTimers() {
     for (const timer of changeTimers) window.clearTimeout(timer);
     changeTimers.clear();
@@ -126,11 +197,7 @@
     builtHeight = height;
   }
 
-  function rebuildStars() {
-    clearChangeTimers();
-    previousChange = null;
-    stars = [];
-    nextStarIndex = 0;
+  function startStars() {
     builtWidth = display.clientWidth;
     spaceBetweenStars = SETTINGS.pixelsPerStar / Math.max(builtWidth, 1);
     placementRandom = startingRandom();
@@ -142,8 +209,11 @@
     const width = display.clientWidth;
     const height = display.clientHeight;
 
-    if (width !== builtWidth || height < builtHeight - 1) rebuildStars();
-    else if (height > builtHeight) addStars();
+    if (width <= 0 || height <= 0) return;
+    // Percentage positions already fit the new width. Do not restart the pattern.
+    builtWidth = width;
+    // Keep stars beyond a shorter page ready for the next longer page.
+    if (height > builtHeight) addStars();
   }
 
   function changeStar(star) {
@@ -164,7 +234,7 @@
     changeTimers.add(fadeTimer);
   }
 
-  // Most stars just get a little brighter or dimmer without moving.
+  // Changes a star's brightness while keeping it in the same place.
   function twinkleStar(star) {
     const current = Number.parseFloat(star.style.getPropertyValue("--star-opacity"));
     const minimum = Math.max(SETTINGS.minimumOpacity, current - SETTINGS.brightnessChange);
@@ -221,6 +291,7 @@
   }
 
   // Images and other content can make the page taller after the first stars are placed.
+  document.addEventListener("portfolio-page-change", updateStarArea);
   if ("ResizeObserver" in window) {
     new ResizeObserver(updateStarArea).observe(display);
   } else {
@@ -238,6 +309,9 @@
     schedulePulse();
   });
 
-  rebuildStars();
+  // Save just before leaving, then restore the same stars on the next page.
+  window.addEventListener("pagehide", saveStars);
+
+  if (!restoreStars()) startStars();
   schedulePulse();
 })();

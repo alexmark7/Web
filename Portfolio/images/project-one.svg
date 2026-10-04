@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="97 81 606 344" role="img" aria-labelledby="title description">
   <title id="title">Weather dashboard placeholder</title>
   <desc id="description">An abstract dashboard with a sun and forecast cards.</desc>
-  <rect width="800" height="500" fill="#000000"/>
   <circle cx="190" cy="190" r="72" fill="#e9e4d8"/>
   <g fill="#111111" stroke="#aaa99f" stroke-width="2">
     <rect x="330" y="84" width="370" height="108" rx="12"/>

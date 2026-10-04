@@ -12,4 +12,5 @@ if (navbar) {
 
   // Check again if the browser returns to a saved scroll position.
   window.addEventListener("pageshow", updateNavbar);
+  document.addEventListener("portfolio-page-change", updateNavbar);
 }

@@ -11,6 +11,8 @@
 
 /* Stops the navbar moving sideways when the scrollbar appears or disappears. */
 html {
+  background-color: #000; /* Keeps the whole browser area black between pages. */
+  color-scheme: dark;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
 
@@ -24,7 +26,8 @@ body {
   color: rgb(255, 255, 255);
   background: #000;
   margin: 0; /* Removes the browser's default gap around the page. */
-  padding: 0 10vw;
+  /* Lets the side gaps grow smoothly from 5% on phones to 10% on wider screens. */
+  padding: 0 clamp(5vw, calc(15vw - 37.5px), 10vw);
   cursor: default; /* Uses the normal arrow instead of the text cursor over page content. */
 
   font-family: "IBM Plex Sans", Arial, sans-serif;
@@ -92,14 +95,9 @@ body {
   cursor: default;
 }
 
-/* Keeps the UFO in front until all its red characters fade back. */
+/* Keeps the UFO above the page and grabbable until its red lights fade back. */
 .ascii-ufo.is-in-front {
   z-index: 1001;
-  pointer-events: none;
-}
-
-/* Still lets the UFO be dragged while it is in front. */
-.ascii-ufo.is-grabbed {
   pointer-events: auto;
 }
 
@@ -124,30 +122,6 @@ body {
 .content {
   position: relative;
   z-index: 1;
-}
-
-/* Starts the new page slightly lower while the navbar and stars stay still. */
-.page-transition .content {
-  opacity: 0;
-  transform: translateY(10px);
-  transition:
-    opacity 280ms ease-out,
-    transform 280ms ease-out;
-}
-
-/* Fades the page in and gently brings it up to its normal place. */
-.page-transition.page-ready .content {
-  opacity: 1;
-  transform: none;
-}
-
-/* Fades the old page out without moving it again. */
-.page-transition.page-leaving .content {
-  opacity: 0;
-  transform: none;
-  transition:
-    opacity 180ms ease,
-    transform 180ms ease;
 }
 
 /* Stops an image from becoming wider than the space around it. */
@@ -180,10 +154,10 @@ a {
   top: 0;
   left: 0;
   z-index: 1000;
-  isolation: isolate; /* Helps the browser redraw the navbar separately from the page behind it. */
+  isolation: isolate; /* Keeps the navbar's layers together above the page. */
   transform: translateZ(
     0
-  ); /* Prevents temporary lines while the blurred background is changing. */
+  ); /* Helps prevent temporary lines while the blurred background is changing. */
 
   width: 100%;
   height: 76px;
@@ -201,8 +175,8 @@ a {
   ); /* Lets the stars show softly behind the bar. */
   border-bottom: 1px solid transparent; /* Keeps the line hidden at the top of the page. */
   transition: border-bottom-color 450ms ease;
-  -webkit-backdrop-filter: blur(3px); /* Support for older Safari browsers. */
-  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(8px); /* Support for older Safari browsers. */
+  backdrop-filter: blur(8px);
 }
 
 /* Fades in the navbar's full-width line after the page starts scrolling. */
@@ -321,6 +295,16 @@ main {
   padding-bottom: 60px;
 }
 
+/* Lets JavaScript move keyboard focus to the new content without drawing a box. */
+main:focus {
+  outline: none;
+}
+
+/* Leaves room for the navbar when a link jumps to a heading or project. */
+main [id] {
+  scroll-margin-top: 100px;
+}
+
 /* Removes the extra space browsers add above text. */
 h1,
 h2,
@@ -421,6 +405,11 @@ main h1,
     color 200ms ease;
 }
 
+/* Lets button text move during page changes without moving the blurred button. */
+.button-text {
+  display: inline-block;
+}
+
 /* Fades a button when the mouse is over it or it is reached with Tab. */
 .button:hover,
 .button:focus-visible {
@@ -466,7 +455,7 @@ main h1,
   max-width: 960px;
 }
 
-/* Makes the main Home heading stand out from the headings on the other pages. */
+/* Sets the size and spacing of the main Home heading. */
 .home-introduction-text h1 {
   max-width: 900px;
   margin-bottom: 24px;
@@ -561,18 +550,19 @@ main h1,
   max-width: 720px;
 }
 
-/* Keeps the profile image at a steady size and centres it in its column. */
+/* Keeps the portrait at a steady size, with its frame against the shoulders. */
 .profile-box {
   width: 100%;
-  max-width: 350px;
+  max-width: 340px;
   margin: 0;
   justify-self: center;
+  border: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Makes the profile image fill its column and adds the shared light border. */
+/* Shows the full portrait without cutting off the face or shoulders. */
 .profile-box img {
   width: 100%;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  height: auto;
 }
 
 /* Shows three equal information boxes in a row on larger screens. */
@@ -712,7 +702,7 @@ main h1,
   font-size: 0.75rem;
 }
 
-/* Holds other skills, languages, and certification plans beside the main CV details. */
+/* Holds other skills, languages, and planned certifications beside the main CV details. */
 .cv-extra-information {
   position: sticky; /* Keeps this box visible while the CV is being scrolled. */
   top: 105px;
@@ -946,11 +936,12 @@ li.skill-adobe {
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Keeps each project picture compact and shows the whole image. */
+/* Keeps each project picture compact, with space between it and the box edges. */
 .project-box img {
   width: 300px;
   max-width: 32%;
   height: 190px;
+  padding: 16px;
   object-fit: contain;
   align-self: center;
   flex-shrink: 0;
@@ -1493,11 +1484,6 @@ li.skill-adobe {
     grid-template-columns: 1fr;
   }
 
-  /* Uses less empty space at the sides on small screens. */
-  body {
-    padding: 0 5vw;
-  }
-
   /* Uses slightly smaller page spacing on phone-sized screens. */
   main {
     padding-top: 100px;
@@ -1580,13 +1566,6 @@ li.skill-adobe {
 @media (prefers-reduced-motion: reduce) {
   .top-navbar nav a[aria-current]::after {
     animation: none;
-  }
-
-  .page-transition .content,
-  .page-transition.page-leaving .content {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 
   .top-navbar,

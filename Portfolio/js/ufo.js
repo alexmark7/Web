@@ -39,6 +39,9 @@
   const minimumWait = 20000;
   const maximumWait = 35000;
   const pixelsPerSecond = 75;
+  const firstEscapeSpeed = pixelsPerSecond * 3;
+  const recoveredLightsMultiplier = 1.35;
+  const timeForAnotherGrab = 6000;
   let nextFlightTimer = 0;
   let animationFrame = 0;
   let lastDrawing = "";
@@ -52,8 +55,11 @@
   let lastPointerTime = 0;
   let velocityX = 0;
   let velocityY = 0;
-  let flightDirectionX = 1;
-  let flightDirectionY = 0;
+  let currentFlight = null;
+  let flightProgress = 0;
+  // Keeps earned getaway speed while switching pages without a refresh.
+  let getawaySpeed = pixelsPerSecond;
+  let keepFlyingUntil = 0;
   let colourTimers = [];
   let returningCharacters = 0;
   let behindCopy = null;
@@ -62,6 +68,20 @@
 
   function limit(value, maximum) {
     return Math.max(-maximum, Math.min(maximum, value));
+  }
+
+  function farOutsideScreen(x, y) {
+    return x < -120 || x > window.innerWidth + 120
+      || y < -120 || y > window.innerHeight + 120;
+  }
+
+  // Keep a return target safely inside the screen, including on phones.
+  function pointInsideScreen(point) {
+    const margin = Math.min(60, window.innerWidth / 4, window.innerHeight / 4);
+    return {
+      x: Math.max(margin, Math.min(window.innerWidth - margin, point.x)),
+      y: Math.max(margin, Math.min(window.innerHeight - margin, point.y)),
+    };
   }
 
   function placeUfo() {
@@ -172,7 +192,14 @@
       if (event.propertyName !== "color" || mode !== "settling"
         || character.classList.contains("is-red") || returningCharacters === 0) return;
       returningCharacters -= 1;
-      if (returningCharacters === 0) fadeBehindPage();
+      if (returningCharacters === 0) {
+        // Each full return to normal adds another 35% to its current speed.
+        // Multiplying the current speed lets repeated grabs keep stacking.
+        getawaySpeed *= recoveredLightsMultiplier;
+        // Leave a few seconds to grab it again after all the lights recover.
+        keepFlyingUntil = performance.now() + timeForAnotherGrab;
+        fadeBehindPage();
+      }
     });
   });
 
@@ -232,6 +259,22 @@
     };
   }
 
+  // Add another curved route while the lights recover or there is time to grab it.
+  function continueFlight() {
+    const nextFlight = planFlight();
+    const speed = Math.hypot(velocityX, velocityY) || 1;
+    const ahead = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    nextFlight.points[0] = { x: currentX, y: currentY };
+    nextFlight.points[1] = pointInsideScreen({
+      x: currentX + velocityX / speed * ahead,
+      y: currentY + velocityY / speed * ahead,
+    });
+    // Keep the planned exit, but add more turns before heading towards it.
+    nextFlight.points[nextFlight.points.length - 1] = currentFlight.points[currentFlight.points.length - 1];
+    currentFlight = nextFlight;
+    flightProgress = 0;
+  }
+
   function scheduleFlight() {
     window.clearTimeout(nextFlightTimer);
     if (mode !== "waiting" || document.hidden || reducedMotion.matches) return;
@@ -241,6 +284,7 @@
   function finishAppearance() {
     mode = "waiting";
     animationFrame = 0;
+    currentFlight = null;
     resetColours();
     ufo.style.opacity = "0";
     ufo.classList.remove("is-active");
@@ -251,8 +295,11 @@
     if (mode !== "waiting" || document.hidden || reducedMotion.matches) return;
     nextFlightTimer = 0;
     mode = "flying";
+    keepFlyingUntil = 0;
     ufo.classList.add("is-active");
     const flight = planFlight();
+    currentFlight = flight;
+    flightProgress = 0;
     let firstFrame;
     let previousFrame;
     currentTilt = 0;
@@ -261,6 +308,7 @@
       if (mode !== "flying") return;
       if (firstFrame === undefined) firstFrame = now;
       const progress = Math.min(1, (now - firstFrame) / flight.duration);
+      flightProgress = progress;
       const remaining = 1 - progress;
 
       // Look a little ahead to see which way the UFO is moving now.
@@ -269,11 +317,6 @@
       const after = pointOnFlight(flight, Math.min(1, progress + 0.012));
       const xDirection = after.x - before.x;
       const yDirection = after.y - before.y;
-      const movement = Math.hypot(xDirection, yDirection);
-      if (movement > 0.001) {
-        flightDirectionX = xDirection / movement;
-        flightDirectionY = yDirection / movement;
-      }
       const horizontal = Math.abs(xDirection);
       const vertical = Math.abs(yDirection);
       // Stay level during mostly vertical flight, and bank on sideways turns.
@@ -360,6 +403,9 @@
     const releasedPointer = pointerId;
     pointerId = null;
     mode = "settling";
+    // The first grab makes it hurry away; another grab alone does not add speed.
+    getawaySpeed = Math.max(getawaySpeed, firstEscapeSpeed);
+    keepFlyingUntil = 0;
     fadeColours();
     if (ufo.hasPointerCapture(releasedPointer)) ufo.releasePointerCapture(releasedPointer);
 
@@ -370,12 +416,18 @@
     velocityY *= remainingForce;
     let spin = limit(velocityX * 0.1 + velocityY * 0.05, 160);
     const releaseSpeed = Math.hypot(velocityX, velocityY);
-    // The throw moves the UFO briefly, then it returns to its flight direction.
-    const cruiseX = flightDirectionX * pixelsPerSecond;
-    const cruiseY = flightDirectionY * pixelsPerSecond;
+    // An off-screen throw must come back into view before it can fly away.
+    let needsToReturn = currentX < 0 || currentX > window.innerWidth
+      || currentY < 0 || currentY > window.innerHeight;
     if (releaseSpeed < 70) {
-      velocityX = cruiseX;
-      velocityY = cruiseY;
+      // With no throw, keep its old direction and build up getaway speed.
+      const before = pointOnFlight(currentFlight, Math.max(0, flightProgress - 0.01));
+      const after = pointOnFlight(currentFlight, Math.min(1, flightProgress + 0.01));
+      const directionX = after.x - before.x;
+      const directionY = after.y - before.y;
+      const distance = Math.hypot(directionX, directionY) || 1;
+      velocityX = directionX / distance * pixelsPerSecond;
+      velocityY = directionY / distance * pixelsPerSecond;
     }
     let previousFrame;
 
@@ -385,21 +437,54 @@
       const seconds = Math.min(0.05, (now - previousFrame) / 1000);
       previousFrame = now;
 
-      currentX += velocityX * seconds;
-      currentY += velocityY * seconds;
-      // Slow a fast throw to a steady glide, but never stop before an edge.
-      const slowdown = 1 - Math.exp(-2.4 * seconds);
+      const keepFlying = returningCharacters > 0 || now < keepFlyingUntil;
+      const insideScreen = currentX >= 0 && currentX <= window.innerWidth
+        && currentY >= 0 && currentY <= window.innerHeight;
+      if ((keepFlying && !insideScreen)
+        || (farOutsideScreen(currentX, currentY) && flightProgress < 0.8)) needsToReturn = true;
+      if (insideScreen) needsToReturn = false;
+
+      // Extra turns leave time for repeated grabs without moving the UFO suddenly.
+      if (keepFlying && !needsToReturn && flightProgress >= 0.6) continueFlight();
+
+      // Keep following the curve, and pull an off-screen return target inside.
+      // A faster UFO looks farther ahead so the next route point does not
+      // quietly limit the speed gained from repeated grabs.
+      const speedRatio = getawaySpeed / firstEscapeSpeed;
+      const lookAhead = Math.min(0.2, 0.06 * Math.sqrt(speedRatio));
+      const targetProgress = Math.min(1, flightProgress + lookAhead);
+      let routePoint = pointOnFlight(currentFlight, targetProgress);
+      if (needsToReturn) routePoint = pointInsideScreen(routePoint);
+      const catchDistance = Math.min(380, 130 + getawaySpeed * 0.35);
+      if (!needsToReturn
+        && Math.hypot(routePoint.x - currentX, routePoint.y - currentY) < catchDistance) {
+        flightProgress = Math.min(1, flightProgress
+          + seconds * 1000 / currentFlight.duration * getawaySpeed / pixelsPerSecond);
+        routePoint = pointOnFlight(currentFlight, Math.min(1, flightProgress + lookAhead));
+      }
+      const distance = Math.hypot(routePoint.x - currentX, routePoint.y - currentY) || 1;
+      if (!keepFlying && !needsToReturn && flightProgress === 1 && distance < 45) {
+        finishAppearance();
+        return;
+      }
+      // Only slow near the final exit. Everywhere else, use the full stacked speed.
+      const cruiseSpeed = flightProgress === 1
+        ? Math.min(getawaySpeed, Math.max(pixelsPerSecond, distance * 4))
+        : getawaySpeed;
+      const cruiseX = (routePoint.x - currentX) / distance * cruiseSpeed;
+      const cruiseY = (routePoint.y - currentY) / distance * cruiseSpeed;
+      // Turn towards the changing target without suddenly changing direction.
+      const turningSpeed = 1.8 + Math.min(5, getawaySpeed / firstEscapeSpeed);
+      const slowdown = 1 - Math.exp(-turningSpeed * seconds);
       velocityX += (cruiseX - velocityX) * slowdown;
       velocityY += (cruiseY - velocityY) * slowdown;
+      currentX += velocityX * seconds;
+      currentY += velocityY * seconds;
       spin += (-20 * currentTilt - 4 * spin) * seconds;
       currentTilt += spin * seconds;
       placeUfo();
       drawUfo(now);
-
-      const offscreen = currentX < -120 || currentX > window.innerWidth + 120
-        || currentY < -120 || currentY > window.innerHeight + 120;
-      if (!offscreen) animationFrame = window.requestAnimationFrame(swing);
-      else finishAppearance();
+      animationFrame = window.requestAnimationFrame(swing);
     }
 
     animationFrame = window.requestAnimationFrame(swing);
@@ -415,6 +500,7 @@
     nextFlightTimer = 0;
     animationFrame = 0;
     mode = "waiting";
+    currentFlight = null;
     if (pointerId !== null && ufo.hasPointerCapture(pointerId)) {
       ufo.releasePointerCapture(pointerId);
     }

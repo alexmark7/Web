@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="67 52 666 396" role="img" aria-labelledby="title description">
   <title id="title">Pong, Space Defender, and Snake</title>
   <desc id="description">Three small arcade screens show Pong paddles and a ball, a spaceship defending against invaders, and a snake approaching an apple.</desc>
-  <rect width="800" height="500" fill="#000000"/>
   <rect x="70" y="55" width="660" height="390" rx="16" fill="#101010" stroke="#aaa99f" stroke-width="2"/>
   <text x="400" y="95" fill="#e9e4d8" font-family="Courier New, monospace" font-size="22" letter-spacing="3" text-anchor="middle">BROWSER GAMES</text>
 

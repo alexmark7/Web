@@ -1,7 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="65 62 670 376" role="img" aria-labelledby="title description">
   <title id="title">Photography gallery placeholder</title>
   <desc id="description">An abstract collection of framed landscape photographs.</desc>
-  <rect width="800" height="500" fill="#000000"/>
   <g stroke="#aaa99f" stroke-width="2">
     <rect x="70" y="65" width="290" height="165" fill="#111111"/>
     <rect x="390" y="65" width="340" height="270" fill="#1a1a1a"/>
