@@ -312,9 +312,8 @@
             </div>
           </header>
           <p>
-            I put coloured skill labels near the top, then split the rest of the
-            CV into clear sections. Each work or education item has its own
-            entry, and I added a button to download the PDF.
+            I split the CV into clear sections. Each work or education item has
+            its own entry, and I added a button to download the PDF.
           </p>
           <p>
             I used a time element for the dates, then adjusted the spacing
@@ -362,7 +361,7 @@
             </div>
           </header>
           <p>
-            I made the skills at the top of the CV into a list, then gave each
+            I added a list of skills at the top of the CV, then gave each
             item a class for its colour. I used Flexbox to line up the labels
             and let them wrap when there is less room. I could use the same
             colours on other pages later.
@@ -472,7 +471,7 @@
             could adjust the artwork visually, then keep it as SVG so it stays
             sharp when the project pictures change size.
           </p>
-          <!-- Two of the illustrations I edited for the project pictures. -->
+          <!-- Two examples of the illustrations used for the project pictures. -->
           <div class="website-picture-group">
             <figure class="website-picture blurred-box">
               <figcaption class="website-picture-label">
@@ -835,13 +834,21 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
             timing feeling right.
           </p>
           <p>
-            The next page is loaded before the current text fades away. The
-            main content and footer are then copied into the current document:
+            The current text starts fading as soon as a page is clicked, while
+            the next page and its pictures load at the same time. Once both
+            are ready, the main content and footer are copied into the current document:
           </p>
           <pre
             class="website-code code-js blurred-box"
-          ><code><span class="code-keyword">const</span> nextPage = <span class="code-keyword">await</span> <span class="code-function">readPage</span>(url, request.signal);
-<span class="code-keyword">await</span> <span class="code-function">fadeContent</span>(<span class="code-value">false</span>);
+          ><code><span class="code-keyword">const</span> loadingPage = <span class="code-function">readPage</span>(url, request.signal).<span class="code-function">then</span>(<span class="code-keyword">async</span> nextPage =&gt; {
+  <span class="code-keyword">await</span> <span class="code-function">prepareImages</span>(nextPage, url);
+  <span class="code-keyword">return</span> nextPage;
+});
+
+<span class="code-keyword">const</span> [nextPage] = <span class="code-keyword">await</span> Promise.<span class="code-function">all</span>([
+  loadingPage,
+  <span class="code-function">fadeContent</span>(<span class="code-value">false</span>)
+]);
 
 <span class="code-keyword">for</span> (<span class="code-keyword">const</span> name <span class="code-keyword">of</span> [<span class="code-string">"main"</span>, <span class="code-string">"footer"</span>]) {
   document.<span class="code-function">querySelector</span>(name).<span class="code-function">replaceWith</span>(
@@ -1010,7 +1017,8 @@ document.title = nextPage.title;</code></pre>
           <p>
             I added a UFO that appears now and then, moves along a curved path,
             and starts behind the page content. You can grab it and swing it
-            around. The changing characters turn red while it is held, then fade
+            around. The lights keep changing even when I hold it still.
+            The changing characters turn red while it is held, then fade
             back at different times after release. It speeds up to get away and
             can be grabbed again while it is in front. Every time all the lights
             return to normal, it gains more speed before fading behind the page.
@@ -1159,7 +1167,7 @@ document.title = nextPage.title;</code></pre>
         </div>
       </nav>
 
-      <!-- Copyright and email at the bottom of the footer. -->
+      <!-- Copyright and email: on the left on wide screens, below the links on smaller screens. -->
       <div class="footer-info">
         <p>&copy; 2026 My Portfolio</p>
         <a href="mailto:alexander.mankvard@gmail.com"

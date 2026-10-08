@@ -303,7 +303,7 @@ main h1,
     color 200ms ease;
 }
 
-/* Fades a button when the mouse is over it or it is reached with Tab. */
+/* Fades the button colours when the mouse is over it or it is reached with Tab. */
 .button:hover,
 .button:focus-visible {
   border-color: #f1f2f2;
@@ -917,10 +917,11 @@ li.skill-adobe {
   max-width: 760px;
 }
 
-/* Shows code without making the whole page scroll sideways on small screens. */
+/* Keeps the code spacing and wraps long lines so the boxes do not scroll sideways. */
 .website-code {
   max-width: 100%;
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   margin: 28px 0 0;
   padding: 20px;
   border: 1px solid rgba(235, 235, 235, 0.36);
@@ -1431,7 +1432,7 @@ li.skill-adobe {
   }
 }
 
-/* Turns off movement if the visitor has reduced motion turned on. */
+/* Stops the smooth animations if the visitor has reduced motion turned on. */
 @media (prefers-reduced-motion: reduce) {
   .top-navbar nav a[aria-current]::after {
     animation: none;

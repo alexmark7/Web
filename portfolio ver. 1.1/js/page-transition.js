@@ -167,7 +167,7 @@
     }
   }
 
-  // Load the HTML first, so the current page stays visible during a slow request.
+  // Load the HTML and check it has the page content, footer, and navbar.
   async function readPage(url, signal) {
     const key = pageKey(url);
     if (!savedPages.has(key)) {
@@ -208,13 +208,15 @@
     const timeout = window.setTimeout(() => request.abort(), 10000);
 
     try {
-      const nextPage = await readPage(url, request.signal);
-      await prepareImages(nextPage, url);
+      // Load the next page and its pictures while the current page fades out.
+      const loadingPage = readPage(url, request.signal).then(async nextPage => {
+        await prepareImages(nextPage, url);
+        return nextPage;
+      });
+      for (const part of contentParts()) part.inert = true;
+      const [nextPage] = await Promise.all([loadingPage, fadeContent(false)]);
       if (number !== pageNumber) return;
       if (request.signal.aborted) throw new Error("The page request timed out.");
-      for (const part of contentParts()) part.inert = true;
-      await fadeContent(false);
-      if (number !== pageNumber) return;
 
       if (addToHistory) window.history.pushState({ portfolioScroll: null }, "", url.href);
       updateNavbar(nextPage, url);

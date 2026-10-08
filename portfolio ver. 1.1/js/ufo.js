@@ -114,6 +114,13 @@
     }
   }
 
+  // Keeps the lights changing while the cursor holds the UFO still.
+  function animateHeldLights(now) {
+    if (mode !== "dragging") return;
+    drawUfo(now);
+    animationFrame = window.requestAnimationFrame(animateHeldLights);
+  }
+
   drawUfo(0);
 
   function randomBetween(minimum, maximum) {
@@ -376,6 +383,7 @@
     velocityX = 0;
     velocityY = 0;
     ufo.style.opacity = "0.85";
+    animationFrame = window.requestAnimationFrame(animateHeldLights);
   });
 
   ufo.addEventListener("pointermove", (event) => {
@@ -393,7 +401,6 @@
     const targetTilt = limit(velocityX * 0.03 + velocityY * 0.012, 28);
     currentTilt += (targetTilt - currentTilt) * 0.25;
     placeUfo();
-    drawUfo(event.timeStamp);
     lastPointerTime = event.timeStamp;
   });
 
@@ -402,6 +409,8 @@
     event.preventDefault();
     const releasedPointer = pointerId;
     pointerId = null;
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
     mode = "settling";
     // The first grab makes it hurry away; another grab alone does not add speed.
     getawaySpeed = Math.max(getawaySpeed, firstEscapeSpeed);
