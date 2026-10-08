@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Alex's A logo</title>
+  <!-- Plain dark background that works on light and dark browser tabs. -->
+  <rect width="64" height="64" rx="12" fill="#080808"/>
+  <!-- A simple A, kept bold enough to read as a small tab icon. -->
+  <path fill="#f1f2f2" fill-rule="evenodd" d="M14 48 28 16h8l14 32h-9l-3-7H26l-3 7Zm15-14h6l-3-8Z"/>
+</svg>

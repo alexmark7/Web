@@ -4,22 +4,34 @@
   <head>
     <!-- Allows special letters and symbols to display correctly. -->
     <meta charset="UTF-8" />
+    <!-- Uses a dark background while the stylesheet is loading. -->
+    <meta name="color-scheme" content="dark" />
     <!-- Helps the page fit phone and tablet screens. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="The steps I took to build my portfolio website, with screenshots and code examples."
     />
+    <!-- Loads page content without restarting the navbar or background. -->
+    <script src="js/page-transition.js"></script>
     <!-- Connects this page to the same CSS and background as the rest of the site. -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Shows my logo in the browser tab. -->
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
+    <script src="js/navbar.js" defer></script>
+    <script src="js/background.js" defer></script>
+    <!-- Adds the occasional ASCII flying saucer. -->
+    <script src="js/ufo.js" defer></script>
+    <!-- Keeps the game selector ready when its page is opened. -->
+    <script src="js/game-selector.js" defer></script>
     <title>Portfolio Website | My Portfolio</title>
   </head>
 
   <body>
-    <!-- Decorative background behind the page content. -->
-    <div class="background" aria-hidden="true"></div>
+    <!-- The stars stay behind the page and do not block clicks. -->
+    <div class="background" aria-hidden="true">
+      <div id="ascii-stars"></div>
+    </div>
 
     <!-- Projects stays highlighted because this is one of my project pages. -->
     <header class="top-navbar">
@@ -40,7 +52,7 @@
         <h1>Building this portfolio</h1>
         <p>
           I started with three pages and kept adding to them as I learned more
-          HTML and CSS. I also edited the illustrations in
+          HTML, CSS, and JavaScript. I also edited the illustrations in
           Illustrator. These are the main steps, with screenshots and bits of
           code from along the way.
         </p>
@@ -431,6 +443,7 @@
           ><code>&lt;<span class="code-tag">ul</span> <span class="code-attribute">class</span>=<span class="code-string">"project-skill-list"</span> <span class="code-attribute">aria-label</span>=<span class="code-string">"Technologies used"</span>&gt;
   &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-html"</span>&gt;HTML&lt;/<span class="code-tag">li</span>&gt;
   &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-css"</span>&gt;CSS&lt;/<span class="code-tag">li</span>&gt;
+  &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-javascript"</span>&gt;JavaScript&lt;/<span class="code-tag">li</span>&gt;
   &lt;<span class="code-tag">li</span> <span class="code-attribute">class</span>=<span class="code-string">"skill-git"</span>&gt;Git&lt;/<span class="code-tag">li</span>&gt;
 &lt;/<span class="code-tag">ul</span>&gt;</code></pre>
           <p>Flexbox puts the picture beside the details on wider screens:</p>
@@ -725,19 +738,337 @@
             </div>
           </header>
           <p>
-            I kept the site inside the Portfolio Web folder with my other school
-            work. The HTML pages, CSS, images, and PDF all use paths relative to
-            that folder. A publishing workflow can upload it to GitHub Pages.
+            I kept the site inside the portfolio ver. 1.1 folder with my other school
+            work. GitHub Pages uploads that folder as the site, so its
+            index.html becomes the live Home page. The CSS, JavaScript, images,
+            and PDF all use paths relative to that folder.
           </p>
-          <p>This part of the workflow points Pages at that folder:</p>
+          <p>This part of the workflow points Pages at the right folder:</p>
           <pre
             class="website-code blurred-box"
-          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload the Portfolio Web folder</span>
+          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload portfolio ver. 1.1</span>
   <span class="code-property">uses</span>: <span class="code-value">actions/upload-pages-artifact@v4</span>
   <span class="code-property">with</span>:
-    <span class="code-property">path</span>: <span class="code-string">"./Portfolio Web"</span></code></pre>
+    <span class="code-property">path</span>: <span class="code-string">"./portfolio ver. 1.1"</span></code></pre>
         </section>
 
+        <section
+          class="website-step"
+          id="scroll-behaviour"
+          aria-labelledby="scroll-behaviour-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #12</p>
+            <div class="website-step-title">
+              <h2 id="scroll-behaviour-heading">
+                Handling the navbar and Home scroll
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-css">CSS</li>
+                <li class="skill-javascript">JavaScript</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            The navbar already stayed at the top. I added a small script to show
+            its bottom line only after scrolling starts, then used CSS to fade
+            the line in and out. I also fixed a Home page refresh problem that
+            sometimes returned the browser to the bottom of the page.
+          </p>
+          <p>The script adds a class when the page is no longer at the top:</p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code><span class="code-keyword">function</span> <span class="code-function">updateNavbar</span>() {
+  navbar.classList.<span class="code-function">toggle</span>(<span class="code-string">"scrolled"</span>, window.scrollY &gt; <span class="code-value">0</span>);
+}
+
+window.<span class="code-function">addEventListener</span>(<span class="code-string">"scroll"</span>, updateNavbar, { passive: <span class="code-value">true</span> });</code></pre>
+          <p>CSS makes the bottom line visible when that class is present:</p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.top-navbar.scrolled</span> {
+  <span class="code-property">border-bottom-color</span>: <span class="code-value">rgba(235, 235, 235, 0.36)</span>;
+}</code></pre>
+          <p>
+            On a Home page reload, this stops the browser restoring the previous
+            scroll position:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code><span class="code-keyword">if</span> (navigation &amp;&amp; navigation.type === <span class="code-string">"reload"</span>) {
+  history.scrollRestoration = <span class="code-string">"manual"</span>;
+  window.<span class="code-function">addEventListener</span>(<span class="code-string">"pageshow"</span>, () =&gt; {
+    window.<span class="code-function">scrollTo</span>(<span class="code-value">0</span>, <span class="code-value">0</span>);
+  }, { once: <span class="code-value">true</span> });
+}</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="page-transitions"
+          aria-labelledby="page-transitions-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #13</p>
+            <div class="website-step-title">
+              <h2 id="page-transitions-heading">Fading between pages</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-css">CSS</li>
+                <li class="skill-javascript">JavaScript</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I added a short fade when moving to another page. JavaScript loads
+            the next HTML file and replaces just the main content and footer,
+            so the top bar stays in place. The background and UFO can keep
+            running instead of restarting with every click. I also made the
+            underline grow from its middle and stopped that
+            animation from replaying when moving between the Projects list and
+            one of its project pages. That took a few adjustments to get the
+            timing feeling right.
+          </p>
+          <p>
+            The next page is loaded before the current text fades away. The
+            main content and footer are then copied into the current document:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code><span class="code-keyword">const</span> nextPage = <span class="code-keyword">await</span> <span class="code-function">readPage</span>(url, request.signal);
+<span class="code-keyword">await</span> <span class="code-function">fadeContent</span>(<span class="code-value">false</span>);
+
+<span class="code-keyword">for</span> (<span class="code-keyword">const</span> name <span class="code-keyword">of</span> [<span class="code-string">"main"</span>, <span class="code-string">"footer"</span>]) {
+  document.<span class="code-function">querySelector</span>(name).<span class="code-function">replaceWith</span>(
+    document.<span class="code-function">importNode</span>(nextPage.<span class="code-function">querySelector</span>(name), <span class="code-value">true</span>)
+  );
+}</code></pre>
+          <p>
+            Fading a whole container affected the blur behind its boxes. I
+            changed this so the words and pictures fade and move a little. The
+            box backgrounds, borders, and divider lines fade at the same time,
+            but the blur stays still. The old content fades out over 150
+            milliseconds, then the new content rises gently into place over
+            240 milliseconds. Nearby rows appear together, with a short delay
+            for the rows below. There is no coloured cover over the page.
+          </p>
+          <p>The fade-in uses these animation settings:</p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code>item.<span class="code-function">animate</span>([
+  { opacity: <span class="code-value">0</span>, translate: <span class="code-string">"0 8px"</span> },
+  { opacity: <span class="code-value">1</span>, translate: <span class="code-string">"0 0"</span> }
+], {
+  duration: <span class="code-value">240</span>,
+  delay,
+  fill: <span class="code-string">"both"</span>,
+  easing: <span class="code-string">"cubic-bezier(0.22, 0.61, 0.36, 1)"</span>
+});</code></pre>
+          <p>
+            For a box or divider, I fade the border colour to transparent
+            instead of fading the whole container. This leaves its size and
+            blur unchanged:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code>visible[<span class="code-string">`border${side}Color`</span>] = style[<span class="code-string">`border${side}Color`</span>];
+hidden[<span class="code-string">`border${side}Color`</span>] = <span class="code-string">"transparent"</span>;
+
+item.<span class="code-function">animate</span>(
+  appearing ? [hidden, visible] : [visible, hidden],
+  <span class="code-function">fadeSettings</span>(item, appearing)
+);</code></pre>
+          <p>
+            The shared CSS still gives the boxes and buttons
+            their transparent background and light blur:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.blurred-box,
+.button</span> {
+  <span class="code-property">background-color</span>: <span class="code-value">rgba(0, 0, 0, 0.18)</span>;
+  <span class="code-property">-webkit-backdrop-filter</span>: <span class="code-value">blur(2px)</span>;
+  <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(2px)</span>;
+}</code></pre>
+          <p>
+            The address and page title also need to change. I used the browser's
+            history so Back and Forward can return to earlier pages and their
+            scroll positions. Each HTML file still opens on its own when a link
+            is shared or the page is refreshed:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code>window.history.<span class="code-function">pushState</span>({ portfolioScroll: <span class="code-value">null</span> }, <span class="code-string">""</span>, url.href);
+document.title = nextPage.title;</code></pre>
+        </section>
+
+        <section
+          class="website-step"
+          id="star-background"
+          aria-labelledby="star-background-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #14</p>
+            <div class="website-step-title">
+              <h2 id="star-background-heading">
+                Turning the empty background into stars
+              </h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-html">HTML</li>
+                <li class="skill-css">CSS</li>
+                <li class="skill-javascript">JavaScript</li>
+                <li class="skill-ai-tools">AI Tools</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I used JavaScript to place small characters in the background on
+            every page. Individual stars change brightness or fade away and
+            appear somewhere else. Navigation keeps these same stars running
+            when the content changes, even if the page width changes slightly.
+            Shorter pages keep the stars below them ready for a longer page.
+            Their current positions and appearance
+            are also saved when the document closes, ready for a refresh. I adjusted
+            their speed, size, colour, and fading until the background felt
+            active without being distracting.
+          </p>
+          <p>
+            Making the stars move and fill pages of different lengths was above
+            my current JavaScript skill level, so I used AI tools to help build
+            this part. I kept testing the result and changing how often the
+            stars moved and faded.
+          </p>
+          <p>The background has a place in the HTML behind the page content:</p>
+          <pre
+            class="website-code code-html blurred-box"
+          ><code>&lt;<span class="code-tag">div</span> <span class="code-attribute">class</span>=<span class="code-string">"background"</span> <span class="code-attribute">aria-hidden</span>=<span class="code-string">"true"</span>&gt;
+  &lt;<span class="code-tag">div</span> <span class="code-attribute">id</span>=<span class="code-string">"ascii-stars"</span>&gt;&lt;/<span class="code-tag">div</span>&gt;
+&lt;/<span class="code-tag">div</span>&gt;</code></pre>
+          <p>
+            The opacity transition is what stops a star from simply popping on
+            and off:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.ascii-star</span> {
+  <span class="code-property">opacity</span>: <span class="code-value">var(--star-opacity, 0.6)</span>;
+  <span class="code-property">transition</span>: <span class="code-value">opacity 550ms ease-in-out</span>;
+}
+
+<span class="code-selector">.ascii-star.is-changing</span> {
+  <span class="code-property">opacity</span>: <span class="code-value">0</span>;
+}</code></pre>
+          <p>
+            Long pages needed one more fix. Pictures can make the page taller
+            after it opens, so I made the script add stars to the extra space
+            instead of leaving the bottom empty.
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code><span class="code-keyword">new</span> <span class="code-function">ResizeObserver</span>(updateStarArea).<span class="code-function">observe</span>(display);</code></pre>
+          <p>
+            A shorter page hides the extra stars instead of rebuilding them, so
+            they are ready when a longer page opens again. I also save the stars
+            when leaving the document and restore them on a full page load. If
+            there is nothing saved, the normal starting pattern is created:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code>window.<span class="code-function">addEventListener</span>(<span class="code-string">"pagehide"</span>, saveStars);
+
+<span class="code-keyword">if</span> (!<span class="code-function">restoreStars</span>()) <span class="code-function">startStars</span>();</code></pre>
+        </section>
+
+        <!-- The UFO was added after the moving star background. -->
+        <section
+          class="website-step"
+          id="ascii-ufo"
+          aria-labelledby="ascii-ufo-heading"
+        >
+          <header class="website-step-heading">
+            <p class="project-number">Step #15</p>
+            <div class="website-step-title">
+              <h2 id="ascii-ufo-heading">Adding the ASCII UFO</h2>
+              <ul
+                class="website-step-skills skill-list blurred-box"
+                aria-label="Skills used in this step"
+              >
+                <li class="skill-css">CSS</li>
+                <li class="skill-javascript">JavaScript</li>
+                <li class="skill-ai-tools">AI Tools</li>
+              </ul>
+            </div>
+          </header>
+          <p>
+            I added a UFO that appears now and then, moves along a curved path,
+            and starts behind the page content. You can grab it and swing it
+            around. The changing characters turn red while it is held, then fade
+            back at different times after release. It speeds up to get away and
+            can be grabbed again while it is in front. Every time all the lights
+            return to normal, it gains more speed before fading behind the page.
+            It keeps making turns while the lights recover, then leaves a few
+            seconds to grab it again. The speed it has gained stays ready for
+            later getaways, including when switching pages without a refresh.
+            If a throw sends it off-screen,
+            it comes back into view and continues its curved path.
+          </p>
+          <p>
+            The curved movement, dragging, and colour changes were also above my
+            current JavaScript skill level. I used AI tools to help write this
+            part, then tried it out and kept adjusting how it moved and looked.
+          </p>
+          <p>
+            CSS starts the UFO behind the page. After a grab, it stays above
+            the page and can be grabbed again while its lights fade back:
+          </p>
+          <pre
+            class="website-code code-css blurred-box"
+          ><code><span class="code-selector">.ascii-ufo</span> {
+  <span class="code-property">position</span>: <span class="code-value">fixed</span>;
+  <span class="code-property">z-index</span>: <span class="code-value">0</span>;
+}
+
+<span class="code-selector">.ascii-ufo.is-in-front</span> {
+  <span class="code-property">z-index</span>: <span class="code-value">1001</span>;
+  <span class="code-property">pointer-events</span>: <span class="code-value">auto</span>;
+}</code></pre>
+          <p>
+            The first release makes it faster. Its current speed is multiplied
+            again only after every red character has faded back, so repeated
+            grabs can keep building up its speed:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code><span class="code-keyword">if</span> (returningCharacters === <span class="code-value">0</span>) {
+  getawaySpeed *= recoveredLightsMultiplier;
+  <span class="code-function">fadeBehindPage</span>();
+}</code></pre>
+          <p>
+            JavaScript gives each red character its own time to start fading
+            back:
+          </p>
+          <pre
+            class="website-code code-js blurred-box"
+          ><code>changingCharacters.<span class="code-function">forEach</span>((character) =&gt; {
+  <span class="code-keyword">const</span> timer = window.<span class="code-function">setTimeout</span>(() =&gt; {
+    character.classList.<span class="code-function">remove</span>(<span class="code-string">"is-red"</span>);
+  }, <span class="code-function">randomBetween</span>(<span class="code-value">600</span>, <span class="code-value">2000</span>));
+  colourTimers.<span class="code-function">push</span>(timer);
+});</code></pre>
+          <p>
+            Once the last character has faded back, a copy behind the page fades
+            in while the one in front fades out. That makes the UFO move behind
+            the content without suddenly jumping.
+          </p>
+        </section>
       </div>
 
       <!-- A short ending after the last step, with a link back to the start. -->

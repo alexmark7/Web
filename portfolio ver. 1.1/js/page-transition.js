@@ -66,29 +66,61 @@
     document.querySelector("main").removeAttribute("aria-busy");
   }
 
-  // Fade and gently move words and pictures, leaving blurred boxes still.
-  async function fadeText(appearing) {
+  // Use the same short timing for text, box colours, and divider lines.
+  function fadeSettings(item, appearing) {
+    const top = Math.max(0, item.getBoundingClientRect().top);
+    return {
+      duration: appearing ? 240 : 150,
+      delay: appearing ? Math.min(40, Math.floor(top / 120) * 8) : 0,
+      fill: "both",
+      easing: appearing ? "cubic-bezier(0.22, 0.61, 0.36, 1)" : "cubic-bezier(0.4, 0, 1, 1)"
+    };
+  }
+
+  // Fade words and pictures without moving a box that has blur.
+  async function fadeContent(appearing) {
     if (reducedMotion.matches || !Element.prototype.animate) return;
     const targets = [];
     for (const part of contentParts()) {
-      const items = part.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, code, img, a, button, .button-text");
+      const items = part.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, code, img, a, button, span, figcaption");
       for (const item of items) {
         if (item.matches(".blurred-box, .button") || item.querySelector(".blurred-box, .button")) continue;
         if (!targets.some(target => target.contains(item))) targets.push(item);
       }
     }
-    const currentAnimations = targets.map(item => {
-      // Nearby rows arrive together. Keep the extra wait short on long pages.
-      const top = Math.max(0, item.getBoundingClientRect().top);
-      const delay = appearing ? Math.min(90, Math.floor(top / 120) * 18) : 0;
-      return item.animate(
-        appearing
-          ? [{ opacity: 0, translate: "0 12px" }, { opacity: 1, translate: "0 0" }]
-          : [{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "0 -4px" }],
-        { duration: appearing ? 360 : 240, delay, fill: "both",
-          easing: appearing ? "cubic-bezier(0.22, 0.61, 0.36, 1)" : "cubic-bezier(0.4, 0, 1, 1)" }
-      );
-    });
+    const currentAnimations = targets.map(item => item.animate(
+      appearing
+        ? [{ opacity: 0, translate: "0 8px" }, { opacity: 1, translate: "0 0" }]
+        : [{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "0 -4px" }],
+      fadeSettings(item, appearing)
+    ));
+
+    // Fade box background colours and borders, without changing the blur or position.
+    for (const part of contentParts()) {
+      for (const item of [part, ...part.querySelectorAll("*")]) {
+        // These already fade with their words, so do not fade them twice.
+        if (targets.some(target => target.contains(item))) continue;
+        const style = window.getComputedStyle(item);
+        const visible = {};
+        const hidden = {};
+        for (const side of ["Top", "Right", "Bottom", "Left"]) {
+          if (Number.parseFloat(style[`border${side}Width`]) > 0
+            && style[`border${side}Style`] !== "none") {
+            visible[`border${side}Color`] = style[`border${side}Color`];
+            hidden[`border${side}Color`] = "transparent";
+          }
+        }
+        if (item.matches(".blurred-box, .button")) {
+          visible.backgroundColor = style.backgroundColor;
+          hidden.backgroundColor = "transparent";
+        }
+        if (!Object.keys(visible).length) continue;
+        currentAnimations.push(item.animate(
+          appearing ? [hidden, visible] : [visible, hidden],
+          fadeSettings(item, appearing)
+        ));
+      }
+    }
     animations.push(...currentAnimations);
     await Promise.all(currentAnimations.map(animation => animation.finished.catch(() => {})));
   }
@@ -181,7 +213,7 @@
       if (number !== pageNumber) return;
       if (request.signal.aborted) throw new Error("The page request timed out.");
       for (const part of contentParts()) part.inert = true;
-      await fadeText(false);
+      await fadeContent(false);
       if (number !== pageNumber) return;
 
       if (addToHistory) window.history.pushState({ portfolioScroll: null }, "", url.href);
@@ -198,7 +230,7 @@
       for (const part of contentParts()) part.inert = true;
       moveToContent(url, position);
       document.dispatchEvent(new Event("portfolio-page-change"));
-      await fadeText(true);
+      await fadeContent(true);
       if (number !== pageNumber) return;
       stopFade();
       const main = document.querySelector("main");

@@ -198,6 +198,9 @@
   }
 
   function startStars() {
+    stars = [];
+    nextStarIndex = 0;
+    previousChange = null;
     builtWidth = display.clientWidth;
     spaceBetweenStars = SETTINGS.pixelsPerStar / Math.max(builtWidth, 1);
     placementRandom = startingRandom();

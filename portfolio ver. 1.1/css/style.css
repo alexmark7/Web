@@ -535,12 +535,12 @@ main h1,
 /*  About Me page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Places the introduction beside the profile image on larger screens. */
+/* Places the introduction beside the portrait, with both starting at the top. */
 .about-introduction {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(250px, 0.45fr);
   gap: 60px;
-  align-items: center;
+  align-items: start;
   padding-top: 18px;
   padding-bottom: 40px;
 }
@@ -850,7 +850,6 @@ li.skill-jetbrains {
   color: #c58af9;
 }
 
-/* Gives AI tools and local AI tools their own colours. */
 li.skill-ai-tools {
   border-color: #c057f7;
   background-color: #16081d;
