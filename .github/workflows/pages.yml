@@ -29,10 +29,10 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload portfolio ver. 1.1
+      - name: Upload portfolio ver. 1.0
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./portfolio ver. 1.1"
+          path: "./portfolio ver. 1.0"
 
       - name: Publish the website
         id: deployment
