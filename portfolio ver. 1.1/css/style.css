@@ -25,9 +25,9 @@ body {
   position: relative; /* Lets the background cover the full page. */
   color: rgb(255, 255, 255);
   background: #000;
-  margin: 0; /* Removes the browser's default gap around the page. */
+  margin: 0px; /* Removes the browser's default gap around the page. */
   /* Lets the side gaps grow smoothly from 5% on phones to 10% on wider screens. */
-  padding: 0 clamp(5vw, calc(15vw - 37.5px), 10vw);
+  padding: 0px clamp(5vw, calc(15vw - 37.5px), 10vw);
   cursor: default; /* Uses the normal arrow instead of the text cursor over page content. */
 
   font-family: "IBM Plex Sans", Arial, sans-serif;
@@ -38,7 +38,7 @@ body {
 /* Covers the whole page so the stars move when the page scrolls. */
 .background {
   position: absolute;
-  inset: 0;
+  inset: 0px;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -48,7 +48,7 @@ body {
 /* Fills the background with stars made by background.js. */
 #ascii-stars {
   position: absolute;
-  inset: 0;
+  inset: 0px;
   overflow: hidden;
 }
 
@@ -73,15 +73,15 @@ body {
 /* Shows the UFO above the stars but behind the page content. */
 .ascii-ufo {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   z-index: 0;
   color: #b6d5e6;
   font:
     600 10px/1.05 "Courier New",
     monospace;
   white-space: pre;
-  text-shadow: 0 0 6px rgba(159, 184, 203, 0.35);
+  text-shadow: 0px 0px 6px rgba(159, 184, 203, 0.35);
   opacity: 0;
   pointer-events: none;
   touch-action: none;
@@ -115,7 +115,7 @@ body {
 
 .ufo-changing.is-red {
   color: #ff6262;
-  text-shadow: 0 0 8px rgba(255, 98, 98, 0.65);
+  text-shadow: 0px 0px 8px rgba(255, 98, 98, 0.65);
 }
 
 /* Places the page content in front of the background. */
@@ -151,17 +151,17 @@ a {
 /* The bar at the top of every page. */
 .top-navbar {
   position: fixed; /* Keeps the navbar visible while scrolling. */
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   z-index: 1000;
   isolation: isolate; /* Keeps the navbar's layers together above the page. */
   transform: translateZ(
-    0
+    0px
   ); /* Helps prevent temporary lines while the blurred background is changing. */
 
   width: 100%;
   height: 76px;
-  padding: 0 4vw; /* 4vw = 4% of the browser window's width. */
+  padding: 0px 4vw; /* 4vw = 4% of the browser window's width. */
 
   display: grid; /* Uses Grid to arrange the title and links. */
   grid-template-columns: 1fr auto 1fr; /* Same space on both sides keeps the links in the centre. */
@@ -310,7 +310,7 @@ h1,
 h2,
 h3,
 p {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 /* Uses the same close line spacing for all headings. */
@@ -349,12 +349,25 @@ main h1,
 .page-heading h1,
 .about-introduction-text h1 {
   font-size: clamp(2.3rem, 4.5vw, 4rem);
-  letter-spacing: 0;
+  letter-spacing: 0px;
 }
 
 /* Removes the extra space below the last item in a page introduction. */
 .page-heading > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0px;
+}
+
+/* Shared divider */
+.top-divider {
+  border-top: 1px solid rgba(235, 235, 235, 0.36);
+}
+
+/* Reset the default hr styles. */
+hr.top-divider {
+  margin: 0px;
+  border-right: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
 }
 
 /* Shows a clear outline when someone tabs to a link or button. */
@@ -418,10 +431,9 @@ main h1,
   color: #000;
 }
 
-/* Adds space and a line above sections used on more than one page. */
+/* Adds space above sections used on more than one page. */
 .section {
   padding-top: 60px;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
 }
 
 /* Adds more space when two sections follow each other. */
@@ -436,7 +448,7 @@ main h1,
 
 /* Keeps the space below every section heading the same. */
 .section-heading > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /*  Home page */
@@ -460,7 +472,7 @@ main h1,
   max-width: 900px;
   margin-bottom: 24px;
   font-size: clamp(2.5rem, 3vw, 5.5rem);
-  letter-spacing: 0;
+  letter-spacing: 0px;
 }
 
 /* Stops the technology introduction from becoming too wide. */
@@ -498,7 +510,7 @@ main h1,
 
 /* Removes extra heading space inside the Selected projects row. */
 .selected-projects-heading h2 {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /* Places the two selected projects next to each other. */
@@ -538,7 +550,7 @@ main h1,
 /* Places the introduction beside the portrait, with both starting at the top. */
 .about-introduction {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(250px, 0.45fr);
+  grid-template-columns: minmax(0px, 1fr) minmax(250px, 0.45fr);
   gap: 60px;
   align-items: start;
   padding-top: 18px;
@@ -554,7 +566,7 @@ main h1,
 .profile-box {
   width: 100%;
   max-width: 340px;
-  margin: 0;
+  margin: 0px;
   justify-self: center;
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
@@ -568,7 +580,7 @@ main h1,
 /* Shows three equal information boxes in a row on larger screens. */
 .information-boxes {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0px, 1fr));
   gap: 20px;
 }
 
@@ -580,13 +592,13 @@ main h1,
 
 /* Removes the extra paragraph space at the bottom of each information box. */
 .information-box > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /* Keeps the contact box narrower than the page and stacks its contents. */
 .contact-box {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0px, 1fr);
   gap: 20px;
   max-width: 440px;
   padding: 26px;
@@ -600,7 +612,7 @@ main h1,
 
 /* Removes extra space below the contact message and email address. */
 .contact-box p {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /* Makes the email address easy to spot and lets it fit on narrow screens. */
@@ -623,7 +635,7 @@ main h1,
 /* Shows the skills box above work experience and education. */
 .cv-skills {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
   gap: 40px;
   padding: 22px;
   margin-bottom: 55px;
@@ -644,14 +656,14 @@ main h1,
 /* Places the main CV details beside the smaller information box. */
 .cv-columns {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(240px, 0.8fr);
+  grid-template-columns: minmax(0px, 2fr) minmax(240px, 0.8fr);
   gap: 60px;
   align-items: start;
 }
 
 /* Stops either CV column from pushing outside the page. */
 .cv-columns > * {
-  min-width: 0;
+  min-width: 0px;
 }
 
 /* Adds a little more space between the bullet points on the CV. */
@@ -664,21 +676,19 @@ main h1,
   padding-bottom: 45px;
 }
 
-/* Adds a line before every CV section after the first one. */
+/* Adds space before every CV section after the first one. */
 .cv-section + .cv-section {
   padding-top: 45px;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Separates each job or education entry with a thin line. */
+/* Adds vertical space inside each job or education entry. */
 .cv-entry {
-  padding: 24px 0;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  padding: 24px 0px;
 }
 
 /* Keeps the space below every job and education entry the same. */
 .cv-entry > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /* Places the title on the left and the date on the right. */
@@ -710,16 +720,15 @@ main h1,
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
 
-/* Adds lines between groups in the smaller CV box. */
+/* Adds space between groups in the smaller CV box. */
 .cv-extra-information section + section {
   padding-top: 24px;
   margin-top: 24px;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
 }
 
 /* Removes extra space at the bottom of each smaller CV section. */
 .cv-extra-information section > :last-child {
-  margin-bottom: 0;
+  margin-bottom: 0px;
 }
 
 /* Adds normal bullet spacing to lists in the smaller CV box. */
@@ -730,7 +739,7 @@ main h1,
 
 /* Removes the extra space browsers add around the language list. */
 .language-list {
-  margin: 0;
+  margin: 0px;
 }
 
 /* Places each language on the left and its level on the right. */
@@ -742,7 +751,7 @@ main h1,
 
 /* Removes extra left space and makes the language level grey. */
 .language-list dd {
-  margin: 0;
+  margin: 0px;
   color: #d1d3d2;
 }
 
@@ -755,8 +764,8 @@ main h1,
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   list-style: none;
 }
 
@@ -930,7 +939,7 @@ li.skill-adobe {
 .project-box {
   display: flex;
   flex-direction: row;
-  min-width: 0;
+  min-width: 0px;
   overflow: hidden;
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
@@ -957,7 +966,7 @@ li.skill-adobe {
 
 /* Adds space above and below the technology labels in a project box. */
 .project-skill-list {
-  margin: 10px 0 24px;
+  margin: 10px 0px 24px;
 }
 
 /* Keeps the project button at the bottom of its box without stretching it. */
@@ -982,10 +991,9 @@ li.skill-adobe {
   max-width: 760px;
 }
 
-/* Adds the same divider and spacing between each stage. */
+/* Adds the same spacing inside each stage. */
 .website-step {
-  padding: 44px 0;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  padding: 44px 0px;
 }
 
 /* Keeps the step number above its title. */
@@ -994,7 +1002,7 @@ li.skill-adobe {
 }
 
 .website-step-heading .project-number {
-  margin: 0 0 8px;
+  margin: 0px 0px 8px;
 }
 
 /* Places the skill box right after the title, and moves it down if it will not fit. */
@@ -1008,7 +1016,7 @@ li.skill-adobe {
 .website-step-title h2 {
   flex: 0 0 auto;
   max-width: 100%;
-  margin: 0;
+  margin: 0px;
 }
 
 /* Puts the skills for each step in a small box. */
@@ -1035,7 +1043,7 @@ li.skill-adobe {
   max-width: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  margin: 28px 0 0;
+  margin: 28px 0px 0px;
   padding: 20px;
   border: 1px solid rgba(235, 235, 235, 0.36);
   color: #f1f2f2;
@@ -1093,7 +1101,7 @@ li.skill-adobe {
 /* Lines screenshot frames up with the code boxes and section dividers. */
 .website-picture {
   width: 100%;
-  margin: 28px 0 0;
+  margin: 28px 0px 0px;
   padding: 12px;
   border: 1px solid rgba(235, 235, 235, 0.36);
 }
@@ -1109,13 +1117,13 @@ li.skill-adobe {
 /* Shows two pictures beside each other when there is room. */
 .website-picture-group {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0px, 1fr));
   gap: 16px;
   margin-top: 28px;
 }
 
 .website-picture-group .website-picture {
-  margin: 0;
+  margin: 0px;
 }
 
 .website-picture-label {
@@ -1131,8 +1139,7 @@ li.skill-adobe {
 
 /* Closes the website story before the regular footer. */
 .website-thanks {
-  padding: 44px 0 0;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  padding: 44px 0px 0px;
   text-align: center;
 }
 
@@ -1153,7 +1160,7 @@ li.skill-adobe {
 /* Places the three game choices side by side. */
 .game-choices {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0px, 1fr));
   gap: 20px;
 }
 
@@ -1164,10 +1171,10 @@ li.skill-adobe {
   gap: 16px;
   align-items: center;
   width: 100%;
-  min-width: 0;
+  min-width: 0px;
   padding: 22px;
   border: 1px solid rgba(235, 235, 235, 0.36);
-  border-radius: 0;
+  border-radius: 0px;
   color: #f1f2f2;
   font-family: "Chakra Petch", "IBM Plex Sans", Arial, sans-serif;
   font-size: 1.2rem;
@@ -1277,8 +1284,7 @@ li.skill-adobe {
   gap: 30px;
   align-items: start;
   justify-content: center; /* Keeps the footer columns together in the centre of the page. */
-  padding: 30px 0 36px;
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  padding: 30px 0px 36px;
   color: #d1d3d2;
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
@@ -1390,7 +1396,7 @@ li.skill-adobe {
 
 /* Removes the paragraph margin that would make the footer uneven. */
 .footer p {
-  margin: 0;
+  margin: 0px;
 }
 
 /* Moves the email underline slightly away from the text. */
@@ -1468,7 +1474,7 @@ li.skill-adobe {
 
   .project-details {
     border-top: 1px solid rgba(235, 235, 235, 0.36);
-    border-left: 0;
+    border-left: 0px;
   }
 
   /* Moves the smaller CV box below the main CV details. */
@@ -1531,7 +1537,7 @@ li.skill-adobe {
   .cv-entry-heading {
     align-items: flex-start;
     flex-direction: column;
-    gap: 0;
+    gap: 0px;
   }
 
   /* Keeps the three footer groups beside each other on small screens. */
