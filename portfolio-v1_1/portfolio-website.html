@@ -1,39 +1,36 @@
-<!doctype html>
-<!-- Sets the page language to English. -->
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Allows special letters and symbols to display correctly. -->
-    <meta charset="UTF-8" />
-    <!-- Uses a dark background while the stylesheet is loading. -->
-    <meta name="color-scheme" content="dark" />
-    <!-- Helps the page fit phone and tablet screens. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark light">
+    <!-- Set the theme before loading CSS. -->
+    <script src="js/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       name="description"
       content="The steps I took to build my portfolio website, with screenshots and code examples."
-    />
-    <!-- Loads page content without restarting the navbar or background. -->
-    <script src="js/page-transition.js"></script>
-    <!-- Connects this page to the same CSS and background as the rest of the site. -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Shows my logo in the browser tab. -->
+    >
+    <script src="js/page-transition.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
     <script src="js/navbar.js" defer></script>
     <script src="js/background.js" defer></script>
-    <!-- Adds the occasional ASCII flying saucer. -->
     <script src="js/ufo.js" defer></script>
-    <!-- Keeps the game selector ready when its page is opened. -->
     <script src="js/game-selector.js" defer></script>
-    <title>Portfolio Website | My Portfolio</title>
+    <title>Building This Portfolio | Alexander Mankvard</title>
   </head>
 
   <body>
-    <!-- The stars stay behind the page and do not block clicks. -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- Dark-mode background -->
     <div class="background" aria-hidden="true">
       <div id="ascii-stars"></div>
     </div>
 
-    <!-- Projects stays highlighted because this is one of my project pages. -->
+    <!-- Projects stays active on project detail pages. -->
     <header class="top-navbar">
       <a class="portfolio-name" href="index.html">Portfolio</a>
       <nav aria-label="Main navigation">
@@ -44,10 +41,18 @@
         <a class="cv-link" href="cv.html"><span>CV</span></a>
         <a href="about-me.html"><span>About Me</span></a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" hidden>
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.93 4.93l1.42 1.42 M17.65 17.65l1.42 1.42 M4.93 19.07l1.42-1.42 M17.65 6.35l1.42-1.42"></path>
+        </svg>
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+      </button>
     </header>
 
-    <!-- The story of how this website changed as I worked on it. -->
-    <main id="main-content" class="content">
+    <main id="main-content" class="content" tabindex="-1">
       <header class="page-heading website-heading">
         <h1>Building this portfolio</h1>
         <p>
@@ -59,7 +64,7 @@
         <a class="button" href="projects.html">Back to projects</a>
       </header>
 
-      <!-- Each section has a title, the skills used, and code or screenshots from that step. -->
+      <!-- These examples show the site at different stages, not just the current code. -->
       <div class="website-steps">
         <section
           class="website-step top-divider"
@@ -72,7 +77,6 @@
               <h2 id="first-layout-heading">The first three pages</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -103,7 +107,6 @@
   <span class="code-property">padding</span>: <span class="code-value">0px 10vw</span>;
   <span class="code-property">font-family</span>: <span class="code-value">Arial, sans-serif</span>;
 }</code></pre>
-          <!-- Screenshot from the first Home page with red navigation links. -->
           <figure class="website-picture blurred-box">
             <figcaption class="website-picture-label">
               Screenshot · First Home page
@@ -115,7 +118,7 @@
               height="1004"
               loading="lazy"
               draggable="false"
-            />
+            >
           </figure>
         </section>
 
@@ -132,7 +135,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -174,7 +176,7 @@
   <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr auto 1fr</span>;
   <span class="code-property">backdrop-filter</span>: <span class="code-value">blur(10px)</span>;
 }</code></pre>
-          <!-- The repeated text was used to test scrolling behind the top bar. -->
+          <!-- Repeated text made the scroll and blur test easier to see. -->
           <figure class="website-picture blurred-box">
             <figcaption class="website-picture-label">
               Screenshot · Testing the fixed navbar
@@ -186,7 +188,7 @@
               height="1004"
               loading="lazy"
               draggable="false"
-            />
+            >
           </figure>
         </section>
 
@@ -203,7 +205,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -255,7 +256,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -269,15 +269,16 @@
             consistent.
           </p>
           <p>
-            The active page has aria-current="page". It does not need a link to
-            itself, which also stops an unnecessary refresh when clicking the
-            page you are already on.
+            The active page has aria-current="page". I originally left out its
+            href to avoid a refresh. The current version keeps the link so it
+            can still receive keyboard focus, and the navigation script avoids
+            reloading the page unnecessarily.
           </p>
           <pre
             class="website-code code-html blurred-box"
           ><code>&lt;<span class="code-tag">nav</span> <span class="code-attribute">aria-label</span>=<span class="code-string">"Main navigation"</span>&gt;
   &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"index.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Home&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
-  &lt;<span class="code-tag">a</span> <span class="code-attribute">aria-current</span>=<span class="code-string">"page"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Projects&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
+  &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"projects.html"</span> <span class="code-attribute">aria-current</span>=<span class="code-string">"page"</span>&gt;&lt;<span class="code-tag">span</span>&gt;Projects&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
   &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"cv.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;CV&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
   &lt;<span class="code-tag">a</span> <span class="code-attribute">href</span>=<span class="code-string">"about-me.html"</span>&gt;&lt;<span class="code-tag">span</span>&gt;About Me&lt;/<span class="code-tag">span</span>&gt;&lt;/<span class="code-tag">a</span>&gt;
 &lt;/<span class="code-tag">nav</span>&gt;</code></pre>
@@ -304,7 +305,6 @@
               <h2 id="cv-page-heading">Putting the CV together</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -353,7 +353,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -392,7 +391,6 @@
   <span class="code-property">background-color</span>: <span class="code-value">#170804</span>;
   <span class="code-property">color</span>: <span class="code-value">#f06a43</span>;
 }</code></pre>
-          <!-- A small crop shows how the coloured labels wrap onto new lines. -->
           <figure class="website-picture blurred-box">
             <figcaption class="website-picture-label">
               Screenshot · Checking label spacing
@@ -404,7 +402,7 @@
               height="268"
               loading="lazy"
               draggable="false"
-            />
+            >
           </figure>
         </section>
 
@@ -419,7 +417,6 @@
               <h2 id="project-cards-heading">Building the Projects page</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -471,33 +468,22 @@
             could adjust the artwork visually, then keep it as SVG so it stays
             sharp when the project pictures change size.
           </p>
-          <!-- Two examples of the illustrations used for the project pictures. -->
           <div class="website-picture-group">
             <figure class="website-picture blurred-box">
               <figcaption class="website-picture-label">
                 Illustration · Portfolio website
               </figcaption>
-              <img
-                src="images/portfolio-website.svg"
-                alt="Portfolio preview showing the navigation, heading, skill labels, and project boxes"
-                width="662"
-                height="410"
-                loading="lazy"
-                draggable="false"
-              />
+              <svg class="project-preview" viewBox="0 0 662 410" width="662" height="410" role="img" aria-label="Portfolio preview showing the navigation, heading, skill labels, and project boxes">
+                <use href="images/project-previews.svg#portfolio-website"></use>
+              </svg>
             </figure>
             <figure class="website-picture blurred-box">
               <figcaption class="website-picture-label">
                 Illustration · Browser games
               </figcaption>
-              <img
-                src="images/browser-game.svg"
-                alt="Browser games preview showing Pong, Space Defender, and Snake"
-                width="666"
-                height="396"
-                loading="lazy"
-                draggable="false"
-              />
+              <svg class="project-preview" viewBox="0 0 666 396" width="666" height="396" role="img" aria-label="Browser games preview showing Pong, Space Defender, and Snake">
+                <use href="images/project-previews.svg#browser-game"></use>
+              </svg>
             </figure>
           </div>
         </section>
@@ -513,7 +499,6 @@
               <h2 id="footer-layout-heading">A footer with useful links</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -554,7 +539,6 @@
       <span class="code-string">"info info info"</span>;
   }
 }</code></pre>
-          <!-- The footer screenshot shows the added links and social icons. -->
           <figure class="website-picture blurred-box">
             <figcaption class="website-picture-label">
               Screenshot · Arranging the footer
@@ -566,7 +550,7 @@
               height="341"
               loading="lazy"
               draggable="false"
-            />
+            >
           </figure>
         </section>
 
@@ -581,7 +565,6 @@
               <h2 id="home-rework-heading">Reworking the Home page</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -638,7 +621,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-css">CSS</li>
               </ul>
@@ -688,7 +670,6 @@
     <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr</span>;
   }
 }</code></pre>
-          <!-- The two narrow screenshots make the spacing change easier to see. -->
           <div class="website-picture-group">
             <figure class="website-picture blurred-box">
               <figcaption class="website-picture-label">
@@ -701,7 +682,7 @@
                 height="1238"
                 loading="lazy"
                 draggable="false"
-              />
+              >
             </figure>
             <figure class="website-picture blurred-box">
               <figcaption class="website-picture-label">
@@ -714,7 +695,7 @@
                 height="1253"
                 loading="lazy"
                 draggable="false"
-              />
+              >
             </figure>
           </div>
         </section>
@@ -730,14 +711,13 @@
               <h2 id="publishing-heading">Putting it on GitHub Pages</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-git">Git</li>
               </ul>
             </div>
           </header>
           <p>
-            I kept the site inside the portfolio ver. 1.1 folder with my other school
+            I kept the site inside the portfolio-v1_1 folder with my other school
             work. GitHub Pages uploads that folder as the site, so its
             index.html becomes the live Home page. The CSS, JavaScript, images,
             and PDF all use paths relative to that folder.
@@ -745,10 +725,10 @@
           <p>This part of the workflow points Pages at the right folder:</p>
           <pre
             class="website-code blurred-box"
-          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload portfolio ver. 1.1</span>
+          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload portfolio v1.1</span>
   <span class="code-property">uses</span>: <span class="code-value">actions/upload-pages-artifact@v4</span>
   <span class="code-property">with</span>:
-    <span class="code-property">path</span>: <span class="code-string">"./portfolio ver. 1.1"</span></code></pre>
+    <span class="code-property">path</span>: <span class="code-string">"./portfolio-v1_1"</span></code></pre>
         </section>
 
         <section
@@ -764,7 +744,6 @@
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-css">CSS</li>
                 <li class="skill-javascript">JavaScript</li>
@@ -816,7 +795,6 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
               <h2 id="page-transitions-heading">Fading between pages</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-css">CSS</li>
                 <li class="skill-javascript">JavaScript</li>
@@ -859,9 +837,9 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
             Fading a whole container affected the blur behind its boxes. I
             changed this so the words and pictures fade and move a little. The
             box backgrounds, borders, and divider lines fade at the same time,
-            but the blur stays still. The old content fades out over 150
+            but the blur stays still. The old content fades out over 100
             milliseconds, then the new content rises gently into place over
-            240 milliseconds. Nearby rows appear together, with a short delay
+            160 milliseconds. Nearby rows appear together, with a short delay
             for the rows below. There is no coloured cover over the page.
           </p>
           <p>The fade-in uses these animation settings:</p>
@@ -871,7 +849,7 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
   { opacity: <span class="code-value">0</span>, translate: <span class="code-string">"0 8px"</span> },
   { opacity: <span class="code-value">1</span>, translate: <span class="code-string">"0 0"</span> }
 ], {
-  duration: <span class="code-value">240</span>,
+  duration: <span class="code-value">160</span>,
   delay,
   fill: <span class="code-string">"both"</span>,
   easing: <span class="code-string">"cubic-bezier(0.22, 0.61, 0.36, 1)"</span>
@@ -892,7 +870,7 @@ item.<span class="code-function">animate</span>(
 );</code></pre>
           <p>
             The shared CSS still gives the boxes and buttons
-            their transparent background and light blur:
+            their dark-mode background and light blur:
           </p>
           <pre
             class="website-code code-css blurred-box"
@@ -927,7 +905,6 @@ document.title = nextPage.title;</code></pre>
               </h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
@@ -994,7 +971,6 @@ document.title = nextPage.title;</code></pre>
 <span class="code-keyword">if</span> (!<span class="code-function">restoreStars</span>()) <span class="code-function">startStars</span>();</code></pre>
         </section>
 
-        <!-- The UFO was added after the moving star background. -->
         <section
           class="website-step top-divider"
           id="ascii-ufo"
@@ -1006,7 +982,6 @@ document.title = nextPage.title;</code></pre>
               <h2 id="ascii-ufo-heading">Adding the ASCII UFO</h2>
               <ul
                 class="website-step-skills skill-list blurred-box"
-                aria-label="Skills used in this step"
               >
                 <li class="skill-css">CSS</li>
                 <li class="skill-javascript">JavaScript</li>
@@ -1079,7 +1054,6 @@ document.title = nextPage.title;</code></pre>
         </section>
       </div>
 
-      <!-- A short ending after the last step, with a link back to the start. -->
       <section class="website-thanks top-divider" aria-labelledby="website-thanks-heading">
         <h2 id="website-thanks-heading">Thanks for reading!</h2>
         <p>You made it all the way down. You deserve a little cookie 🍪</p>
@@ -1087,9 +1061,8 @@ document.title = nextPage.title;</code></pre>
       </section>
     </main>
 
-    <!-- Footer used on every page. -->
+    <!-- Shared footer -->
     <footer class="footer content top-divider">
-      <!-- Links to the main pages. -->
       <nav
         class="footer-navigation footer-links"
         aria-labelledby="footer-navigation-heading"
@@ -1101,12 +1074,10 @@ document.title = nextPage.title;</code></pre>
         <a href="about-me.html">About Me</a>
       </nav>
 
-      <!-- A few projects, with a link to the full list. -->
       <nav class="footer-projects" aria-labelledby="footer-projects-heading">
         <h2 id="footer-projects-heading">Projects</h2>
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
-          <a href="projects.html#forms-project">Forms Project</a>
           <a href="projects.html#browser-game">Browser Game</a>
           <a href="projects.html#pokemon-card-collector"
             >Pokémon Card Collector</a
@@ -1115,7 +1086,6 @@ document.title = nextPage.title;</code></pre>
         </div>
       </nav>
 
-      <!-- Links to my social media pages. -->
       <nav class="footer-socials" aria-labelledby="footer-socials-heading">
         <h2 id="footer-socials-heading">Socials</h2>
         <div class="footer-social-links">
@@ -1132,7 +1102,7 @@ document.title = nextPage.title;</code></pre>
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
           <a
             class="social-linkedin"
@@ -1147,7 +1117,7 @@ document.title = nextPage.title;</code></pre>
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
           <a
             class="social-github"
@@ -1162,12 +1132,11 @@ document.title = nextPage.title;</code></pre>
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
         </div>
       </nav>
 
-      <!-- Copyright and email: on the left on wide screens, below the links on smaller screens. -->
       <div class="footer-info">
         <p>&copy; 2026 My Portfolio</p>
         <a href="mailto:alexander.mankvard@gmail.com"

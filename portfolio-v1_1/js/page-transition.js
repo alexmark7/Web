@@ -1,11 +1,11 @@
-/* Loads another page's content while keeping the navbar, stars, and UFO running. */
+/* Replace page content without restarting the navbar or background. */
 (() => {
   "use strict";
 
   const page = document.documentElement;
   const folder = new URL("./", window.location.href);
   const files = ["index.html", "projects.html", "cv.html", "about-me.html",
-    "portfolio-website.html", "forms-project.html", "browser-game.html"];
+    "portfolio-website.html", "browser-game.html"];
   const savedPages = new Map();
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let shownUrl = new URL(window.location.href);
@@ -13,6 +13,7 @@
   let pageNumber = 0;
   let changingPage = false;
   let animations = [];
+  let scrollTimer = 0;
 
   // A folder address and index.html both mean Home.
   function pagePath(url) {
@@ -70,8 +71,8 @@
   function fadeSettings(item, appearing) {
     const top = Math.max(0, item.getBoundingClientRect().top);
     return {
-      duration: appearing ? 240 : 150,
-      delay: appearing ? Math.min(40, Math.floor(top / 120) * 8) : 0,
+      duration: appearing ? 160 : 100,
+      delay: appearing ? Math.min(20, Math.floor(top / 120) * 4) : 0,
       fill: "both",
       easing: appearing ? "cubic-bezier(0.22, 0.61, 0.36, 1)" : "cubic-bezier(0.4, 0, 1, 1)"
     };
@@ -82,18 +83,19 @@
     if (reducedMotion.matches || !Element.prototype.animate) return;
     const targets = [];
     for (const part of contentParts()) {
-      const items = part.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, code, img, a, button, span, figcaption");
+      const items = part.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, code, img, .project-preview, a, button, span, figcaption");
       for (const item of items) {
         if (item.matches(".blurred-box, .button") || item.querySelector(".blurred-box, .button")) continue;
         if (!targets.some(target => target.contains(item))) targets.push(item);
       }
     }
-    const currentAnimations = targets.map(item => item.animate(
+    // Read positions and colours before starting any animations.
+    const pending = targets.map(item => [item,
       appearing
         ? [{ opacity: 0, translate: "0 8px" }, { opacity: 1, translate: "0 0" }]
         : [{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "0 -4px" }],
       fadeSettings(item, appearing)
-    ));
+    ]);
 
     // Fade box background colours and borders, without changing the blur or position.
     for (const part of contentParts()) {
@@ -113,14 +115,19 @@
         if (item.matches(".blurred-box, .button")) {
           visible.backgroundColor = style.backgroundColor;
           hidden.backgroundColor = "transparent";
+          if (style.boxShadow !== "none") {
+            visible.boxShadow = style.boxShadow;
+            hidden.boxShadow = "none";
+          }
         }
         if (!Object.keys(visible).length) continue;
-        currentAnimations.push(item.animate(
+        pending.push([item,
           appearing ? [hidden, visible] : [visible, hidden],
           fadeSettings(item, appearing)
-        ));
+        ]);
       }
     }
+    const currentAnimations = pending.map(([item, frames, settings]) => item.animate(frames, settings));
     animations.push(...currentAnimations);
     await Promise.all(currentAnimations.map(animation => animation.finished.catch(() => {})));
   }
@@ -128,9 +135,29 @@
   // Keep a scroll position with each address for the Back and Forward buttons.
   function rememberScroll() {
     if (changingPage || shownUrl.href !== window.location.href) return;
-    window.history.replaceState({ ...window.history.state,
-      portfolioScroll: { x: window.scrollX, y: window.scrollY }
-    }, "", window.location.href);
+    try {
+      window.history.replaceState({ ...window.history.state,
+        portfolioScroll: { x: window.scrollX, y: window.scrollY }
+      }, "", window.location.href);
+    } catch {
+      // Some browsers limit how often history can be updated.
+    }
+  }
+
+  function scheduleScrollSave() {
+    if (scrollTimer) return;
+    scrollTimer = window.setTimeout(() => {
+      scrollTimer = 0;
+      rememberScroll();
+    }, 200);
+  }
+
+  function hashTarget(url) {
+    try {
+      return url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null;
+    } catch {
+      return null;
+    }
   }
 
   function moveToContent(url, position) {
@@ -138,14 +165,12 @@
       window.scrollTo(position.x, position.y);
       return;
     }
-    let target;
-    try {
-      target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null;
-    } catch {
-      // An unreadable heading address just starts at the top of the page.
-    }
-    if (target) target.scrollIntoView({ block: "start", behavior: "instant" });
-    else window.scrollTo(0, 0);
+    const target = hashTarget(url);
+    if (target) {
+      target.scrollIntoView({ block: "start", behavior: "instant" });
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    } else window.scrollTo(0, 0);
   }
 
   // Change the navbar links in place, without replacing the actual bar.
@@ -184,17 +209,53 @@
   }
 
   // Start loading the main pictures before showing the new page.
-  async function prepareImages(nextPage, url) {
+  async function prepareImages(nextPage, url, signal) {
+    if (signal?.aborted) return;
     const pictures = [...nextPage.querySelectorAll('main img:not([loading="lazy"])')].map(img => {
       const picture = new Image();
+      picture.srcset = img.getAttribute("srcset") || "";
+      picture.sizes = img.getAttribute("sizes") || "";
       picture.src = new URL(img.getAttribute("src"), url).href;
       return picture.decode ? picture.decode().catch(() => {}) : Promise.resolve();
     });
+    const sprites = new Set();
+    const cleanup = [];
+    for (const preview of nextPage.querySelectorAll("main .project-preview use")) {
+      const address = new URL(preview.getAttribute("href"), url);
+      const key = address.href.split("#")[0];
+      if (sprites.has(key)) continue;
+      sprites.add(key);
+
+      // Load the sprite before the short fade-in starts.
+      pictures.push(new Promise(resolve => {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        const use = document.createElementNS(svg.namespaceURI, "use");
+        svg.setAttribute("aria-hidden", "true");
+        svg.setAttribute("width", "1");
+        svg.setAttribute("height", "1");
+        svg.style.cssText = "position:fixed;left:-10000px;pointer-events:none";
+        const finish = () => {
+          use.removeEventListener("load", finish);
+          use.removeEventListener("error", finish);
+          signal?.removeEventListener("abort", finish);
+          svg.remove();
+          resolve();
+        };
+        cleanup.push(finish);
+        use.addEventListener("load", finish, { once: true });
+        use.addEventListener("error", finish, { once: true });
+        signal?.addEventListener("abort", finish, { once: true });
+        use.setAttribute("href", address.href);
+        svg.append(use);
+        document.body.append(svg);
+      }));
+    }
     let timer;
     await Promise.race([Promise.all(pictures), new Promise(resolve => {
       timer = window.setTimeout(resolve, 800);
     })]);
     window.clearTimeout(timer);
+    cleanup.forEach(finish => finish());
   }
 
   async function openPage(url, addToHistory = true, position) {
@@ -210,7 +271,7 @@
     try {
       // Load the next page and its pictures while the current page fades out.
       const loadingPage = readPage(url, request.signal).then(async nextPage => {
-        await prepareImages(nextPage, url);
+        await prepareImages(nextPage, url, request.signal);
         return nextPage;
       });
       for (const part of contentParts()) part.inert = true;
@@ -237,7 +298,9 @@
       stopFade();
       const main = document.querySelector("main");
       main.setAttribute("tabindex", "-1");
-      main.focus({ preventScroll: true });
+      const focusTarget = hashTarget(url) || main;
+      if (!focusTarget.hasAttribute("tabindex")) focusTarget.setAttribute("tabindex", "-1");
+      focusTarget.focus({ preventScroll: true });
     } catch {
       // A failed request falls back to opening the HTML page normally.
       if (number === pageNumber) window.location.assign(url.href);
@@ -298,7 +361,7 @@
     });
 
     if (!canLoadPages) return;
-    window.addEventListener("scroll", rememberScroll, { passive: true });
+    window.addEventListener("scroll", scheduleScrollSave, { passive: true });
     window.addEventListener("popstate", event => {
       const url = new URL(window.location.href);
       if (pageKey(url) === pageKey(shownUrl)) {

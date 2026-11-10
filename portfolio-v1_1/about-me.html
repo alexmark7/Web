@@ -1,97 +1,92 @@
 <!DOCTYPE html>
-<!-- Sets the page language to English. -->
 <html lang="en">
   <head>
-    <!-- Allows special letters and symbols to display correctly. -->
     <meta charset="UTF-8">
-    <!-- Uses a dark background while the stylesheet is loading. -->
-    <meta name="color-scheme" content="dark">
-    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="color-scheme" content="dark light">
+    <!-- Set the theme before loading CSS. -->
+    <script src="js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Short description of the page. -->
     <meta name="description" content="Background, interests, and contact details for Alex.">
-    <!-- Loads page content without restarting the navbar or background. -->
-    <script src="js/page-transition.js"></script>
-    <!-- Connects the page to the CSS file. -->
+    <script src="js/page-transition.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Shows my logo in the browser tab. -->
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
-    <!-- Shows the navbar line after scrolling starts. -->
     <script src="js/navbar.js" defer></script>
-    <!-- Adds the moving stars behind this page. -->
     <script src="js/background.js" defer></script>
-    <!-- Adds the occasional ASCII flying saucer. -->
     <script src="js/ufo.js" defer></script>
-    <!-- Keeps the game selector ready when its page is opened. -->
     <script src="js/game-selector.js" defer></script>
-    <!-- Name shown on the browser tab. -->
-    <title>About Me | My Portfolio</title>
+    <title>About Me | Alexander Mankvard</title>
   </head>
 
   <body>
-
-    <!-- The stars stay behind the page and cannot be clicked or selected. -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- Dark-mode background -->
     <div class="background" aria-hidden="true">
       <div id="ascii-stars"></div>
     </div>
 
-    <!-- Top navigation bar used on every page. -->
+    <!-- Shared navbar -->
     <header class="top-navbar">
-      <!-- Portfolio name that links back to the Home page. -->
       <a class="portfolio-name" href="index.html">Portfolio</a>
 
-      <!-- Navigation items for the four pages. -->
       <nav aria-label="Main navigation">
         <a href="index.html"><span>Home</span></a>
         <a href="projects.html"><span>Projects</span></a>
         <a class="cv-link" href="cv.html"><span>CV</span></a>
-        <!-- Shows that About Me is the page currently open. -->
-        <a aria-current="page"><span>About Me</span></a>
+        <a href="about-me.html" aria-current="page"><span>About Me</span></a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" hidden>
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.93 4.93l1.42 1.42 M17.65 17.65l1.42 1.42 M4.93 19.07l1.42-1.42 M17.65 6.35l1.42-1.42"></path>
+        </svg>
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+      </button>
     </header>
 
-    <!-- Main part of the About Me page. -->
-    <main id="main-content" class="content">
-      <!-- Introduction and profile picture at the top of the page. -->
+    <main id="main-content" class="content" tabindex="-1">
+      <!-- Introduction and portrait -->
       <section class="about-introduction" aria-labelledby="about-heading">
-        <!-- Holds the heading, introduction, and buttons. -->
         <div class="about-introduction-text">
           <h1 id="about-heading">Hi, I’m Alex.</h1>
-          <!-- Short line about my current roles and interests. -->
           <p class="role-line">Software engineering trainee · Sales and marketing · Problem solver</p>
           <p class="introduction-paragraph">
             I am a software engineering trainee at VIA University College in Denmark. I enjoy
             learning web development and Java and building clear, accessible websites.
           </p>
 
-          <!-- Holds the two buttons together. -->
           <div class="button-group">
             <a class="button" href="projects.html">See my projects</a>
             <a class="button" href="cv.html">Read my CV</a>
           </div>
         </div>
 
-        <!-- Shows my portrait beside the introduction. -->
+        <!-- Use smaller images rather than downloading the original portrait. -->
         <figure class="profile-box blurred-box">
           <img
             draggable="false"
-            src="images/profile-headshot.webp"
+            src="images/profile-headshot-680.webp"
+            srcset="images/profile-headshot-340.webp 340w, images/profile-headshot-680.webp 680w"
+            sizes="(max-width: 400px) 85vw, 340px"
             alt="Portrait of Alexander Mankvard"
             width="1086"
             height="1448"
+            decoding="async"
           >
         </figure>
       </section>
 
-      <!-- Section about my background and interests. -->
+      <!-- Background and interests -->
       <section class="section top-divider" aria-labelledby="background-heading">
         <div class="section-heading">
           <h2 id="background-heading">Background and interests</h2>
         </div>
 
-        <!-- Holds the three boxes and lets them stack on smaller screens. -->
         <div class="information-boxes">
-          <!-- Box about my education and technical background. -->
           <article class="information-box blurred-box">
             <h3>My background</h3>
             <p>
@@ -102,7 +97,6 @@
             </p>
           </article>
 
-          <!-- Box about the things that interest me. -->
           <article class="information-box blurred-box">
             <h3>What interests me</h3>
             <p>
@@ -112,7 +106,6 @@
             </p>
           </article>
 
-          <!-- Box about the skills I am currently learning. -->
           <article class="information-box blurred-box">
             <h3>What I’m learning</h3>
             <p>
@@ -124,13 +117,12 @@
         </div>
       </section>
 
-      <!-- Gives visitors a direct way to contact me. -->
+      <!-- Contact -->
       <section class="section top-divider" aria-labelledby="contact-heading">
         <div class="section-heading">
           <h2 id="contact-heading">Contact</h2>
         </div>
 
-        <!-- Shows my email address with the email button underneath. -->
         <div class="contact-box blurred-box">
           <div>
             <p>
@@ -138,15 +130,13 @@
             </p>
             <p class="contact-email">alexander.mankvard@gmail.com</p>
           </div>
-          <!-- Opens a new email addressed to me. -->
           <a class="button" href="mailto:alexander.mankvard@gmail.com">Send an email</a>
         </div>
       </section>
     </main>
 
-    <!-- Footer used on every page. -->
+    <!-- Shared footer -->
     <footer class="footer content top-divider">
-      <!-- Links to the main pages. -->
       <nav class="footer-navigation footer-links" aria-labelledby="footer-navigation-heading">
         <h2 id="footer-navigation-heading">Navigate</h2>
         <a href="index.html">Home</a>
@@ -155,26 +145,20 @@
         <a href="about-me.html">About Me</a>
       </nav>
 
-      <!-- A few projects, with a link to the full list. -->
       <nav class="footer-projects" aria-labelledby="footer-projects-heading">
         <h2 id="footer-projects-heading">Projects</h2>
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
-          <a href="projects.html#forms-project">Forms Project</a>
           <a href="projects.html#browser-game">Browser Game</a>
           <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
           <a href="projects.html">View all projects →</a>
         </div>
       </nav>
 
-      <!-- Links to my social media pages. -->
       <nav class="footer-socials" aria-labelledby="footer-socials-heading">
         <h2 id="footer-socials-heading">Socials</h2>
-        <!-- Holds the three social icons together. -->
         <div class="footer-social-links">
-          <!-- The social links open in a new tab. -->
           <a class="social-instagram" href="https://www.instagram.com/alex.b_m/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <!-- Instagram icon. The link already has the Instagram name. -->
             <img src="images/instagram-icon.svg" alt="" width="16" height="16" draggable="false">
           </a>
           <a class="social-linkedin" href="https://www.linkedin.com/in/alexander-mankvard-874a15248/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -186,7 +170,6 @@
         </div>
       </nav>
 
-      <!-- Copyright and email: on the left on wide screens, below the links on smaller screens. -->
       <div class="footer-info">
         <p>&copy; 2026 My Portfolio</p>
         <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>

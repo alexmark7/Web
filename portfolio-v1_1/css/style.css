@@ -1,58 +1,77 @@
-/* Loads the fonts used for the main text and larger headings. */
-@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
-
-/*  Background and Content */
-/* ----------------------------------------------------------------------------------------- */
-
-/* Makes widths easier to control on every element. */
-* {
-  box-sizing: border-box; /* Width includes padding and borders. */
+/* Main colours */
+:root {
+  --color-background: #000;
+  --color-text: rgb(255, 255, 255);
+  --color-text-muted: #d1d3d2;
+  --color-text-bright: #f1f2f2;
+  --color-navbar-background: rgba(0, 0, 0, 0.72);
+  --color-border: rgba(235, 235, 235, 0.36);
+  --color-border-strong: rgba(235, 235, 235, 0.5);
+  --color-surface: rgba(0, 0, 0, 0.18);
+  --color-surface-hover: rgba(42, 39, 32, 0.25);
 }
 
-/* Stops the navbar moving sideways when the scrollbar appears or disappears. */
+/* Light mode colours */
+:root[data-theme="light"] {
+  --color-background: #fff;
+  --color-text: #202020;
+  --color-text-muted: #333;
+  --color-text-bright: #101010;
+  --color-navbar-background: rgba(255, 255, 255, 0.65);
+  --color-border: rgba(32, 32, 32, 0.19);
+  --color-border-strong: rgba(32, 32, 32, 0.38);
+  --color-surface: #fff;
+  --color-surface-hover: #f1f1f1;
+}
+
+/* Background and layout */
+/* ----------------------------------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Reserve scrollbar space so the centred navbar does not jump between pages. */
 html {
-  background-color: #000; /* Keeps the whole browser area black between pages. */
+  background-color: var(--color-background);
   color-scheme: dark;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
 
-  /* Grey moving part and black background for the scrollbar. */
-  scrollbar-color: #aaa99f #000;
+  scrollbar-color: #aaa99f var(--color-background);
 }
 
-/* Main colours, spacing and text style used on every page. */
 body {
-  position: relative; /* Lets the background cover the full page. */
-  color: rgb(255, 255, 255);
-  background: #000;
-  margin: 0px; /* Removes the browser's default gap around the page. */
-  /* Lets the side gaps grow smoothly from 5% on phones to 10% on wider screens. */
+  position: relative;
+  color: var(--color-text);
+  background: var(--color-background);
+  margin: 0px;
+  /* Side spacing grows from 5% to 10% as the screen gets wider. */
   padding: 0px clamp(5vw, calc(15vw - 37.5px), 10vw);
-  cursor: default; /* Uses the normal arrow instead of the text cursor over page content. */
+  cursor: default;
 
   font-family: "IBM Plex Sans", Arial, sans-serif;
   font-size: 18px;
   font-weight: 500;
 }
 
-/* Covers the whole page so the stars move when the page scrolls. */
+/* The background follows the document, not just the viewport. */
 .background {
   position: absolute;
   inset: 0px;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #000;
+  background: var(--color-background);
 }
 
-/* Fills the background with stars made by background.js. */
+/* Stars are added by background.js. */
 #ascii-stars {
   position: absolute;
   inset: 0px;
   overflow: hidden;
 }
 
-/* Gives the stars a cooler colour so they look different from the text. */
 .ascii-star {
   position: absolute;
   color: #9fb8cb;
@@ -65,12 +84,11 @@ body {
   user-select: none;
 }
 
-/* Hides a star briefly before it appears somewhere else. */
 .ascii-star.is-changing {
   opacity: 0;
 }
 
-/* Shows the UFO above the stars but behind the page content. */
+/* UFO: normally behind the content, in front while grabbed. */
 .ascii-ufo {
   position: fixed;
   top: 0px;
@@ -89,26 +107,23 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* Lets the UFO be grabbed without changing the mouse cursor. */
 .ascii-ufo.is-active {
   pointer-events: auto;
   cursor: default;
 }
 
-/* Keeps the UFO above the page and grabbable until its red lights fade back. */
 .ascii-ufo.is-in-front {
   z-index: 1001;
   pointer-events: auto;
 }
 
-/* Slowly fades each red UFO character back to its normal colour. */
 .ufo-changing {
   transition:
     color 2600ms ease,
     text-shadow 2600ms ease;
 }
 
-/* Makes the characters turn red right away when the UFO is grabbed. */
+/* Red immediately when grabbed; fade back after release. */
 .ascii-ufo.is-grabbed .ufo-changing {
   transition: none;
 }
@@ -118,78 +133,95 @@ body {
   text-shadow: 0px 0px 8px rgba(255, 98, 98, 0.65);
 }
 
-/* Places the page content in front of the background. */
 .content {
   position: relative;
   z-index: 1;
 }
 
-/* Stops an image from becoming wider than the space around it. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 2000;
+  padding: 12px 16px;
+  background: var(--color-text-bright);
+  color: var(--color-background);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid var(--color-text-bright);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 img {
   display: block;
   max-width: 100%;
   height: auto;
-  pointer-events: none; /* Stops the image itself from being selected with the mouse. */
+  pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
-/* Gives normal paragraphs the grey text colour. */
 p {
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
-/* Links use the same colour as the text around them. */
 a {
   color: inherit;
-  cursor: pointer; /* Shows that links can be clicked. */
+  cursor: pointer;
 }
 
 /*  Top navigation bar */
 /* ----------------------------------------------------------------------------------------- */
 
-/* The bar at the top of every page. */
 .top-navbar {
-  position: fixed; /* Keeps the navbar visible while scrolling. */
+  position: fixed;
   top: 0px;
   left: 0px;
   z-index: 1000;
-  isolation: isolate; /* Keeps the navbar's layers together above the page. */
-  transform: translateZ(
-    0px
-  ); /* Helps prevent temporary lines while the blurred background is changing. */
+  isolation: isolate;
+  /* Avoid thin rendering seams in the blurred navbar. */
+  transform: translateZ(0);
 
   width: 100%;
   height: 76px;
-  padding: 0px 4vw; /* 4vw = 4% of the browser window's width. */
+  padding: 0px 4vw;
 
-  display: grid; /* Uses Grid to arrange the title and links. */
-  grid-template-columns: 1fr auto 1fr; /* Same space on both sides keeps the links in the centre. */
-  align-items: center; /* Centers everything from top to bottom. */
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr) auto minmax(0px, 1fr);
+  align-items: center;
 
-  background: rgba(
-    0,
-    0,
-    0,
-    0.4
-  ); /* Lets the stars show softly behind the bar. */
-  border-bottom: 1px solid transparent; /* Keeps the line hidden at the top of the page. */
+  background: var(--color-navbar-background);
+  border-bottom: 1px solid transparent;
   transition: border-bottom-color 450ms ease;
-  -webkit-backdrop-filter: blur(8px); /* Support for older Safari browsers. */
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
-/* Fades in the navbar's full-width line after the page starts scrolling. */
+/* navbar.js adds this after scrolling. */
 .top-navbar.scrolled {
-  border-bottom-color: rgba(235, 235, 235, 0.36);
+  border-bottom-color: var(--color-border);
 }
 
-/* Keeps the Portfolio title on the left. */
 .portfolio-name {
-  grid-column: 1; /* Puts Portfolio in the left column. */
-  justify-self: start; /* Moves it to the left side of the column. */
+  grid-column: 1;
+  justify-self: start;
 
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-weight: bold;
   text-decoration: none;
@@ -197,26 +229,25 @@ a {
   white-space: nowrap;
 }
 
-/* Keeps the page links in the centre. */
 .top-navbar nav {
-  grid-column: 2; /* Puts the page links in the middle column. */
+  grid-column: 2;
 
-  display: flex; /* Places the links next to each other. */
-  align-items: center; /* Centers the links from top to bottom. */
-  justify-content: center; /* Centers the whole group of links. */
-  gap: clamp(
-    18px,
-    4.5vw,
-    38px
-  ); /* Adds space between links but still lets them fit on small screens. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 4.5vw, 38px);
 }
 
-/* Styles each page link in the navbar. */
 .top-navbar nav a {
-  position: relative; /* Gives the underline a starting point. */
-  white-space: nowrap; /* Keeps each link on one line. */
+  position: relative;
+  display: inline-flex;
+  min-width: 24px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 
-  color: #d1d3d2;
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   font-weight: lighter;
@@ -225,46 +256,41 @@ a {
   transition: color 200ms ease;
 }
 
-/* Changes a page link when the mouse is over it. */
 .top-navbar nav a:hover,
 .top-navbar nav a:focus-visible {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
 }
 
-/* Lets the text grow without changing the line underneath it. */
+/* Scale the words separately so the underline stays in place. */
 .top-navbar nav a span {
-  display: inline-block; /* Lets the text grow when the mouse is over it. */
+  display: inline-block;
   transition: transform 200ms ease;
 }
 
-/* Makes the text slightly larger when the mouse is over a link. */
 .top-navbar nav a:hover span {
   transform: scale(1.15);
 }
 
-/* Makes the link for the current page or section brighter. */
 .top-navbar nav a[aria-current] {
-  color: #f1f2f2;
-  cursor: pointer; /* Shows the normal link cursor. */
-  user-select: none; /* Stops the link text being highlighted by accident. */
-  -webkit-user-select: none; /* Support for older Safari versions. */
+  color: var(--color-text-bright);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-/* Adds a line under the current page or section. */
 .top-navbar nav a[aria-current]::after {
-  content: ""; /* Creates the empty shape used for the line. */
-  position: absolute; /* Moves the line without moving the text. */
-  left: 50%; /* Keeps the middle of the line under the middle of the text. */
-  bottom: -29px; /* Change this value to move the line up or down. */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -16px;
 
-  width: 100%; /* Makes the line the same width as the link. */
-  height: 2px; /* Sets how thick the line is. */
-  background-color: #f1f2f2;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text-bright);
   transform: translateX(-50%);
   animation: underline-grow 250ms ease-out both;
 }
 
-/* Draws the current page's underline outwards from its middle. */
 @keyframes underline-grow {
   from {
     transform: translateX(-50%) scaleX(0);
@@ -275,12 +301,12 @@ a {
   }
 }
 
-/* Keeps the line still when moving between the Projects list and a project page. */
+/* Keep Projects underlined when opening one of its detail pages. */
 .same-nav-page .top-navbar nav a[aria-current]::after {
   animation: none;
 }
 
-/* Makes the short CV underline a little wider without changing the text. */
+/* CV needs a wider underline because the label is short. */
 .top-navbar nav a.cv-link[aria-current="page"]::after {
   width: calc(100% + 24px);
 }
@@ -288,24 +314,24 @@ a {
 /*  Shared page layout */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Adds space so the page does not hide behind the navbar. */
+/* Leave room for the fixed navbar. */
 main {
   min-height: calc(100vh - 170px);
   padding-top: 110px;
   padding-bottom: 60px;
 }
 
-/* Lets JavaScript move keyboard focus to the new content without drawing a box. */
-main:focus {
+/* Focus moves here after navigation; interactive elements keep their outlines. */
+main:focus,
+main [tabindex="-1"]:focus {
   outline: none;
 }
 
-/* Leaves room for the navbar when a link jumps to a heading or project. */
+/* Anchor targets must clear the navbar too. */
 main [id] {
   scroll-margin-top: 100px;
 }
 
-/* Removes the extra space browsers add above text. */
 h1,
 h2,
 h3,
@@ -313,14 +339,12 @@ p {
   margin-top: 0px;
 }
 
-/* Uses the same close line spacing for all headings. */
 h1,
 h2,
 h3 {
   line-height: 1.2;
 }
 
-/* Uses the boxier font on larger headings without changing the smaller labels. */
 main h1,
 .section-heading h2,
 .cv-section h2 {
@@ -328,41 +352,36 @@ main h1,
   font-weight: 600;
 }
 
-/* Small capital-letter text used for role details and project numbers. */
 .role-line,
 .project-number {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
-/* Stops the introduction on CV and Projects from becoming too wide. */
 .page-heading {
   max-width: 760px;
   padding-top: 18px;
   margin-bottom: 55px;
 }
 
-/* Makes the main headings on Projects, CV, and About Me larger. */
 .page-heading h1,
 .about-introduction-text h1 {
   font-size: clamp(2.3rem, 4.5vw, 4rem);
   letter-spacing: 0px;
 }
 
-/* Removes the extra space below the last item in a page introduction. */
 .page-heading > :last-child {
   margin-bottom: 0px;
 }
 
 /* Shared divider */
 .top-divider {
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  border-top: 1px solid var(--color-border);
 }
 
-/* Reset the default hr styles. */
 hr.top-divider {
   margin: 0px;
   border-right: 0px;
@@ -370,30 +389,28 @@ hr.top-divider {
   border-left: 0px;
 }
 
-/* Shows a clear outline when someone tabs to a link or button. */
+/* Keyboard focus */
 .top-navbar a:focus-visible,
 .button:focus-visible,
 .selected-project-box:focus-visible,
 .game-choice:focus-visible,
 .footer a:focus-visible {
-  outline: 2px solid #f1f2f2;
+  outline: 2px solid var(--color-text-bright);
   outline-offset: 4px;
 }
 
-/* Makes the short introduction slightly larger than normal paragraph text. */
 .introduction-paragraph {
   font-size: 1.1rem;
 }
 
-/* Softens the stars slightly behind boxes and buttons. */
+/* A little blur behind dark-mode panels. */
 .blurred-box,
 .button {
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: var(--color-surface);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 }
 
-/* Places groups of main page buttons next to each other. */
 .button-group {
   display: flex;
   flex-wrap: wrap;
@@ -401,14 +418,15 @@ hr.top-divider {
   margin-top: 28px;
 }
 
-/* Style shared by buttons on the different pages. */
 .button {
   display: inline-block;
   padding: 9px 14px;
-  border: 1px solid rgba(235, 235, 235, 0.5);
-  color: #f1f2f2;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
+  font-weight: inherit;
+  border-radius: 0;
   text-decoration: none;
   text-transform: uppercase;
   cursor: pointer;
@@ -418,35 +436,34 @@ hr.top-divider {
     color 200ms ease;
 }
 
-/* Lets button text move during page changes without moving the blurred button. */
+/* Animate the text, not the blurred button container. */
 .button-text {
   display: inline-block;
 }
 
-/* Fades the button colours when the mouse is over it or it is reached with Tab. */
-.button:hover,
-.button:focus-visible {
-  border-color: #f1f2f2;
-  background-color: #f1f2f2;
-  color: #000;
+.button:not(:disabled):hover,
+.button:not(:disabled):focus-visible {
+  border-color: var(--color-text-bright);
+  background-color: var(--color-text-bright);
+  color: var(--color-background);
 }
 
-/* Adds space above sections used on more than one page. */
+.button:disabled {
+  cursor: not-allowed;
+}
+
 .section {
   padding-top: 60px;
 }
 
-/* Adds more space when two sections follow each other. */
 .section + .section {
   margin-top: 40px;
 }
 
-/* Adds space between a section heading and the content below it. */
 .section-heading {
   margin-bottom: 28px;
 }
 
-/* Keeps the space below every section heading the same. */
 .section-heading > :last-child {
   margin-bottom: 0px;
 }
@@ -454,7 +471,6 @@ hr.top-divider {
 /*  Home page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Starts the Home heading level with other pages and leaves space below it. */
 .home-introduction {
   display: flex;
   align-items: center;
@@ -462,12 +478,10 @@ hr.top-divider {
   padding-bottom: 40px;
 }
 
-/* Stops the Home introduction from becoming too wide. */
 .home-introduction-text {
   max-width: 960px;
 }
 
-/* Sets the size and spacing of the main Home heading. */
 .home-introduction-text h1 {
   max-width: 900px;
   margin-bottom: 24px;
@@ -475,22 +489,19 @@ hr.top-divider {
   letter-spacing: 0px;
 }
 
-/* Stops the technology introduction from becoming too wide. */
 .skills-introduction {
   max-width: 720px;
 }
 
-/* Shows the technology categories beside each other on larger screens. */
 .skill-groups {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
 }
 
-/* Uses a simple line to show each branch of the technology list. */
 .skill-group {
   padding-left: 20px;
-  border-left: 1px solid rgba(235, 235, 235, 0.36);
+  border-left: 1px solid var(--color-border);
 }
 
 .skill-group h3 {
@@ -499,7 +510,6 @@ hr.top-divider {
   text-transform: uppercase;
 }
 
-/* Keeps the Selected projects button close to its heading. */
 .selected-projects-heading {
   display: flex;
   flex-wrap: wrap;
@@ -508,38 +518,36 @@ hr.top-divider {
   justify-content: flex-start;
 }
 
-/* Removes extra heading space inside the Selected projects row. */
 .selected-projects-heading h2 {
   margin-bottom: 0px;
 }
 
-/* Places the two selected projects next to each other. */
 .selected-projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
 }
 
-/* Styles each selected project as a clickable box. */
 .selected-project-box {
   display: block;
   padding: 26px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
   color: inherit;
   text-decoration: none;
   transition:
     background-color 200ms ease,
-    border-color 200ms ease;
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .selected-project-box:hover,
 .selected-project-box:focus-visible {
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
 .selected-project-box span {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
@@ -547,7 +555,6 @@ hr.top-divider {
 /*  About Me page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Places the introduction beside the portrait, with both starting at the top. */
 .about-introduction {
   display: grid;
   grid-template-columns: minmax(0px, 1fr) minmax(250px, 0.45fr);
@@ -557,68 +564,58 @@ hr.top-divider {
   padding-bottom: 40px;
 }
 
-/* Stops the main About Me text from becoming too wide. */
 .about-introduction-text {
   max-width: 720px;
 }
 
-/* Keeps the portrait at a steady size, with its frame against the shoulders. */
 .profile-box {
   width: 100%;
   max-width: 340px;
   margin: 0px;
   justify-self: center;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Shows the full portrait without cutting off the face or shoulders. */
 .profile-box img {
   width: 100%;
   height: auto;
 }
 
-/* Shows three equal information boxes in a row on larger screens. */
 .information-boxes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0px, 1fr));
   gap: 20px;
 }
 
-/* Adds space and a border around each About Me information box. */
 .information-box {
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Removes the extra paragraph space at the bottom of each information box. */
 .information-box > :last-child {
   margin-bottom: 0px;
 }
 
-/* Keeps the contact box narrower than the page and stacks its contents. */
 .contact-box {
   display: grid;
   grid-template-columns: minmax(0px, 1fr);
   gap: 20px;
   max-width: 440px;
   padding: 26px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Keeps the email button on the left instead of stretching it across the box. */
 .contact-box .button {
   justify-self: start;
 }
 
-/* Removes extra space below the contact message and email address. */
 .contact-box p {
   margin-bottom: 0px;
 }
 
-/* Makes the email address easy to spot and lets it fit on narrow screens. */
 .contact-email {
   margin-top: 14px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   overflow-wrap: anywhere;
@@ -627,33 +624,28 @@ hr.top-divider {
 /*  CV page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Adds space above the CV download button. */
 .cv-button-area {
   margin-top: 22px;
 }
 
-/* Shows the skills box above work experience and education. */
 .cv-skills {
   display: grid;
   grid-template-columns: repeat(2, minmax(0px, 1fr));
   gap: 40px;
   padding: 22px;
   margin-bottom: 55px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Keeps the headings inside the CV boxes small and consistent. */
 .cv-box-heading {
   font-size: 1rem;
   text-transform: uppercase;
 }
 
-/* Adds a little more space between the coloured skill labels on the CV. */
 .cv-skills .skill-list {
   gap: 10px;
 }
 
-/* Places the main CV details beside the smaller information box. */
 .cv-columns {
   display: grid;
   grid-template-columns: minmax(0px, 2fr) minmax(240px, 0.8fr);
@@ -661,37 +653,31 @@ hr.top-divider {
   align-items: start;
 }
 
-/* Stops either CV column from pushing outside the page. */
+/* Grid children must be allowed to shrink around long text. */
 .cv-columns > * {
   min-width: 0px;
 }
 
-/* Adds a little more space between the bullet points on the CV. */
 .cv-columns li + li {
   margin-top: 6px;
 }
 
-/* Adds space below each main CV section. */
 .cv-section {
   padding-bottom: 45px;
 }
 
-/* Adds space before every CV section after the first one. */
 .cv-section + .cv-section {
   padding-top: 45px;
 }
 
-/* Adds vertical space inside each job or education entry. */
 .cv-entry {
   padding: 24px 0px;
 }
 
-/* Keeps the space below every job and education entry the same. */
 .cv-entry > :last-child {
   margin-bottom: 0px;
 }
 
-/* Places the title on the left and the date on the right. */
 .cv-entry-heading {
   display: flex;
   gap: 24px;
@@ -699,66 +685,57 @@ hr.top-divider {
   justify-content: space-between;
 }
 
-/* Keeps the role and date close to the company name below them. */
 .cv-entry-heading h3,
 .cv-entry-heading p {
   margin-bottom: 6px;
 }
 
-/* Uses Courier New for dates and company names. */
 .cv-entry-heading p,
 .cv-entry-place {
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
 
-/* Holds other skills, languages, and planned certifications beside the main CV details. */
+/* CV sidebar */
 .cv-extra-information {
-  position: sticky; /* Keeps this box visible while the CV is being scrolled. */
+  position: sticky;
   top: 105px;
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Adds space between groups in the smaller CV box. */
 .cv-extra-information section + section {
   padding-top: 24px;
   margin-top: 24px;
 }
 
-/* Removes extra space at the bottom of each smaller CV section. */
 .cv-extra-information section > :last-child {
   margin-bottom: 0px;
 }
 
-/* Adds normal bullet spacing to lists in the smaller CV box. */
 .bullet-list {
   padding-left: 18px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
-/* Removes the extra space browsers add around the language list. */
 .language-list {
   margin: 0px;
 }
 
-/* Places each language on the left and its level on the right. */
 .language-list div {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* Removes extra left space and makes the language level grey. */
 .language-list dd {
   margin: 0px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
 /*  Coloured skill labels  */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Places skill labels next to each other and moves them down when needed. */
 .skill-list,
 .project-skill-list {
   display: flex;
@@ -769,18 +746,21 @@ hr.top-divider {
   list-style: none;
 }
 
-/* Basic style used by skill labels and project technology labels. */
 .skill-list li,
 .project-skill-list li {
   padding: 4px 8px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
-  background-color: #000;
-  color: #d1d3d2;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.7rem;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
 }
 
-/* Colours for the skill labels used on Home, CV, and Projects. */
+/* Dark-mode badge colours */
 li.skill-html {
   border-color: #e34f26;
   background-color: #170804;
@@ -925,27 +905,170 @@ li.skill-adobe {
   color: #f05b5d;
 }
 
+/* Skill label colours in light mode */
+html[data-theme="light"] li.skill-html {
+  border-color: #df542a;
+  background-color: #ffc5a6;
+  color: #8c260a;
+}
+
+html[data-theme="light"] li.skill-css {
+  border-color: #3569d9;
+  background-color: #b8d1ff;
+  color: #123b9c;
+}
+
+html[data-theme="light"] li.skill-javascript {
+  border-color: #b59100;
+  background-color: #ffdf4f;
+  color: #634900;
+}
+
+html[data-theme="light"] li.skill-java {
+  border-color: #d87517;
+  background-color: #ffcb8c;
+  color: #813800;
+}
+
+html[data-theme="light"] li.skill-git {
+  border-color: #e15538;
+  background-color: #ffbdaa;
+  color: #8e2512;
+}
+
+html[data-theme="light"] li.skill-linux {
+  border-color: #bd8b00;
+  background-color: #ffdc71;
+  color: #644800;
+}
+
+html[data-theme="light"] li.skill-windows {
+  border-color: #137dc5;
+  background-color: #afd9ff;
+  color: #004d87;
+}
+
+html[data-theme="light"] li.skill-networking {
+  border-color: #009b8c;
+  background-color: #9ce6d1;
+  color: #00574f;
+}
+
+html[data-theme="light"] li.skill-pc-hardware {
+  border-color: #039bc0;
+  background-color: #a0e5fa;
+  color: #005269;
+}
+
+html[data-theme="light"] li.skill-embedded-hardware {
+  border-color: #388951;
+  background-color: #ade0b8;
+  color: #205431;
+}
+
+html[data-theme="light"] li.skill-vscode {
+  border-color: #087fbf;
+  background-color: #addcff;
+  color: #004e80;
+}
+
+html[data-theme="light"] li.skill-intellij {
+  border-color: #db3c69;
+  background-color: #ffb3cd;
+  color: #8c1e3d;
+}
+
+html[data-theme="light"] li.skill-jetbrains {
+  border-color: #9950d1;
+  background-color: #d5b4ff;
+  color: #5e278d;
+}
+
+html[data-theme="light"] li.skill-ai-tools {
+  border-color: #ad48ca;
+  background-color: #e5b2fc;
+  color: #6c2887;
+}
+
+html[data-theme="light"] li.skill-local-ai-tools {
+  border-color: #0b9e87;
+  background-color: #96e7d3;
+  color: #00574e;
+}
+
+html[data-theme="light"] li.skill-excel {
+  border-color: #287c49;
+  background-color: #a7dfba;
+  color: #185430;
+}
+
+html[data-theme="light"] li.skill-business-central {
+  border-color: #7d58a8;
+  background-color: #ccb8eb;
+  color: #513475;
+}
+
+html[data-theme="light"] li.skill-superoffice {
+  border-color: #cc4242;
+  background-color: #ffb0b0;
+  color: #902121;
+}
+
+html[data-theme="light"] li.skill-salesforce {
+  border-color: #0397c6;
+  background-color: #9edfff;
+  color: #005377;
+}
+
+html[data-theme="light"] li.skill-sap {
+  border-color: #2274c8;
+  background-color: #b2cfff;
+  color: #104d88;
+}
+
+html[data-theme="light"] li.skill-photoshop {
+  border-color: #258ad0;
+  background-color: #aadeff;
+  color: #0a5285;
+}
+
+html[data-theme="light"] li.skill-premiere {
+  border-color: #8070cf;
+  background-color: #c8bbfa;
+  color: #43368a;
+}
+
+html[data-theme="light"] li.skill-illustrator {
+  border-color: #d48a12;
+  background-color: #ffd080;
+  color: #713d00;
+}
+
+html[data-theme="light"] li.skill-adobe {
+  border-color: #dd343b;
+  background-color: #ffb0b7;
+  color: #921e23;
+}
+
 /*  Projects page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Shows one project box across each row. */
 .project-boxes {
   display: grid;
   grid-template-columns: 1fr;
   gap: 40px;
 }
 
-/* Places the picture beside the project details on larger screens. */
 .project-box {
   display: flex;
   flex-direction: row;
   min-width: 0px;
   overflow: hidden;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Keeps each project picture compact, with space between it and the box edges. */
-.project-box img {
+.project-box img,
+.project-box .project-preview {
   width: 300px;
   max-width: 32%;
   height: 190px;
@@ -955,21 +1078,20 @@ li.skill-adobe {
   flex-shrink: 0;
 }
 
-/* Lets the text use the rest of the box and separates it from the picture. */
 .project-details {
   display: flex;
   flex: 1;
+  min-width: 0;
   flex-direction: column;
   padding: 24px;
-  border-left: 1px solid rgba(235, 235, 235, 0.36);
+  border-left: 1px solid var(--color-border);
 }
 
-/* Adds space above and below the technology labels in a project box. */
 .project-skill-list {
   margin: 10px 0px 24px;
 }
 
-/* Keeps the project button at the bottom of its box without stretching it. */
+/* Keep buttons aligned even when project descriptions differ in length. */
 .project-button {
   align-self: flex-start;
   margin-top: auto;
@@ -978,7 +1100,6 @@ li.skill-adobe {
 /*  Portfolio website project page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Keeps the heading and story sections the same width and centers them on the page. */
 .website-heading,
 .website-steps,
 .website-thanks {
@@ -986,17 +1107,14 @@ li.skill-adobe {
   margin-inline: auto;
 }
 
-/* Stops the introductory paragraph from becoming too wide. */
 .website-heading > p {
   max-width: 760px;
 }
 
-/* Adds the same spacing inside each stage. */
 .website-step {
   padding: 44px 0px;
 }
 
-/* Keeps the step number above its title. */
 .website-step-heading {
   margin-bottom: 22px;
 }
@@ -1005,7 +1123,6 @@ li.skill-adobe {
   margin: 0px 0px 8px;
 }
 
-/* Places the skill box right after the title, and moves it down if it will not fit. */
 .website-step-title {
   display: flex;
   flex-wrap: wrap;
@@ -1019,15 +1136,13 @@ li.skill-adobe {
   margin: 0px;
 }
 
-/* Puts the skills for each step in a small box. */
 .website-step-skills {
   flex: 0 0 auto;
   max-width: 100%;
   padding: 10px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Gives the step and closing headings the same size and font. */
 .website-step h2,
 .website-thanks h2 {
   font-family: "Chakra Petch", "IBM Plex Sans", Arial, sans-serif;
@@ -1038,26 +1153,25 @@ li.skill-adobe {
   max-width: 760px;
 }
 
-/* Keeps the code spacing and wraps long lines so the boxes do not scroll sideways. */
+/* Wrap long code examples instead of adding horizontal scrolling on phones. */
 .website-code {
   max-width: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   margin: 28px 0px 0px;
   padding: 20px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
-  color: #f1f2f2;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.8rem;
   line-height: 1.55;
 }
 
-/* Leaves room for the next explanation after a code box. */
 .website-code + p {
   margin-top: 28px;
 }
 
-/* Matches each code box border to the skill used in that example. */
+/* Code examples */
 .website-code.code-html {
   border-color: #e34f26;
 }
@@ -1074,7 +1188,6 @@ li.skill-adobe {
   font: inherit;
 }
 
-/* Colours the tags, names, and values in the code examples. */
 .website-code .code-tag {
   color: #f06a43;
 }
@@ -1098,23 +1211,22 @@ li.skill-adobe {
   color: #c58af9;
 }
 
-/* Lines screenshot frames up with the code boxes and section dividers. */
 .website-picture {
   width: 100%;
   margin: 28px 0px 0px;
   padding: 12px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
-/* Keeps smaller screenshots at their real size in the middle of the frame. */
-.website-picture img {
+/* Small screenshots should not be stretched. */
+.website-picture img,
+.website-picture .project-preview {
   width: auto;
   max-width: 100%;
   height: auto;
   margin-inline: auto;
 }
 
-/* Shows two pictures beside each other when there is room. */
 .website-picture-group {
   display: grid;
   grid-template-columns: repeat(2, minmax(0px, 1fr));
@@ -1127,23 +1239,21 @@ li.skill-adobe {
 }
 
 .website-picture-label {
-  margin: -12px -12px 12px; /* Reaches the sides of the screenshot box. */
+  margin: -12px -12px 12px;
   padding: 12px;
-  border-bottom: 1px solid rgba(235, 235, 235, 0.36);
-  color: #f1f2f2;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
   text-align: center;
   text-transform: uppercase;
 }
 
-/* Closes the website story before the regular footer. */
 .website-thanks {
   padding: 44px 0px 0px;
   text-align: center;
 }
 
-/* Leaves space between the cookie message and the Back to top button. */
 .website-thanks p {
   margin-bottom: 24px;
 }
@@ -1151,20 +1261,17 @@ li.skill-adobe {
 /*  Browser game page */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Leaves room above the game cards and below them before the footer. */
 .game-section {
   padding-top: 30px;
   padding-bottom: clamp(48px, 6vw, 90px);
 }
 
-/* Places the three game choices side by side. */
 .game-choices {
   display: grid;
   grid-template-columns: repeat(3, minmax(0px, 1fr));
   gap: 20px;
 }
 
-/* Makes each game picture and name one clickable card. */
 .game-choice {
   display: flex;
   flex-direction: column;
@@ -1173,9 +1280,9 @@ li.skill-adobe {
   width: 100%;
   min-width: 0px;
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
   border-radius: 0px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Chakra Petch", "IBM Plex Sans", Arial, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
@@ -1183,32 +1290,30 @@ li.skill-adobe {
   transition:
     transform 200ms ease,
     background-color 200ms ease,
-    border-color 200ms ease;
+    border-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
-/* Keeps the tall game pictures the same size inside their cards. */
-.game-choice img {
+.game-choice img,
+.game-choice .project-preview {
   width: auto;
   max-width: 100%;
   height: 210px;
   object-fit: contain;
 }
 
-/* Lifts a card slightly when it is hovered or reached with the keyboard. */
 .game-choice:hover,
 .game-choice:focus-visible {
   transform: translateY(-4px);
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
-/* Keeps the chosen game highlighted after the mouse moves away. */
 .game-choice[aria-pressed="true"] {
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
-/* Centres the Coming soon button below the game cards. */
 .game-action {
   display: flex;
   justify-content: center;
@@ -1216,12 +1321,11 @@ li.skill-adobe {
   margin-top: 42px;
 }
 
-/* Lets the button appear from below without changing its hover effect. */
+/* JavaScript animates this wrapper so the button's blur stays still. */
 .game-button-entry {
   display: inline-block;
 }
 
-/* Makes the button larger and hides it until a game has been chosen. */
 .game-play-button:disabled {
   min-width: 220px;
   padding: 17px 36px;
@@ -1237,19 +1341,17 @@ li.skill-adobe {
     transform 300ms ease-in-out;
 }
 
-/* Shows the button after a game is selected. JavaScript moves the extra div. */
 .game-action.is-visible .game-play-button {
   visibility: visible;
   opacity: 1;
 }
 
-/* Grows and brightens the button on hover, like the navbar text. */
 .game-play-button:disabled:hover {
   filter: brightness(1.35);
   transform: scale(1.06);
 }
 
-/* Each game gives the button a colour from its preview picture. */
+/* Match the status button to the selected game. */
 .game-action[data-game="Pong"] .game-play-button {
   border-color: #5d87ee;
   background-color: rgba(93, 135, 238, 0.18);
@@ -1271,9 +1373,8 @@ li.skill-adobe {
 /*  Footer */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Main footer style used on every page. */
 .footer {
-  position: relative; /* Keeps the footer text in front of the UFO. */
+  position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(240px, 280px) minmax(100px, 130px) minmax(
@@ -1283,14 +1384,13 @@ li.skill-adobe {
   grid-template-areas: "info navigation projects socials";
   gap: 30px;
   align-items: start;
-  justify-content: center; /* Keeps the footer columns together in the centre of the page. */
+  justify-content: center;
   padding: 30px 0px 36px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
 
-/* Keeps the copyright and email together. */
 .footer-info {
   display: grid;
   gap: 12px;
@@ -1299,38 +1399,36 @@ li.skill-adobe {
   text-align: left;
 }
 
-/* Gives each footer group the same heading style. */
 .footer-navigation h2,
 .footer-projects h2,
 .footer-socials h2 {
   margin-bottom: 4px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-/* Places the four page links underneath their footer heading. */
 .footer-navigation {
   display: grid;
   grid-area: navigation;
   gap: 10px;
 }
 
-/* Gives the page and project links the same style. */
 .footer-links a {
-  color: #d1d3d2;
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  color: var(--color-text-muted);
   text-decoration: none;
   transition: color 200ms ease;
 }
 
-/* Lightens a footer link when the mouse or keyboard selects it. */
 .footer-links a:hover,
 .footer-links a:focus-visible {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
 }
 
-/* Displays the projects as part of the same footer grid. */
 .footer-projects {
   display: grid;
   grid-area: projects;
@@ -1342,32 +1440,31 @@ li.skill-adobe {
   gap: 8px;
 }
 
-/* Keeps the Socials heading and icons together. */
 .footer-socials {
   display: grid;
   grid-area: socials;
   gap: 10px;
 }
 
-/* Places the three social icons next to each other. */
 .footer-social-links {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-/* Gives each social icon a small button area. */
 .footer-socials a {
   display: inline-flex;
   width: 30px;
   height: 30px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(235, 235, 235, 0.36);
-  transition: border-color 200ms ease;
+  border: 1px solid var(--color-border);
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease;
 }
 
-/* Each social button uses a colour connected to that website. */
+/* Social colours */
 .footer-socials .social-instagram {
   border-color: #e1306c;
   background-color: #1b060d;
@@ -1383,32 +1480,51 @@ li.skill-adobe {
   background-color: #140e1e;
 }
 
-.footer-socials a:hover,
-.footer-socials a:focus-visible {
-  border-color: #f1f2f2;
+/* Social buttons in light mode */
+html[data-theme="light"] .footer-socials .social-instagram {
+  border-color: #d84c7d;
+  background-color: #ffdce8;
 }
 
-/* Sets the size of the social icons. */
+html[data-theme="light"] .footer-socials .social-linkedin {
+  border-color: #2983c5;
+  background-color: #d4e9ff;
+}
+
+html[data-theme="light"] .footer-socials .social-github {
+  border-color: #9b65d9;
+  background-color: #e9d5ff;
+}
+
+html[data-theme="light"] .social-github img {
+  filter: brightness(0.8);
+}
+
+.footer-socials a:hover,
+.footer-socials a:focus-visible,
+html[data-theme="light"] .footer-socials a:hover,
+html[data-theme="light"] .footer-socials a:focus-visible {
+  border-color: var(--color-text-bright);
+}
+
 .footer-socials img {
   width: 16px;
   height: 16px;
 }
 
-/* Removes the paragraph margin that would make the footer uneven. */
 .footer p {
   margin: 0px;
 }
 
-/* Moves the email underline slightly away from the text. */
 .footer a {
   text-underline-offset: 4px;
-  overflow-wrap: anywhere; /* Stops long links from leaving the footer on small screens. */
+  overflow-wrap: anywhere;
 }
 
 /*  Screen size changes */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Moves the copyright and email below the other columns on smaller screens. */
+/* Put contact details below the other footer columns when space is tight. */
 @media (max-width: 950px) {
   .footer {
     grid-template-columns: minmax(100px, 130px) minmax(170px, 220px) minmax(
@@ -1426,46 +1542,40 @@ li.skill-adobe {
   }
 }
 
-/* Changes the layout when the screen is 768px wide or smaller. */
+/* Tablet layout */
 @media (max-width: 768px) {
-  /* Gives each picture its own row on smaller screens. */
   .website-picture-group {
     grid-template-columns: 1fr;
   }
 
-  /* Shows the About Me and CV sections in one column. */
   .about-introduction,
   .cv-columns {
     grid-template-columns: 1fr;
   }
 
-  /* Uses a smaller gap around the About Me introduction. */
   .about-introduction {
     gap: 40px;
     padding-bottom: 30px;
   }
 
-  /* Matches the Home introduction spacing to the About Me introduction. */
   .home-introduction {
     padding-bottom: 30px;
   }
 
-  /* Uses a smaller gap after the main CV column when both columns are stacked. */
   .cv-columns {
     gap: 40px;
   }
 
-  /* Shows the About Me information boxes one per row. */
   .information-boxes {
     grid-template-columns: 1fr;
   }
 
-  /* Stacks each project picture above its details on narrower screens. */
   .project-box {
     flex-direction: column;
   }
 
-  .project-box img {
+  .project-box img,
+  .project-box .project-preview {
     width: 100%;
     max-width: none;
     height: 230px;
@@ -1473,40 +1583,35 @@ li.skill-adobe {
   }
 
   .project-details {
-    border-top: 1px solid rgba(235, 235, 235, 0.36);
+    border-top: 1px solid var(--color-border);
     border-left: 0px;
   }
 
-  /* Moves the smaller CV box below the main CV details. */
   .cv-extra-information {
     position: static;
   }
 }
 
-/* Changes the layout when the screen is 600px wide or smaller. */
+/* Phone layout */
 @media (max-width: 600px) {
-  /* Stacks the game choices on phones. */
   .game-choices {
     grid-template-columns: 1fr;
   }
 
-  /* Uses slightly smaller page spacing on phone-sized screens. */
   main {
     padding-top: 100px;
     padding-bottom: 48px;
   }
 
-  /* Keeps the space after page introductions smaller on phones. */
   .page-heading {
     margin-bottom: 44px;
   }
 
-  /* Keeps project pictures short on phones. */
-  .project-box img {
+  .project-box img,
+  .project-box .project-preview {
     height: 170px;
   }
 
-  /* Scales the spacing around section dividers down on phones. */
   .section {
     padding-top: 48px;
   }
@@ -1515,32 +1620,28 @@ li.skill-adobe {
     margin-top: 32px;
   }
 
-  /* Hides the Portfolio title so it does not touch the page links. */
+  /* Keep space for all four page links and the theme button. */
   .portfolio-name {
     display: none;
   }
 
-  /* Keeps the Home page groups in one column on phone-sized screens. */
   .skill-groups,
   .selected-projects-grid {
     grid-template-columns: 1fr;
   }
 
-  /* Shows development skills above software skills. */
   .cv-skills {
     grid-template-columns: 1fr;
     gap: 24px;
     margin-bottom: 44px;
   }
 
-  /* Puts CV dates below the title without leaving a large gap. */
   .cv-entry-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 0px;
   }
 
-  /* Keeps the three footer groups beside each other on small screens. */
   .footer {
     grid-template-columns: minmax(70px, 0.75fr) minmax(100px, 1.25fr) minmax(
         60px,
@@ -1553,13 +1654,11 @@ li.skill-adobe {
     row-gap: 24px;
   }
 
-  /* Stacks the three social icons from top to bottom. */
   .footer-social-links {
     flex-direction: column;
     align-items: center;
   }
 
-  /* Centres the links and headings inside each mobile footer column. */
   .footer-navigation,
   .footer-projects,
   .footer-socials {
@@ -1568,9 +1667,217 @@ li.skill-adobe {
   }
 }
 
-/* Stops the smooth animations if the visitor has reduced motion turned on. */
+/* Project illustrations */
+.project-preview {
+  --preview-transition: fill 160ms ease, stroke 160ms ease;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html[data-theme="light"] .project-preview {
+  --preview-panel: var(--color-surface);
+  --preview-screen: #f2f2f3;
+  --preview-foreground: var(--color-text-bright);
+  --preview-muted: var(--color-text-muted);
+  --preview-divider: #aaaab0;
+  --preview-blue: #2452ae;
+  --preview-orange: #934800;
+  --preview-green: #28623b;
+  --preview-red: #a42b2b;
+  --preview-eye: #fff;
+  --preview-html-border: #a33718;
+  --preview-css-border: #2452ae;
+  --preview-yellow: #715600;
+  --preview-html-text: #a33718;
+}
+
+/*  Theme switch */
+/* ----------------------------------------------------------------------------------------- */
+
+/* Light mode browser controls */
+html[data-theme="light"] {
+  color-scheme: light;
+  scrollbar-color: #70777c var(--color-background);
+}
+
+html[data-theme="light"] .top-navbar {
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.top-navbar .portfolio-name,
+.top-navbar nav {
+  grid-row: 1;
+}
+
+.theme-toggle {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  width: 44px;
+  height: 44px;
+  padding: 0px;
+  border: 0;
+  border-radius: 0px;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+/* Keep this hidden until the click handler is ready. */
+.theme-toggle:not([hidden]) {
+  display: grid;
+  place-items: center;
+}
+
+.theme-toggle:hover {
+  color: var(--color-text-bright);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--color-text-bright);
+  outline-offset: 4px;
+}
+
+.theme-toggle svg {
+  pointer-events: none;
+  transition: transform 200ms ease;
+}
+
+.theme-toggle:hover svg {
+  transform: scale(1.15);
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+
+/* Light mode background */
+html[data-theme="light"] .selected-project-box:hover,
+html[data-theme="light"] .selected-project-box:focus-visible,
+html[data-theme="light"] .game-choice:hover,
+html[data-theme="light"] .game-choice:focus-visible {
+  border-color: var(--color-text-muted);
+}
+
+html[data-theme="light"] #ascii-stars {
+  visibility: hidden;
+}
+
+html[data-theme="light"] .ascii-ufo {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Keep the dark background for the syntax colours. */
+html[data-theme="light"] .website-code {
+  background-color: #101419;
+  color: #f1f2f2;
+}
+
+/* Game button colours in light mode */
+html[data-theme="light"] .game-action[data-game="Pong"] .game-play-button {
+  border-color: #2854b0;
+  background-color: rgba(40, 84, 176, 0.1);
+  color: #2854b0;
+}
+
+html[data-theme="light"] .game-action[data-game="Space Defender"] .game-play-button {
+  border-color: #974600;
+  background-color: rgba(151, 70, 0, 0.1);
+  color: #974600;
+}
+
+html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
+  border-color: #28633b;
+  background-color: rgba(40, 99, 59, 0.1);
+  color: #28633b;
+}
+
+/* Short colour transitions for browsers without snapshot crossfades. */
+:root.theme-changing,
+:root.theme-changing :where(
+  body, .background, .top-navbar, .portfolio-name, .top-navbar nav a,
+  p, .role-line, .project-number, .blurred-box, .button,
+  .contact-email, .bullet-list, .language-list dd,
+  .skill-list li, .project-skill-list li, .website-code,
+  .website-picture-label, .footer, .footer h2, .footer a,
+  .top-divider, .project-details, .theme-toggle
+) {
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+/* Crossfade two snapshots instead of repainting every colour each frame. */
+:root.theme-snapshot,
+:root.theme-snapshot * {
+  transition: none !important;
+  --preview-transition: none !important;
+}
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: theme-fade 160ms ease-out both;
+  mix-blend-mode: normal;
+}
+
+@keyframes theme-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile navbar */
+@media (max-width: 600px) {
+  .top-navbar {
+    grid-template-columns: 44px minmax(0px, 1fr) 44px;
+    padding-inline: 12px;
+  }
+
+  .top-navbar nav {
+    min-width: 0px;
+    gap: clamp(6px, 2vw, 12px);
+  }
+
+  .top-navbar nav a {
+    font-size: clamp(0.75rem, 2.4vw, 0.85rem);
+  }
+}
+
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .top-navbar nav a[aria-current]::after {
+  :root.theme-changing,
+  :root.theme-changing * {
+    transition: none;
+  }
+
+  .project-preview {
+    --preview-transition: none;
+  }
+
+  .top-navbar nav a[aria-current]::after,
+  ::view-transition-new(root) {
     animation: none;
   }
 
@@ -1579,22 +1886,139 @@ li.skill-adobe {
   .top-navbar nav a span,
   .button,
   .game-choice,
+  .game-play-button:disabled,
   .selected-project-box,
   .footer-links a,
+  .theme-toggle,
+  .theme-toggle svg,
+  .ascii-star,
+  .ufo-changing,
+  .skill-list li,
+  .project-skill-list li,
   .footer-socials a {
     transition: none;
   }
 
   .game-choice:hover,
-  .game-choice:focus-visible {
+  .game-choice:focus-visible,
+  .game-play-button:disabled:hover,
+  .theme-toggle:hover svg {
     transform: none;
   }
+}
 
-  .game-play-button:disabled {
-    transition: none;
+/* Light mode dividers */
+html[data-theme="light"] .top-divider {
+  border-top-color: #000;
+}
+
+html[data-theme="light"] .top-navbar.scrolled,
+html[data-theme="light"] .website-picture-label {
+  border-bottom-color: #000;
+}
+
+html[data-theme="light"] .skill-group,
+html[data-theme="light"] .project-details {
+  border-left-color: #000;
+}
+
+html[data-theme="light"] .project-details {
+  border-top-color: #000;
+}
+
+/* Light mode shadows */
+html[data-theme="light"] .game-choice:is(:hover, :focus-visible, [aria-pressed="true"]) {
+  background-color: var(--color-surface);
+}
+
+html[data-theme="light"] .blurred-box {
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.05),
+    0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme="light"] .button {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme="light"] :is(
+  .selected-project-box, .game-choice
+):is(:hover, :focus-visible) {
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.06),
+    0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Keep a printed CV readable in either theme. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 
-  .game-play-button:disabled:hover {
-    transform: none;
+  :root {
+    --color-background: #fff;
+    --color-text: #000;
+    --color-text-muted: #222;
+    --color-text-bright: #000;
+    --color-border: #999;
+    --color-border-strong: #666;
+    --color-surface: #fff;
+  }
+
+  body {
+    padding: 0;
+    font-size: 11pt;
+  }
+
+  .top-navbar,
+  .background,
+  .ascii-ufo,
+  .skip-link,
+  .button-group,
+  .cv-button-area,
+  .footer nav {
+    display: none !important;
+  }
+
+  main {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .cv-columns,
+  .cv-skills,
+  .footer {
+    display: block;
+  }
+
+  .cv-extra-information {
+    position: static;
+  }
+
+  .blurred-box,
+  .button {
+    background: #fff !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .skill-list li,
+  .project-skill-list li {
+    background: transparent !important;
+    color: #000 !important;
+    border-color: #999 !important;
+  }
+
+  .cv-entry,
+  .cv-extra-information section {
+    break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
   }
 }

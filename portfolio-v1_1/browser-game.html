@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<!-- Sets the page language to English. -->
 <html lang="en">
   <head>
-    <!-- Allows special letters and symbols to display correctly. -->
     <meta charset="UTF-8">
-    <!-- Uses a dark background while the stylesheet is loading. -->
-    <meta name="color-scheme" content="dark">
-    <!-- Helps the page fit phone and tablet screens. -->
+    <meta name="color-scheme" content="dark light">
+    <!-- Set the theme before loading CSS. -->
+    <script src="js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Previews of Pong, Space Defender, and Snake for a planned browser game project.">
-    <!-- Loads page content without restarting the navbar or background. -->
-    <script src="js/page-transition.js"></script>
-    <!-- Connects the page to the shared CSS and background. -->
+    <script src="js/page-transition.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!-- Shows my logo in the browser tab. -->
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
     <script src="js/navbar.js" defer></script>
     <script src="js/background.js" defer></script>
-    <!-- Adds the occasional ASCII flying saucer. -->
     <script src="js/ufo.js" defer></script>
-    <!-- Lets the game cards show which one was selected. -->
     <script src="js/game-selector.js" defer></script>
-    <title>Browser Games | My Portfolio</title>
+    <title>Browser Games | Alexander Mankvard</title>
   </head>
 
   <body>
-    <!-- The stars stay behind the page and do not block clicks. -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- Dark-mode background -->
     <div class="background" aria-hidden="true">
       <div id="ascii-stars"></div>
     </div>
 
-    <!-- The Projects link stays highlighted while viewing a project page. -->
+    <!-- Projects stays active on project detail pages. -->
     <header class="top-navbar">
       <a class="portfolio-name" href="index.html">Portfolio</a>
       <nav aria-label="Main navigation">
@@ -39,47 +36,61 @@
         <a class="cv-link" href="cv.html"><span>CV</span></a>
         <a href="about-me.html"><span>About Me</span></a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" hidden>
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.93 4.93l1.42 1.42 M17.65 17.65l1.42 1.42 M4.93 19.07l1.42-1.42 M17.65 6.35l1.42-1.42"></path>
+        </svg>
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+      </button>
     </header>
 
-    <!-- Game previews until the playable versions are ready. -->
-    <main id="main-content" class="content">
+    <main id="main-content" class="content" tabindex="-1">
       <header class="page-heading">
         <h1>Browser Games</h1>
+        <p>Choose a game to preview it. Playable versions are coming soon.</p>
         <a class="button" href="projects.html">Back to projects</a>
       </header>
 
-      <!-- The three games use the same pictures shown in the Projects preview. -->
+      <!-- The previews share their drawings with the Projects page. -->
       <section class="game-section" aria-label="Choose a game">
-        <!-- Clicking a card selects it and shows the Coming soon button below. -->
         <div class="game-choices">
           <button class="game-choice blurred-box" type="button" value="Pong" aria-pressed="false">
-            <img src="images/pong-preview.svg" alt="" width="192" height="292" draggable="false">
+            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
+              <use href="images/project-previews.svg#pong-preview"></use>
+            </svg>
             <span>Pong</span>
           </button>
 
           <button class="game-choice blurred-box" type="button" value="Space Defender" aria-pressed="false">
-            <img src="images/space-defender-preview.svg" alt="" width="192" height="292" draggable="false">
+            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
+              <use href="images/project-previews.svg#space-defender-preview"></use>
+            </svg>
             <span>Space Defender</span>
           </button>
 
           <button class="game-choice blurred-box" type="button" value="Snake" aria-pressed="false">
-            <img src="images/snake-preview.svg" alt="" width="192" height="292" draggable="false">
+            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
+              <use href="images/project-previews.svg#snake-preview"></use>
+            </svg>
             <span>Snake</span>
           </button>
         </div>
 
-        <!-- The button appears after a game is selected, but cannot be clicked yet. -->
+        <!-- Not playable yet; selecting a card only changes the preview status. -->
         <div id="game-action" class="game-action">
           <div class="game-button-entry">
             <button class="button game-play-button" type="button" disabled>Coming soon</button>
           </div>
         </div>
+        <p id="game-status" class="visually-hidden" role="status"></p>
       </section>
     </main>
 
-    <!-- Footer used on every page. -->
+    <!-- Shared footer -->
     <footer class="footer content top-divider">
-      <!-- Links to the main pages. -->
       <nav class="footer-navigation footer-links" aria-labelledby="footer-navigation-heading">
         <h2 id="footer-navigation-heading">Navigate</h2>
         <a href="index.html">Home</a>
@@ -88,19 +99,16 @@
         <a href="about-me.html">About Me</a>
       </nav>
 
-      <!-- A few projects, with a link to the full list. -->
       <nav class="footer-projects" aria-labelledby="footer-projects-heading">
         <h2 id="footer-projects-heading">Projects</h2>
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
-          <a href="projects.html#forms-project">Forms Project</a>
           <a href="projects.html#browser-game">Browser Game</a>
           <a href="projects.html#pokemon-card-collector">Pokémon Card Collector</a>
           <a href="projects.html">View all projects →</a>
         </div>
       </nav>
 
-      <!-- Links to my social media pages. -->
       <nav class="footer-socials" aria-labelledby="footer-socials-heading">
         <h2 id="footer-socials-heading">Socials</h2>
         <div class="footer-social-links">
@@ -116,7 +124,6 @@
         </div>
       </nav>
 
-      <!-- Copyright and email: on the left on wide screens, below the links on smaller screens. -->
       <div class="footer-info">
         <p>&copy; 2026 My Portfolio</p>
         <a href="mailto:alexander.mankvard@gmail.com">alexander.mankvard@gmail.com</a>

@@ -1,11 +1,11 @@
-/* Gently changing ASCII stars behind each page. */
+/* ASCII star background */
 (() => {
   "use strict";
 
   const display = document.getElementById("ascii-stars");
   if (!display) return;
 
-  // Change these values to customise the star field.
+  // Star size, spacing and timing.
   const SETTINGS = {
     characters: [".", ":", "*", "+"],
     pulseMilliseconds: 45,
@@ -40,7 +40,7 @@
     return minimum + random() * (maximum - minimum);
   }
 
-  /* Creates repeatable positions when new stars need to be added. */
+  // Use a seeded generator so new stars keep the same starting pattern.
   function startingRandom() {
     let number = 2026;
     return () => {
@@ -247,11 +247,15 @@
 
   function schedulePulse() {
     window.clearTimeout(pulseTimer);
-    if (document.hidden || reducedMotion.matches) return;
+    pulseTimer = 0;
+    if (document.documentElement.dataset.theme !== "dark"
+      || document.hidden || reducedMotion.matches) return;
     pulseTimer = window.setTimeout(flicker, SETTINGS.pulseMilliseconds);
   }
 
   function flicker() {
+    if (document.documentElement.dataset.theme !== "dark"
+      || document.hidden || reducedMotion.matches) return;
     const now = Date.now();
     const firstVisible = window.scrollY;
     const lastVisible = firstVisible + window.innerHeight;
@@ -312,8 +316,16 @@
     schedulePulse();
   });
 
-  // Save just before leaving, then restore the same stars on the next page.
-  window.addEventListener("pagehide", saveStars);
+  document.addEventListener("portfolio-theme-change", () => {
+    pause();
+    schedulePulse();
+  });
+
+  window.addEventListener("pagehide", () => {
+    saveStars();
+    pause();
+  });
+  window.addEventListener("pageshow", schedulePulse);
 
   if (!restoreStars()) startStars();
   schedulePulse();

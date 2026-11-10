@@ -1,5 +1,7 @@
-/* Handles the game cards even when their page is loaded by the navigation script. */
+/* Game selection, including after a page change. */
 (() => {
+  "use strict";
+
   let buttonAnimation;
 
   function stopButtonAnimation() {
@@ -14,6 +16,7 @@
     const choice = event.target.closest(".game-choice");
     const gameChoices = document.querySelectorAll(".game-choice");
     const gamePlayButton = gameAction.querySelector(".game-play-button");
+    const status = document.getElementById("game-status");
     stopButtonAnimation();
 
     // Clicking away from the cards clears the selection.
@@ -22,6 +25,7 @@
       gameAction.classList.remove("is-visible");
       delete gameAction.dataset.game;
       gamePlayButton.removeAttribute("aria-label");
+      if (status) status.textContent = "";
       return;
     }
 
@@ -29,9 +33,10 @@
     gameAction.dataset.game = choice.value;
     gamePlayButton.setAttribute("aria-label", `${choice.value} is coming soon`);
     gameAction.classList.add("is-visible");
+    if (status) status.textContent = `${choice.value} is coming soon.`;
 
     // Starts the fade from below again whenever a game is clicked.
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (Element.prototype.animate && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       buttonAnimation = gameAction.querySelector(".game-button-entry").animate(
         [{ opacity: 0, transform: "translateY(12px)" }, { opacity: 1, transform: "translateY(0)" }],
         { duration: 350, easing: "ease-out" }

@@ -1,60 +1,57 @@
-<!doctype html>
-<!-- Sets the page language to English. -->
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Allows special letters and symbols to display correctly. -->
-    <meta charset="UTF-8" />
-    <!-- Uses a dark background while the stylesheet is loading. -->
-    <meta name="color-scheme" content="dark" />
-    <!-- Helps the page fit phone and tablet screens. -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Short description of the page. -->
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark light">
+    <!-- Set the theme before loading CSS. -->
+    <script src="js/theme.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta
       name="description"
       content="A selection of school, web-development, and personal projects."
-    />
-    <!-- Loads page content without restarting the navbar or background. -->
-    <script src="js/page-transition.js"></script>
-    <!-- Connects the page to the CSS file. -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Shows my logo in the browser tab. -->
+    >
+    <script src="js/page-transition.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.svg" type="image/svg+xml" sizes="any">
-    <!-- Shows the navbar line after scrolling starts. -->
     <script src="js/navbar.js" defer></script>
-    <!-- Adds the moving stars behind this page. -->
     <script src="js/background.js" defer></script>
-    <!-- Adds the occasional ASCII flying saucer. -->
     <script src="js/ufo.js" defer></script>
-    <!-- Keeps the game selector ready when its page is opened. -->
     <script src="js/game-selector.js" defer></script>
-    <!-- Name shown on the browser tab. -->
-    <title>Projects | My Portfolio</title>
+    <title>Projects | Alexander Mankvard</title>
   </head>
 
   <body>
-    <!-- The stars stay behind the page and cannot be clicked or selected. -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- Dark-mode background -->
     <div class="background" aria-hidden="true">
       <div id="ascii-stars"></div>
     </div>
 
-    <!-- Top navigation bar used on every page. -->
+    <!-- Shared navbar -->
     <header class="top-navbar">
-      <!-- Portfolio name that links back to the Home page. -->
       <a class="portfolio-name" href="index.html">Portfolio</a>
 
-      <!-- Navigation items for the four pages. -->
       <nav aria-label="Main navigation">
         <a href="index.html"><span>Home</span></a>
-        <!-- Shows that Projects is the page currently open. -->
-        <a aria-current="page"><span>Projects</span></a>
+        <a href="projects.html" aria-current="page"><span>Projects</span></a>
         <a class="cv-link" href="cv.html"><span>CV</span></a>
         <a href="about-me.html"><span>About Me</span></a>
       </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode" hidden>
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2 M4.93 4.93l1.42 1.42 M17.65 17.65l1.42 1.42 M4.93 19.07l1.42-1.42 M17.65 6.35l1.42-1.42"></path>
+        </svg>
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+      </button>
     </header>
 
-    <!-- Main part of the Projects page. -->
-    <main id="main-content" class="content">
-      <!-- Page heading and short introduction. -->
+    <main id="main-content" class="content" tabindex="-1">
       <header class="page-heading">
         <h1>Projects</h1>
         <p>
@@ -63,17 +60,12 @@
         </p>
       </header>
 
-      <!-- Shows each project on its own row. -->
+      <!-- One article per project -->
       <section class="project-boxes" aria-label="Project collection">
-        <!-- How I made and improved this portfolio website. -->
         <article id="portfolio-website" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/portfolio-website.svg"
-            alt="Drawing of this portfolio's navigation, heading, skills, and projects"
-            width="662"
-            height="410"
-          />
+          <svg class="project-preview" viewBox="0 0 662 410" width="662" height="410" role="img" aria-label="Drawing of this portfolio's navigation, heading, skills, and projects">
+            <use href="images/project-previews.svg#portfolio-website"></use>
+          </svg>
           <div class="project-details">
             <p class="project-number">Project #01</p>
             <h2>Portfolio Website</h2>
@@ -81,7 +73,7 @@
               How my first web pages grew into this responsive CV and project
               portfolio.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
@@ -89,237 +81,160 @@
               <li class="skill-vscode">VS Code</li>
               <li class="skill-illustrator">Illustrator</li>
             </ul>
-            <a class="button project-button" href="portfolio-website.html"
+            <a class="button project-button" href="portfolio-website.html" aria-label="View project: Portfolio Website"
               >View project →</a
             >
           </div>
         </article>
 
-        <!-- WEB1 forms project. -->
-        <article id="forms-project" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/forms-project.svg"
-            alt="Abstract preview of a web form"
-            width="616"
-            height="386"
-          />
+        <!-- WEB1 game previews -->
+        <article id="browser-game" class="project-box blurred-box">
+          <svg class="project-preview" viewBox="0 0 666 396" width="666" height="396" role="img" aria-label="Arcade-style previews of Pong, Space Defender, and Snake">
+            <use href="images/project-previews.svg#browser-game"></use>
+          </svg>
           <div class="project-details">
             <p class="project-number">Project #02</p>
-            <h2>Forms Project</h2>
-            <p>
-              A planned WEB1 project to practise form layout, labelled fields,
-              and input checks.
-            </p>
-            <ul class="project-skill-list" aria-label="Planned technologies">
-              <li class="skill-html">HTML</li>
-              <li class="skill-css">CSS</li>
-            </ul>
-            <a class="button project-button" href="forms-project.html"
-              >View project →</a
-            >
-          </div>
-        </article>
-
-        <!--  WEB1 browser game. -->
-        <article id="browser-game" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/browser-game.svg"
-            alt="Arcade-style previews of Pong, Space Defender, and Snake"
-            width="666"
-            height="396"
-          />
-          <div class="project-details">
-            <p class="project-number">Project #03</p>
             <h2>Browser Game</h2>
             <p>
               A planned WEB1 collection of Pong, Space Defender, and Snake games
               built with JavaScript.
             </p>
-            <ul class="project-skill-list" aria-label="Planned technologies">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
             </ul>
-            <a class="button project-button" href="browser-game.html"
+            <a class="button project-button" href="browser-game.html" aria-label="View project: Browser Games"
               >View project →</a
             >
           </div>
         </article>
 
-        <!-- Pokémon Card Collector project box. -->
         <article id="pokemon-card-collector" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/project-six.svg"
-            alt="Abstract preview of a Pokémon card collection application"
-            width="636"
-            height="378"
-          />
+          <svg class="project-preview" viewBox="0 0 636 378" width="636" height="378" role="img" aria-label="Abstract preview of a Pokémon card collection application">
+            <use href="images/project-previews.svg#project-six"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #04</p>
+            <p class="project-number">Project #03</p>
             <h2>Pokémon Card Collector</h2>
             <p>
               A first-year school project for registering, searching, and
               organising Pokémon cards in a personal collection.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-java">Java</li>
               <li class="skill-git">Git</li>
               <li class="skill-intellij">IntelliJ IDEA</li>
             </ul>
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
 
-        <!-- Home Server Dashboard project box. -->
         <article id="home-server" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/project-three.svg"
-            alt="Abstract preview of a home server dashboard"
-            width="658"
-            height="348"
-          />
+          <svg class="project-preview" viewBox="0 0 658 348" width="658" height="348" role="img" aria-label="Abstract preview of a home server dashboard">
+            <use href="images/project-previews.svg#project-three"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #05</p>
+            <p class="project-number">Project #04</p>
             <h2>Home Server Dashboard</h2>
             <p>
               A responsive dashboard concept for viewing the status of
               self-hosted services, storage, and recent activity in one place.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
               <li class="skill-git">Git</li>
             </ul>
-            <!-- Keeps the button visible until there is a project page to open. -->
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
 
-        <!-- Weather Dashboard project box. -->
         <article id="weather-dashboard" class="project-box blurred-box">
-          <!-- Preview image for the project. -->
-          <img
-            draggable="false"
-            src="images/project-one.svg"
-            alt="Abstract preview of a weather dashboard"
-            width="606"
-            height="344"
-          />
-          <!-- Project name, description, skills, and future link button. -->
+          <svg class="project-preview" viewBox="0 0 606 344" width="606" height="344" role="img" aria-label="Abstract preview of a weather dashboard">
+            <use href="images/project-previews.svg#project-one"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #06</p>
+            <p class="project-number">Project #05</p>
             <h2>Weather Dashboard</h2>
             <p>
               A responsive dashboard that presents current conditions and a
               weekly forecast.
             </p>
-            <!-- Coloured labels for the skills used in the project. -->
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
             </ul>
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
 
-        <!-- Study Planner project box. -->
         <article id="study-planner" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/project-two.svg"
-            alt="Abstract preview of a study planner"
-            width="638"
-            height="366"
-          />
+          <svg class="project-preview" viewBox="0 0 638 366" width="638" height="366" role="img" aria-label="Abstract preview of a study planner">
+            <use href="images/project-previews.svg#project-two"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #07</p>
+            <p class="project-number">Project #06</p>
             <h2>Study Planner</h2>
             <p>
               A weekly planning interface for organising assignments, deadlines,
               and study goals.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
             </ul>
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
 
-        <!-- Habit Tracker project box. -->
         <article id="habit-tracker" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/project-four.svg"
-            alt="Abstract preview of a habit tracker"
-            width="552"
-            height="322"
-          />
+          <svg class="project-preview" viewBox="0 0 552 322" width="552" height="322" role="img" aria-label="Abstract preview of a habit tracker">
+            <use href="images/project-previews.svg#project-four"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #08</p>
+            <p class="project-number">Project #07</p>
             <h2>Habit Tracker</h2>
             <p>
               A minimal tool that helps users record daily habits and review
               their progress.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
             </ul>
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
 
-        <!-- Photography Gallery project box. -->
         <article id="photography-gallery" class="project-box blurred-box">
-          <img
-            draggable="false"
-            src="images/project-five.svg"
-            alt="Abstract preview of a photography gallery"
-            width="670"
-            height="376"
-          />
+          <svg class="project-preview" viewBox="0 0 670 376" width="670" height="376" role="img" aria-label="Abstract preview of a photography gallery">
+            <use href="images/project-previews.svg#project-five"></use>
+          </svg>
           <div class="project-details">
-            <p class="project-number">Project #09</p>
+            <p class="project-number">Project #08</p>
             <h2>Photography Gallery</h2>
             <p>
               A responsive image collection with category filters and an
               uncluttered presentation.
             </p>
-            <ul class="project-skill-list" aria-label="Technologies used">
+            <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
               <li class="skill-javascript">JavaScript</li>
             </ul>
-            <a class="button project-button" aria-disabled="true"
-              >Coming soon</a
-            >
+            <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
       </section>
     </main>
 
-    <!-- Footer used on every page. -->
+    <!-- Shared footer -->
     <footer class="footer content top-divider">
-      <!-- Links to the main pages. -->
       <nav
         class="footer-navigation footer-links"
         aria-labelledby="footer-navigation-heading"
@@ -331,12 +246,10 @@
         <a href="about-me.html">About Me</a>
       </nav>
 
-      <!-- A few projects, with a link to the full list. -->
       <nav class="footer-projects" aria-labelledby="footer-projects-heading">
         <h2 id="footer-projects-heading">Projects</h2>
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
-          <a href="projects.html#forms-project">Forms Project</a>
           <a href="projects.html#browser-game">Browser Game</a>
           <a href="projects.html#pokemon-card-collector"
             >Pokémon Card Collector</a
@@ -345,12 +258,9 @@
         </div>
       </nav>
 
-      <!-- Links to my social media pages. -->
       <nav class="footer-socials" aria-labelledby="footer-socials-heading">
         <h2 id="footer-socials-heading">Socials</h2>
-        <!-- Holds the three social icons together. -->
         <div class="footer-social-links">
-          <!-- The social links open in a new tab. -->
           <a
             class="social-instagram"
             href="https://www.instagram.com/alex.b_m/"
@@ -358,14 +268,13 @@
             rel="noopener noreferrer"
             aria-label="Instagram"
           >
-            <!-- Instagram icon. The link already has the Instagram name. -->
             <img
               src="images/instagram-icon.svg"
               alt=""
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
           <a
             class="social-linkedin"
@@ -380,7 +289,7 @@
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
           <a
             class="social-github"
@@ -395,12 +304,11 @@
               width="16"
               height="16"
               draggable="false"
-            />
+            >
           </a>
         </div>
       </nav>
 
-      <!-- Copyright and email: on the left on wide screens, below the links on smaller screens. -->
       <div class="footer-info">
         <p>&copy; 2026 My Portfolio</p>
         <a href="mailto:alexander.mankvard@gmail.com"
