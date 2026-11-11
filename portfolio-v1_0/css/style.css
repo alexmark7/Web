@@ -1,6 +1,19 @@
 /* Loads the fonts used for the main text and larger headings. */
 @import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 
+/* Shared palette follows v1.1; v1.0 keeps its original navbar opacity. */
+:root {
+  --color-background: #000;
+  --color-text: rgb(255, 255, 255);
+  --color-text-muted: #d1d3d2;
+  --color-text-bright: #f1f2f2;
+  --color-navbar-background: rgba(0, 0, 0, 0.4);
+  --color-border: rgba(235, 235, 235, 0.36);
+  --color-border-strong: rgba(235, 235, 235, 0.5);
+  --color-surface: rgba(0, 0, 0, 0.18);
+  --color-surface-hover: rgba(42, 39, 32, 0.25);
+}
+
 /*  Background and Content */
 /* ----------------------------------------------------------------------------------------- */
 
@@ -15,14 +28,14 @@ html {
   scrollbar-width: thin;
 
   /* Grey moving part and black background for the scrollbar. */
-  scrollbar-color: #aaa99f #000;
+  scrollbar-color: #aaa99f var(--color-background);
 }
 
 /* Main colours, spacing and text style used on every page. */
 body {
   position: relative; /* Lets the background cover the full page. */
-  color: rgb(255, 255, 255);
-  background: #000;
+  color: var(--color-text);
+  background: var(--color-background);
   margin: 0px; /* Removes the browser's default gap around the page. */
   padding: 0px 10vw;
   cursor: default; /* Uses the normal arrow instead of the text cursor over page content. */
@@ -39,7 +52,7 @@ body {
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: #000;
+  background: var(--color-background);
 }
 
 /* Places the page content in front of the background. */
@@ -60,7 +73,7 @@ img {
 
 /* Gives normal paragraphs the grey text colour. */
 p {
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
 /* Links use the same colour as the text around them. */
@@ -91,8 +104,8 @@ a {
   grid-template-columns: 1fr auto 1fr; /* Same space on both sides keeps the links in the centre. */
   align-items: center; /* Centers everything from top to bottom. */
 
-  background: rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(235, 235, 235, 0.36);
+  background: var(--color-navbar-background);
+  border-bottom: 1px solid var(--color-border);
   -webkit-backdrop-filter: blur(8px); /* Support for older Safari browsers. */
   backdrop-filter: blur(8px);
 }
@@ -102,7 +115,7 @@ a {
   grid-column: 1; /* Puts Portfolio in the left column. */
   justify-self: start; /* Moves it to the left side of the column. */
 
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-weight: bold;
   text-decoration: none;
@@ -129,7 +142,7 @@ a {
   position: relative; /* Gives the underline a starting point. */
   white-space: nowrap; /* Keeps each link on one line. */
 
-  color: #d1d3d2;
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   font-weight: lighter;
@@ -141,7 +154,7 @@ a {
 /* Changes a page link when the mouse is over it. */
 .top-navbar nav a:hover,
 .top-navbar nav a:focus-visible {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
 }
 
 /* Lets the text grow without changing the line underneath it. */
@@ -157,7 +170,7 @@ a {
 
 /* Makes the link for the current page or section brighter. */
 .top-navbar nav a[aria-current] {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   cursor: pointer; /* Shows the normal link cursor. */
   user-select: none; /* Stops the link text being highlighted by accident. */
   -webkit-user-select: none; /* Support for older Safari versions. */
@@ -172,7 +185,7 @@ a {
 
   width: 100%; /* Makes the line the same width as the link. */
   height: 2px; /* Sets how thick the line is. */
-  background-color: #f1f2f2;
+  background-color: var(--color-text-bright);
   transform: translateX(-50%);
   animation: underline-grow 250ms ease-out both;
 }
@@ -229,7 +242,7 @@ main h1,
 /* Small capital-letter text used for role details and project numbers. */
 .role-line,
 .project-number {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.12em;
@@ -257,7 +270,7 @@ main h1,
 
 /* Shared divider */
 .top-divider {
-  border-top: 1px solid rgba(235, 235, 235, 0.36);
+  border-top: 1px solid var(--color-border);
 }
 
 /* Reset the default hr styles. */
@@ -274,7 +287,7 @@ hr.top-divider {
 .selected-project-box:focus-visible,
 .game-choice:focus-visible,
 .footer a:focus-visible {
-  outline: 2px solid #f1f2f2;
+  outline: 2px solid var(--color-text-bright);
   outline-offset: 4px;
 }
 
@@ -286,7 +299,7 @@ hr.top-divider {
 /* Softens the stars slightly behind boxes and buttons. */
 .blurred-box,
 .button {
-  background-color: rgba(0, 0, 0, 0.18);
+  background-color: var(--color-surface);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
 }
@@ -303,8 +316,8 @@ hr.top-divider {
 .button {
   display: inline-block;
   padding: 9px 14px;
-  border: 1px solid rgba(235, 235, 235, 0.5);
-  color: #f1f2f2;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
   text-decoration: none;
@@ -319,9 +332,9 @@ hr.top-divider {
 /* Fades the button colours when the mouse is over it or it is reached with Tab. */
 .button:hover,
 .button:focus-visible {
-  border-color: #f1f2f2;
-  background-color: #f1f2f2;
-  color: #000;
+  border-color: var(--color-text-bright);
+  background-color: var(--color-text-bright);
+  color: var(--color-background);
 }
 
 /* Adds space above sections used on more than one page. */
@@ -383,7 +396,7 @@ hr.top-divider {
 /* Uses a simple line to show each branch of the technology list. */
 .skill-group {
   padding-left: 20px;
-  border-left: 1px solid rgba(235, 235, 235, 0.36);
+  border-left: 1px solid var(--color-border);
 }
 
 .skill-group h3 {
@@ -417,7 +430,7 @@ hr.top-divider {
 .selected-project-box {
   display: block;
   padding: 26px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
   color: inherit;
   text-decoration: none;
   transition:
@@ -427,12 +440,12 @@ hr.top-divider {
 
 .selected-project-box:hover,
 .selected-project-box:focus-visible {
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
 .selected-project-box span {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
@@ -461,7 +474,7 @@ hr.top-divider {
   max-width: 340px;
   margin: 0px;
   justify-self: center;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Shows the full portrait without cutting off the face or shoulders. */
@@ -480,7 +493,7 @@ hr.top-divider {
 /* Adds space and a border around each About Me information box. */
 .information-box {
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Removes the extra paragraph space at the bottom of each information box. */
@@ -495,7 +508,7 @@ hr.top-divider {
   gap: 20px;
   max-width: 440px;
   padding: 26px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Keeps the email button on the left instead of stretching it across the box. */
@@ -511,7 +524,7 @@ hr.top-divider {
 /* Makes the email address easy to spot and lets it fit on narrow screens. */
 .contact-email {
   margin-top: 14px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
   overflow-wrap: anywhere;
@@ -532,7 +545,7 @@ hr.top-divider {
   gap: 40px;
   padding: 22px;
   margin-bottom: 55px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Keeps the headings inside the CV boxes small and consistent. */
@@ -610,7 +623,7 @@ hr.top-divider {
   position: sticky; /* Keeps this box visible while the CV is being scrolled. */
   top: 105px;
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Adds space between groups in the smaller CV box. */
@@ -627,7 +640,7 @@ hr.top-divider {
 /* Adds normal bullet spacing to lists in the smaller CV box. */
 .bullet-list {
   padding-left: 18px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
 /* Removes the extra space browsers add around the language list. */
@@ -645,7 +658,7 @@ hr.top-divider {
 /* Removes extra left space and makes the language level grey. */
 .language-list dd {
   margin: 0px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
 }
 
 /*  Coloured skill labels  */
@@ -666,9 +679,9 @@ hr.top-divider {
 .skill-list li,
 .project-skill-list li {
   padding: 4px 8px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
-  background-color: #000;
-  color: #d1d3d2;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.7rem;
 }
@@ -828,7 +841,7 @@ li.skill-adobe {
   flex-direction: row;
   min-width: 0px;
   overflow: hidden;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Keeps each project picture compact, with space between it and the box edges. */
@@ -848,7 +861,7 @@ li.skill-adobe {
   flex: 1;
   flex-direction: column;
   padding: 24px;
-  border-left: 1px solid rgba(235, 235, 235, 0.36);
+  border-left: 1px solid var(--color-border);
 }
 
 /* Adds space above and below the technology labels in a project box. */
@@ -911,7 +924,7 @@ li.skill-adobe {
   flex: 0 0 auto;
   max-width: 100%;
   padding: 10px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Gives the step and closing headings the same size and font. */
@@ -932,8 +945,8 @@ li.skill-adobe {
   overflow-wrap: anywhere;
   margin: 28px 0px 0px;
   padding: 20px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
-  color: #f1f2f2;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.8rem;
   line-height: 1.55;
@@ -984,7 +997,7 @@ li.skill-adobe {
   width: 100%;
   margin: 28px 0px 0px;
   padding: 12px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
 }
 
 /* Keeps smaller screenshots at their real size in the middle of the frame. */
@@ -1010,8 +1023,8 @@ li.skill-adobe {
 .website-picture-label {
   margin: -12px -12px 12px; /* Reaches the sides of the screenshot box. */
   padding: 12px;
-  border-bottom: 1px solid rgba(235, 235, 235, 0.36);
-  color: #f1f2f2;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
   text-align: center;
@@ -1054,9 +1067,9 @@ li.skill-adobe {
   width: 100%;
   min-width: 0px;
   padding: 22px;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
   border-radius: 0px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-family: "Chakra Petch", "IBM Plex Sans", Arial, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
@@ -1079,14 +1092,14 @@ li.skill-adobe {
 .game-choice:hover,
 .game-choice:focus-visible {
   transform: translateY(-4px);
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
 /* Highlights a game while its card has keyboard or mouse focus. */
 .game-choice:focus {
-  border-color: #f1f2f2;
-  background-color: rgba(42, 39, 32, 0.25);
+  border-color: var(--color-text-bright);
+  background-color: var(--color-surface-hover);
 }
 
 /* Centres the Coming soon button below the game cards. */
@@ -1149,7 +1162,7 @@ li.skill-adobe {
   align-items: start;
   justify-content: center; /* Keeps the footer columns together in the centre of the page. */
   padding: 30px 0px 36px;
-  color: #d1d3d2;
+  color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
 }
@@ -1168,7 +1181,7 @@ li.skill-adobe {
 .footer-projects h2,
 .footer-socials h2 {
   margin-bottom: 4px;
-  color: #f1f2f2;
+  color: var(--color-text-bright);
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1183,7 +1196,7 @@ li.skill-adobe {
 
 /* Gives the page and project links the same style. */
 .footer-links a {
-  color: #d1d3d2;
+  color: var(--color-text-muted);
   text-decoration: none;
   transition: color 200ms ease;
 }
@@ -1191,7 +1204,7 @@ li.skill-adobe {
 /* Lightens a footer link when the mouse or keyboard selects it. */
 .footer-links a:hover,
 .footer-links a:focus-visible {
-  color: #f1f2f2;
+  color: var(--color-text-bright);
 }
 
 /* Displays the projects as part of the same footer grid. */
@@ -1227,7 +1240,7 @@ li.skill-adobe {
   height: 30px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(235, 235, 235, 0.36);
+  border: 1px solid var(--color-border);
   transition: border-color 200ms ease;
 }
 
@@ -1249,7 +1262,7 @@ li.skill-adobe {
 
 .footer-socials a:hover,
 .footer-socials a:focus-visible {
-  border-color: #f1f2f2;
+  border-color: var(--color-text-bright);
 }
 
 /* Sets the size of the social icons. */
@@ -1337,7 +1350,7 @@ li.skill-adobe {
   }
 
   .project-details {
-    border-top: 1px solid rgba(235, 235, 235, 0.36);
+    border-top: 1px solid var(--color-border);
     border-left: 0px;
   }
 

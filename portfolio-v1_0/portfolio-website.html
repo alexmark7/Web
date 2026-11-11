@@ -255,6 +255,9 @@
             moved the personal introduction onto its own page. The pages share
             one style.css file, so the navbar, buttons, spacing, and footer stay
             consistent.
+            Shared theme colours use CSS custom properties in :root, following
+            the base palette names from version 1.1. Skill labels, code examples,
+            and social buttons keep their specific colours in their own rules.
           </p>
           <p>
             The active page has aria-current="page". It does not need a link to
@@ -724,17 +727,17 @@
             </div>
           </header>
           <p>
-            I kept the site inside the portfolio ver. 1.0 folder with my other school
+            I kept the site inside the portfolio-v1_0 folder with my other school
             work. The HTML pages, CSS, images, and PDF all use paths relative to
             that folder. A publishing workflow can upload it to GitHub Pages.
           </p>
           <p>This part of the workflow points Pages at that folder:</p>
           <pre
             class="website-code blurred-box"
-          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload portfolio ver. 1.0</span>
+          ><code>- <span class="code-property">name</span>: <span class="code-string">Upload portfolio-v1_0</span>
   <span class="code-property">uses</span>: <span class="code-value">actions/upload-pages-artifact@v4</span>
   <span class="code-property">with</span>:
-    <span class="code-property">path</span>: <span class="code-string">"./portfolio ver. 1.0"</span></code></pre>
+    <span class="code-property">path</span>: <span class="code-string">"./portfolio-v1_0"</span></code></pre>
         </section>
 
       </div>
