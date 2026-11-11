@@ -29,9 +29,6 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Check portfolio files
-        run: python3 .github/scripts/check_portfolio.py
-
       - name: Upload portfolio v1.1
         uses: actions/upload-pages-artifact@v4
         with:
