@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-labelledby="title description">
+  <title id="title">Profile image placeholder</title>
+  <desc id="description">A simple abstract silhouette on a dark green background.</desc>
+  <rect width="640" height="640" fill="#e9e4d8"/>
+  <circle cx="320" cy="238" r="112" fill="#111111"/>
+  <path d="M112 640c18-154 99-242 208-242s190 88 208 242H112z" fill="#111111"/>
+  <circle cx="520" cy="112" r="52" fill="none" stroke="#111111" stroke-width="3"/>
+</svg>

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <style>
+    symbol * { transition: var(--preview-transition, none); }
+  </style>
+  <symbol id="portfolio-website" viewBox="69 45 662 410">
+    <rect x="72" y="48" width="656" height="404" fill="var(--preview-panel, #050505)" stroke="var(--preview-muted, #77736b)" stroke-width="2"/>
+    <path d="M72 100h656" stroke="var(--preview-divider, #514e48)" stroke-width="2"/>
+    <text x="98" y="82" fill="var(--preview-foreground, #e9e4d8)" font-family="monospace" font-size="21" font-weight="bold">PORTFOLIO</text>
+    <g fill="var(--preview-muted, #aaa99f)" font-family="monospace" font-size="13">
+      <text x="420" y="80">HOME</text>
+      <text x="492" y="80">PROJECTS</text>
+      <text x="592" y="80">CV</text>
+      <text x="632" y="80">ABOUT</text>
+    </g>
+    <path d="M420 98h42" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="3"/>
+    <g fill="var(--preview-foreground, #e9e4d8)" font-family="Arial, sans-serif" font-size="33" font-weight="bold">
+      <text x="104" y="164">Software engineering,</text>
+      <text x="104" y="204">computer systems, and</text>
+      <text x="104" y="244">technical sales.</text>
+    </g>
+    <g fill="var(--preview-muted, #aaa99f)" font-family="Arial, sans-serif" font-size="15">
+      <text x="106" y="279">A portfolio built with HTML, CSS and JavaScript.</text>
+    </g>
+    <g fill="none" stroke-width="2">
+      <rect x="106" y="315" width="92" height="26" stroke="var(--preview-html-border, #e34f26)"/>
+      <rect x="210" y="315" width="74" height="26" stroke="var(--preview-css-border, #2965f1)"/>
+      <rect x="296" y="315" width="128" height="26" stroke="var(--preview-yellow, #f7df1e)"/>
+      <rect x="106" y="369" width="274" height="51" stroke="var(--preview-divider, #514e48)"/>
+      <rect x="394" y="369" width="274" height="51" stroke="var(--preview-divider, #514e48)"/>
+    </g>
+    <g font-family="monospace" font-size="13" font-weight="bold">
+      <text x="128" y="333" fill="var(--preview-html-text, #f06a43)">HTML</text>
+      <text x="232" y="333" fill="var(--preview-blue, #5d87ee)">CSS</text>
+      <text x="317" y="333" fill="var(--preview-yellow, #f7df1e)">JAVASCRIPT</text>
+      <text x="127" y="399" fill="var(--preview-foreground, #e9e4d8)">SELECTED PROJECTS</text>
+      <text x="415" y="399" fill="var(--preview-foreground, #e9e4d8)">EXPERIENCE</text>
+    </g>
+  </symbol>
+  <symbol id="browser-game" viewBox="67 52 666 396">
+    <rect x="70" y="55" width="660" height="390" rx="16" fill="var(--preview-panel, #101010)" stroke="var(--preview-muted, #aaa99f)" stroke-width="2"/>
+    <text x="400" y="95" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="22" letter-spacing="3" text-anchor="middle">BROWSER GAMES</text>
+    <use href="#pong-preview" x="93" y="119" width="192" height="292"/>
+    <use href="#space-defender-preview" x="304" y="119" width="192" height="292"/>
+    <use href="#snake-preview" x="515" y="119" width="192" height="292"/>
+  </symbol>
+  <symbol id="project-six" viewBox="82 61 636 378">
+    <g fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="3">
+      <rect x="105" y="75" width="210" height="350" rx="14" transform="rotate(-7 210 250)"/>
+      <rect x="295" y="75" width="210" height="350" rx="14"/>
+      <rect x="485" y="75" width="210" height="350" rx="14" transform="rotate(7 590 250)"/>
+    </g>
+    <circle cx="400" cy="225" r="88" fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="10"/>
+    <path d="M312 225h176" fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="10"/>
+    <circle cx="400" cy="225" r="28" fill="var(--preview-screen, #000000)" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="10"/>
+    <g stroke="var(--preview-muted, #aaa99f)" stroke-width="7">
+      <path d="M340 350h120"/>
+      <path d="M350 380h100"/>
+    </g>
+  </symbol>
+  <symbol id="project-three" viewBox="71 76 658 348">
+    <g fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="3">
+      <rect x="75" y="80" width="270" height="340" rx="10"/>
+      <rect x="110" y="125" width="200" height="62" rx="6"/>
+      <rect x="110" y="219" width="200" height="62" rx="6"/>
+      <rect x="110" y="313" width="200" height="62" rx="6"/>
+      <rect x="455" y="100" width="270" height="300" rx="10"/>
+    </g>
+    <g fill="var(--preview-foreground, #e9e4d8)">
+      <circle cx="282" cy="156" r="8"/>
+      <circle cx="282" cy="250" r="8"/>
+      <circle cx="282" cy="344" r="8"/>
+    </g>
+    <path d="M345 250h70c22 0 40-18 40-40" fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="6"/>
+    <g fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="7">
+      <path d="M500 320V225l58-42 55 38 67-75"/>
+      <path d="M500 350h180"/>
+    </g>
+  </symbol>
+  <symbol id="project-one" viewBox="97 81 606 344">
+    <circle cx="190" cy="190" r="72" fill="var(--preview-foreground, #e9e4d8)"/>
+    <g fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="2">
+      <rect x="330" y="84" width="370" height="108" rx="12"/>
+      <rect x="100" y="330" width="170" height="92" rx="12"/>
+      <rect x="315" y="330" width="170" height="92" rx="12"/>
+      <rect x="530" y="330" width="170" height="92" rx="12"/>
+    </g>
+    <g stroke="var(--preview-foreground, #e9e4d8)" stroke-width="5"><path d="M365 130h260M365 158h180"/></g>
+  </symbol>
+  <symbol id="project-two" viewBox="81 67 638 366">
+    <rect x="84" y="70" width="632" height="360" rx="18" fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="2"/>
+    <path d="M84 145h632M210 145v285M336 145v285M462 145v285M588 145v285" stroke="var(--preview-divider, #555555)" stroke-width="2"/>
+    <g fill="var(--preview-foreground, #e9e4d8)">
+      <rect x="108" y="178" width="78" height="54" rx="8"/>
+      <rect x="360" y="256" width="78" height="90" rx="8"/>
+      <rect x="612" y="180" width="78" height="120" rx="8"/>
+    </g>
+  </symbol>
+  <symbol id="project-four" viewBox="124 99 552 322">
+    <g fill="none" stroke="var(--preview-divider, #555555)" stroke-width="3">
+      <circle cx="170" cy="145" r="42"/><circle cx="285" cy="145" r="42"/><circle cx="400" cy="145" r="42"/><circle cx="515" cy="145" r="42"/><circle cx="630" cy="145" r="42"/>
+      <circle cx="170" cy="260" r="42"/><circle cx="285" cy="260" r="42"/><circle cx="400" cy="260" r="42"/><circle cx="515" cy="260" r="42"/><circle cx="630" cy="260" r="42"/>
+      <circle cx="170" cy="375" r="42"/><circle cx="285" cy="375" r="42"/><circle cx="400" cy="375" r="42"/><circle cx="515" cy="375" r="42"/><circle cx="630" cy="375" r="42"/>
+    </g>
+    <g fill="var(--preview-foreground, #e9e4d8)">
+      <circle cx="170" cy="145" r="31"/><circle cx="285" cy="145" r="31"/><circle cx="400" cy="145" r="31"/><circle cx="170" cy="260" r="31"/><circle cx="515" cy="260" r="31"/><circle cx="630" cy="375" r="31"/>
+    </g>
+  </symbol>
+  <symbol id="project-five" viewBox="65 62 670 376">
+    <g stroke="var(--preview-muted, #aaa99f)" stroke-width="2">
+      <rect x="70" y="65" width="290" height="165" fill="var(--preview-panel, #111111)"/>
+      <rect x="390" y="65" width="340" height="270" fill="var(--preview-panel, #1a1a1a)"/>
+      <rect x="70" y="260" width="290" height="175" fill="var(--preview-panel, #111111)"/>
+      <rect x="390" y="365" width="340" height="70" fill="var(--preview-panel, #1a1a1a)"/>
+    </g>
+    <circle cx="145" cy="118" r="25" fill="var(--preview-foreground, #e9e4d8)"/>
+    <path d="M70 206l88-74 66 54 48-35 88 55M70 412l82-95 60 55 55-42 93 82M390 305l95-112 74 62 55-91 116 141" fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="7"/>
+  </symbol>
+  <symbol id="pong-preview" viewBox="93 119 192 292">
+    <rect x="94" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+    <text x="189" y="154" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="18" text-anchor="middle">PONG</text>
+    <path d="M189 180v194" stroke="var(--preview-divider, #666666)" stroke-width="2" stroke-dasharray="9 10"/>
+    <rect x="115" y="224" width="9" height="62" fill="var(--preview-foreground, #e9e4d8)"/>
+    <rect x="254" y="271" width="9" height="62" fill="var(--preview-foreground, #e9e4d8)"/>
+    <circle cx="164" cy="260" r="7" fill="var(--preview-blue, #5d87ee)"/>
+    <path d="M143 260h11" stroke="var(--preview-blue, #5d87ee)" stroke-width="2" opacity="0.7"/>
+  </symbol>
+  <symbol id="space-defender-preview" viewBox="304 119 192 292">
+    <rect x="305" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+    <text x="400" y="148" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="16" text-anchor="middle">SPACE DEFENDER</text>
+    <g fill="var(--preview-orange, #f18a2a)">
+      <path d="M338 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+      <path d="M394 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+      <path d="M450 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+    </g>
+    <circle cx="337" cy="280" r="2" fill="var(--preview-muted, #aaa99f)"/>
+    <circle cx="470" cy="270" r="2" fill="var(--preview-muted, #aaa99f)"/>
+    <rect x="397" y="278" width="6" height="26" fill="var(--preview-foreground, #e9e4d8)"/>
+    <path d="M394 324h12v12h25v12h-62v-12h25z" fill="var(--preview-blue, #5d87ee)"/>
+    <path d="M335 374h130" stroke="var(--preview-divider, #666666)" stroke-width="2"/>
+  </symbol>
+  <symbol id="snake-preview" viewBox="515 119 192 292">
+    <rect x="516" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+    <text x="611" y="154" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="18" text-anchor="middle">SNAKE</text>
+    <circle cx="566" cy="206" r="11" fill="var(--preview-red, #e66c6c)"/>
+    <path d="M566 195v-8m0 3c5-5 10-4 13-3" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="3"/>
+    <path d="M552 349h76v-65h38" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter"/>
+    <rect x="658" y="275" width="19" height="19" fill="var(--preview-green, #77c98c)"/>
+    <circle cx="669" cy="281" r="2" fill="var(--preview-eye, #07150c)"/>
+  </symbol>
+</svg>

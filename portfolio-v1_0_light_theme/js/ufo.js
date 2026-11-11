@@ -1,0 +1,543 @@
+/* ASCII UFO flight and dragging */
+(() => {
+  "use strict";
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const ufo = document.createElement("div");
+  ufo.className = "ascii-ufo";
+  ufo.setAttribute("aria-hidden", "true");
+  const ufoDome = document.createElement("span");
+  const ufoLights = document.createElement("span");
+
+  // Separate spans let the lights fade back at different times.
+  const changingCharacters = [];
+  function addCharacters(part, count, gap) {
+    const characters = [];
+    for (let index = 0; index < count; index++) {
+      const character = document.createElement("span");
+      character.className = "ufo-changing";
+      part.append(character);
+      characters.push(character);
+      changingCharacters.push(character);
+      if (index < count - 1) part.append(document.createTextNode(gap));
+    }
+    return characters;
+  }
+
+  const domeCharacters = addCharacters(ufoDome, 2, "");
+  const lightCharacters = addCharacters(ufoLights, 5, "  ");
+  ufo.append(
+    document.createTextNode("          .----.\n       .-'  "),
+    ufoDome,
+    document.createTextNode("  '-.\n   ___/____________\\___\n  /  "),
+    ufoLights,
+    document.createTextNode("     \\\n <______________________>\n      \\____________/"),
+  );
+  document.body.append(ufo);
+
+  // Flight timing and speed.
+  const minimumWait = 20000;
+  const maximumWait = 35000;
+  const pixelsPerSecond = 75;
+  const firstEscapeSpeed = pixelsPerSecond * 3;
+  const recoveredLightsMultiplier = 1.35;
+  const timeForAnotherGrab = 6000;
+  let nextFlightTimer = 0;
+  let animationFrame = 0;
+  let lastDrawing = "";
+  let mode = "waiting";
+  let currentX = 0;
+  let currentY = 0;
+  let currentTilt = 0;
+  let pointerId = null;
+  let grabOffsetX = 0;
+  let grabOffsetY = 0;
+  let lastPointerTime = 0;
+  let velocityX = 0;
+  let velocityY = 0;
+  let currentFlight = null;
+  let flightProgress = 0;
+  // Keep getaway speed between page changes.
+  let getawaySpeed = pixelsPerSecond;
+  let keepFlyingUntil = 0;
+  let colourTimers = [];
+  let returningCharacters = 0;
+  let behindCopy = null;
+  let behindCharacters = [];
+  let layerTimer = 0;
+
+  function limit(value, maximum) {
+    return Math.max(-maximum, Math.min(maximum, value));
+  }
+
+  function farOutsideScreen(x, y) {
+    return x < -120 || x > window.innerWidth + 120
+      || y < -120 || y > window.innerHeight + 120;
+  }
+
+  // Keep return targets away from the edges.
+  function pointInsideScreen(point) {
+    const margin = Math.min(60, window.innerWidth / 4, window.innerHeight / 4);
+    return {
+      x: Math.max(margin, Math.min(window.innerWidth - margin, point.x)),
+      y: Math.max(margin, Math.min(window.innerHeight - margin, point.y)),
+    };
+  }
+
+  function placeUfo() {
+    const drawings = behindCopy ? [ufo, behindCopy] : [ufo];
+    drawings.forEach((drawing) => {
+      drawing.style.left = `${currentX}px`;
+      drawing.style.top = `${currentY}px`;
+      drawing.style.transform = `translate(-50%, -50%) rotate(${currentTilt}deg)`;
+    });
+  }
+
+  // Change the lights without rebuilding the saucer.
+  function drawUfo(now) {
+    const lightPosition = Math.floor(now / 450) % 5;
+    const dome = Math.floor(now / 1800) % 2 === 0 ? "oo" : "o.";
+    const drawing = `${lightPosition}-${dome}`;
+    if (drawing === lastDrawing) return;
+    lastDrawing = drawing;
+
+    domeCharacters.forEach((character, index) => {
+      character.textContent = dome[index];
+    });
+    lightCharacters.forEach((character, index) => {
+      character.textContent = index === lightPosition ? "*" : "o";
+    });
+    if (behindCopy) {
+      changingCharacters.forEach((character, index) => {
+        behindCharacters[index].textContent = character.textContent;
+      });
+    }
+  }
+
+  function animateHeldLights(now) {
+    if (mode !== "dragging") return;
+    drawUfo(now);
+    animationFrame = window.requestAnimationFrame(animateHeldLights);
+  }
+
+  drawUfo(0);
+
+  function randomBetween(minimum, maximum) {
+    return minimum + Math.random() * (maximum - minimum);
+  }
+
+  function clearColourTimers() {
+    colourTimers.forEach((timer) => window.clearTimeout(timer));
+    colourTimers = [];
+  }
+
+  function stopBehindFade() {
+    window.clearTimeout(layerTimer);
+    layerTimer = 0;
+    if (behindCopy) behindCopy.remove();
+    behindCopy = null;
+    behindCharacters = [];
+    ufo.style.transition = "";
+  }
+
+  // Crossfade two copies to avoid a jump when changing layers.
+  function fadeBehindPage() {
+    if (mode !== "settling" || behindCopy) return;
+    const visibleOpacity = ufo.style.opacity || "0.85";
+    const copy = ufo.cloneNode(true);
+    copy.classList.remove("is-active", "is-in-front", "is-grabbed");
+    copy.style.pointerEvents = "none";
+    copy.style.opacity = "0";
+    copy.style.transition = "opacity 500ms ease";
+    document.body.append(copy);
+    behindCopy = copy;
+    behindCharacters = Array.from(copy.querySelectorAll(".ufo-changing"));
+    ufo.style.transition = "opacity 500ms ease";
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (behindCopy !== copy || mode !== "settling") return;
+        ufo.style.opacity = "0";
+        copy.style.opacity = visibleOpacity;
+        layerTimer = window.setTimeout(() => {
+          if (behindCopy !== copy) return;
+          ufo.classList.remove("is-in-front");
+          ufo.style.transition = "";
+          ufo.style.opacity = visibleOpacity;
+          copy.remove();
+          behindCopy = null;
+          behindCharacters = [];
+          layerTimer = 0;
+        }, 550);
+      });
+    });
+  }
+
+  function resetColours() {
+    clearColourTimers();
+    stopBehindFade();
+    returningCharacters = 0;
+    ufo.classList.remove("is-grabbed", "is-in-front");
+    changingCharacters.forEach((character) => character.classList.remove("is-red"));
+  }
+
+  function fadeColours() {
+    returningCharacters = changingCharacters.length;
+    ufo.classList.remove("is-grabbed");
+    changingCharacters.forEach((character) => {
+      const timer = window.setTimeout(() => {
+        character.classList.remove("is-red");
+      }, randomBetween(600, 2000));
+      colourTimers.push(timer);
+    });
+  }
+
+  // Wait for all the red lights before moving behind the content.
+  changingCharacters.forEach((character) => {
+    character.addEventListener("transitionend", (event) => {
+      if (event.propertyName !== "color" || mode !== "settling"
+        || character.classList.contains("is-red") || returningCharacters === 0) return;
+      returningCharacters -= 1;
+      if (returningCharacters === 0) {
+        // Each completed recovery adds 35% to the current speed.
+        getawaySpeed *= recoveredLightsMultiplier;
+        // Leave time for another grab.
+        keepFlyingUntil = performance.now() + timeForAnotherGrab;
+        fadeBehindPage();
+      }
+    });
+  });
+
+  function planFlight() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const sideways = Math.random() < 0.5;
+    const fromStart = Math.random() < 0.5;
+    const length = sideways ? width : height;
+    const otherSide = sideways ? height : width;
+    const middle = randomBetween(0.4, 0.6) * otherSide;
+    const swing = randomBetween(0.17, 0.28) * otherSide * (Math.random() < 0.5 ? -1 : 1);
+
+    function point(along, across) {
+      const position = fromStart ? along : length - along;
+      return sideways ? { x: position, y: across } : { x: across, y: position };
+    }
+
+    // The third turn goes backwards before the UFO carries on and leaves.
+    const points = [
+      point(-100, middle),
+      point(length * randomBetween(0.2, 0.3), middle + swing),
+      point(length * randomBetween(0.64, 0.76), middle - swing),
+      point(length * randomBetween(0.32, 0.44), middle + swing * 0.55),
+      point(length * randomBetween(0.76, 0.87), middle - swing * 0.7),
+      point(length + 100, middle),
+    ];
+    let distance = 0;
+    for (let index = 1; index < points.length; index++) {
+      distance += Math.hypot(points[index].x - points[index - 1].x,
+        points[index].y - points[index - 1].y);
+    }
+
+    return { points, duration: Math.min(30000, Math.max(20000, distance / pixelsPerSecond * 1000)) };
+  }
+
+  // Catmull-Rom curve through the route points.
+  function pointOnFlight(flight, progress) {
+    const points = flight.points;
+    const place = Math.min(progress * (points.length - 1), points.length - 1);
+    const part = Math.min(Math.floor(place), points.length - 2);
+    const amount = place - part;
+    const before = points[Math.max(0, part - 1)];
+    const start = points[part];
+    const end = points[part + 1];
+    const after = points[Math.min(points.length - 1, part + 2)];
+
+    function curve(a, b, c, d) {
+      return 0.5 * (2 * b + (-a + c) * amount
+        + (2 * a - 5 * b + 4 * c - d) * amount * amount
+        + (-a + 3 * b - 3 * c + d) * amount * amount * amount);
+    }
+
+    return {
+      x: curve(before.x, start.x, end.x, after.x),
+      y: curve(before.y, start.y, end.y, after.y),
+    };
+  }
+
+  // Add another curved route while the lights recover or there is time to grab it.
+  function continueFlight() {
+    const nextFlight = planFlight();
+    const speed = Math.hypot(velocityX, velocityY) || 1;
+    const ahead = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    nextFlight.points[0] = { x: currentX, y: currentY };
+    nextFlight.points[1] = pointInsideScreen({
+      x: currentX + velocityX / speed * ahead,
+      y: currentY + velocityY / speed * ahead,
+    });
+    // Keep the planned exit, but add more turns before heading towards it.
+    nextFlight.points[nextFlight.points.length - 1] = currentFlight.points[currentFlight.points.length - 1];
+    currentFlight = nextFlight;
+    flightProgress = 0;
+  }
+
+  function scheduleFlight() {
+    window.clearTimeout(nextFlightTimer);
+    nextFlightTimer = 0;
+    if (document.documentElement.dataset.theme !== "dark"
+      || mode !== "waiting" || document.hidden || reducedMotion.matches) return;
+    nextFlightTimer = window.setTimeout(startFlight, randomBetween(minimumWait, maximumWait));
+  }
+
+  function finishAppearance() {
+    mode = "waiting";
+    animationFrame = 0;
+    currentFlight = null;
+    resetColours();
+    ufo.style.opacity = "0";
+    ufo.classList.remove("is-active");
+    scheduleFlight();
+  }
+
+  function startFlight() {
+    if (document.documentElement.dataset.theme !== "dark"
+      || mode !== "waiting" || document.hidden || reducedMotion.matches) return;
+    nextFlightTimer = 0;
+    mode = "flying";
+    keepFlyingUntil = 0;
+    ufo.classList.add("is-active");
+    const flight = planFlight();
+    currentFlight = flight;
+    flightProgress = 0;
+    let firstFrame;
+    let previousFrame;
+    currentTilt = 0;
+
+    function moveUfo(now) {
+      if (mode !== "flying") return;
+      if (firstFrame === undefined) firstFrame = now;
+      const progress = Math.min(1, (now - firstFrame) / flight.duration);
+      flightProgress = progress;
+      const remaining = 1 - progress;
+
+      // Look a little ahead to see which way the UFO is moving now.
+      const position = pointOnFlight(flight, progress);
+      const before = pointOnFlight(flight, Math.max(0, progress - 0.012));
+      const after = pointOnFlight(flight, Math.min(1, progress + 0.012));
+      const xDirection = after.x - before.x;
+      const yDirection = after.y - before.y;
+      const horizontal = Math.abs(xDirection);
+      const vertical = Math.abs(yDirection);
+      // Stay level during mostly vertical flight, and bank on sideways turns.
+      let bank = 0;
+      if (horizontal > vertical) {
+        bank = (horizontal - vertical) / (horizontal + vertical);
+      }
+      const targetTilt = limit(Math.atan2(yDirection, horizontal) * 180 / Math.PI * bank, 10);
+      // Ease towards the new tilt so a turn does not snap the saucer around.
+      if (previousFrame === undefined) currentTilt = targetTilt;
+      else {
+        const timePassed = Math.min(50, now - previousFrame);
+        currentTilt += (targetTilt - currentTilt) * (1 - Math.exp(-timePassed / 300));
+      }
+      previousFrame = now;
+      drawUfo(now);
+
+      currentX = position.x;
+      currentY = position.y;
+      placeUfo();
+      ufo.style.opacity = Math.min(0.85, progress * 5, remaining * 5).toFixed(2);
+
+      if (progress < 1) animationFrame = window.requestAnimationFrame(moveUfo);
+      else finishAppearance();
+    }
+
+    animationFrame = window.requestAnimationFrame(moveUfo);
+  }
+
+  document.addEventListener("pointerdown", (event) => {
+    if (document.documentElement.dataset.theme !== "dark") return;
+    if (mode !== "flying" && mode !== "settling") return;
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+
+    // The UFO is behind the page, so check where it is before starting a drag.
+    const bounds = ufo.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right
+      || event.clientY < bounds.top || event.clientY > bounds.bottom) return;
+    // Links, buttons, text, and boxes in front of it keep their normal behaviour.
+    if (event.target.closest(".top-navbar, .footer, .blurred-box, a, button, input, textarea, select, label, p, h1, h2, h3, img, figure, pre")) return;
+
+    event.preventDefault();
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+    mode = "dragging";
+    stopBehindFade();
+    clearColourTimers();
+    returningCharacters = 0;
+    ufo.classList.add("is-in-front", "is-grabbed");
+    changingCharacters.forEach((character) => character.classList.add("is-red"));
+    pointerId = event.pointerId;
+    ufo.setPointerCapture(pointerId);
+
+    // Keep the place where the cursor grabbed the UFO under the cursor.
+    grabOffsetX = event.clientX - currentX;
+    grabOffsetY = event.clientY - currentY;
+    lastPointerTime = event.timeStamp;
+    velocityX = 0;
+    velocityY = 0;
+    ufo.style.opacity = "0.85";
+    animationFrame = window.requestAnimationFrame(animateHeldLights);
+  });
+
+  ufo.addEventListener("pointermove", (event) => {
+    if (mode !== "dragging" || event.pointerId !== pointerId) return;
+    event.preventDefault();
+    const timePassed = Math.max(8, Math.min(50, event.timeStamp - lastPointerTime));
+    const nextX = event.clientX - grabOffsetX;
+    const nextY = event.clientY - grabOffsetY;
+    const mouseSpeedX = (nextX - currentX) / timePassed * 1000;
+    const mouseSpeedY = (nextY - currentY) / timePassed * 1000;
+    velocityX = limit(velocityX * 0.55 + mouseSpeedX * 0.45, 900);
+    velocityY = limit(velocityY * 0.55 + mouseSpeedY * 0.45, 900);
+    currentX = nextX;
+    currentY = nextY;
+    const targetTilt = limit(velocityX * 0.03 + velocityY * 0.012, 28);
+    currentTilt += (targetTilt - currentTilt) * 0.25;
+    placeUfo();
+    lastPointerTime = event.timeStamp;
+  });
+
+  function releaseUfo(event) {
+    if (mode !== "dragging" || event.pointerId !== pointerId) return;
+    event.preventDefault();
+    const releasedPointer = pointerId;
+    pointerId = null;
+    window.cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+    mode = "settling";
+    // The first grab makes it hurry away; another grab alone does not add speed.
+    getawaySpeed = Math.max(getawaySpeed, firstEscapeSpeed);
+    keepFlyingUntil = 0;
+    fadeColours();
+    if (ufo.hasPointerCapture(releasedPointer)) ufo.releasePointerCapture(releasedPointer);
+
+    // A pause before release takes the force out of the throw.
+    const pause = Math.max(0, event.timeStamp - lastPointerTime);
+    const remainingForce = Math.exp(-pause / 120);
+    velocityX *= remainingForce;
+    velocityY *= remainingForce;
+    let spin = limit(velocityX * 0.1 + velocityY * 0.05, 160);
+    const releaseSpeed = Math.hypot(velocityX, velocityY);
+    // An off-screen throw must come back into view before it can fly away.
+    let needsToReturn = currentX < 0 || currentX > window.innerWidth
+      || currentY < 0 || currentY > window.innerHeight;
+    if (releaseSpeed < 70) {
+      // With no throw, keep its old direction and build up getaway speed.
+      const before = pointOnFlight(currentFlight, Math.max(0, flightProgress - 0.01));
+      const after = pointOnFlight(currentFlight, Math.min(1, flightProgress + 0.01));
+      const directionX = after.x - before.x;
+      const directionY = after.y - before.y;
+      const distance = Math.hypot(directionX, directionY) || 1;
+      velocityX = directionX / distance * pixelsPerSecond;
+      velocityY = directionY / distance * pixelsPerSecond;
+    }
+    let previousFrame;
+
+    function swing(now) {
+      if (mode !== "settling") return;
+      if (previousFrame === undefined) previousFrame = now;
+      const seconds = Math.min(0.05, (now - previousFrame) / 1000);
+      previousFrame = now;
+
+      const keepFlying = returningCharacters > 0 || now < keepFlyingUntil;
+      const insideScreen = currentX >= 0 && currentX <= window.innerWidth
+        && currentY >= 0 && currentY <= window.innerHeight;
+      if ((keepFlying && !insideScreen)
+        || (farOutsideScreen(currentX, currentY) && flightProgress < 0.8)) needsToReturn = true;
+      if (insideScreen) needsToReturn = false;
+
+      // Extra turns leave time for repeated grabs without moving the UFO suddenly.
+      if (keepFlying && !needsToReturn && flightProgress >= 0.6) continueFlight();
+
+      // Look farther ahead at higher speeds so the route does not limit the getaway.
+      const speedRatio = getawaySpeed / firstEscapeSpeed;
+      const lookAhead = Math.min(0.2, 0.06 * Math.sqrt(speedRatio));
+      const targetProgress = Math.min(1, flightProgress + lookAhead);
+      let routePoint = pointOnFlight(currentFlight, targetProgress);
+      if (needsToReturn) routePoint = pointInsideScreen(routePoint);
+      const catchDistance = Math.min(380, 130 + getawaySpeed * 0.35);
+      if (!needsToReturn
+        && Math.hypot(routePoint.x - currentX, routePoint.y - currentY) < catchDistance) {
+        flightProgress = Math.min(1, flightProgress
+          + seconds * 1000 / currentFlight.duration * getawaySpeed / pixelsPerSecond);
+        routePoint = pointOnFlight(currentFlight, Math.min(1, flightProgress + lookAhead));
+      }
+      const distance = Math.hypot(routePoint.x - currentX, routePoint.y - currentY) || 1;
+      if (!keepFlying && !needsToReturn && flightProgress === 1 && distance < 45) {
+        finishAppearance();
+        return;
+      }
+      // Only slow near the final exit. Everywhere else, use the full stacked speed.
+      const cruiseSpeed = flightProgress === 1
+        ? Math.min(getawaySpeed, Math.max(pixelsPerSecond, distance * 4))
+        : getawaySpeed;
+      const cruiseX = (routePoint.x - currentX) / distance * cruiseSpeed;
+      const cruiseY = (routePoint.y - currentY) / distance * cruiseSpeed;
+      // Turn towards the changing target without suddenly changing direction.
+      const turningSpeed = 1.8 + Math.min(5, getawaySpeed / firstEscapeSpeed);
+      const slowdown = 1 - Math.exp(-turningSpeed * seconds);
+      velocityX += (cruiseX - velocityX) * slowdown;
+      velocityY += (cruiseY - velocityY) * slowdown;
+      currentX += velocityX * seconds;
+      currentY += velocityY * seconds;
+      spin += (-20 * currentTilt - 4 * spin) * seconds;
+      currentTilt += spin * seconds;
+      placeUfo();
+      drawUfo(now);
+      animationFrame = window.requestAnimationFrame(swing);
+    }
+
+    animationFrame = window.requestAnimationFrame(swing);
+  }
+
+  ufo.addEventListener("pointerup", releaseUfo);
+  ufo.addEventListener("pointercancel", releaseUfo);
+  ufo.addEventListener("lostpointercapture", releaseUfo);
+
+  function stopFlight() {
+    window.clearTimeout(nextFlightTimer);
+    window.cancelAnimationFrame(animationFrame);
+    nextFlightTimer = 0;
+    animationFrame = 0;
+    mode = "waiting";
+    currentFlight = null;
+    if (pointerId !== null && ufo.hasPointerCapture(pointerId)) {
+      ufo.releasePointerCapture(pointerId);
+    }
+    pointerId = null;
+    resetColours();
+    ufo.style.opacity = "0";
+    ufo.classList.remove("is-active");
+  }
+
+  // Start a new countdown instead of resuming a hidden flight.
+  document.addEventListener("portfolio-theme-change", () => {
+    stopFlight();
+    scheduleFlight();
+  });
+  document.addEventListener("visibilitychange", () => {
+    stopFlight();
+    scheduleFlight();
+  });
+  reducedMotion.addEventListener("change", () => {
+    stopFlight();
+    scheduleFlight();
+  });
+  window.addEventListener("resize", () => {
+    stopFlight();
+    scheduleFlight();
+  }, { passive: true });
+  window.addEventListener("pagehide", stopFlight);
+  window.addEventListener("pageshow", scheduleFlight);
+
+  scheduleFlight();
+})();
