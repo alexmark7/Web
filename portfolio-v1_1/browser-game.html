@@ -58,22 +58,46 @@
       <section class="game-section" aria-label="Choose a game">
         <div class="game-choices">
           <button class="game-choice blurred-box" type="button" value="Pong" aria-pressed="false">
-            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
-              <use href="images/project-previews.svg#pong-preview"></use>
+            <!-- Inline artwork also works when opening this page directly from disk. -->
+            <svg class="project-preview" viewBox="93 119 192 292" width="192" height="292" aria-hidden="true">
+              <rect x="94" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+              <text x="189" y="154" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="18" text-anchor="middle">PONG</text>
+              <path d="M189 180v194" stroke="var(--preview-divider, #666666)" stroke-width="2" stroke-dasharray="9 10"/>
+              <rect x="115" y="224" width="9" height="62" fill="var(--preview-foreground, #e9e4d8)"/>
+              <rect x="254" y="271" width="9" height="62" fill="var(--preview-foreground, #e9e4d8)"/>
+              <circle cx="164" cy="260" r="7" fill="var(--preview-blue, #5d87ee)"/>
+              <path d="M143 260h11" stroke="var(--preview-blue, #5d87ee)" stroke-width="2" opacity="0.7"/>
             </svg>
             <span>Pong</span>
           </button>
 
           <button class="game-choice blurred-box" type="button" value="Space Defender" aria-pressed="false">
-            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
-              <use href="images/project-previews.svg#space-defender-preview"></use>
+            <svg class="project-preview" viewBox="304 119 192 292" width="192" height="292" aria-hidden="true">
+              <rect x="305" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+              <text x="400" y="148" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="16" text-anchor="middle">SPACE DEFENDER</text>
+              <g fill="var(--preview-orange, #f18a2a)">
+                <path d="M338 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+                <path d="M394 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+                <path d="M450 205h8v-8h8v8h8v-8h8v8h8v17h-8v8h-8v-8h-8v8h-8v-8h-8z"/>
+              </g>
+              <circle cx="337" cy="280" r="2" fill="var(--preview-muted, #aaa99f)"/>
+              <circle cx="470" cy="270" r="2" fill="var(--preview-muted, #aaa99f)"/>
+              <rect x="397" y="278" width="6" height="26" fill="var(--preview-foreground, #e9e4d8)"/>
+              <path d="M394 324h12v12h25v12h-62v-12h25z" fill="var(--preview-blue, #5d87ee)"/>
+              <path d="M335 374h130" stroke="var(--preview-divider, #666666)" stroke-width="2"/>
             </svg>
             <span>Space Defender</span>
           </button>
 
           <button class="game-choice blurred-box" type="button" value="Snake" aria-pressed="false">
-            <svg class="project-preview" viewBox="0 0 192 292" width="192" height="292" aria-hidden="true">
-              <use href="images/project-previews.svg#snake-preview"></use>
+            <svg class="project-preview" viewBox="515 119 192 292" width="192" height="292" aria-hidden="true">
+              <rect x="516" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
+              <text x="611" y="154" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="18" text-anchor="middle">SNAKE</text>
+              <circle cx="566" cy="206" r="11" fill="var(--preview-red, #e66c6c)"/>
+              <path d="M566 195v-8m0 3c5-5 10-4 13-3" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="3"/>
+              <path d="M552 349h76v-65h38" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter"/>
+              <rect x="658" y="275" width="19" height="19" fill="var(--preview-green, #77c98c)"/>
+              <circle cx="669" cy="281" r="2" fill="var(--preview-eye, #07150c)"/>
             </svg>
             <span>Snake</span>
           </button>

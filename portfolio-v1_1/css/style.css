@@ -13,15 +13,15 @@
 
 /* Light mode colours */
 :root[data-theme="light"] {
-  --color-background: #fff;
-  --color-text: #202020;
-  --color-text-muted: #333;
-  --color-text-bright: #101010;
-  --color-navbar-background: rgba(255, 255, 255, 0.65);
+  --color-background: #faf8f3;
+  --color-text: #070a08;
+  --color-text-muted: #101512;
+  --color-text-bright: #000;
+  --color-navbar-background: rgba(250, 248, 243, 0.82);
   --color-border: rgba(32, 32, 32, 0.19);
   --color-border-strong: rgba(32, 32, 32, 0.38);
-  --color-surface: #fff;
-  --color-surface-hover: #f1f1f1;
+  --color-surface: rgba(255, 255, 255, 0.34);
+  --color-surface-hover: rgba(255, 255, 255, 0.42);
 }
 
 /* Background and layout */
@@ -57,12 +57,550 @@ body {
 
 /* The background follows the document, not just the viewport. */
 .background {
+  --mountain-width: clamp(640px, 88vw, 1200px);
+  --sun-size: clamp(200px, 36vw, 456px);
+  --cloud-clearance: 96px;
+  --sun-top: max(calc(var(--cloud-clearance) + 16px), 10vh);
+  --sun-sway: clamp(1.5px, 0.28vw, 4px);
+  --sun-sway-duration: 10s;
   position: absolute;
   inset: 0px;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background: var(--color-background);
+}
+
+/* A silver moon in the open night sky, above the distant stars. */
+.night-moon {
+  --moon-size: clamp(98px, 12.4vw, 182px);
+  --moon-top: calc(var(--cloud-clearance) + 66px);
+  position: fixed;
+  z-index: 2;
+  top: var(--moon-top);
+  right: calc(25% - var(--moon-size) * 0.5);
+  width: var(--moon-size);
+  height: var(--moon-size);
+  pointer-events: none;
+  transform: translate3d(0, calc(-1 * var(--moon-rise, 0px)), 0);
+}
+
+.night-moon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 10px rgb(204 221 237 / var(--moon-glow, 0.15)));
+}
+
+html[data-theme="light"] .night-moon {
+  display: none;
+}
+
+/* The sun and clouds layer above the richly painted ink-wash ridges. */
+.background::before {
+  content: "";
+  display: none;
+  position: fixed;
+  z-index: 0;
+  left: -8vw;
+  bottom: -8vh;
+  width: var(--mountain-width);
+  aspect-ratio: 3 / 2;
+  --mountain-paint: url("../images/watercolor-mountains-extended.webp");
+  /* Build up the pigment while retaining the painting's feathered edges. */
+  background:
+    var(--mountain-paint) center / contain no-repeat,
+    var(--mountain-paint) center / contain no-repeat,
+    var(--mountain-paint) center / contain no-repeat;
+  opacity: 1;
+  transform: translate3d(0, calc(-1 * var(--mountain-rise, 0px)), 0);
+}
+
+/* The stream leaves the mountain basin and flows horizontally off the right edge. */
+.watercolor-river {
+  --river-drop: clamp(38px, 4vw, 64px);
+  --river-width: clamp(800px, 112vw, 2200px);
+  --river-height: calc(var(--mountain-width) * 0.15);
+  display: none;
+  position: fixed;
+  z-index: 0;
+  left: 12vw;
+  /* Keep the shallow, distant stream centred at the mountain's basin. */
+  bottom: calc(8vh - var(--river-drop) + var(--river-width) / 12 - var(--river-height) / 2);
+  width: var(--river-width);
+  height: var(--river-height);
+  /* Foreshorten the water into the distance; details keep their own proportions. */
+  background: url("../images/watercolor-river.webp") center / 100% 100% no-repeat;
+  -webkit-mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 0.35) 8%, #000 24%);
+  mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 0.35) 8%, #000 24%);
+  opacity: 0.82;
+  pointer-events: none;
+  transform: translate3d(0, calc(-1 * var(--mountain-rise, 0px)), 0);
+}
+
+.river-hamlet {
+  position: absolute;
+  z-index: 2;
+  width: clamp(18px, 2.1vw, 32px);
+  aspect-ratio: 1;
+  background: url("../images/watercolor-river-hamlets.webp") 0 0 / 300% 100% no-repeat;
+  transform: translate(-50%, -76%);
+  opacity: 0.86;
+}
+
+.river-hamlet--2 { background-position: 50% 0; }
+.river-hamlet--3 { background-position: 100% 0; }
+
+.river-trees {
+  position: absolute;
+  z-index: 2;
+  width: calc(clamp(20px, 2.2vw, 34px) * var(--grove-size));
+  aspect-ratio: 1;
+  background: url("../images/watercolor-river-trees.webp") 0 0 / 300% 100% no-repeat;
+  transform: translate(-50%, -80%);
+  opacity: 0.88;
+}
+
+.river-trees--2 { background-position: 50% 0; }
+.river-trees--3 { background-position: 100% 0; }
+
+/* Blue pigment bleeds around the banks, matching the colour of the water. */
+.river-pigment {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.11;
+  transform: translate(-50%, -50%) rotate(var(--pigment-rotation));
+  filter: brightness(0) invert(48%) sepia(17%) saturate(1133%) hue-rotate(160deg) blur(0.6px);
+}
+
+.river-pigment--stroke {
+  aspect-ratio: 3 / 1;
+  background: url("../images/watercolor-ink-stroke.webp") center / contain no-repeat;
+}
+
+.river-pigment--splotch {
+  aspect-ratio: 1;
+  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
+  opacity: 0.075;
+}
+
+/* Original watercolor pigment keeps the sun's edge and colour gently uneven. */
+.background::after {
+  content: "";
+  display: none;
+  position: fixed;
+  z-index: 2;
+  left: 75%;
+  top: var(--sun-top);
+  width: var(--sun-size);
+  height: var(--sun-size);
+  transform: translate3d(-50%, calc(-1 * var(--mountain-rise, 0px)), 0);
+  background: url("../images/watercolor-sun.webp") center / contain no-repeat;
+  opacity: 0.96;
+}
+
+/* A pale painted veil crosses the upper sun and follows the same scenery. */
+.sun-mist {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 75%;
+  top: calc(var(--sun-top) + var(--sun-size) * 0.2);
+  width: calc(var(--sun-size) * 1.8);
+  height: calc(var(--sun-size) * 0.3);
+  background: url("../images/watercolor-cloud-06.webp") center / 100% 100% no-repeat;
+  filter: grayscale(1) brightness(1.65) blur(3px);
+  opacity: 0.5;
+  pointer-events: none;
+  transform: translate3d(-50%, calc(-1 * var(--mountain-rise, 0px)), 0);
+}
+
+.watercolor-clouds {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* The middle cloud sits between the mountains and sun. */
+.watercolor-clouds--behind {
+  z-index: 1;
+}
+
+/* Small flocks of hand-drawn wing strokes sit quietly in the distant sky. */
+.distant-birds {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 54%;
+  top: 32vh;
+  width: clamp(160px, 20vw, 260px);
+  aspect-ratio: 12 / 5;
+  background: url("../images/distant-birds.svg") center / contain no-repeat;
+  opacity: 0.62;
+  pointer-events: none;
+}
+
+.distant-birds--top-right {
+  left: 78%;
+  top: max(calc(var(--cloud-clearance) + 12px), 16vh);
+  width: clamp(120px, 14vw, 200px);
+  transform: rotate(-7deg);
+}
+
+.distant-birds--middle-left {
+  /* Let the mountain painting obscure the birds along its skyline. */
+  z-index: -1;
+  left: 8%;
+  top: 47vh;
+  width: clamp(130px, 16vw, 220px);
+  transform: scaleX(-1) rotate(7deg);
+}
+
+/* Paper ink and pigment washes stay pinned beneath the scenery while content scrolls. */
+.watercolor-ink {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 18% 24%, rgba(76, 126, 146, 0.1), transparent 42%),
+    radial-gradient(ellipse at 78% 48%, rgba(193, 107, 79, 0.05), transparent 43%),
+    radial-gradient(ellipse at 42% 88%, rgba(108, 140, 100, 0.075), transparent 40%);
+}
+
+.ink-mark {
+  position: absolute;
+  left: var(--ink-left);
+  width: var(--ink-size);
+  opacity: var(--ink-opacity);
+  transform: translate(-50%, -50%) rotate(var(--ink-rotation)) scaleX(var(--ink-flip));
+}
+
+.ink-splotch {
+  aspect-ratio: 1;
+  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
+}
+
+.ink-splotch--top-left {
+  margin-left: clamp(-100px, -6vw, -22px);
+  margin-top: clamp(48px, 7vh, 72px);
+}
+
+.ink-stroke {
+  aspect-ratio: 3 / 1;
+  background: url("../images/watercolor-ink-stroke.webp") center / contain no-repeat;
+}
+
+.ink-wash {
+  aspect-ratio: 1;
+  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
+  filter: blur(2px) sepia(0.2);
+}
+
+/* A still sakura tree is anchored to the paper, with its roots below the crop. */
+.watercolor-cherry-tree {
+  --tree-size: clamp(220px, 28vw, 420px);
+  display: none;
+  position: absolute;
+  z-index: 5;
+  right: calc(var(--tree-size) * 0.4);
+  bottom: calc(var(--tree-size) * -0.24);
+  width: var(--tree-size);
+  aspect-ratio: 1;
+  background: url("../images/watercolor-cherry-tree.webp") center / contain no-repeat;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+/* Eight clouds fill the sky independently of the rising sun. */
+.watercolor-cloud {
+  position: absolute;
+  top: max(var(--cloud-clearance), var(--cloud-top));
+  left: var(--cloud-left);
+  width: clamp(180px, var(--cloud-width), 620px);
+  aspect-ratio: 3 / 1;
+  background: var(--cloud-image) center / contain no-repeat;
+  opacity: var(--cloud-opacity);
+  transform: translate3d(-12%, 0, 0);
+}
+
+.watercolor-cloud--01 {
+  --cloud-image: url("../images/watercolor-cloud.webp");
+  --cloud-left: 72%;
+  --cloud-top: 54%;
+  --cloud-width: 38vw;
+  --cloud-opacity: 0.86;
+  --cloud-duration: 48s;
+  --cloud-delay: -17s;
+}
+
+.watercolor-cloud--02 {
+  --cloud-image: url("../images/watercolor-cloud-02.webp");
+  --cloud-left: -9%;
+  --cloud-top: 10%;
+  --cloud-width: 34vw;
+  --cloud-opacity: 0.60;
+  --cloud-duration: 60s;
+  --cloud-delay: -22.5s;
+}
+
+.watercolor-cloud--03 {
+  --cloud-image: url("../images/watercolor-cloud-03.webp");
+  --cloud-left: 58%;
+  --cloud-top: 8%;
+  --cloud-width: 31vw;
+  --cloud-opacity: 0.82;
+  --cloud-duration: 72s;
+  --cloud-delay: -35s;
+}
+
+.watercolor-cloud--04 {
+  --cloud-image: url("../images/watercolor-cloud-04.webp");
+  --cloud-left: 8%;
+  --cloud-top: 24%;
+  --cloud-width: 28vw;
+  --cloud-opacity: 0.56;
+  --cloud-duration: 52s;
+  --cloud-delay: -8s;
+}
+
+.watercolor-cloud--05 {
+  --cloud-image: url("../images/watercolor-cloud-05.webp");
+  --cloud-left: 43%;
+  --cloud-top: 36%;
+  --cloud-width: 38vw;
+  --cloud-opacity: 0.62;
+  --cloud-duration: 66s;
+  --cloud-delay: -30s;
+}
+
+.watercolor-cloud--06 {
+  --cloud-image: url("../images/watercolor-cloud-06.webp");
+  --cloud-left: 29%;
+  --cloud-top: 12%;
+  --cloud-width: 42vw;
+  --cloud-opacity: 0.60;
+  --cloud-duration: 80s;
+  --cloud-delay: -45s;
+}
+
+.watercolor-cloud--07 {
+  --cloud-image: url("../images/watercolor-cloud-07.webp");
+  --cloud-left: 24%;
+  --cloud-top: 30%;
+  --cloud-width: 30vw;
+  --cloud-opacity: 0.64;
+  --cloud-duration: 58s;
+  --cloud-delay: -14.5s;
+}
+
+.watercolor-cloud--08 {
+  --cloud-image: url("../images/watercolor-cloud-04.webp");
+  --cloud-left: 76%;
+  --cloud-top: 38%;
+  --cloud-width: 28vw;
+  --cloud-opacity: 0.76;
+  --cloud-duration: 54s;
+  --cloud-delay: -24s;
+  scale: -1 1;
+}
+
+html[data-theme="light"] .background::before,
+html[data-theme="light"] .background::after,
+html[data-theme="light"] .sun-mist,
+html[data-theme="light"] .watercolor-river {
+  display: block;
+  will-change: transform;
+}
+
+html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-cherry-tree, .distant-birds) {
+  display: block;
+}
+
+/* Independent horizontal motion keeps the sun gently swaying even when idle. */
+@media (prefers-reduced-motion: no-preference) {
+  html[data-theme="light"] .background::after {
+    animation: sun-sway var(--sun-sway-duration) ease-in-out infinite alternate;
+    will-change: transform, translate;
+  }
+}
+
+/* Let the browser keep the scenery attached to scrolling on its compositor thread. */
+@supports (animation-timeline: scroll()) and (animation-range: 0px 100px) {
+  @media (prefers-reduced-motion: no-preference) {
+    html:not([data-theme="light"]) .night-moon {
+      animation: moon-rise 1s linear both;
+      animation-timeline: scroll(root block);
+      /* Same gentle speed on short and long pages, until the glow leaves the sky. */
+      animation-range: 0px calc((var(--moon-top) + var(--moon-size) + 24px) / 0.12);
+    }
+
+    html[data-theme="light"] .background::after {
+      animation: sun-follow-scenery 1s linear both, sun-sway var(--sun-sway-duration) ease-in-out infinite alternate;
+      animation-timeline: scroll(root block), auto;
+      animation-range: normal, normal;
+    }
+
+    html[data-theme="light"] .sun-mist {
+      animation: sun-follow-scenery 1s linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    html[data-theme="light"] .background::before,
+    html[data-theme="light"] .watercolor-river {
+      animation: mountain-drift 1s linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes moon-rise {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, calc(-1 * (var(--moon-top) + var(--moon-size) + 24px)), 0); }
+}
+
+@keyframes sun-follow-scenery {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(-50%, -4vh, 0); }
+}
+
+@keyframes sun-sway {
+  from { translate: calc(-1 * var(--sun-sway)) 0; }
+  to { translate: var(--sun-sway) 0; }
+}
+
+@keyframes mountain-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, -4vh, 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-theme="light"]) .night-moon {
+    will-change: transform;
+  }
+
+  html[data-theme="light"] .watercolor-cloud {
+    animation: cloud-drift var(--cloud-duration) ease-in-out infinite alternate;
+    animation-delay: var(--cloud-delay);
+    will-change: transform;
+  }
+
+  html[data-theme="light"] :is(.watercolor-cloud--02, .watercolor-cloud--04, .watercolor-cloud--06) {
+    animation-direction: alternate-reverse;
+  }
+}
+
+@keyframes cloud-drift {
+  from { transform: translate3d(-12%, 0, 0); }
+  to { transform: translate3d(12%, 0, 0); }
+}
+
+/* Keep the left-hand scenery out of the narrow reading column. */
+@media (max-width: 600px) {
+  .background {
+    --mountain-width: 760px;
+  }
+
+  .night-moon {
+    right: calc(20% - var(--moon-size) * 0.5);
+  }
+
+  .background::before {
+    left: -150px;
+    bottom: -6vh;
+  }
+
+  .watercolor-river {
+    left: 10vw;
+    opacity: 0.72;
+  }
+
+  .watercolor-cloud {
+    width: clamp(150px, var(--cloud-width), 260px);
+    opacity: calc(var(--cloud-opacity) * 0.9);
+  }
+
+  .ink-splotch {
+    width: clamp(35px, calc(var(--ink-size) * 0.55), 85px);
+  }
+
+  .ink-stroke {
+    width: clamp(180px, calc(var(--ink-size) * 0.55), 300px);
+  }
+
+  .ink-wash {
+    width: clamp(160px, calc(var(--ink-size) * 0.55), 280px);
+  }
+
+  .ink-mark {
+    opacity: calc(var(--ink-opacity) * 0.8);
+  }
+
+  .watercolor-cherry-tree {
+    --tree-size: 200px;
+  }
+
+  .distant-birds {
+    left: 62%;
+    top: 40vh;
+    width: 120px;
+    opacity: 0.54;
+  }
+
+  .distant-birds--top-right {
+    left: 70%;
+    top: max(calc(var(--cloud-clearance) + 12px), 16vh);
+    width: 96px;
+  }
+
+  .distant-birds--middle-left {
+    left: 3%;
+    top: 46vh;
+    width: 100px;
+  }
+}
+
+/* A shallower mountain keeps open sky available on short landscape screens. */
+@media (max-height: 650px) {
+  .background {
+    --mountain-width: min(88vw, 100vh);
+  }
+
+  .background::before {
+    bottom: -12vh;
+    left: -8vw;
+  }
+
+  .watercolor-river {
+    --river-drop: 12px;
+    bottom: calc(-4vh - var(--river-drop) + var(--river-width) / 12 - var(--river-height) / 2);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-moon {
+    transform: translate3d(0, 0, 0);
+  }
+
+  html[data-theme="light"] .background::before,
+  html[data-theme="light"] .watercolor-river {
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
+  html[data-theme="light"] .background::after,
+  html[data-theme="light"] .sun-mist {
+    transform: translate3d(-50%, 0, 0);
+    translate: none;
+    will-change: auto;
+  }
+
 }
 
 /* Stars are added by background.js. */
@@ -207,7 +745,11 @@ a {
 
   background: var(--color-navbar-background);
   border-bottom: 1px solid transparent;
-  transition: border-bottom-color 450ms ease;
+  transition:
+    background-color 300ms ease,
+    -webkit-backdrop-filter 300ms ease,
+    backdrop-filter 300ms ease,
+    border-bottom-color 450ms ease;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
@@ -377,6 +919,13 @@ main h1,
   margin-bottom: 0px;
 }
 
+/* Keep text readable as the bright moon passes behind copy and glass panels. */
+@media screen {
+  html:not([data-theme="light"]) main :is(h1, h2, h3, h4, p, li, dt, dd, figcaption) {
+    text-shadow: 0 1px 2px #000, 0 0 6px #000, 0 0 12px rgb(0 0 0 / 0.85);
+  }
+}
+
 /* Shared divider */
 .top-divider {
   border-top: 1px solid var(--color-border);
@@ -403,12 +952,12 @@ hr.top-divider {
   font-size: 1.1rem;
 }
 
-/* A little blur behind dark-mode panels. */
+/* Frosted panels and buttons share the same blur in both themes. */
 .blurred-box,
 .button {
   background-color: var(--color-surface);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .button-group {
@@ -750,7 +1299,7 @@ hr.top-divider {
 .project-skill-list li {
   padding: 4px 8px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.7rem;
@@ -763,291 +1312,297 @@ hr.top-divider {
 /* Dark-mode badge colours */
 li.skill-html {
   border-color: #e34f26;
-  background-color: #170804;
+  background-color: #17080499;
   color: #f06a43;
 }
 
 li.skill-css {
   border-color: #2965f1;
-  background-color: #040a18;
+  background-color: #040a1899;
   color: #5d87ee;
 }
 
 li.skill-javascript {
   border-color: #f7df1e;
-  background-color: #141202;
+  background-color: #14120299;
   color: #f7df1e;
 }
 
 li.skill-java {
   border-color: #e76f00;
-  background-color: #170b00;
+  background-color: #170b0099;
   color: #f18a2a;
 }
 
 li.skill-git {
   border-color: #f05032;
-  background-color: #180805;
+  background-color: #18080599;
   color: #f06a50;
 }
 
 li.skill-linux {
   border-color: #fcc624;
-  background-color: #191404;
+  background-color: #19140499;
   color: #ffd95a;
 }
 
 li.skill-windows {
   border-color: #0078d4;
-  background-color: #000e19;
+  background-color: #000e1999;
   color: #46a9ee;
 }
 
 li.skill-networking {
   border-color: #00a99d;
-  background-color: #001413;
+  background-color: #00141399;
   color: #42d2c7;
 }
 
 li.skill-pc-hardware {
   border-color: #00b8f0;
-  background-color: #00161d;
+  background-color: #00161d99;
   color: #45d0f7;
 }
 
 li.skill-embedded-hardware {
   border-color: #398a5a;
-  background-color: #0a170e;
+  background-color: #0a170e99;
   color: #77c98c;
 }
 
 li.skill-vscode {
   border-color: #007acc;
-  background-color: #000f18;
+  background-color: #000f1899;
   color: #40aeea;
 }
 
 li.skill-intellij {
   border-color: #fe315d;
-  background-color: #190509;
+  background-color: #19050999;
   color: #ff6b89;
 }
 
 li.skill-jetbrains {
   border-color: #a855f7;
-  background-color: #140a1e;
+  background-color: #140a1e99;
   color: #c58af9;
 }
 
 li.skill-ai-tools {
   border-color: #c057f7;
-  background-color: #16081d;
+  background-color: #16081d99;
   color: #df9eff;
 }
 
 li.skill-local-ai-tools {
   border-color: #28c7b7;
-  background-color: #041b19;
+  background-color: #041b1999;
   color: #5ee3d5;
 }
 
 li.skill-excel {
   border-color: #217346;
-  background-color: #05100a;
+  background-color: #05100a99;
   color: #45a873;
 }
 
 li.skill-business-central {
   border-color: #7354a3;
-  background-color: #100c17;
+  background-color: #100c1799;
   color: #a387cd;
 }
 
 li.skill-superoffice {
   border-color: #dc3b3b;
-  background-color: #160606;
+  background-color: #16060699;
   color: #e66c6c;
 }
 
 li.skill-salesforce {
   border-color: #00a1e0;
-  background-color: #001016;
+  background-color: #00101699;
   color: #3bc3f7;
 }
 
 li.skill-sap {
   border-color: #0a6ed1;
-  background-color: #010b15;
+  background-color: #010b1599;
   color: #4b9ce8;
 }
 
 li.skill-photoshop {
   border-color: #31a8ff;
-  background-color: #05111a;
+  background-color: #05111a99;
   color: #65bdff;
 }
 
 li.skill-premiere {
   border-color: #9999ff;
-  background-color: #0f0f1a;
+  background-color: #0f0f1a99;
   color: #b6b6ff;
 }
 
 li.skill-illustrator {
   border-color: #ff9a00;
-  background-color: #1a0f00;
+  background-color: #1a0f0099;
   color: #ffb23e;
 }
 
 li.skill-adobe {
   border-color: #ed2224;
-  background-color: #180304;
+  background-color: #18030499;
   color: #f05b5d;
 }
 
-/* Skill label colours in light mode */
+/* Vivid glass badges keep their colour over the painted scenery. */
+html[data-theme="light"] :is(.skill-list, .project-skill-list) li {
+  background-color: var(--color-surface);
+  color: var(--color-text-bright);
+  font-weight: 600;
+}
+
 html[data-theme="light"] li.skill-html {
+  color: #792909;
   border-color: #df542a;
-  background-color: #ffc5a6;
-  color: #8c260a;
+  background-color: #ff824775;
 }
 
 html[data-theme="light"] li.skill-css {
+  color: #163e85;
   border-color: #3569d9;
-  background-color: #b8d1ff;
-  color: #123b9c;
+  background-color: #68a0ff75;
 }
 
 html[data-theme="light"] li.skill-javascript {
+  color: #5d4900;
   border-color: #b59100;
-  background-color: #ffdf4f;
-  color: #634900;
+  background-color: #ffdb2480;
 }
 
 html[data-theme="light"] li.skill-java {
+  color: #723907;
   border-color: #d87517;
-  background-color: #ffcb8c;
-  color: #813800;
+  background-color: #ffab4375;
 }
 
 html[data-theme="light"] li.skill-git {
+  color: #812815;
   border-color: #e15538;
-  background-color: #ffbdaa;
-  color: #8e2512;
+  background-color: #ff785d75;
 }
 
 html[data-theme="light"] li.skill-linux {
+  color: #5e4300;
   border-color: #bd8b00;
-  background-color: #ffdc71;
-  color: #644800;
+  background-color: #ffd34380;
 }
 
 html[data-theme="light"] li.skill-windows {
+  color: #064a7a;
   border-color: #137dc5;
-  background-color: #afd9ff;
-  color: #004d87;
+  background-color: #62bdff75;
 }
 
 html[data-theme="light"] li.skill-networking {
+  color: #005448;
   border-color: #009b8c;
-  background-color: #9ce6d1;
-  color: #00574f;
+  background-color: #38d9bb75;
 }
 
 html[data-theme="light"] li.skill-pc-hardware {
+  color: #005368;
   border-color: #039bc0;
-  background-color: #a0e5fa;
-  color: #005269;
+  background-color: #52d8f475;
 }
 
 html[data-theme="light"] li.skill-embedded-hardware {
+  color: #1d512c;
   border-color: #388951;
-  background-color: #ade0b8;
-  color: #205431;
+  background-color: #72d48c75;
 }
 
 html[data-theme="light"] li.skill-vscode {
+  color: #064a73;
   border-color: #087fbf;
-  background-color: #addcff;
-  color: #004e80;
+  background-color: #5abbff75;
 }
 
 html[data-theme="light"] li.skill-intellij {
+  color: #811b3c;
   border-color: #db3c69;
-  background-color: #ffb3cd;
-  color: #8c1e3d;
+  background-color: #ff82b275;
 }
 
 html[data-theme="light"] li.skill-jetbrains {
+  color: #59267f;
   border-color: #9950d1;
-  background-color: #d5b4ff;
-  color: #5e278d;
+  background-color: #bf91ff75;
 }
 
 html[data-theme="light"] li.skill-ai-tools {
+  color: #682076;
   border-color: #ad48ca;
-  background-color: #e5b2fc;
-  color: #6c2887;
+  background-color: #dc88f775;
 }
 
 html[data-theme="light"] li.skill-local-ai-tools {
+  color: #005143;
   border-color: #0b9e87;
-  background-color: #96e7d3;
-  color: #00574e;
+  background-color: #42dbbd75;
 }
 
 html[data-theme="light"] li.skill-excel {
+  color: #194b2a;
   border-color: #287c49;
-  background-color: #a7dfba;
-  color: #185430;
+  background-color: #6ad38c75;
 }
 
 html[data-theme="light"] li.skill-business-central {
+  color: #4d306f;
   border-color: #7d58a8;
-  background-color: #ccb8eb;
-  color: #513475;
+  background-color: #b799ee75;
 }
 
 html[data-theme="light"] li.skill-superoffice {
+  color: #7c2020;
   border-color: #cc4242;
-  background-color: #ffb0b0;
-  color: #902121;
+  background-color: #ff868175;
 }
 
 html[data-theme="light"] li.skill-salesforce {
+  color: #005066;
   border-color: #0397c6;
-  background-color: #9edfff;
-  color: #005377;
+  background-color: #68d0ff75;
 }
 
 html[data-theme="light"] li.skill-sap {
+  color: #133f78;
   border-color: #2274c8;
-  background-color: #b2cfff;
-  color: #104d88;
+  background-color: #80adff75;
 }
 
 html[data-theme="light"] li.skill-photoshop {
+  color: #064b75;
   border-color: #258ad0;
-  background-color: #aadeff;
-  color: #0a5285;
+  background-color: #79ceff75;
 }
 
 html[data-theme="light"] li.skill-premiere {
+  color: #45347d;
   border-color: #8070cf;
-  background-color: #c8bbfa;
-  color: #43368a;
+  background-color: #b1a0ff75;
 }
 
 html[data-theme="light"] li.skill-illustrator {
+  color: #633e00;
   border-color: #d48a12;
-  background-color: #ffd080;
-  color: #713d00;
+  background-color: #ffbf4380;
 }
 
 html[data-theme="light"] li.skill-adobe {
+  color: #81192f;
   border-color: #dd343b;
-  background-color: #ffb0b7;
-  color: #921e23;
+  background-color: #ff859c75;
 }
 
 /*  Projects page */
@@ -1467,33 +2022,33 @@ html[data-theme="light"] li.skill-adobe {
 /* Social colours */
 .footer-socials .social-instagram {
   border-color: #e1306c;
-  background-color: #1b060d;
+  background-color: #1b060d99;
 }
 
 .footer-socials .social-linkedin {
   border-color: #0a66c2;
-  background-color: #010c17;
+  background-color: #010c1799;
 }
 
 .footer-socials .social-github {
   border-color: #a371f7;
-  background-color: #140e1e;
+  background-color: #140e1e99;
 }
 
 /* Social buttons in light mode */
 html[data-theme="light"] .footer-socials .social-instagram {
   border-color: #d84c7d;
-  background-color: #ffdce8;
+  background-color: rgba(255, 124, 172, 0.18);
 }
 
 html[data-theme="light"] .footer-socials .social-linkedin {
   border-color: #2983c5;
-  background-color: #d4e9ff;
+  background-color: rgba(107, 180, 255, 0.18);
 }
 
 html[data-theme="light"] .footer-socials .social-github {
   border-color: #9b65d9;
-  background-color: #e9d5ff;
+  background-color: rgba(182, 128, 235, 0.2);
 }
 
 html[data-theme="light"] .social-github img {
@@ -1670,12 +2225,17 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 /* Project illustrations */
 .project-preview {
   --preview-transition: fill 160ms ease, stroke 160ms ease;
+  text-shadow: none;
   display: block;
   max-width: 100%;
   height: auto;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.project-preview * {
+  transition: var(--preview-transition, none);
 }
 
 html[data-theme="light"] .project-preview {
@@ -1704,7 +2264,26 @@ html[data-theme="light"] {
   scrollbar-color: #70777c var(--color-background);
 }
 
+html[data-theme="light"] body {
+  font-weight: 600;
+}
+
+/* Small navigation and caption text needs a little more weight over the artwork. */
+html[data-theme="light"] :is(.top-navbar nav a, .role-line, .project-number, .footer a, .footer-info p) {
+  font-weight: 600;
+}
+
 html[data-theme="light"] .top-navbar {
+  background: transparent;
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+}
+
+/* Scrolling adds a uniform frosted bar and its divider. */
+html[data-theme="light"] .top-navbar.scrolled {
+  background: var(--color-navbar-background);
+  border-bottom-color: #000;
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
@@ -1782,9 +2361,9 @@ html[data-theme="light"] .ascii-ufo {
   pointer-events: none;
 }
 
-/* Keep the dark background for the syntax colours. */
+/* A translucent dark surface keeps syntax colours readable. */
 html[data-theme="light"] .website-code {
-  background-color: #101419;
+  background-color: rgba(16, 20, 25, 0.88);
   color: #f1f2f2;
 }
 
@@ -1912,7 +2491,6 @@ html[data-theme="light"] .top-divider {
   border-top-color: #000;
 }
 
-html[data-theme="light"] .top-navbar.scrolled,
 html[data-theme="light"] .website-picture-label {
   border-bottom-color: #000;
 }
@@ -1924,6 +2502,12 @@ html[data-theme="light"] .project-details {
 
 html[data-theme="light"] .project-details {
   border-top-color: #000;
+}
+
+/* Translucent badges and social buttons reveal stronger frost in both themes. */
+:is(.skill-list li, .project-skill-list li, .footer-socials a) {
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
 }
 
 /* Light mode shadows */
@@ -1999,7 +2583,10 @@ html[data-theme="light"] :is(
   }
 
   .blurred-box,
-  .button {
+  .button,
+  .skill-list li,
+  .project-skill-list li,
+  .footer-socials a {
     background: #fff !important;
     box-shadow: none !important;
     -webkit-backdrop-filter: none;
