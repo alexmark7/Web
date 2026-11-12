@@ -163,22 +163,32 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   z-index: 3;
-  left: 75%;
+  left: calc(75% + var(--sun-size) * 0.05);
   top: calc(var(--sun-top) + var(--sun-size) * 0.2);
   width: calc(var(--sun-size) * 1.8);
   height: calc(var(--sun-size) * 0.3);
   background: image-set(url("../images/optimized/watercolor-cloud-06.webp") 1x, url("../images/optimized/watercolor-cloud-06@2x.webp") 2x) center / 100% 100% no-repeat;
   filter: grayscale(1) brightness(1.65) blur(3px);
-  opacity: 0.5;
+  opacity: 0.4;
   pointer-events: none;
   transform: translate3d(-50%, calc(-1 * var(--mountain-rise, 0px)), 0);
+}
+
+/* A second, thinner wisp reaches in from the left across the lower sun.
+   Keep the upper veil's painted texture and soft, hazy treatment. */
+.sun-mist--lower {
+  left: calc(75% - var(--sun-size) * 0.3);
+  top: calc(var(--sun-top) + var(--sun-size) * 0.72);
+  width: calc(var(--sun-size) * 1.05);
+  height: calc(var(--sun-size) * 0.18);
 }
 
 .watercolor-clouds {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 3;
+  /* Sun (2), mist (3), then foreground clouds (4). */
+  z-index: 4;
   overflow: hidden;
   pointer-events: none;
 }
@@ -1019,11 +1029,11 @@ main h1,
 }
 
 .home-introduction + .section {
-  padding-top: 24px;
+  padding-top: 40px;
 }
 
 .section.selected-projects {
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .home-introduction-text {
@@ -1210,6 +1220,14 @@ main h1,
 /*  CV page */
 /* ----------------------------------------------------------------------------------------- */
 
+.cv-page-heading {
+  max-width: 1040px;
+}
+
+.cv-page-heading p {
+  max-width: 760px;
+}
+
 .cv-button-area {
   margin-top: 22px;
 }
@@ -1250,6 +1268,12 @@ main h1,
 
 .cv-section {
   padding-bottom: 45px;
+}
+
+.cv-section > h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
 
 .cv-section + .cv-section {
@@ -2199,7 +2223,7 @@ html[data-theme="light"] .footer-socials a:focus-visible {
   }
 
   .section.selected-projects {
-    margin-top: 16px;
+    margin-top: 0px;
   }
 
   /* Keep space for all four page links and the theme button. */

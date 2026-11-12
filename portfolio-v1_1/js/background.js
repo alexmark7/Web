@@ -33,6 +33,9 @@
   const sunMist = document.createElement("div");
   sunMist.className = "sun-mist";
   sunMist.setAttribute("aria-hidden", "true");
+  const lowerSunMist = document.createElement("div");
+  lowerSunMist.className = "sun-mist sun-mist--lower";
+  lowerSunMist.setAttribute("aria-hidden", "true");
   const birds = document.createDocumentFragment();
   for (const position of ["", "top-right", "middle-left"]) {
     const flock = document.createElement("div");
@@ -40,7 +43,7 @@
     flock.setAttribute("aria-hidden", "true");
     birds.append(flock);
   }
-  background.append(birds, ink, river, sunMist, tree);
+  background.append(birds, ink, river, sunMist, lowerSunMist, tree);
 
   const moon = document.createElement("div");
   moon.className = "night-moon";

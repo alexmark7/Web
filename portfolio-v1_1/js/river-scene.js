@@ -105,12 +105,13 @@
 
   function drawBankDetails(context, image, geometry) {
     if (!image) return;
-    const { width, riverLeft, riverWidth, riverHeight } = geometry;
+    const { width, mountainWidth, riverLeft, riverWidth, riverHeight } = geometry;
+    // Three house cells followed by three individual watercolor trees.
     const cellWidth = image.naturalWidth / 6;
     const drawCell = (index, left, top, size, anchor, opacity) => {
       context.save();
       context.globalAlpha = opacity;
-      context.drawImage(image, index * cellWidth, 0, cellWidth, image.naturalHeight,
+      context.drawImage(image, index * cellWidth, 0, cellWidth, cellWidth,
         riverLeft + riverWidth * left / 100 - size / 2,
         riverHeight * top / 100 - size * anchor, size, size);
       context.restore();
@@ -119,15 +120,23 @@
     for (const [index, left, top] of [[0, 36.4, 47.65], [1, 47.9, 55.39], [2, 71.8, 57.32]]) {
       drawCell(index, left, top, houseSize, 0.76, 0.86);
     }
-    const treeSize = clamp(20, width * 0.022, 34);
+    const treeSize = clamp(16, mountainWidth * 0.022, 27);
+    // Irregular, stable positions follow dry ground around the river's bends
+    // and central island. Each coordinate anchors the visible trunk's foot.
     for (const [index, left, top, size] of [
-      [0, 18, 43, 0.8], [1, 24, 44, 1], [2, 31, 49, 0.85],
-      [1, 40, 50, 0.9], [0, 49, 43, 1], [2, 57, 42, 0.8],
-      [0, 65, 53, 0.95], [1, 76, 55, 0.85], [2, 85, 51, 1],
-      [1, 94, 48, 0.8], [2, 28, 75, 1], [0, 42, 77, 0.85],
-      [1, 60, 73, 1], [2, 80, 77, 0.9],
+      [0, 16.1, 56.5, 0.88], [1, 18.3, 45, 0.96],
+      [0, 25.2, 45, 0.84], [2, 28.6, 47, 0.92],
+      [0, 30.7, 45, 1], [1, 38.2, 54, 0.86],
+      [0, 40.1, 48.5, 0.94], [2, 46.9, 46.7, 0.9],
+      [0, 49.6, 44.8, 0.96], [1, 56.8, 42.5, 0.9],
+      [0, 62.7, 44.5, 0.84], [1, 64.3, 45.8, 0.82],
+      [0, 72.8, 59.5, 0.9], [0, 77.6, 56.5, 0.86],
+      [1, 79.2, 60, 0.98], [2, 86.7, 54, 0.9],
+      [0, 92.4, 51.2, 0.94], [1, 94.2, 51.8, 0.98],
+      [1, 43.5, 58, 0.92], [0, 48.5, 56, 1],
+      [2, 52.7, 55, 0.86],
     ]) {
-      drawCell(index + 3, left, top, treeSize * size, 0.80, 0.88);
+      drawCell(index + 3, left, top, treeSize * size, 0.82, 0.88);
     }
   }
 
