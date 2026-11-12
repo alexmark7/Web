@@ -831,6 +831,11 @@ h3 {
   line-height: 1.2;
 }
 
+/* Give paragraphs and longer lists room to breathe in both themes. */
+main :is(p, li, dt, dd) {
+  line-height: 1.55;
+}
+
 main h1,
 .section-heading h2,
 .cv-section h2 {
@@ -869,10 +874,10 @@ main h1,
   margin-bottom: 0px;
 }
 
-/* Keep text readable as the bright moon passes behind copy and glass panels. */
+/* A compact shadow protects night text without the broad glow. */
 @media screen {
   html:not([data-theme="light"]) main :is(h1, h2, h3, h4, p, li, dt, dd, figcaption) {
-    text-shadow: 0 1px 2px #000, 0 0 6px #000, 0 0 12px rgb(0 0 0 / 0.85);
+    text-shadow: 0 1px 2px rgb(0 0 0 / 0.85), 0 0 4px rgb(0 0 0 / 0.6);
   }
 }
 
@@ -931,12 +936,17 @@ hr.top-divider {
 }
 
 .button {
-  display: inline-block;
-  padding: 9px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 18px;
   border: 1px solid var(--color-border-strong);
+  background-color: var(--color-card-surface);
   color: var(--color-text-bright);
   font-family: "Courier New", monospace;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
   font-weight: inherit;
   border-radius: 0;
   text-decoration: none;
@@ -948,7 +958,7 @@ hr.top-divider {
     color 200ms ease;
 }
 
-/* Animate the text, not the blurred button container. */
+/* Animate the text while the button surface stays still. */
 .button-text {
   display: inline-block;
 }
@@ -1287,7 +1297,8 @@ hr.top-divider {
   background-color: var(--color-card-surface);
   color: var(--color-text-muted);
   font-family: "Courier New", monospace;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
   transition:
     background-color 200ms ease,
     border-color 200ms ease,
@@ -2003,36 +2014,36 @@ html[data-theme="light"] li.skill-adobe {
     border-color 200ms ease;
 }
 
-/* Social colours */
+/* Match the denser technology-label backgrounds in both themes. */
 .footer-socials .social-instagram {
   border-color: #e1306c;
-  background-color: #1b060d99;
+  background-color: #1b060dd9;
 }
 
 .footer-socials .social-linkedin {
   border-color: #0a66c2;
-  background-color: #010c1799;
+  background-color: #010c17d9;
 }
 
 .footer-socials .social-github {
   border-color: #a371f7;
-  background-color: #140e1e99;
+  background-color: #140e1ed9;
 }
 
 /* Social buttons in light mode */
 html[data-theme="light"] .footer-socials .social-instagram {
   border-color: #d84c7d;
-  background-color: rgba(255, 124, 172, 0.18);
+  background-color: #ff7cacb8;
 }
 
 html[data-theme="light"] .footer-socials .social-linkedin {
   border-color: #2983c5;
-  background-color: rgba(107, 180, 255, 0.18);
+  background-color: #6bb4ffb8;
 }
 
 html[data-theme="light"] .footer-socials .social-github {
   border-color: #9b65d9;
-  background-color: rgba(182, 128, 235, 0.2);
+  background-color: #b680ebb8;
 }
 
 html[data-theme="light"] .social-github img {
