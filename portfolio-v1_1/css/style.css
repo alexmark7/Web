@@ -1019,7 +1019,11 @@ main h1,
 }
 
 .home-introduction + .section {
-  padding-top: 16px;
+  padding-top: 24px;
+}
+
+.section.selected-projects {
+  margin-top: 24px;
 }
 
 .home-introduction-text {
@@ -2192,6 +2196,10 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 
   .section + .section {
     margin-top: 32px;
+  }
+
+  .section.selected-projects {
+    margin-top: 16px;
   }
 
   /* Keep space for all four page links and the theme button. */
