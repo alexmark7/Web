@@ -6,7 +6,7 @@
     <!-- Set the theme before loading CSS. -->
     <script src="js/theme.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Previews of Pong, Space Defender, and Snake for a planned browser game project.">
+    <meta name="description" content="Play classic Snake, collect cherries, and save your best scores. Pong and Space Defender are coming soon.">
     <script src="js/page-transition.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +51,7 @@
     <main id="main-content" class="content" tabindex="-1">
       <header class="page-heading">
         <h1>Browser Games</h1>
-        <p>Choose a game to preview it. Playable versions are coming soon.</p>
+        <p>Play Snake, collect cherries, and beat your best score. Pong and Space Defender are coming soon.</p>
         <a class="button" href="projects.html">Back to projects</a>
       </header>
 
@@ -94,8 +94,7 @@
             <svg class="project-preview" viewBox="515 119 192 292" width="192" height="292" aria-hidden="true">
               <rect x="516" y="120" width="190" height="290" fill="var(--preview-screen, #070707)" stroke="var(--preview-divider, #4b4b4b)"/>
               <text x="611" y="154" fill="var(--preview-foreground, #e9e4d8)" font-family="Courier New, monospace" font-size="18" text-anchor="middle">SNAKE</text>
-              <circle cx="566" cy="206" r="11" fill="var(--preview-red, #e66c6c)"/>
-              <path d="M566 195v-8m0 3c5-5 10-4 13-3" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="3"/>
+              <image href="images/cherry-sprite.svg" x="552" y="188" width="28" height="28"/>
               <path d="M552 349h76v-65h38" fill="none" stroke="var(--preview-green, #77c98c)" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter"/>
               <rect x="658" y="275" width="19" height="19" fill="var(--preview-green, #77c98c)"/>
               <circle cx="669" cy="281" r="2" fill="var(--preview-eye, #07150c)"/>
@@ -104,7 +103,7 @@
           </button>
         </div>
 
-        <!-- Not playable yet; selecting a card only changes the preview status. -->
+        <!-- The action stays in place when switching between games. -->
         <div id="game-action" class="game-action">
           <div class="game-button-entry">
             <button class="button game-play-button" type="button" disabled>Coming soon</button>
