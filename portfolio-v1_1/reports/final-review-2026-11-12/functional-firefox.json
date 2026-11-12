@@ -1,0 +1,661 @@
+{
+  "browser": "159.0",
+  "configurations": [
+    {
+      "page": "index",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "projects",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "cv",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "about-me",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "portfolio-website",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "browser-game",
+      "theme": "light",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(32, 32, 32, 0.38)",
+      "stars": 0,
+      "moon": false,
+      "boxes": [
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "index",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 312,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "projects",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 381,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "cv",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 381,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "about-me",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 332,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "portfolio-website",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 381,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none",
+        "none"
+      ]
+    },
+    {
+      "page": "browser-game",
+      "theme": "dark",
+      "overflow": false,
+      "errors": [],
+      "navbarTop": 0,
+      "border": "rgba(235, 235, 235, 0.5)",
+      "stars": 233,
+      "moon": true,
+      "boxes": [
+        "none",
+        "none",
+        "none"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "pass": true,
+      "name": "Firefox light index",
+      "details": {
+        "page": "index",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox light projects",
+      "details": {
+        "page": "projects",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox light cv",
+      "details": {
+        "page": "cv",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox light about-me",
+      "details": {
+        "page": "about-me",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox light portfolio-website",
+      "details": {
+        "page": "portfolio-website",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox light browser-game",
+      "details": {
+        "page": "browser-game",
+        "theme": "light",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(32, 32, 32, 0.38)",
+        "stars": 0,
+        "moon": false,
+        "boxes": [
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark index",
+      "details": {
+        "page": "index",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 312,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark projects",
+      "details": {
+        "page": "projects",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 381,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark cv",
+      "details": {
+        "page": "cv",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 381,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark about-me",
+      "details": {
+        "page": "about-me",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 332,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark portfolio-website",
+      "details": {
+        "page": "portfolio-website",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 381,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox dark browser-game",
+      "details": {
+        "page": "browser-game",
+        "theme": "dark",
+        "overflow": false,
+        "errors": [],
+        "navbarTop": 0,
+        "border": "rgba(235, 235, 235, 0.5)",
+        "stars": 233,
+        "moon": true,
+        "boxes": [
+          "none",
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox moon texture and transformed UFO",
+      "details": {
+        "left": "",
+        "top": "",
+        "transform": "translate3d(693.184px, 1098.51px, 0px) translate(-50%, -50%) rotate(-0.514766deg)",
+        "moon": "images/moon-surface.jpg"
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox game selection"
+    },
+    {
+      "pass": true,
+      "name": "Firefox SPA/back scroll restoration"
+    },
+    {
+      "pass": true,
+      "name": "Firefox mobile dark index.html"
+    },
+    {
+      "pass": true,
+      "name": "Firefox mobile dark cv.html"
+    },
+    {
+      "pass": true,
+      "name": "Firefox mobile light index.html"
+    },
+    {
+      "pass": true,
+      "name": "Firefox mobile light cv.html"
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "theme": "light",
+  "viewport": [
+    1920,
+    1080,
+    1
+  ],
+  "webgl": "NVIDIA GeForce GTX 980, or similar",
+  "nav": {
+    "name": "http://127.0.0.1:8876/portfolio-v1_1/index.html",
+    "entryType": "navigation",
+    "startTime": 0,
+    "duration": 5301,
+    "initiatorType": "navigation",
+    "deliveryType": "",
+    "nextHopProtocol": "http/1.0",
+    "workerStart": 0,
+    "redirectStart": 0,
+    "redirectEnd": 0,
+    "fetchStart": -59,
+    "domainLookupStart": -55,
+    "domainLookupEnd": -54,
+    "connectStart": -54,
+    "connectEnd": -54,
+    "secureConnectionStart": 0,
+    "requestStart": -54,
+    "finalResponseHeadersStart": -47,
+    "firstInterimResponseStart": 0,
+    "responseStart": -47,
+    "responseEnd": -47,
+    "transferSize": 10010,
+    "encodedBodySize": 9710,
+    "decodedBodySize": 9710,
+    "responseStatus": 200,
+    "contentType": "text/html",
+    "serverTiming": [],
+    "unloadEventStart": 0,
+    "unloadEventEnd": 0,
+    "domInteractive": 30,
+    "domContentLoadedEventStart": 5166,
+    "domContentLoadedEventEnd": 5167,
+    "domComplete": 5301,
+    "loadEventStart": 5301,
+    "loadEventEnd": 5301,
+    "type": "navigate",
+    "redirectCount": 0
+  },
+  "resources": [
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/theme.js",
+      "duration": 20,
+      "transferSize": 7810,
+      "encodedBodySize": 7510,
+      "decodedBodySize": 7510,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/css/style.css",
+      "duration": 20,
+      "transferSize": 56103,
+      "encodedBodySize": 55803,
+      "decodedBodySize": 55803,
+      "initiatorType": "link"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/page-transition.js",
+      "duration": 20,
+      "transferSize": 12639,
+      "encodedBodySize": 12339,
+      "decodedBodySize": 12339,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/home-scroll.js",
+      "duration": 21,
+      "transferSize": 653,
+      "encodedBodySize": 353,
+      "decodedBodySize": 353,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/navbar.js",
+      "duration": 22,
+      "transferSize": 772,
+      "encodedBodySize": 472,
+      "decodedBodySize": 472,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/background.js",
+      "duration": 22,
+      "transferSize": 22591,
+      "encodedBodySize": 22291,
+      "decodedBodySize": 22291,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/river-scene.js",
+      "duration": 22,
+      "transferSize": 16291,
+      "encodedBodySize": 15991,
+      "decodedBodySize": 15991,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/game-selector.js",
+      "duration": 23,
+      "transferSize": 2234,
+      "encodedBodySize": 1934,
+      "decodedBodySize": 1934,
+      "initiatorType": "script"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/js/ufo.js",
+      "duration": 23,
+      "transferSize": 20888,
+      "encodedBodySize": 20588,
+      "decodedBodySize": 20588,
+      "initiatorType": "script"
+    },
+    {
+      "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "duration": 5141,
+      "transferSize": 300,
+      "encodedBodySize": 0,
+      "decodedBodySize": 0,
+      "initiatorType": "link"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/instagram-icon.svg",
+      "duration": 5149,
+      "transferSize": 613,
+      "encodedBodySize": 313,
+      "decodedBodySize": 313,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/linkedin-icon.svg",
+      "duration": 5149,
+      "transferSize": 641,
+      "encodedBodySize": 341,
+      "decodedBodySize": 341,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/github-icon.svg",
+      "duration": 5149,
+      "transferSize": 929,
+      "encodedBodySize": 629,
+      "decodedBodySize": 629,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cherry-tree-solid.webp",
+      "duration": 5122,
+      "transferSize": 38418,
+      "encodedBodySize": 38118,
+      "decodedBodySize": 38118,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-river-forest-autumn.webp",
+      "duration": 5126,
+      "transferSize": 42154,
+      "encodedBodySize": 41854,
+      "decodedBodySize": 41854,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-river-details.webp",
+      "duration": 5125,
+      "transferSize": 3790,
+      "encodedBodySize": 3490,
+      "decodedBodySize": 3490,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-river.webp",
+      "duration": 5126,
+      "transferSize": 26704,
+      "encodedBodySize": 26404,
+      "decodedBodySize": 26404,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-mountains-smoothed.webp",
+      "duration": 5126,
+      "transferSize": 65262,
+      "encodedBodySize": 64962,
+      "decodedBodySize": 64962,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-sun.webp",
+      "duration": 5126,
+      "transferSize": 34330,
+      "encodedBodySize": 34030,
+      "decodedBodySize": 34030,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/distant-birds.svg",
+      "duration": 5124,
+      "transferSize": 1048,
+      "encodedBodySize": 748,
+      "decodedBodySize": 748,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-ink-splatter.webp",
+      "duration": 5121,
+      "transferSize": 11428,
+      "encodedBodySize": 11128,
+      "decodedBodySize": 11128,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-ink-stroke.webp",
+      "duration": 5121,
+      "transferSize": 32614,
+      "encodedBodySize": 32314,
+      "decodedBodySize": 32314,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud.webp",
+      "duration": 5121,
+      "transferSize": 15176,
+      "encodedBodySize": 14876,
+      "decodedBodySize": 14876,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-02.webp",
+      "duration": 5122,
+      "transferSize": 15498,
+      "encodedBodySize": 15198,
+      "decodedBodySize": 15198,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-03.webp",
+      "duration": 5123,
+      "transferSize": 19168,
+      "encodedBodySize": 18868,
+      "decodedBodySize": 18868,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-04.webp",
+      "duration": 5122,
+      "transferSize": 22044,
+      "encodedBodySize": 21744,
+      "decodedBodySize": 21744,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-05.webp",
+      "duration": 5123,
+      "transferSize": 29778,
+      "encodedBodySize": 29478,
+      "decodedBodySize": 29478,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-06.webp",
+      "duration": 5123,
+      "transferSize": 22364,
+      "encodedBodySize": 22064,
+      "decodedBodySize": 22064,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/optimized/watercolor-cloud-07.webp",
+      "duration": 5123,
+      "transferSize": 26728,
+      "encodedBodySize": 26428,
+      "decodedBodySize": 26428,
+      "initiatorType": "img"
+    },
+    {
+      "name": "http://127.0.0.1:8876/portfolio-v1_1/images/favicon.svg",
+      "duration": 5196,
+      "transferSize": 701,
+      "encodedBodySize": 401,
+      "decodedBodySize": 401,
+      "initiatorType": "other"
+    },
+    {
+      "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+      "duration": 62,
+      "transferSize": 46012,
+      "encodedBodySize": 45712,
+      "decodedBodySize": 45712,
+      "initiatorType": "other"
+    },
+    {
+      "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+      "duration": 32,
+      "transferSize": 10268,
+      "encodedBodySize": 9968,
+      "decodedBodySize": 9968,
+      "initiatorType": "other"
+    },
+    {
+      "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+      "duration": 63,
+      "transferSize": 0,
+      "encodedBodySize": 45712,
+      "decodedBodySize": 45712,
+      "initiatorType": "other"
+    }
+  ],
+  "cls": 0
+}

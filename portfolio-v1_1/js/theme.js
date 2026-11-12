@@ -13,15 +13,35 @@
   const imageFolder = new URL("../images/", document.currentScript.src);
   const sceneryLoads = new Map();
   const sceneryImages = new Map();
+  let moonLoad = null;
   const sceneryScriptsReady = document.readyState === "complete" ? Promise.resolve()
     : new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve, { once: true }));
   const paintings = [
-    "watercolor-sun", "watercolor-mountains-connected", "watercolor-river",
-    "watercolor-river-details", "watercolor-river-forest", "watercolor-cherry-tree-solid",
-    "watercolor-ink-splatter", "watercolor-ink-stroke", "watercolor-cloud",
+    "watercolor-sun", "watercolor-mountains-defined-ridge", "watercolor-river",
+    "watercolor-river-details", "watercolor-river-forest-autumn", "watercolor-cherry-tree-solid",
+    "watercolor-ink-splatter", "watercolor-ink-splatter-02", "watercolor-ink-stroke", "watercolor-cloud",
     "watercolor-cloud-02", "watercolor-cloud-03", "watercolor-cloud-04",
     "watercolor-cloud-05", "watercolor-cloud-06", "watercolor-cloud-07",
   ];
+
+  function prepareDarkScenery() {
+    if (!moonLoad) {
+      const image = new Image();
+      image.decoding = "async";
+      image.fetchPriority = "high";
+      moonLoad = new Promise(resolve => {
+        const source = new URL("moon-surface.jpg", imageFolder).href;
+        if (image.decode) {
+          image.src = source;
+          image.decode().then(resolve, resolve);
+        } else {
+          image.onload = image.onerror = resolve;
+          image.src = source;
+        }
+      });
+    }
+    return moonLoad;
+  }
 
   function prepareLightScenery(priority = "low") {
     const density = window.devicePixelRatio > 1 ? "@2x" : "";
@@ -104,11 +124,13 @@
     if (!changed || document.readyState === "loading") {
       update();
       if (theme === "light") prepareLightScenery("high");
+      else prepareDarkScenery();
       return;
     }
 
     // Keep the current theme visible until the next snapshot has all its artwork.
     if (theme === "light") await prepareLightScenery("high");
+    else await prepareDarkScenery();
     if (number !== requestNumber) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       update();

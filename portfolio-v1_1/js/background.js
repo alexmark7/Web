@@ -53,7 +53,7 @@
         <circle cx="50" cy="50" r="47" fill="#c9c9c1"/>
         <!-- NASA SVS lunar imagery; source and credit: images/moon-surface.md. -->
         <svg x="3" y="3" width="94" height="94" viewBox="19 19 692 692">
-          <image href="images/moon-surface.jpg" width="730" height="730"/>
+          <image width="730" height="730"/>
         </svg>
       </g>
     </defs>
@@ -64,6 +64,18 @@
     </g>
   </svg>`;
   background.append(moon);
+
+  // Light-only visits do not download the hidden moon texture. Theme switching
+  // decodes it before the dark crossfade, then this SVG reuses the cached image.
+  function updateMoonSurface() {
+    const image = moon.querySelector("image");
+    if (document.documentElement.dataset.theme === "dark" && !image.hasAttribute("href")) {
+      image.setAttribute("href", "images/moon-surface.jpg");
+    }
+  }
+
+  updateMoonSurface();
+  document.addEventListener("portfolio-theme-change", updateMoonSurface);
 
   // Illumination formulas adapted from SunCalc 1.9.0 (BSD-2-Clause).
   // Copyright (c) 2014 Vladimir Agafonkin. See vendor/suncalc-LICENSE.txt.
@@ -132,6 +144,7 @@
   let scrollRange = 0;
   let mountainDistance = 0;
   let moonExitDistance = 0;
+  let treeTravel = 0;
   let inkHeight = 0;
   let inkWidth = 0;
 
@@ -152,6 +165,9 @@
       const wash = index % 6 === 0;
       const stroke = index % 6 > 1;
       mark.className = `ink-mark ${wash ? "ink-wash" : stroke ? "ink-stroke" : "ink-splotch"}`;
+      if (!wash && !stroke && Math.floor(index / 6) % 2 === 1) {
+        mark.classList.add("ink-splotch--02");
+      }
       if (index === 1) mark.classList.add("ink-splotch--top-left");
       mark.style.top = `${((index + 0.2 + random() * 0.6) / count) * height}px`;
       mark.style.setProperty("--ink-left", `${((index % 5 + 0.15 + random() * 0.7) / 5) * 100}%`);
@@ -178,6 +194,11 @@
     const mountainRise = reducedMotion.matches ? 0 : progress * mountainDistance;
     // Sun, mist, mountains and river stay together; horizontal sway remains CSS-driven.
     background.style.setProperty("--mountain-rise", `${mountainRise}px`);
+    const remaining = 1 - progress;
+    // Match the CSS curve: the same early rise, with less stalling near the footer.
+    const treeOffset = reducedMotion.matches ? 0
+      : treeTravel * remaining * (remaining + 0.3 * progress ** 2);
+    tree.style.setProperty("--tree-offset", `${treeOffset}px`);
   }
 
   function scheduleSun() {
@@ -188,6 +209,11 @@
     // Read layout only when the page size changes, rather than during scrolling.
     scrollRange = document.documentElement.scrollHeight - window.innerHeight;
     mountainDistance = window.innerHeight * 0.04;
+    // Start fully below the viewport, then rise faster early in the scroll and
+    // settle gently into the foreground as the visitor approaches the footer.
+    const treeSize = Number.parseFloat(getComputedStyle(tree).width) || 0;
+    treeTravel = treeSize * 0.8 + 8;
+    tree.style.setProperty("--tree-travel", `${treeTravel}px`);
     const navbar = document.querySelector(".top-navbar");
     background.style.setProperty("--cloud-clearance", `${(navbar?.getBoundingClientRect().height || 76) + 16}px`);
     if (!nativeScroll && document.documentElement.dataset.theme !== "light") {

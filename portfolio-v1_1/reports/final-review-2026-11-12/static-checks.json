@@ -1,0 +1,49 @@
+{
+  "pages": [
+    {
+      "page": "portfolio-v1_1/index.html",
+      "main": 1,
+      "h1": 1,
+      "images": 3,
+      "errors": []
+    },
+    {
+      "page": "portfolio-v1_1/cv.html",
+      "main": 1,
+      "h1": 1,
+      "images": 3,
+      "errors": []
+    },
+    {
+      "page": "portfolio-v1_1/about-me.html",
+      "main": 1,
+      "h1": 1,
+      "images": 4,
+      "errors": []
+    },
+    {
+      "page": "portfolio-v1_1/browser-game.html",
+      "main": 1,
+      "h1": 1,
+      "images": 3,
+      "errors": []
+    },
+    {
+      "page": "portfolio-v1_1/portfolio-website.html",
+      "main": 1,
+      "h1": 1,
+      "images": 10,
+      "errors": []
+    },
+    {
+      "page": "portfolio-v1_1/projects.html",
+      "main": 1,
+      "h1": 1,
+      "images": 3,
+      "errors": []
+    }
+  ],
+  "javascript": "All eight scripts passed node --check",
+  "shell": "optimize-scenery.sh passed bash -n",
+  "whitespace": "git diff --check passed"
+}

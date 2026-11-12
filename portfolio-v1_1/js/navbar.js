@@ -1,4 +1,4 @@
-/* Navbar divider on scroll */
+/* Fade in the navbar's solid background and divider once scrolling starts. */
 (() => {
   const navbar = document.querySelector(".top-navbar");
   if (!navbar) return;

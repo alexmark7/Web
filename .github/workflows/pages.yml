@@ -29,10 +29,17 @@ jobs:
       - name: Set up GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare portfolio v1.1 website files
+        run: |
+          publish_dir="$RUNNER_TEMP/portfolio-v1_1"
+          mkdir -p "$publish_dir"
+          cp portfolio-v1_1/*.html "$publish_dir/"
+          cp -R portfolio-v1_1/css portfolio-v1_1/js portfolio-v1_1/files portfolio-v1_1/images "$publish_dir/"
+
       - name: Upload portfolio v1.1
         uses: actions/upload-pages-artifact@v4
         with:
-          path: "./portfolio-v1_1"
+          path: "${{ runner.temp }}/portfolio-v1_1"
 
       - name: Publish the website
         id: deployment

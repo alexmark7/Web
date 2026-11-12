@@ -1,0 +1,2023 @@
+{
+  "date": "2026-11-12",
+  "scope": "Fresh Chromium functional checks; headless rendering is not a presented-FPS benchmark.",
+  "firstLight": {
+    "moon": [],
+    "resources": [
+      {
+        "file": "theme.js",
+        "bytes": 7510
+      },
+      {
+        "file": "page-transition.js",
+        "bytes": 12339
+      },
+      {
+        "file": "style.css",
+        "bytes": 55639
+      },
+      {
+        "file": "css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+        "bytes": 868
+      },
+      {
+        "file": "navbar.js",
+        "bytes": 472
+      },
+      {
+        "file": "home-scroll.js",
+        "bytes": 353
+      },
+      {
+        "file": "river-scene.js",
+        "bytes": 15991
+      },
+      {
+        "file": "instagram-icon.svg",
+        "bytes": 313
+      },
+      {
+        "file": "game-selector.js",
+        "bytes": 1934
+      },
+      {
+        "file": "ufo.js",
+        "bytes": 20588
+      },
+      {
+        "file": "background.js",
+        "bytes": 22291
+      },
+      {
+        "file": "linkedin-icon.svg",
+        "bytes": 341
+      },
+      {
+        "file": "github-icon.svg",
+        "bytes": 629
+      },
+      {
+        "file": "watercolor-mountains-smoothed.webp",
+        "bytes": 64962
+      },
+      {
+        "file": "watercolor-river-forest-autumn.webp",
+        "bytes": 41854
+      },
+      {
+        "file": "watercolor-river-details.webp",
+        "bytes": 3490
+      },
+      {
+        "file": "watercolor-river.webp",
+        "bytes": 26404
+      },
+      {
+        "file": "watercolor-sun.webp",
+        "bytes": 34030
+      },
+      {
+        "file": "watercolor-cherry-tree-solid.webp",
+        "bytes": 38118
+      },
+      {
+        "file": "watercolor-cloud.webp",
+        "bytes": 14876
+      },
+      {
+        "file": "watercolor-cloud-02.webp",
+        "bytes": 15198
+      },
+      {
+        "file": "watercolor-ink-stroke.webp",
+        "bytes": 32314
+      },
+      {
+        "file": "watercolor-ink-splatter.webp",
+        "bytes": 11128
+      },
+      {
+        "file": "watercolor-cloud-03.webp",
+        "bytes": 18868
+      },
+      {
+        "file": "watercolor-cloud-04.webp",
+        "bytes": 21744
+      },
+      {
+        "file": "watercolor-cloud-05.webp",
+        "bytes": 29478
+      },
+      {
+        "file": "distant-birds.svg",
+        "bytes": 748
+      },
+      {
+        "file": "watercolor-cloud-07.webp",
+        "bytes": 26428
+      },
+      {
+        "file": "watercolor-cloud-06.webp",
+        "bytes": 22064
+      }
+    ],
+    "fcp": 192
+  },
+  "configurations": [
+    {
+      "path": "index.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1635,
+      "dom": 215,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 65,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "projects.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 2220,
+      "dom": 293,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 54,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "cv.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 3210,
+      "dom": 319,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 55,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "about-me.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1742,
+      "dom": 185,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 55,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 0
+    },
+    {
+      "path": "portfolio-website.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 17487,
+      "dom": 846,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0.29093003310064064,
+      "longTasks": 1,
+      "maxLongTask": 57,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "browser-game.html",
+      "theme": "light",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1224,
+      "dom": 198,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 54,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 0
+    },
+    {
+      "path": "index.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1635,
+      "dom": 498,
+      "stars": 283,
+      "changing": 1,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 54,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 284
+    },
+    {
+      "path": "projects.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 2220,
+      "dom": 576,
+      "stars": 283,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 54,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 380
+    },
+    {
+      "path": "cv.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 3210,
+      "dom": 602,
+      "stars": 283,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 56,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 379
+    },
+    {
+      "path": "about-me.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1742,
+      "dom": 468,
+      "stars": 283,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 58,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 284
+    },
+    {
+      "path": "portfolio-website.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 17459,
+      "dom": 1129,
+      "stars": 283,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 55,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 380
+    },
+    {
+      "path": "browser-game.html",
+      "theme": "dark",
+      "width": 1440,
+      "dpr": 1,
+      "height": 1224,
+      "dom": 429,
+      "stars": 231,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 54,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 231
+    },
+    {
+      "path": "index.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 2556,
+      "dom": 196,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 77,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "projects.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 3162,
+      "dom": 274,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "cv.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 5248,
+      "dom": 300,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "about-me.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 2872,
+      "dom": 166,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 0
+    },
+    {
+      "path": "portfolio-website.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 21581,
+      "dom": 827,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 0
+    },
+    {
+      "path": "browser-game.html",
+      "theme": "light",
+      "width": 390,
+      "dpr": 2,
+      "height": 1872,
+      "dom": 179,
+      "stars": 0,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": null,
+      "navbar": {
+        "blur": "blur(4px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 0
+    },
+    {
+      "path": "index.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 2529,
+      "dom": 260,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 86
+    },
+    {
+      "path": "projects.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 3162,
+      "dom": 338,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 86
+    },
+    {
+      "path": "cv.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 5248,
+      "dom": 364,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 85
+    },
+    {
+      "path": "about-me.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 2844,
+      "dom": 230,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 85
+    },
+    {
+      "path": "portfolio-website.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 21441,
+      "dom": 891,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 1,
+      "maxLongTask": 52,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": "12px",
+      "starPeak": 86
+    },
+    {
+      "path": "browser-game.html",
+      "theme": "dark",
+      "width": 390,
+      "dpr": 2,
+      "height": 1872,
+      "dom": 243,
+      "stars": 64,
+      "changing": 0,
+      "canvasPaints": 1,
+      "blurredContent": 0,
+      "heading": 1,
+      "overflow": false,
+      "errors": [],
+      "cls": 0,
+      "longTasks": 0,
+      "maxLongTask": 0,
+      "moonHref": "images/moon-surface.jpg",
+      "navbar": {
+        "blur": "blur(8px)",
+        "top": 0
+      },
+      "fontSize": null,
+      "starPeak": 86
+    }
+  ],
+  "checks": [
+    {
+      "name": "Fresh light visit does not request moon texture",
+      "pass": true,
+      "details": {
+        "moon": [],
+        "resources": [
+          {
+            "file": "theme.js",
+            "bytes": 7510
+          },
+          {
+            "file": "page-transition.js",
+            "bytes": 12339
+          },
+          {
+            "file": "style.css",
+            "bytes": 55639
+          },
+          {
+            "file": "css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+            "bytes": 868
+          },
+          {
+            "file": "navbar.js",
+            "bytes": 472
+          },
+          {
+            "file": "home-scroll.js",
+            "bytes": 353
+          },
+          {
+            "file": "river-scene.js",
+            "bytes": 15991
+          },
+          {
+            "file": "instagram-icon.svg",
+            "bytes": 313
+          },
+          {
+            "file": "game-selector.js",
+            "bytes": 1934
+          },
+          {
+            "file": "ufo.js",
+            "bytes": 20588
+          },
+          {
+            "file": "background.js",
+            "bytes": 22291
+          },
+          {
+            "file": "linkedin-icon.svg",
+            "bytes": 341
+          },
+          {
+            "file": "github-icon.svg",
+            "bytes": 629
+          },
+          {
+            "file": "watercolor-mountains-smoothed.webp",
+            "bytes": 64962
+          },
+          {
+            "file": "watercolor-river-forest-autumn.webp",
+            "bytes": 41854
+          },
+          {
+            "file": "watercolor-river-details.webp",
+            "bytes": 3490
+          },
+          {
+            "file": "watercolor-river.webp",
+            "bytes": 26404
+          },
+          {
+            "file": "watercolor-sun.webp",
+            "bytes": 34030
+          },
+          {
+            "file": "watercolor-cherry-tree-solid.webp",
+            "bytes": 38118
+          },
+          {
+            "file": "watercolor-cloud.webp",
+            "bytes": 14876
+          },
+          {
+            "file": "watercolor-cloud-02.webp",
+            "bytes": 15198
+          },
+          {
+            "file": "watercolor-ink-stroke.webp",
+            "bytes": 32314
+          },
+          {
+            "file": "watercolor-ink-splatter.webp",
+            "bytes": 11128
+          },
+          {
+            "file": "watercolor-cloud-03.webp",
+            "bytes": 18868
+          },
+          {
+            "file": "watercolor-cloud-04.webp",
+            "bytes": 21744
+          },
+          {
+            "file": "watercolor-cloud-05.webp",
+            "bytes": 29478
+          },
+          {
+            "file": "distant-birds.svg",
+            "bytes": 748
+          },
+          {
+            "file": "watercolor-cloud-07.webp",
+            "bytes": 26428
+          },
+          {
+            "file": "watercolor-cloud-06.webp",
+            "bytes": 22064
+          }
+        ],
+        "fcp": 192
+      }
+    },
+    {
+      "name": "index.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "index.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1635,
+        "dom": 215,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 65,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "index.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "index.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "projects.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "projects.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 2220,
+        "dom": 293,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 54,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "projects.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "projects.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "cv.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "cv.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 3210,
+        "dom": 319,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 55,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "cv.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "cv.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "about-me.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "about-me.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1742,
+        "dom": 185,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 55,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "about-me.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "about-me.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "portfolio-website.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "portfolio-website.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 17487,
+        "dom": 846,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0.29093003310064064,
+        "longTasks": 1,
+        "maxLongTask": 57,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "portfolio-website.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "portfolio-website.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "browser-game.html light 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "browser-game.html",
+        "theme": "light",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1224,
+        "dom": 198,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 54,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "browser-game.html light 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "browser-game.html light 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "index.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "index.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1635,
+        "dom": 498,
+        "stars": 283,
+        "changing": 1,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 54,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "index.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 284
+      }
+    },
+    {
+      "name": "index.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "projects.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "projects.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 2220,
+        "dom": 576,
+        "stars": 283,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 54,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "projects.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 380
+      }
+    },
+    {
+      "name": "projects.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "cv.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "cv.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 3210,
+        "dom": 602,
+        "stars": 283,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 56,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "cv.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 379
+      }
+    },
+    {
+      "name": "cv.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "about-me.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "about-me.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1742,
+        "dom": 468,
+        "stars": 283,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 58,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "about-me.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 284
+      }
+    },
+    {
+      "name": "about-me.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "portfolio-website.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 17459,
+        "dom": 1129,
+        "stars": 283,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 55,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 380
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "browser-game.html dark 1440 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "browser-game.html",
+        "theme": "dark",
+        "width": 1440,
+        "dpr": 1,
+        "height": 1224,
+        "dom": 429,
+        "stars": 231,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 54,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "browser-game.html dark 1440 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 231
+      }
+    },
+    {
+      "name": "browser-game.html dark 1440 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "index.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "index.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 2556,
+        "dom": 196,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 77,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "index.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "index.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "projects.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "projects.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 3162,
+        "dom": 274,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "projects.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "projects.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "cv.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "cv.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 5248,
+        "dom": 300,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "cv.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "cv.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "about-me.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "about-me.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 2872,
+        "dom": 166,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "about-me.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "about-me.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "portfolio-website.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "portfolio-website.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 21581,
+        "dom": 827,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "portfolio-website.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "portfolio-website.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "browser-game.html light 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "browser-game.html",
+        "theme": "light",
+        "width": 390,
+        "dpr": 2,
+        "height": 1872,
+        "dom": 179,
+        "stars": 0,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": null,
+        "navbar": {
+          "blur": "blur(4px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "browser-game.html light 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 0
+      }
+    },
+    {
+      "name": "browser-game.html light 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "index.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "index.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 2529,
+        "dom": 260,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "index.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 86
+      }
+    },
+    {
+      "name": "index.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "projects.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "projects.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 3162,
+        "dom": 338,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "projects.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 86
+      }
+    },
+    {
+      "name": "projects.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "cv.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "cv.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 5248,
+        "dom": 364,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "cv.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 85
+      }
+    },
+    {
+      "name": "cv.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "about-me.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "about-me.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 2844,
+        "dom": 230,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "about-me.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 85
+      }
+    },
+    {
+      "name": "about-me.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "portfolio-website.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 21441,
+        "dom": 891,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 1,
+        "maxLongTask": 52,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": "12px"
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 86
+      }
+    },
+    {
+      "name": "portfolio-website.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "browser-game.html dark 390 layout/styles",
+      "pass": true,
+      "details": {
+        "path": "browser-game.html",
+        "theme": "dark",
+        "width": 390,
+        "dpr": 2,
+        "height": 1872,
+        "dom": 243,
+        "stars": 64,
+        "changing": 0,
+        "canvasPaints": 1,
+        "blurredContent": 0,
+        "heading": 1,
+        "overflow": false,
+        "errors": [],
+        "cls": 0,
+        "longTasks": 0,
+        "maxLongTask": 0,
+        "moonHref": "images/moon-surface.jpg",
+        "navbar": {
+          "blur": "blur(8px)",
+          "top": 0
+        },
+        "fontSize": null
+      }
+    },
+    {
+      "name": "browser-game.html dark 390 bounded stars",
+      "pass": true,
+      "details": {
+        "peak": 86
+      }
+    },
+    {
+      "name": "browser-game.html dark 390 scroll does not repaint river",
+      "pass": true,
+      "details": {
+        "startPaints": 1,
+        "endPaints": 1
+      }
+    },
+    {
+      "name": "Navigation uses opacity-only page fades under 6x CPU slowdown",
+      "pass": true,
+      "details": [
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 110,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "FOOTER",
+          "class": "footer content top-divider",
+          "duration": 110,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 240,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 110,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 240,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 110,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 240,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 110,
+          "keys": [
+            "opacity"
+          ]
+        },
+        {
+          "tag": "MAIN",
+          "class": "content",
+          "duration": 240,
+          "keys": [
+            "opacity"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Back restores scroll position",
+      "pass": true
+    },
+    {
+      "name": "Rapid theme toggles settle on saved choice",
+      "pass": true
+    },
+    {
+      "name": "UFO flight changes transform rather than layout coordinates",
+      "pass": true,
+      "details": {
+        "x": 325.34957122802734,
+        "y": 128.24421310424805,
+        "left": "",
+        "top": "",
+        "transform": "translate3d(325.35px, 128.244px, 0px) translate(-50%, -50%) rotate(1.30149deg)"
+      }
+    },
+    {
+      "name": "UFO can be grabbed",
+      "pass": true
+    },
+    {
+      "name": "UFO drag and release work",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion immediately stops star changes and UFO",
+      "pass": true
+    },
+    {
+      "name": "Reduced motion disables page fades",
+      "pass": true
+    },
+    {
+      "name": "CV print removes scenery/navigation/filters",
+      "pass": true,
+      "details": {
+        "background": "rgb(255, 255, 255)",
+        "nav": "none",
+        "blur": [
+          "none",
+          "none"
+        ]
+      }
+    },
+    {
+      "name": "No failed local asset requests",
+      "pass": true,
+      "details": []
+    },
+    {
+      "name": "No final JavaScript errors",
+      "pass": true
+    }
+  ],
+  "networkErrors": []
+}

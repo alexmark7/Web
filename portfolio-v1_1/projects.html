@@ -60,41 +60,16 @@
       <!-- One article per project -->
       <section class="project-boxes" aria-label="Project collection">
         <article id="portfolio-website" class="project-box blurred-box">
-          <!-- Inline artwork also works when opening this page directly from disk. -->
-          <svg class="project-preview" viewBox="69 45 662 410" width="662" height="410" role="img" aria-label="Drawing of this portfolio's navigation, heading, skills, and projects">
-            <rect x="72" y="48" width="656" height="404" fill="var(--preview-panel, #050505)" stroke="var(--preview-muted, #77736b)" stroke-width="2"/>
-            <path d="M72 100h656" stroke="var(--preview-divider, #514e48)" stroke-width="2"/>
-            <text x="98" y="82" fill="var(--preview-foreground, #e9e4d8)" font-family="monospace" font-size="21" font-weight="bold">PORTFOLIO</text>
-            <g fill="var(--preview-muted, #aaa99f)" font-family="monospace" font-size="13">
-              <text x="420" y="80">HOME</text>
-              <text x="492" y="80">PROJECTS</text>
-              <text x="592" y="80">CV</text>
-              <text x="632" y="80">ABOUT</text>
-            </g>
-            <path d="M420 98h42" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="3"/>
-            <g fill="var(--preview-foreground, #e9e4d8)" font-family="Arial, sans-serif" font-size="33" font-weight="bold">
-              <text x="104" y="164">Software engineering,</text>
-              <text x="104" y="204">computer systems, and</text>
-              <text x="104" y="244">technical sales.</text>
-            </g>
-            <g fill="var(--preview-muted, #aaa99f)" font-family="Arial, sans-serif" font-size="15">
-              <text x="106" y="279">A portfolio built with HTML, CSS and JavaScript.</text>
-            </g>
-            <g fill="none" stroke-width="2">
-              <rect x="106" y="315" width="92" height="26" stroke="var(--preview-html-border, #e34f26)"/>
-              <rect x="210" y="315" width="74" height="26" stroke="var(--preview-css-border, #2965f1)"/>
-              <rect x="296" y="315" width="128" height="26" stroke="var(--preview-yellow, #f7df1e)"/>
-              <rect x="106" y="369" width="274" height="51" stroke="var(--preview-divider, #514e48)"/>
-              <rect x="394" y="369" width="274" height="51" stroke="var(--preview-divider, #514e48)"/>
-            </g>
-            <g font-family="monospace" font-size="13" font-weight="bold">
-              <text x="128" y="333" fill="var(--preview-html-text, #f06a43)">HTML</text>
-              <text x="232" y="333" fill="var(--preview-blue, #5d87ee)">CSS</text>
-              <text x="317" y="333" fill="var(--preview-yellow, #f7df1e)">JAVASCRIPT</text>
-              <text x="127" y="399" fill="var(--preview-foreground, #e9e4d8)">SELECTED PROJECTS</text>
-              <text x="415" y="399" fill="var(--preview-foreground, #e9e4d8)">EXPERIENCE</text>
-            </g>
-          </svg>
+          <img
+            class="project-preview"
+            src="images/portfolio-home-preview-480.webp"
+            srcset="images/portfolio-home-preview-480.webp 480w, images/portfolio-home-preview-960.webp 960w"
+            sizes="(max-width: 768px) 90vw, 320px"
+            alt="Screenshot of the portfolio homepage with its watercolor mountains, vermilion sun, introduction and technology labels"
+            width="960"
+            height="667"
+            decoding="async"
+          >
           <div class="project-details">
             <p class="project-number">Project #01</p>
             <h2>Portfolio Website</h2>
@@ -197,9 +172,8 @@
             <ul class="project-skill-list">
               <li class="skill-java">Java</li>
               <li class="skill-git">Git</li>
-              <li class="skill-intellij">IntelliJ IDEA</li>
             </ul>
-            <button class="button project-button" type="button" disabled>Coming soon</button>
+            <a class="button project-button" href="https://alexmark7.github.io/hjemmeside/" target="_blank" rel="noopener noreferrer" aria-label="View project: Pokémon Card Collector">View project →</a>
           </div>
         </article>
 
@@ -229,7 +203,13 @@
             <p>
               A responsive dashboard concept for viewing the status of
               self-hosted services, storage, and recent activity in one place.
+              Planned dashboard features include:
             </p>
+            <ul class="project-features">
+              <li><strong>Weather:</strong> current conditions and a weekly forecast.</li>
+              <li><strong>Study planner:</strong> assignments, deadlines, and weekly study goals.</li>
+              <li><strong>Habit tracker:</strong> daily check-ins and progress over time.</li>
+            </ul>
             <ul class="project-skill-list">
               <li class="skill-html">HTML</li>
               <li class="skill-css">CSS</li>
@@ -239,118 +219,11 @@
             <button class="button project-button" type="button" disabled>Coming soon</button>
           </div>
         </article>
-
-        <article id="weather-dashboard" class="project-box blurred-box">
-          <svg class="project-preview" viewBox="97 81 606 344" width="606" height="344" role="img" aria-label="Abstract preview of a weather dashboard">
-            <circle cx="190" cy="190" r="72" fill="var(--preview-foreground, #e9e4d8)"/>
-            <g fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="2">
-              <rect x="330" y="84" width="370" height="108" rx="12"/>
-              <rect x="100" y="330" width="170" height="92" rx="12"/>
-              <rect x="315" y="330" width="170" height="92" rx="12"/>
-              <rect x="530" y="330" width="170" height="92" rx="12"/>
-            </g>
-            <g stroke="var(--preview-foreground, #e9e4d8)" stroke-width="5"><path d="M365 130h260M365 158h180"/></g>
-          </svg>
-          <div class="project-details">
-            <p class="project-number">Project #05</p>
-            <h2>Weather Dashboard</h2>
-            <p>
-              A responsive dashboard that presents current conditions and a
-              weekly forecast.
-            </p>
-            <ul class="project-skill-list">
-              <li class="skill-html">HTML</li>
-              <li class="skill-css">CSS</li>
-              <li class="skill-javascript">JavaScript</li>
-            </ul>
-            <button class="button project-button" type="button" disabled>Coming soon</button>
-          </div>
-        </article>
-
-        <article id="study-planner" class="project-box blurred-box">
-          <svg class="project-preview" viewBox="81 67 638 366" width="638" height="366" role="img" aria-label="Abstract preview of a study planner">
-            <rect x="84" y="70" width="632" height="360" rx="18" fill="var(--preview-panel, #111111)" stroke="var(--preview-muted, #aaa99f)" stroke-width="2"/>
-            <path d="M84 145h632M210 145v285M336 145v285M462 145v285M588 145v285" stroke="var(--preview-divider, #555555)" stroke-width="2"/>
-            <g fill="var(--preview-foreground, #e9e4d8)">
-              <rect x="108" y="178" width="78" height="54" rx="8"/>
-              <rect x="360" y="256" width="78" height="90" rx="8"/>
-              <rect x="612" y="180" width="78" height="120" rx="8"/>
-            </g>
-          </svg>
-          <div class="project-details">
-            <p class="project-number">Project #06</p>
-            <h2>Study Planner</h2>
-            <p>
-              A weekly planning interface for organising assignments, deadlines,
-              and study goals.
-            </p>
-            <ul class="project-skill-list">
-              <li class="skill-html">HTML</li>
-              <li class="skill-css">CSS</li>
-              <li class="skill-javascript">JavaScript</li>
-            </ul>
-            <button class="button project-button" type="button" disabled>Coming soon</button>
-          </div>
-        </article>
-
-        <article id="habit-tracker" class="project-box blurred-box">
-          <svg class="project-preview" viewBox="124 99 552 322" width="552" height="322" role="img" aria-label="Abstract preview of a habit tracker">
-            <g fill="none" stroke="var(--preview-divider, #555555)" stroke-width="3">
-              <circle cx="170" cy="145" r="42"/><circle cx="285" cy="145" r="42"/><circle cx="400" cy="145" r="42"/><circle cx="515" cy="145" r="42"/><circle cx="630" cy="145" r="42"/>
-              <circle cx="170" cy="260" r="42"/><circle cx="285" cy="260" r="42"/><circle cx="400" cy="260" r="42"/><circle cx="515" cy="260" r="42"/><circle cx="630" cy="260" r="42"/>
-              <circle cx="170" cy="375" r="42"/><circle cx="285" cy="375" r="42"/><circle cx="400" cy="375" r="42"/><circle cx="515" cy="375" r="42"/><circle cx="630" cy="375" r="42"/>
-            </g>
-            <g fill="var(--preview-foreground, #e9e4d8)">
-              <circle cx="170" cy="145" r="31"/><circle cx="285" cy="145" r="31"/><circle cx="400" cy="145" r="31"/><circle cx="170" cy="260" r="31"/><circle cx="515" cy="260" r="31"/><circle cx="630" cy="375" r="31"/>
-            </g>
-          </svg>
-          <div class="project-details">
-            <p class="project-number">Project #07</p>
-            <h2>Habit Tracker</h2>
-            <p>
-              A minimal tool that helps users record daily habits and review
-              their progress.
-            </p>
-            <ul class="project-skill-list">
-              <li class="skill-html">HTML</li>
-              <li class="skill-css">CSS</li>
-              <li class="skill-javascript">JavaScript</li>
-            </ul>
-            <button class="button project-button" type="button" disabled>Coming soon</button>
-          </div>
-        </article>
-
-        <article id="photography-gallery" class="project-box blurred-box">
-          <svg class="project-preview" viewBox="65 62 670 376" width="670" height="376" role="img" aria-label="Abstract preview of a photography gallery">
-            <g stroke="var(--preview-muted, #aaa99f)" stroke-width="2">
-              <rect x="70" y="65" width="290" height="165" fill="var(--preview-panel, #111111)"/>
-              <rect x="390" y="65" width="340" height="270" fill="var(--preview-panel, #1a1a1a)"/>
-              <rect x="70" y="260" width="290" height="175" fill="var(--preview-panel, #111111)"/>
-              <rect x="390" y="365" width="340" height="70" fill="var(--preview-panel, #1a1a1a)"/>
-            </g>
-            <circle cx="145" cy="118" r="25" fill="var(--preview-foreground, #e9e4d8)"/>
-            <path d="M70 206l88-74 66 54 48-35 88 55M70 412l82-95 60 55 55-42 93 82M390 305l95-112 74 62 55-91 116 141" fill="none" stroke="var(--preview-foreground, #e9e4d8)" stroke-width="7"/>
-          </svg>
-          <div class="project-details">
-            <p class="project-number">Project #08</p>
-            <h2>Photography Gallery</h2>
-            <p>
-              A responsive image collection with category filters and an
-              uncluttered presentation.
-            </p>
-            <ul class="project-skill-list">
-              <li class="skill-html">HTML</li>
-              <li class="skill-css">CSS</li>
-              <li class="skill-javascript">JavaScript</li>
-            </ul>
-            <button class="button project-button" type="button" disabled>Coming soon</button>
-          </div>
-        </article>
       </section>
     </main>
 
     <!-- Shared footer -->
-    <footer class="footer content top-divider">
+    <footer class="footer content">
       <nav
         class="footer-navigation footer-links"
         aria-labelledby="footer-navigation-heading"
@@ -367,9 +240,7 @@
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
           <a href="projects.html#browser-game">Browser Game</a>
-          <a href="projects.html#pokemon-card-collector"
-            >Pokémon Card Collector</a
-          >
+          <a href="https://alexmark7.github.io/hjemmeside/" target="_blank" rel="noopener noreferrer">Pokémon Card Collector</a>
           <a href="projects.html">View all projects →</a>
         </div>
       </nav>

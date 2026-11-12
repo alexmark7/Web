@@ -60,7 +60,8 @@
           I started with three pages and kept adding to them as I learned more
           HTML, CSS, and JavaScript. I also edited the illustrations in
           Illustrator. These are the main steps, with screenshots and bits of
-          code from along the way.
+          code from along the way. The walkthrough ends with the final v1.0
+          website for the web course.
         </p>
         <a class="button" href="projects.html">Back to projects</a>
       </header>
@@ -68,7 +69,7 @@
       <!-- These examples show the site at different stages, not just the current code. -->
       <div class="website-steps">
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="first-layout"
           aria-labelledby="first-layout-heading"
         >
@@ -124,7 +125,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="navigation"
           aria-labelledby="navigation-heading"
         >
@@ -194,7 +195,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="navigation-details"
           aria-labelledby="navigation-details-heading"
         >
@@ -245,7 +246,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="new-pages"
           aria-labelledby="new-pages-heading"
         >
@@ -296,7 +297,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="cv-page"
           aria-labelledby="cv-page-heading"
         >
@@ -342,7 +343,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="skill-labels"
           aria-labelledby="skill-labels-heading"
         >
@@ -408,7 +409,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="project-cards"
           aria-labelledby="project-cards-heading"
         >
@@ -555,7 +556,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="footer-layout"
           aria-labelledby="footer-layout-heading"
         >
@@ -621,7 +622,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="home-rework"
           aria-labelledby="home-rework-heading"
         >
@@ -675,7 +676,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="screen-sizes"
           aria-labelledby="screen-sizes-heading"
         >
@@ -767,7 +768,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="publishing"
           aria-labelledby="publishing-heading"
         >
@@ -798,7 +799,7 @@
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="scroll-behaviour"
           aria-labelledby="scroll-behaviour-heading"
         >
@@ -851,7 +852,7 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
         </section>
 
         <section
-          class="website-step top-divider"
+          class="website-step"
           id="page-transitions"
           aria-labelledby="page-transitions-heading"
         >
@@ -870,8 +871,8 @@ window.<span class="code-function">addEventListener</span>(<span class="code-str
           <p>
             I added a short fade when moving to another page. JavaScript loads
             the next HTML file and replaces just the main content and footer,
-            so the top bar stays in place. The background and UFO can keep
-            running instead of restarting with every click. I also made the
+            so the top bar stays in place instead of restarting with every
+            click. I also made the
             underline grow from its middle and stopped that
             animation from replaying when moving between the Projects list and
             one of its project pages. That took a few adjustments to get the
@@ -959,168 +960,44 @@ document.title = nextPage.title;</code></pre>
         </section>
 
         <section
-          class="website-step top-divider"
-          id="star-background"
-          aria-labelledby="star-background-heading"
+          class="website-step"
+          id="final-course-version"
+          aria-labelledby="final-course-version-heading"
         >
           <header class="website-step-heading">
             <p class="project-number">Step #14</p>
             <div class="website-step-title">
-              <h2 id="star-background-heading">
-                Turning the empty background into stars
-              </h2>
-              <ul
-                class="website-step-skills skill-list blurred-box"
-              >
+              <h2 id="final-course-version-heading">The final web-course website</h2>
+              <ul class="website-step-skills skill-list blurred-box">
                 <li class="skill-html">HTML</li>
                 <li class="skill-css">CSS</li>
-                <li class="skill-javascript">JavaScript</li>
-                <li class="skill-ai-tools">AI Tools</li>
+                <li class="skill-git">Git</li>
               </ul>
             </div>
           </header>
           <p>
-            I used JavaScript to place small characters in the background on
-            every page. Individual stars change brightness or fade away and
-            appear somewhere else. Navigation keeps these same stars running
-            when the content changes, even if the page width changes slightly.
-            Shorter pages keep the stars below them ready for a longer page.
-            Their current positions and appearance
-            are also saved when the document closes, ready for a refresh. I adjusted
-            their speed, size, colour, and fading until the background felt
-            active without being distracting.
+            Portfolio v1.0 is the final version of my website for the web course.
+            It brings together the Home, Projects, CV, and About Me pages, with
+            responsive layouts, shared navigation, and coloured technology labels.
+            This is the finished Home page, where the course walkthrough ends.
           </p>
-          <p>
-            Making the stars move and fill pages of different lengths was above
-            my current JavaScript skill level, so I used AI tools to help build
-            this part. I kept testing the result and changing how often the
-            stars moved and faded.
-          </p>
-          <p>The background has a place in the HTML behind the page content:</p>
-          <pre
-            class="website-code code-html blurred-box"
-          ><code>&lt;<span class="code-tag">div</span> <span class="code-attribute">class</span>=<span class="code-string">"background"</span> <span class="code-attribute">aria-hidden</span>=<span class="code-string">"true"</span>&gt;
-  &lt;<span class="code-tag">div</span> <span class="code-attribute">id</span>=<span class="code-string">"ascii-stars"</span>&gt;&lt;/<span class="code-tag">div</span>&gt;
-&lt;/<span class="code-tag">div</span>&gt;</code></pre>
-          <p>
-            The opacity transition is what stops a star from simply popping on
-            and off:
-          </p>
-          <pre
-            class="website-code code-css blurred-box"
-          ><code><span class="code-selector">.ascii-star</span> {
-  <span class="code-property">opacity</span>: <span class="code-value">var(--star-opacity, 0.6)</span>;
-  <span class="code-property">transition</span>: <span class="code-value">opacity 550ms ease-in-out</span>;
-}
-
-<span class="code-selector">.ascii-star.is-changing</span> {
-  <span class="code-property">opacity</span>: <span class="code-value">0</span>;
-}</code></pre>
-          <p>
-            Long pages needed one more fix. Pictures can make the page taller
-            after it opens, so I made the script add stars to the extra space
-            instead of leaving the bottom empty.
-          </p>
-          <pre
-            class="website-code code-js blurred-box"
-          ><code><span class="code-keyword">new</span> <span class="code-function">ResizeObserver</span>(updateStarArea).<span class="code-function">observe</span>(display);</code></pre>
-          <p>
-            A shorter page hides the extra stars instead of rebuilding them, so
-            they are ready when a longer page opens again. I also save the stars
-            when leaving the document and restore them on a full page load. If
-            there is nothing saved, the normal starting pattern is created:
-          </p>
-          <pre
-            class="website-code code-js blurred-box"
-          ><code>window.<span class="code-function">addEventListener</span>(<span class="code-string">"pagehide"</span>, saveStars);
-
-<span class="code-keyword">if</span> (!<span class="code-function">restoreStars</span>()) <span class="code-function">startStars</span>();</code></pre>
-        </section>
-
-        <section
-          class="website-step top-divider"
-          id="ascii-ufo"
-          aria-labelledby="ascii-ufo-heading"
-        >
-          <header class="website-step-heading">
-            <p class="project-number">Step #15</p>
-            <div class="website-step-title">
-              <h2 id="ascii-ufo-heading">Adding the ASCII UFO</h2>
-              <ul
-                class="website-step-skills skill-list blurred-box"
+          <figure class="website-picture blurred-box">
+            <a href="images/portfolio-v1_0-course-final.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the final portfolio v1.0 screenshot at full size">
+              <img
+                src="images/portfolio-v1_0-course-final.webp"
+                alt="The completed portfolio v1.0 Home page with its black background, introduction, technology labels, selected projects, and footer"
+                width="1440"
+                height="1376"
+                loading="lazy"
+                decoding="async"
               >
-                <li class="skill-css">CSS</li>
-                <li class="skill-javascript">JavaScript</li>
-                <li class="skill-ai-tools">AI Tools</li>
-              </ul>
-            </div>
-          </header>
-          <p>
-            I added a UFO that appears now and then, moves along a curved path,
-            and starts behind the page content. You can grab it and swing it
-            around. The lights keep changing even when I hold it still.
-            The changing characters turn red while it is held, then fade
-            back at different times after release. It speeds up to get away and
-            can be grabbed again while it is in front. Every time all the lights
-            return to normal, it gains more speed before fading behind the page.
-            It keeps making turns while the lights recover, then leaves a few
-            seconds to grab it again. The speed it has gained stays ready for
-            later getaways, including when switching pages without a refresh.
-            If a throw sends it off-screen,
-            it comes back into view and continues its curved path.
-          </p>
-          <p>
-            The curved movement, dragging, and colour changes were also above my
-            current JavaScript skill level. I used AI tools to help write this
-            part, then tried it out and kept adjusting how it moved and looked.
-          </p>
-          <p>
-            CSS starts the UFO behind the page. After a grab, it stays above
-            the page and can be grabbed again while its lights fade back:
-          </p>
-          <pre
-            class="website-code code-css blurred-box"
-          ><code><span class="code-selector">.ascii-ufo</span> {
-  <span class="code-property">position</span>: <span class="code-value">fixed</span>;
-  <span class="code-property">z-index</span>: <span class="code-value">0</span>;
-}
-
-<span class="code-selector">.ascii-ufo.is-in-front</span> {
-  <span class="code-property">z-index</span>: <span class="code-value">1001</span>;
-  <span class="code-property">pointer-events</span>: <span class="code-value">auto</span>;
-}</code></pre>
-          <p>
-            The first release makes it faster. Its current speed is multiplied
-            again only after every red character has faded back, so repeated
-            grabs can keep building up its speed:
-          </p>
-          <pre
-            class="website-code code-js blurred-box"
-          ><code><span class="code-keyword">if</span> (returningCharacters === <span class="code-value">0</span>) {
-  getawaySpeed *= recoveredLightsMultiplier;
-  <span class="code-function">fadeBehindPage</span>();
-}</code></pre>
-          <p>
-            JavaScript gives each red character its own time to start fading
-            back:
-          </p>
-          <pre
-            class="website-code code-js blurred-box"
-          ><code>changingCharacters.<span class="code-function">forEach</span>((character) =&gt; {
-  <span class="code-keyword">const</span> timer = window.<span class="code-function">setTimeout</span>(() =&gt; {
-    character.classList.<span class="code-function">remove</span>(<span class="code-string">"is-red"</span>);
-  }, <span class="code-function">randomBetween</span>(<span class="code-value">600</span>, <span class="code-value">2000</span>));
-  colourTimers.<span class="code-function">push</span>(timer);
-});</code></pre>
-          <p>
-            Once the last character has faded back, a copy behind the page fades
-            in while the one in front fades out. That makes the UFO move behind
-            the content without suddenly jumping.
-          </p>
+            </a>
+            <figcaption>Portfolio v1.0 — final website for the web course.</figcaption>
+          </figure>
         </section>
       </div>
 
-      <section class="website-thanks top-divider" aria-labelledby="website-thanks-heading">
+      <section class="website-thanks" aria-labelledby="website-thanks-heading">
         <h2 id="website-thanks-heading">Thanks for reading!</h2>
         <p>You made it all the way down. You deserve a little cookie 🍪</p>
         <a class="button" href="#main-content">Back to top ↑</a>
@@ -1128,7 +1005,7 @@ document.title = nextPage.title;</code></pre>
     </main>
 
     <!-- Shared footer -->
-    <footer class="footer content top-divider">
+    <footer class="footer content">
       <nav
         class="footer-navigation footer-links"
         aria-labelledby="footer-navigation-heading"
@@ -1145,9 +1022,7 @@ document.title = nextPage.title;</code></pre>
         <div class="footer-project-links footer-links">
           <a href="projects.html#portfolio-website">Portfolio Website</a>
           <a href="projects.html#browser-game">Browser Game</a>
-          <a href="projects.html#pokemon-card-collector"
-            >Pokémon Card Collector</a
-          >
+          <a href="https://alexmark7.github.io/hjemmeside/" target="_blank" rel="noopener noreferrer">Pokémon Card Collector</a>
           <a href="projects.html">View all projects →</a>
         </div>
       </nav>

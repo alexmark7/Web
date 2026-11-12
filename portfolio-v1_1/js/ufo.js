@@ -87,9 +87,7 @@
   function placeUfo() {
     const drawings = behindCopy ? [ufo, behindCopy] : [ufo];
     drawings.forEach((drawing) => {
-      drawing.style.left = `${currentX}px`;
-      drawing.style.top = `${currentY}px`;
-      drawing.style.transform = `translate(-50%, -50%) rotate(${currentTilt}deg)`;
+      drawing.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%) rotate(${currentTilt}deg)`;
     });
   }
 

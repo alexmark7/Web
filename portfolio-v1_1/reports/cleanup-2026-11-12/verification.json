@@ -1,0 +1,989 @@
+{
+  "date": "2026-11-12",
+  "scope": "Cleanup validation against the staged Pages artifact at its root URL; no new performance benchmark.",
+  "configurations": [
+    {
+      "page": "index",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "projects",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 4,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "cv",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "about-me",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "portfolio-website",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 2,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "browser-game",
+      "width": 1440,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 3,
+      "stars": 0,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "index",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 283,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "projects",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 4,
+      "stars": 283,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "cv",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 283,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "about-me",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 334,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "portfolio-website",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 2,
+      "stars": 283,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "browser-game",
+      "width": 1440,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 3,
+      "stars": 236,
+      "river": [
+        1430,
+        289
+      ],
+      "errors": []
+    },
+    {
+      "page": "index",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "projects",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 4,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "cv",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "about-me",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "portfolio-website",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 2,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "browser-game",
+      "width": 390,
+      "theme": "light",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 3,
+      "stars": 0,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "index",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "projects",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 4,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "cv",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "about-me",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 0,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "portfolio-website",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 2,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    },
+    {
+      "page": "browser-game",
+      "width": 390,
+      "theme": "dark",
+      "overflow": false,
+      "missingImages": [],
+      "h1": 1,
+      "previewCount": 3,
+      "stars": 64,
+      "river": [
+        760,
+        378
+      ],
+      "errors": []
+    }
+  ],
+  "checks": [
+    {
+      "pass": true,
+      "name": "Published index light 1440",
+      "details": {
+        "page": "index",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published projects light 1440",
+      "details": {
+        "page": "projects",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 4,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All four inline project previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published cv light 1440",
+      "details": {
+        "page": "cv",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Work and education dividers preserved",
+      "details": [
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ]
+    },
+    {
+      "pass": true,
+      "name": "Published about-me light 1440",
+      "details": {
+        "page": "about-me",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published portfolio-website light 1440",
+      "details": {
+        "page": "portfolio-website",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 2,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published browser-game light 1440",
+      "details": {
+        "page": "browser-game",
+        "width": 1440,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 3,
+        "stars": 0,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All three inline game previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published index dark 1440",
+      "details": {
+        "page": "index",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 283,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published projects dark 1440",
+      "details": {
+        "page": "projects",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 4,
+        "stars": 283,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All four inline project previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published cv dark 1440",
+      "details": {
+        "page": "cv",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 283,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Work and education dividers preserved",
+      "details": [
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ]
+    },
+    {
+      "pass": true,
+      "name": "Published about-me dark 1440",
+      "details": {
+        "page": "about-me",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 334,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published portfolio-website dark 1440",
+      "details": {
+        "page": "portfolio-website",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 2,
+        "stars": 283,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published browser-game dark 1440",
+      "details": {
+        "page": "browser-game",
+        "width": 1440,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 3,
+        "stars": 236,
+        "river": [
+          1430,
+          289
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All three inline game previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published index light 390",
+      "details": {
+        "page": "index",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published projects light 390",
+      "details": {
+        "page": "projects",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 4,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All four inline project previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published cv light 390",
+      "details": {
+        "page": "cv",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Work and education dividers preserved",
+      "details": [
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ]
+    },
+    {
+      "pass": true,
+      "name": "Published about-me light 390",
+      "details": {
+        "page": "about-me",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published portfolio-website light 390",
+      "details": {
+        "page": "portfolio-website",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 2,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published browser-game light 390",
+      "details": {
+        "page": "browser-game",
+        "width": 390,
+        "theme": "light",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 3,
+        "stars": 0,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All three inline game previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published index dark 390",
+      "details": {
+        "page": "index",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published projects dark 390",
+      "details": {
+        "page": "projects",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 4,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All four inline project previews remain"
+    },
+    {
+      "pass": true,
+      "name": "Published cv dark 390",
+      "details": {
+        "page": "cv",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Work and education dividers preserved",
+      "details": [
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px",
+        "1px"
+      ]
+    },
+    {
+      "pass": true,
+      "name": "Published about-me dark 390",
+      "details": {
+        "page": "about-me",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 0,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published portfolio-website dark 390",
+      "details": {
+        "page": "portfolio-website",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 2,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Published browser-game dark 390",
+      "details": {
+        "page": "browser-game",
+        "width": 390,
+        "theme": "dark",
+        "overflow": false,
+        "missingImages": [],
+        "h1": 1,
+        "previewCount": 3,
+        "stars": 64,
+        "river": [
+          760,
+          378
+        ],
+        "errors": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "All three inline game previews remain"
+    },
+    {
+      "pass": true,
+      "name": "SPA and Back restore the case-study scroll"
+    },
+    {
+      "pass": true,
+      "name": "Game selection after SPA navigation"
+    },
+    {
+      "pass": true,
+      "name": "First light scenery switch after navigation"
+    },
+    {
+      "pass": true,
+      "name": "No missing published assets",
+      "details": []
+    },
+    {
+      "pass": true,
+      "name": "No final JavaScript errors"
+    },
+    {
+      "pass": true,
+      "name": "Firefox published index",
+      "details": {
+        "page": "index",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox published projects",
+      "details": {
+        "page": "projects",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox published cv",
+      "details": {
+        "page": "cv",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox published about-me",
+      "details": {
+        "page": "about-me",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox published portfolio-website",
+      "details": {
+        "page": "portfolio-website",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    },
+    {
+      "pass": true,
+      "name": "Firefox published browser-game",
+      "details": {
+        "page": "browser-game",
+        "overflow": false,
+        "errors": [],
+        "missing": []
+      }
+    }
+  ]
+}

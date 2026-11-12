@@ -2,12 +2,12 @@
 :root {
   --page-gutter: clamp(5vw, calc(15vw - 37.5px), 10vw);
   --sun-size: clamp(200px, 36vw, 456px);
+  --tree-size: clamp(220px, 28vw, 420px);
   --section-heading-size: clamp(1.9rem, calc(1.5rem + 0.9vw), 2.5rem);
   --color-background: #000;
   --color-text: rgb(255, 255, 255);
   --color-text-muted: #d1d3d2;
   --color-text-bright: #f1f2f2;
-  --color-navbar-background: rgba(0, 0, 0, 0.72);
   --color-border: rgba(235, 235, 235, 0.36);
   --color-border-strong: rgba(235, 235, 235, 0.5);
   --color-surface: rgba(0, 0, 0, 0.18);
@@ -22,7 +22,6 @@
   --color-text: #070a08;
   --color-text-muted: #101512;
   --color-text-bright: #000;
-  --color-navbar-background: rgba(250, 248, 243, 0.28);
   --color-border: rgba(32, 32, 32, 0.19);
   --color-border-strong: rgba(32, 32, 32, 0.38);
   --color-surface: rgba(255, 255, 255, 0.34);
@@ -44,12 +43,15 @@ html {
   color-scheme: dark;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
+  /* Stop touch and trackpad gestures from bouncing beyond the page edges. */
+  overscroll-behavior-y: none;
 
   scrollbar-color: #aaa99f var(--color-background);
 }
 
 body {
   position: relative;
+  overscroll-behavior-y: none;
   color: var(--color-text);
   background: var(--color-background);
   margin: 0px;
@@ -86,7 +88,7 @@ html[data-theme="light"]:not([data-scenery-ready]) .background {
 /* A silver moon in the open night sky, above the distant stars. */
 .night-moon {
   --moon-size: clamp(98px, 12.4vw, 182px);
-  --moon-top: calc(var(--cloud-clearance) + 66px);
+  --moon-top: calc(var(--cloud-clearance) + 94px);
   position: fixed;
   z-index: 2;
   top: var(--moon-top);
@@ -119,7 +121,7 @@ html[data-theme="light"] .night-moon {
   bottom: -8vh;
   width: var(--mountain-width);
   aspect-ratio: 3 / 2;
-  --mountain-paint: image-set(url("../images/optimized/watercolor-mountains-connected.webp") 1x, url("../images/optimized/watercolor-mountains-connected@2x.webp") 2x);
+  --mountain-paint: image-set(url("../images/optimized/watercolor-mountains-defined-ridge.webp") 1x, url("../images/optimized/watercolor-mountains-defined-ridge@2x.webp") 2x);
   /* Three pigment washes are already combined in the exported image. */
   background: var(--mountain-paint) center / contain no-repeat;
   opacity: 1;
@@ -243,6 +245,10 @@ html[data-theme="light"] .night-moon {
   background: image-set(url("../images/optimized/watercolor-ink-splatter.webp") 1x, url("../images/optimized/watercolor-ink-splatter@2x.webp") 2x) center / contain no-repeat;
 }
 
+.ink-splotch--02 {
+  background-image: image-set(url("../images/optimized/watercolor-ink-splatter-02.webp") 1x, url("../images/optimized/watercolor-ink-splatter-02@2x.webp") 2x);
+}
+
 .ink-splotch--top-left {
   margin-left: clamp(-100px, -6vw, -22px);
   margin-top: clamp(48px, 7vh, 72px);
@@ -259,19 +265,19 @@ html[data-theme="light"] .night-moon {
   filter: blur(2px) sepia(0.2);
 }
 
-/* A still sakura tree is anchored to the paper, with its roots below the crop. */
+/* The tree starts below the screen and rises with scroll progress. */
 .watercolor-cherry-tree {
-  --tree-size: clamp(220px, 28vw, 420px);
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  right: calc(var(--tree-size) * 0.4);
+  right: calc(var(--tree-size) * 0.4 + 12px);
   bottom: calc(var(--tree-size) * -0.24);
   width: var(--tree-size);
   aspect-ratio: 1;
   background: image-set(url("../images/optimized/watercolor-cherry-tree-solid.webp") 1x, url("../images/optimized/watercolor-cherry-tree-solid@2x.webp") 2x) center / contain no-repeat;
   pointer-events: none;
   opacity: 1;
+  transform: translate3d(0, var(--tree-offset, var(--tree-travel, calc(var(--tree-size) * 0.8 + 8px))), 0);
 }
 
 /* Eight clouds fill the sky independently of the rising sun. */
@@ -384,7 +390,8 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
   /* Firefox can still snap images at 0.01deg (Mozilla bug 2069657).
      This small angle keeps slow movement above that rounding threshold. */
   html[data-theme="light"] .background::after,
-  html[data-theme="light"] .watercolor-cloud {
+  html[data-theme="light"] .watercolor-cloud,
+  html[data-theme="light"] .watercolor-cherry-tree {
     rotate: 0.1deg;
   }
 
@@ -420,6 +427,13 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
       animation: mountain-drift 1s linear both;
       animation-timeline: scroll(root block);
     }
+
+    html[data-theme="light"] .watercolor-cherry-tree {
+      /* Keep a gentle scroll speed at the end instead of flattening to a crawl.
+         The JS fallback uses the same curve and preserves both endpoints. */
+      animation: tree-rise 1s cubic-bezier(0.333333, 0.666667, 0.666667, 0.9) both;
+      animation-timeline: scroll(root block);
+    }
   }
 }
 
@@ -443,6 +457,11 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
   to { transform: translate3d(0, -4vh, 0); }
 }
 
+@keyframes tree-rise {
+  from { transform: translate3d(0, var(--tree-travel, 0px), 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-theme="light"]) .night-moon {
     will-change: transform;
@@ -451,6 +470,10 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
   html[data-theme="light"] .watercolor-cloud {
     animation: cloud-drift var(--cloud-duration) ease-in-out infinite alternate;
     animation-delay: var(--cloud-delay);
+    will-change: transform;
+  }
+
+  html[data-theme="light"] .watercolor-cherry-tree {
     will-change: transform;
   }
 
@@ -500,8 +523,12 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
     opacity: calc(var(--ink-opacity) * 0.8);
   }
 
-  .watercolor-cherry-tree {
+  :root {
     --tree-size: 200px;
+  }
+
+  .watercolor-cherry-tree {
+    right: calc(var(--tree-size) * -0.45 + 8px);
   }
 
   .distant-birds {
@@ -538,6 +565,14 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .watercolor-cherry-tree {
+    position: absolute;
+    top: max(100vh, calc(100% - var(--tree-size) * 0.76));
+    bottom: auto;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
   .night-moon {
     transform: translate3d(0, 0, 0);
   }
@@ -685,9 +720,6 @@ a {
   top: 0px;
   left: 0px;
   z-index: 1000;
-  isolation: isolate;
-  /* Avoid thin rendering seams in the blurred navbar. */
-  transform: translateZ(0);
 
   width: 100%;
   height: 76px;
@@ -697,10 +729,16 @@ a {
   grid-template-columns: minmax(0px, 1fr) auto minmax(0px, 1fr);
   align-items: center;
 
-  background: var(--color-navbar-background);
-  transition: background-color 300ms ease;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 300ms ease,
+    border-bottom-color 300ms ease;
+}
+
+.top-navbar.scrolled {
+  background-color: var(--color-background);
+  border-bottom-color: var(--color-border-strong);
 }
 
 .portfolio-name {
@@ -881,18 +919,6 @@ main h1,
   }
 }
 
-/* Spacing and heading scale separate sections without cutting across the art. */
-.top-divider {
-  border-top: 0;
-}
-
-hr.top-divider {
-  margin: 0px;
-  border-right: 0px;
-  border-bottom: 0px;
-  border-left: 0px;
-}
-
 /* Keyboard focus */
 .top-navbar a:focus-visible,
 .button:focus-visible,
@@ -907,7 +933,7 @@ hr.top-divider {
   font-size: 1.1rem;
 }
 
-/* Keep surface tints; reserve panel blur for the CV and profile picture. */
+/* Surfaces use their theme tints without adding live backdrop filters. */
 .blurred-box,
 .button {
   background-color: var(--color-surface);
@@ -917,15 +943,11 @@ hr.top-divider {
 .selected-project-box,
 .project-box,
 .information-box,
-.contact-box {
+.contact-box,
+.cv-skills,
+.cv-extra-information,
+.profile-box {
   background-color: var(--color-card-surface);
-}
-
-.cv-skills.blurred-box,
-.cv-extra-information.blurred-box,
-.profile-box.blurred-box {
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
 }
 
 .button-group {
@@ -956,11 +978,6 @@ hr.top-divider {
     background-color 200ms ease,
     border-color 200ms ease,
     color 200ms ease;
-}
-
-/* Animate the text while the button surface stays still. */
-.button-text {
-  display: inline-block;
 }
 
 .button:not(:disabled):hover,
@@ -1009,10 +1026,19 @@ hr.top-divider {
   margin-bottom: 24px;
   font-size: clamp(2.5rem, 3vw, 5.5rem);
   letter-spacing: 0px;
+  text-wrap: balance;
+}
+
+.home-introduction-text .introduction-paragraph {
+  max-width: 65ch;
 }
 
 .skills-introduction {
-  max-width: 720px;
+  max-width: 1120px;
+}
+
+.skills-introduction h2 {
+  margin-bottom: 12px;
 }
 
 .skill-groups {
@@ -1060,6 +1086,10 @@ hr.top-divider {
 
 /* Leave an open strip of sky beside the project cards on wide screens. */
 @media (min-width: 1100px) {
+  .home-introduction-text {
+    max-width: min(720px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px));
+  }
+
   .selected-projects-grid,
   .project-boxes {
     max-width: min(860px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px));
@@ -1067,7 +1097,8 @@ hr.top-divider {
 }
 
 .selected-project-box {
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 26px;
   border: 1px solid var(--color-border);
   color: inherit;
@@ -1085,6 +1116,7 @@ hr.top-divider {
 }
 
 .selected-project-box span {
+  margin-top: auto;
   color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
@@ -1105,6 +1137,12 @@ hr.top-divider {
 
 .about-introduction-text {
   max-width: 720px;
+}
+
+@media (min-width: 1200px) {
+  .about-introduction {
+    column-gap: clamp(80px, calc(20vw - 160px), 224px);
+  }
 }
 
 .profile-box {
@@ -1307,147 +1345,141 @@ hr.top-divider {
 
 /* Dark-mode badge colours */
 li.skill-html {
-  border-color: #e34f26;
-  background-color: #170804d9;
-  color: #f06a43;
+  border-color: #ce5b3b;
+  background-color: #150906d9;
+  color: #ec7754;
 }
 
 li.skill-css {
-  border-color: #2965f1;
-  background-color: #040a18d9;
-  color: #5d87ee;
+  border-color: #3f6edb;
+  background-color: #060b16d9;
+  color: #6b90eb;
 }
 
 li.skill-javascript {
-  border-color: #f7df1e;
-  background-color: #141202d9;
-  color: #f7df1e;
+  border-color: #dfcc36;
+  background-color: #121104d9;
+  color: #f2de34;
 }
 
 li.skill-java {
-  border-color: #e76f00;
-  background-color: #170b00d9;
-  color: #f18a2a;
+  border-color: #ce7019;
+  background-color: #150b02d9;
+  color: #ed933e;
 }
 
 li.skill-git {
-  border-color: #f05032;
-  background-color: #180805d9;
-  color: #f06a50;
+  border-color: #db5e47;
+  background-color: #160907d9;
+  color: #ec7760;
 }
 
 li.skill-linux {
-  border-color: #fcc624;
-  background-color: #191404d9;
-  color: #ffd95a;
+  border-color: #e4ba3c;
+  background-color: #171306d9;
+  color: #f9d868;
 }
 
 li.skill-windows {
-  border-color: #0078d4;
-  background-color: #000e19d9;
-  color: #46a9ee;
+  border-color: #1775bd;
+  background-color: #020e16d9;
+  color: #57aeeb;
 }
 
 li.skill-networking {
-  border-color: #00a99d;
-  background-color: #001413d9;
-  color: #42d2c7;
+  border-color: #13968d;
+  background-color: #021211d9;
+  color: #53d2c8;
 }
 
 li.skill-pc-hardware {
-  border-color: #00b8f0;
-  background-color: #00161dd9;
-  color: #45d0f7;
+  border-color: #1aaad6;
+  background-color: #03141ad9;
+  color: #56d0f3;
 }
 
 li.skill-embedded-hardware {
-  border-color: #398a5a;
-  background-color: #0a170ed9;
-  color: #77c98c;
+  border-color: #42815c;
+  background-color: #0b160ed9;
+  color: #82ca94;
 }
 
 li.skill-vscode {
-  border-color: #007acc;
-  background-color: #000f18d9;
-  color: #40aeea;
-}
-
-li.skill-intellij {
-  border-color: #fe315d;
-  background-color: #190509d9;
-  color: #ff6b89;
+  border-color: #1676b6;
+  background-color: #020e16d9;
+  color: #51b2e7;
 }
 
 li.skill-jetbrains {
-  border-color: #a855f7;
-  background-color: #140a1ed9;
-  color: #c58af9;
+  border-color: #a867e5;
+  background-color: #140c1cd9;
+  color: #c693f4;
 }
 
 li.skill-ai-tools {
-  border-color: #c057f7;
-  background-color: #16081dd9;
-  color: #df9eff;
+  border-color: #bb69e5;
+  background-color: #150a1bd9;
+  color: #dda4fa;
 }
 
 li.skill-local-ai-tools {
-  border-color: #28c7b7;
-  background-color: #041b19d9;
-  color: #5ee3d5;
+  border-color: #39b6a9;
+  background-color: #061917d9;
+  color: #6ce1d5;
 }
 
 li.skill-excel {
-  border-color: #217346;
-  background-color: #05100ad9;
-  color: #45a873;
+  border-color: #2a6a47;
+  background-color: #060f0ad9;
+  color: #56ad7e;
 }
 
 li.skill-business-central {
-  border-color: #7354a3;
-  background-color: #100c17d9;
-  color: #a387cd;
+  border-color: #755d9a;
+  background-color: #100d16d9;
+  color: #a990ce;
 }
 
 li.skill-superoffice {
-  border-color: #dc3b3b;
-  background-color: #160606d9;
-  color: #e66c6c;
+  border-color: #ca4d4d;
+  background-color: #140808d9;
+  color: #e37878;
 }
 
 li.skill-salesforce {
-  border-color: #00a1e0;
-  background-color: #001016d9;
-  color: #3bc3f7;
+  border-color: #1996c7;
+  background-color: #020f14d9;
+  color: #4dc5f3;
 }
 
 li.skill-sap {
-  border-color: #0a6ed1;
-  background-color: #010b15d9;
-  color: #4b9ce8;
+  border-color: #206ebb;
+  background-color: #030b13d9;
+  color: #5ba3e5;
 }
 
 li.skill-photoshop {
-  border-color: #31a8ff;
-  background-color: #05111ad9;
-  color: #65bdff;
+  border-color: #48a4e8;
+  background-color: #071118d9;
+  color: #72c0fa;
 }
 
 li.skill-premiere {
-  border-color: #9999ff;
-  background-color: #0f0f1ad9;
-  color: #b6b6ff;
+  border-color: #a4a4f4;
+  background-color: #101019d9;
+  color: #b9b9fa;
 }
 
 li.skill-illustrator {
-  border-color: #ff9a00;
-  background-color: #1a0f00d9;
-  color: #ffb23e;
+  border-color: #e3941c;
+  background-color: #170f03d9;
+  color: #f9b650;
 }
 
 li.skill-adobe {
-  border-color: #ed2224;
-  background-color: #180304d9;
-  color: #f05b5d;
+  border-color: #d7383a;
+  background-color: #160506d9;
+  color: #ec696b;
 }
 
 /* Denser badge colours stay readable over the painted scenery without blur. */
@@ -1459,146 +1491,140 @@ html[data-theme="light"] :is(.skill-list, .project-skill-list) li {
 
 html[data-theme="light"] li.skill-html {
   color: #792909;
-  border-color: #df542a;
-  background-color: #ff8247b8;
+  border-color: #cb5f3e;
+  background-color: #f79f74b8;
 }
 
 html[data-theme="light"] li.skill-css {
   color: #163e85;
-  border-color: #3569d9;
-  background-color: #68a0ffb8;
+  border-color: #4770c7;
+  background-color: #8eb5f6b8;
 }
 
 html[data-theme="light"] li.skill-javascript {
   color: #5d4900;
-  border-color: #b59100;
-  background-color: #ffdb24c2;
+  border-color: #a18514;
+  background-color: #f5dc5ac2;
 }
 
 html[data-theme="light"] li.skill-java {
   color: #723907;
-  border-color: #d87517;
-  background-color: #ffab43b8;
+  border-color: #c3762c;
+  background-color: #f7bb71b8;
 }
 
 html[data-theme="light"] li.skill-git {
   color: #812815;
-  border-color: #e15538;
-  background-color: #ff785db8;
+  border-color: #ce614b;
+  background-color: #f89884b8;
 }
 
 html[data-theme="light"] li.skill-linux {
   color: #5e4300;
-  border-color: #bd8b00;
-  background-color: #ffd343c2;
+  border-color: #a88115;
+  background-color: #f7d771c2;
 }
 
 html[data-theme="light"] li.skill-windows {
   color: #064a7a;
-  border-color: #137dc5;
-  background-color: #62bdffb8;
+  border-color: #2779b1;
+  background-color: #8ac9f6b8;
 }
 
 html[data-theme="light"] li.skill-networking {
   color: #005448;
-  border-color: #009b8c;
-  background-color: #38d9bbb8;
+  border-color: #118a7e;
+  background-color: #69dac3b8;
 }
 
 html[data-theme="light"] li.skill-pc-hardware {
   color: #005368;
-  border-color: #039bc0;
-  background-color: #52d8f4b8;
+  border-color: #188eab;
+  background-color: #7ddbedb8;
 }
 
 html[data-theme="light"] li.skill-embedded-hardware {
   color: #1d512c;
-  border-color: #388951;
-  background-color: #72d48cb8;
+  border-color: #418054;
+  background-color: #94d8a4b8;
 }
 
 html[data-theme="light"] li.skill-vscode {
   color: #064a73;
-  border-color: #087fbf;
-  background-color: #5abbffb8;
-}
-
-html[data-theme="light"] li.skill-intellij {
-  color: #811b3c;
-  border-color: #db3c69;
-  background-color: #ff82b2b8;
+  border-color: #1c79ab;
+  background-color: #84c7f6b8;
 }
 
 html[data-theme="light"] li.skill-jetbrains {
   color: #59267f;
-  border-color: #9950d1;
-  background-color: #bf91ffb8;
+  border-color: #975ec3;
+  background-color: #cdacf8b8;
 }
 
 html[data-theme="light"] li.skill-ai-tools {
   color: #682076;
-  border-color: #ad48ca;
-  background-color: #dc88f7b8;
+  border-color: #a556bc;
+  background-color: #e0a5f2b8;
 }
 
 html[data-theme="light"] li.skill-local-ai-tools {
   color: #005143;
-  border-color: #0b9e87;
-  background-color: #42dbbdb8;
+  border-color: #1b8e7c;
+  background-color: #70dbc5b8;
 }
 
 html[data-theme="light"] li.skill-excel {
   color: #194b2a;
-  border-color: #287c49;
-  background-color: #6ad38cb8;
+  border-color: #31734b;
+  background-color: #8ed7a4b8;
 }
 
 html[data-theme="light"] li.skill-business-central {
   color: #4d306f;
-  border-color: #7d58a8;
-  background-color: #b799eeb8;
+  border-color: #7e619f;
+  background-color: #c7b1ecb8;
 }
 
 html[data-theme="light"] li.skill-superoffice {
   color: #7c2020;
-  border-color: #cc4242;
-  background-color: #ff8681b8;
+  border-color: #bd5151;
+  background-color: #f9a49fb8;
 }
 
 html[data-theme="light"] li.skill-salesforce {
   color: #005066;
-  border-color: #0397c6;
-  background-color: #68d0ffb8;
+  border-color: #188cb1;
+  background-color: #8ed7f6b8;
 }
 
 html[data-theme="light"] li.skill-sap {
   color: #133f78;
-  border-color: #2274c8;
-  background-color: #80adffb8;
+  border-color: #3474b6;
+  background-color: #a0bff7b8;
 }
 
 html[data-theme="light"] li.skill-photoshop {
   color: #064b75;
-  border-color: #258ad0;
-  background-color: #79ceffb8;
+  border-color: #3887bd;
+  background-color: #9bd6f7b8;
 }
 
 html[data-theme="light"] li.skill-premiere {
   color: #45347d;
-  border-color: #8070cf;
-  background-color: #b1a0ffb8;
+  border-color: #877ac5;
+  background-color: #c3b7f9b8;
 }
 
 html[data-theme="light"] li.skill-illustrator {
   color: #633e00;
-  border-color: #d48a12;
-  background-color: #ffbf43c2;
+  border-color: #bf8527;
+  background-color: #f7c971c2;
 }
 
 html[data-theme="light"] li.skill-adobe {
   color: #81192f;
-  border-color: #dd343b;
-  background-color: #ff859cb8;
+  border-color: #ca474c;
+  background-color: #f9a3b2b8;
 }
 
 /*  Projects page */
@@ -1618,12 +1644,11 @@ html[data-theme="light"] li.skill-adobe {
   border: 1px solid var(--color-border);
 }
 
-.project-box img,
 .project-box .project-preview {
-  width: 300px;
-  max-width: 32%;
-  height: 190px;
-  padding: 16px;
+  width: 360px;
+  max-width: 44%;
+  height: 240px;
+  padding: 20px;
   object-fit: contain;
   align-self: center;
   flex-shrink: 0;
@@ -1639,6 +1664,17 @@ html[data-theme="light"] li.skill-adobe {
 
 .project-skill-list {
   margin: 10px 0px 24px;
+}
+
+.project-features {
+  margin: 0 0 20px;
+  padding-left: 20px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.project-features li + li {
+  margin-top: 6px;
 }
 
 /* Keep buttons aligned even when project descriptions differ in length. */
@@ -1769,13 +1805,16 @@ html[data-theme="light"] li.skill-adobe {
   border: 1px solid var(--color-border);
 }
 
-/* Small screenshots should not be stretched. */
+/* Keep each image's HTML width hint so lazy images reserve their final space. */
 .website-picture img,
 .website-picture .project-preview {
-  width: auto;
   max-width: 100%;
   height: auto;
   margin-inline: auto;
+}
+
+.website-picture .project-preview {
+  width: auto;
 }
 
 .website-picture-group {
@@ -1844,7 +1883,6 @@ html[data-theme="light"] li.skill-adobe {
     box-shadow 200ms ease;
 }
 
-.game-choice img,
 .game-choice .project-preview {
   width: auto;
   max-width: 100%;
@@ -1927,25 +1965,27 @@ html[data-theme="light"] li.skill-adobe {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(240px, 280px) minmax(100px, 130px) minmax(
-      170px,
-      220px
-    ) minmax(120px, 160px);
-  grid-template-areas: "info navigation projects socials";
-  gap: 30px;
+  grid-template-columns: minmax(100px, 130px) minmax(170px, 220px) minmax(100px, 140px);
+  grid-template-areas:
+    "navigation projects socials"
+    "info info info";
+  max-width: calc(100vw - var(--page-gutter) - var(--tree-size) * 1.4 - 24px);
+  gap: 24px 30px;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   padding: 30px 0px 36px;
-  color: var(--color-text-muted);
+  color: var(--color-text-bright);
   font-family: "Courier New", monospace;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.6;
 }
 
 .footer-info {
-  display: grid;
-  gap: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
   grid-area: info;
-  justify-items: start;
   text-align: left;
 }
 
@@ -1954,7 +1994,8 @@ html[data-theme="light"] li.skill-adobe {
 .footer-socials h2 {
   margin-bottom: 4px;
   color: var(--color-text-bright);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -1968,8 +2009,8 @@ html[data-theme="light"] li.skill-adobe {
 .footer-links a {
   display: flex;
   align-items: center;
-  min-height: 24px;
-  color: var(--color-text-muted);
+  min-height: 28px;
+  color: inherit;
   text-decoration: none;
   transition: color 200ms ease;
 }
@@ -1977,6 +2018,7 @@ html[data-theme="light"] li.skill-adobe {
 .footer-links a:hover,
 .footer-links a:focus-visible {
   color: var(--color-text-bright);
+  text-decoration: underline;
 }
 
 .footer-projects {
@@ -2004,8 +2046,8 @@ html[data-theme="light"] li.skill-adobe {
 
 .footer-socials a {
   display: inline-flex;
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--color-border);
@@ -2046,8 +2088,9 @@ html[data-theme="light"] .footer-socials .social-github {
   background-color: #b680ebb8;
 }
 
-html[data-theme="light"] .social-github img {
-  filter: brightness(0.8);
+/* Darker brand marks remain clear on the denser coloured icon surfaces. */
+html[data-theme="light"] .footer-socials img {
+  filter: brightness(0.55);
 }
 
 .footer-socials a:hover,
@@ -2058,12 +2101,13 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 }
 
 .footer-socials img {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .footer p {
   margin: 0px;
+  color: inherit;
 }
 
 .footer a {
@@ -2074,21 +2118,15 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 /*  Screen size changes */
 /* ----------------------------------------------------------------------------------------- */
 
-/* Put contact details below the other footer columns when space is tight. */
+/* Keep links to the left of the tree on smaller screens too. */
 @media (max-width: 950px) {
   .footer {
-    grid-template-columns: minmax(100px, 130px) minmax(170px, 220px) minmax(
-        120px,
-        160px
-      );
+    grid-template-columns: minmax(70px, 130px) minmax(100px, 220px);
     grid-template-areas:
-      "navigation projects socials"
-      "info info info";
-  }
-
-  .footer-info {
-    justify-items: center;
-    text-align: center;
+      "navigation projects"
+      "socials socials"
+      "info info";
+    column-gap: 24px;
   }
 }
 
@@ -2124,12 +2162,13 @@ html[data-theme="light"] .footer-socials a:focus-visible {
     flex-direction: column;
   }
 
-  .project-box img,
   .project-box .project-preview {
     width: 100%;
     max-width: none;
-    height: 230px;
-    align-self: stretch;
+    height: auto;
+    max-height: 300px;
+    padding: 16px;
+    align-self: center;
   }
 
   .cv-extra-information {
@@ -2150,11 +2189,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 
   .page-heading {
     margin-bottom: 44px;
-  }
-
-  .project-box img,
-  .project-box .project-preview {
-    height: 170px;
   }
 
   .section {
@@ -2188,27 +2222,9 @@ html[data-theme="light"] .footer-socials a:focus-visible {
   }
 
   .footer {
-    grid-template-columns: minmax(70px, 0.75fr) minmax(100px, 1.25fr) minmax(
-        60px,
-        0.65fr
-      );
-    grid-template-areas:
-      "navigation projects socials"
-      "info info info";
-    column-gap: 16px;
-    row-gap: 24px;
-  }
-
-  .footer-social-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer-navigation,
-  .footer-projects,
-  .footer-socials {
-    justify-items: center;
-    text-align: center;
+    grid-template-columns: minmax(60px, 0.8fr) minmax(90px, 1.2fr);
+    max-width: calc(100vw - var(--page-gutter) - var(--tree-size) * 0.55 - 20px);
+    column-gap: 12px;
   }
 }
 
@@ -2261,18 +2277,6 @@ html[data-theme="light"] body {
 /* Small navigation and caption text needs a little more weight over the artwork. */
 html[data-theme="light"] :is(.top-navbar nav a, .role-line, .project-number, .footer a, .footer-info p) {
   font-weight: 600;
-}
-
-html[data-theme="light"] .top-navbar {
-  background: transparent;
-  /* Keep the same filter at the top and while scrolling; only fade its tint. */
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-}
-
-/* A light veil keeps navigation readable while the painting shows through. */
-html[data-theme="light"] .top-navbar.scrolled {
-  background: var(--color-navbar-background);
 }
 
 .top-navbar .portfolio-name,
@@ -2385,7 +2389,7 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
   .contact-email, .bullet-list, .language-list dd,
   .skill-list li, .project-skill-list li, .website-code,
   .website-picture-label, .footer, .footer h2, .footer a,
-  .top-divider, .project-details, .theme-toggle
+  .cv-entry, .project-details, .theme-toggle
 ) {
   transition:
     background-color 240ms ease,
@@ -2517,7 +2521,8 @@ html[data-theme="light"] :is(
     transition: none !important;
   }
 
-  :root {
+  :root,
+  :root[data-theme="light"] {
     --color-background: #fff;
     --color-text: #000;
     --color-text-muted: #222;
@@ -2525,6 +2530,7 @@ html[data-theme="light"] :is(
     --color-border: #999;
     --color-border-strong: #666;
     --color-surface: #fff;
+    color-scheme: light;
   }
 
   body {
@@ -2551,6 +2557,10 @@ html[data-theme="light"] :is(
   .cv-skills,
   .footer {
     display: block;
+  }
+
+  .footer {
+    max-width: none;
   }
 
   .cv-extra-information {

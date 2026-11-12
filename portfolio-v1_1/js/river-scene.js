@@ -318,7 +318,7 @@
       pending = (async () => {
         const [water, forest, details, stroke, splatter, mist] = await Promise.all([
           loadPainting("watercolor-river", geometry.density),
-          loadPainting("watercolor-river-forest", geometry.density),
+          loadPainting("watercolor-river-forest-autumn", geometry.density),
           loadPainting("watercolor-river-details", geometry.density),
           loadPainting("watercolor-ink-stroke", geometry.density),
           loadPainting("watercolor-ink-splatter", geometry.density),

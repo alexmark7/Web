@@ -39,19 +39,6 @@
     return [document.querySelector("main"), document.querySelector("footer")];
   }
 
-  // Wrap button text so it can fade and move without changing the button's blur.
-  function prepareButtons() {
-    for (const part of contentParts()) {
-      for (const button of part.querySelectorAll(".button")) {
-        if (button.childElementCount) continue;
-        const text = document.createElement("span");
-        text.className = "button-text";
-        text.append(...button.childNodes);
-        button.append(text);
-      }
-    }
-  }
-
   function stopFade() {
     for (const animation of animations) animation.cancel();
     animations = [];
@@ -67,59 +54,18 @@
     document.querySelector("main").removeAttribute("aria-busy");
   }
 
-  // Use the same short timing for text, box colours, and divider lines.
-  function fadeSettings(item, appearing) {
-    const top = Math.max(0, item.getBoundingClientRect().top);
-    return {
-      duration: appearing ? 160 : 100,
-      delay: appearing ? Math.min(20, Math.floor(top / 120) * 4) : 0,
-      fill: "both",
-      easing: appearing ? "cubic-bezier(0.22, 0.61, 0.36, 1)" : "cubic-bezier(0.4, 0, 1, 1)"
-    };
-  }
-
-  // Fade words and pictures without moving a box that has blur.
+  // Only fade visible page containers. Keep the scenery and navbar in place.
+  // This avoids scanning and animating every word, badge and border on long pages.
   async function fadeContent(appearing) {
     if (reducedMotion.matches || !Element.prototype.animate) return;
-    const targets = [];
-    for (const part of contentParts()) {
-      const items = part.querySelectorAll("h1, h2, h3, h4, p, li, dt, dd, code, img, .project-preview, a, button, span, figcaption");
-      for (const item of items) {
-        if (item.matches(".blurred-box, .button") || item.querySelector(".blurred-box, .button")) continue;
-        if (!targets.some(target => target.contains(item))) targets.push(item);
-      }
-    }
-    // Read positions and colours before starting any animations.
-    const pending = targets.map(item => [item,
-      appearing
-        ? [{ opacity: 0, translate: "0 8px" }, { opacity: 1, translate: "0 0" }]
-        : [{ opacity: 1, translate: "0 0" }, { opacity: 0, translate: "0 -4px" }],
-      fadeSettings(item, appearing)
-    ]);
-
-    // Keep panel tints and frost steady while their borders and words fade.
-    for (const part of contentParts()) {
-      for (const item of [part, ...part.querySelectorAll("*")]) {
-        // These already fade with their words, so do not fade them twice.
-        if (targets.some(target => target.contains(item))) continue;
-        const style = window.getComputedStyle(item);
-        const visible = {};
-        const hidden = {};
-        for (const side of ["Top", "Right", "Bottom", "Left"]) {
-          if (Number.parseFloat(style[`border${side}Width`]) > 0
-            && style[`border${side}Style`] !== "none") {
-            visible[`border${side}Color`] = style[`border${side}Color`];
-            hidden[`border${side}Color`] = "transparent";
-          }
-        }
-        if (!Object.keys(visible).length) continue;
-        pending.push([item,
-          appearing ? [hidden, visible] : [visible, hidden],
-          fadeSettings(item, appearing)
-        ]);
-      }
-    }
-    const currentAnimations = pending.map(([item, frames, settings]) => item.animate(frames, settings));
+    const targets = contentParts().filter(part => {
+      const bounds = part.getBoundingClientRect();
+      return bounds.bottom > 0 && bounds.top < window.innerHeight;
+    });
+    const currentAnimations = targets.map(part => part.animate(
+      appearing ? [{ opacity: 0 }, { opacity: 1 }] : [{ opacity: 1 }, { opacity: 0 }],
+      { duration: appearing ? 240 : 110, easing: "ease-out", fill: "both" }
+    ));
     animations.push(...currentAnimations);
     await Promise.all(currentAnimations.map(animation => animation.finished.catch(() => {})));
   }
@@ -210,44 +156,11 @@
       picture.src = new URL(img.getAttribute("src"), url).href;
       return picture.decode ? picture.decode().catch(() => {}) : Promise.resolve();
     });
-    const sprites = new Set();
-    const cleanup = [];
-    for (const preview of nextPage.querySelectorAll("main .project-preview use")) {
-      const address = new URL(preview.getAttribute("href"), url);
-      const key = address.href.split("#")[0];
-      if (sprites.has(key)) continue;
-      sprites.add(key);
-
-      // Load the sprite before the short fade-in starts.
-      pictures.push(new Promise(resolve => {
-        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        const use = document.createElementNS(svg.namespaceURI, "use");
-        svg.setAttribute("aria-hidden", "true");
-        svg.setAttribute("width", "1");
-        svg.setAttribute("height", "1");
-        svg.style.cssText = "position:fixed;left:-10000px;pointer-events:none";
-        const finish = () => {
-          use.removeEventListener("load", finish);
-          use.removeEventListener("error", finish);
-          signal?.removeEventListener("abort", finish);
-          svg.remove();
-          resolve();
-        };
-        cleanup.push(finish);
-        use.addEventListener("load", finish, { once: true });
-        use.addEventListener("error", finish, { once: true });
-        signal?.addEventListener("abort", finish, { once: true });
-        use.setAttribute("href", address.href);
-        svg.append(use);
-        document.body.append(svg);
-      }));
-    }
     let timer;
     await Promise.race([Promise.all(pictures), new Promise(resolve => {
       timer = window.setTimeout(resolve, 800);
     })]);
     window.clearTimeout(timer);
-    cleanup.forEach(finish => finish());
   }
 
   async function openPage(url, addToHistory = true, position) {
@@ -281,7 +194,6 @@
       document.querySelector('meta[name="description"]').content = nextPage.querySelector('meta[name="description"]').content;
       shownUrl = new URL(url.href);
       stopFade();
-      prepareButtons();
       for (const part of contentParts()) part.inert = true;
       moveToContent(url, position);
       document.dispatchEvent(new Event("portfolio-page-change"));
@@ -316,7 +228,6 @@
       // The site still works without remembering the previous heading.
     }
     savedPages.set(pageKey(shownUrl), document.documentElement.outerHTML);
-    prepareButtons();
     const canLoadPages = ["http:", "https:"].includes(window.location.protocol);
     if (canLoadPages) {
       window.history.scrollRestoration = "manual";

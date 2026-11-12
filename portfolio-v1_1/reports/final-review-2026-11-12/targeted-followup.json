@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-12",
+  "checks": [
+    {
+      "pass": true,
+      "name": "CV print white/clean light",
+      "details": {
+        "theme": "light",
+        "body": "rgb(255, 255, 255)",
+        "root": "rgb(255, 255, 255)",
+        "scheme": "light",
+        "nav": "none",
+        "footerMax": "none",
+        "boxes": [
+          {
+            "background": "rgb(255, 255, 255)",
+            "shadow": "none",
+            "blur": "none"
+          },
+          {
+            "background": "rgb(255, 255, 255)",
+            "shadow": "none",
+            "blur": "none"
+          }
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "CV print white/clean dark",
+      "details": {
+        "theme": "dark",
+        "body": "rgb(255, 255, 255)",
+        "root": "rgb(255, 255, 255)",
+        "scheme": "light",
+        "nav": "none",
+        "footerMax": "none",
+        "boxes": [
+          {
+            "background": "rgb(255, 255, 255)",
+            "shadow": "none",
+            "blur": "none"
+          },
+          {
+            "background": "rgb(255, 255, 255)",
+            "shadow": "none",
+            "blur": "none"
+          }
+        ]
+      }
+    },
+    {
+      "pass": true,
+      "name": "Mobile case study has no image layout shifts light",
+      "details": []
+    },
+    {
+      "pass": true,
+      "name": "Mobile case study has no image layout shifts dark",
+      "details": []
+    },
+    {
+      "pass": true,
+      "name": "Game keyboard selection 0",
+      "details": {
+        "active": "<button class=\"game-choice blurred-box\" type=\"button\" value=\"Pong\" aria-pressed=\"true\">\n            <!-- Inline artwork also works when opening this page directly from disk. -->\n  ",
+        "focus": true,
+        "pressed": [
+          "true",
+          "false",
+          "false"
+        ],
+        "status": "Pong is coming soon.",
+        "disabled": true
+      }
+    },
+    {
+      "pass": true,
+      "name": "Game keyboard selection 1",
+      "details": {
+        "active": "<button class=\"game-choice blurred-box\" type=\"button\" value=\"Space Defender\" aria-pressed=\"true\">\n            <svg class=\"project-preview\" viewBox=\"304 119 192 292\" width=\"192\" hei",
+        "focus": true,
+        "pressed": [
+          "false",
+          "true",
+          "false"
+        ],
+        "status": "Space Defender is coming soon.",
+        "disabled": true
+      }
+    },
+    {
+      "pass": true,
+      "name": "Game keyboard selection 2",
+      "details": {
+        "active": "<button class=\"game-choice blurred-box\" type=\"button\" value=\"Snake\" aria-pressed=\"true\">\n            <svg class=\"project-preview\" viewBox=\"515 119 192 292\" width=\"192\" height=\"292\"",
+        "focus": true,
+        "pressed": [
+          "false",
+          "false",
+          "true"
+        ],
+        "status": "Snake is coming soon.",
+        "disabled": true
+      }
+    },
+    {
+      "pass": true,
+      "name": "Game click-away clears selection"
+    },
+    {
+      "pass": true,
+      "name": "Skip link is first keyboard stop"
+    },
+    {
+      "pass": true,
+      "name": "Skip link focuses main"
+    }
+  ]
+}

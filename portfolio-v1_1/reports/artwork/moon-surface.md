@@ -1,6 +1,6 @@
 # Moon surface imagery
 
-`moon-surface.jpg` is an unmodified 730 × 730 frame from NASA's Scientific Visualization Studio:
+[moon-surface.jpg](../../images/moon-surface.jpg) is an unmodified 730 × 730 frame from NASA's Scientific Visualization Studio:
 
 - [Moon Phase and Libration, 2026](https://svs.gsfc.nasa.gov/5587/).
 - [Original frame 0058](https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005587/frames/730x730_1x1_30p/moon.0058.jpg), 3 January 2026, 09:00 UTC; 99.86% illuminated.

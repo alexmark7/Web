@@ -1,0 +1,159 @@
+[
+  {
+    "value": 0.0002872306714264756,
+    "input": false,
+    "time": 381.7999999821186,
+    "sources": [
+      {
+        "before": {
+          "x": 265,
+          "y": 130,
+          "width": 900,
+          "height": 83,
+          "top": 130,
+          "right": 1165,
+          "bottom": 213,
+          "left": 265
+        },
+        "after": {
+          "x": 265,
+          "y": 124,
+          "width": 900,
+          "height": 83,
+          "top": 124,
+          "right": 1165,
+          "bottom": 207,
+          "left": 265
+        }
+      },
+      {
+        "before": {
+          "x": 265,
+          "y": 549.796875,
+          "width": 347.0625,
+          "height": 48,
+          "top": 549.796875,
+          "right": 612.0625,
+          "bottom": 597.796875,
+          "left": 265
+        },
+        "after": {
+          "x": 265,
+          "y": 546.796875,
+          "width": 348.796875,
+          "height": 48,
+          "top": 546.796875,
+          "right": 613.796875,
+          "bottom": 594.796875,
+          "left": 265
+        }
+      }
+    ]
+  },
+  {
+    "value": 0.12502909677734853,
+    "input": false,
+    "time": 713.5999999940395,
+    "sources": [
+      {
+        "node": "<section class=\"website-step top-divider\" id=\"project-cards\" aria-labelledby=\"project-cards-heading\">\n          <header class=\"website-step-heading\">\n            <p class=\"project-number\">Step #07</p>\n            <div class=\"website-step-title\">\n              <h2 id=\"project-cards-heading\">Building the Projects page</h2>\n              <ul class=\"website-step-skills skill-list blurred-box\">\n                <li class=\"skill-html\">HTML</li>\n                <li class=\"skill-css\">CSS</li>\n           ",
+        "before": {
+          "x": 238,
+          "y": 0,
+          "width": 954,
+          "height": 1000,
+          "top": 0,
+          "right": 1192,
+          "bottom": 1000,
+          "left": 238
+        },
+        "after": {
+          "x": 238,
+          "y": 0,
+          "width": 954,
+          "height": 1000,
+          "top": 0,
+          "right": 1192,
+          "bottom": 1000,
+          "left": 238
+        }
+      }
+    ]
+  },
+  {
+    "value": 0.16590093632329211,
+    "input": false,
+    "time": 963.5,
+    "sources": [
+      {
+        "node": "<section class=\"website-thanks top-divider\" aria-labelledby=\"website-thanks-heading\">\n        <h2 id=\"website-thanks-heading\">Thanks for reading!</h2>\n        <p>You made it all the way down. You deserve a little cookie 🍪</p>\n        <a class=\"button\" href=\"#main-content\">Back to top ↑</a>\n      </section>",
+        "before": {
+          "x": 265,
+          "y": 465.953125,
+          "width": 900,
+          "height": 226.734375,
+          "top": 465.953125,
+          "right": 1165,
+          "bottom": 692.6875,
+          "left": 265
+        },
+        "after": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "node": "<footer class=\"footer content top-divider\">\n      <nav class=\"footer-navigation footer-links\" aria-labelledby=\"footer-navigation-heading\">\n        <h2 id=\"footer-navigation-heading\">Navigate</h2>\n        <a href=\"index.html\">Home</a>\n        <a href=\"projects.html\">Projects</a>\n        <a href=\"cv.html\">CV</a>\n        <a href=\"about-me.html\">About Me</a>\n      </nav>\n\n      <nav class=\"footer-projects\" aria-labelledby=\"footer-projects-heading\">\n        <h2 id=\"footer-projects-heading\">Projects</",
+        "before": {
+          "x": 143,
+          "y": 740.6875,
+          "width": 702.4375,
+          "height": 259.3125,
+          "top": 740.6875,
+          "right": 845.4375,
+          "bottom": 1000,
+          "left": 143
+        },
+        "after": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      {
+        "node": "<figcaption>Portfolio v1.0 — final website for the web course.</figcaption>",
+        "before": {
+          "x": 278,
+          "y": 385.953125,
+          "width": 874,
+          "height": 23,
+          "top": 385.953125,
+          "right": 1152,
+          "bottom": 408.953125,
+          "left": 278
+        },
+        "after": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      }
+    ]
+  }
+]

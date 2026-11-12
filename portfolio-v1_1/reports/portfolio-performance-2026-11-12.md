@@ -2,6 +2,8 @@
 
 > Baseline snapshot: the measurements below precede the focused scroll-rendering changes documented at the end.
 
+> The [final review](portfolio-final-review-2026-11-12.md) covers the current version, subsequent fixes, and a new controlled comparison of existing versus added shadows.
+
 **Backdrop blur and frequent star updates are the main rendering costs. Remove the small badge/social/button blurs, simplify case-study panel blur, and optimize the star field. Keep the artwork and mist. Removing box shadows did not produce a dependable improvement.**
 
 Audited the current local `portfolio-v1_1` workspace, including its uncommitted changes. Reviewed all six pages and shared scripts; measured loading, scenery preparation, idle animation and scrolling. The audit itself made no implementation changes; temporary browser overrides were used for comparisons. A later scroll-popping follow-up is documented below.
@@ -100,7 +102,7 @@ All six pages completed the loading/scenery checks. Local first-contentful-paint
 
 The test machine and other running desktop workloads affect absolute values. The native graphics backend was verified in a fresh profile's `about:support`. Firefox's sanitized WebGL renderer string was not used as its hardware identity. An attempted 60Hz cap in the temporary confirmation profile did not cap the observed callback cadence; results are labeled by the observed approximately 144Hz cadence. User browser preferences were not changed. Software-rendered Chrome probes and the early incomplete CPU counter were excluded from the results above.
 
-Source references: [blur and shadows](../portfolio-v1_1/css/style.css), [stars/scenery](../portfolio-v1_1/js/background.js), [static canvas](../portfolio-v1_1/js/river-scene.js), [preloading/theme switching](../portfolio-v1_1/js/theme.js), [navigation](../portfolio-v1_1/js/page-transition.js), [UFO](../portfolio-v1_1/js/ufo.js).
+Source references: [blur and shadows](../css/style.css), [stars/scenery](../js/background.js), [static canvas](../js/river-scene.js), [preloading/theme switching](../js/theme.js), [navigation](../js/page-transition.js), [UFO](../js/ufo.js).
 
 ## Follow-up: popping during smooth/trackpad scrolling
 

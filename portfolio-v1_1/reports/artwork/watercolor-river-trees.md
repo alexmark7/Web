@@ -1,6 +1,6 @@
 # Riverside tree clusters
 
-Generated with the built-in imagegen tool using the existing mountain painting as a style reference. [watercolor-river-trees.webp](watercolor-river-trees.webp) is a 768 × 256 transparent sprite sheet (about 62 KiB). Three distinct tree clusters form fourteen tiny groves along dry riverbanks, rendered at 16–34px per cell. The river's size, houses, scenery motion and sun are preserved.
+Generated with the built-in imagegen tool using the existing mountain painting as a style reference. [watercolor-river-trees.webp](../../assets/scenery/watercolor-river-trees.webp) is a 768 × 256 transparent sprite sheet (about 62 KiB). Three distinct tree clusters form fourteen tiny groves along dry riverbanks, rendered at 16–34px per cell. The river's size, houses, scenery motion and sun are preserved.
 
 ## Generation prompt
 

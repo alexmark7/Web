@@ -1,0 +1,76 @@
+{
+  "method": "Reduced motion, fixed date/random seed, matched themes and viewport, and the same 680px portrait variant in both copies. Compare pre-cleanup backup with staged website.",
+  "results": [
+    {
+      "page": "index",
+      "pixelComparison": "0 (0)",
+      "identical": true,
+      "states": [
+        {
+          "page": "index",
+          "label": "before",
+          "theme": "light",
+          "width": 1440,
+          "height": 1613,
+          "scroll": 613
+        },
+        {
+          "page": "index",
+          "label": "after",
+          "theme": "light",
+          "width": 1440,
+          "height": 1613,
+          "scroll": 613
+        }
+      ]
+    },
+    {
+      "page": "cv",
+      "pixelComparison": "0 (0)",
+      "identical": true,
+      "states": [
+        {
+          "page": "cv",
+          "label": "before",
+          "theme": "dark",
+          "width": 390,
+          "height": 5317,
+          "scroll": 2460
+        },
+        {
+          "page": "cv",
+          "label": "after",
+          "theme": "dark",
+          "width": 390,
+          "height": 5317,
+          "scroll": 2460
+        }
+      ]
+    },
+    {
+      "page": "about-me",
+      "pixelComparison": "0 (0)",
+      "identical": true,
+      "states": [
+        {
+          "page": "about-me",
+          "label": "before",
+          "theme": "light",
+          "width": 1440,
+          "height": 1767,
+          "scroll": 0,
+          "portrait": "profile-headshot-680.webp"
+        },
+        {
+          "page": "about-me",
+          "label": "after",
+          "theme": "light",
+          "width": 1440,
+          "height": 1767,
+          "scroll": 0,
+          "portrait": "profile-headshot-680.webp"
+        }
+      ]
+    }
+  ]
+}

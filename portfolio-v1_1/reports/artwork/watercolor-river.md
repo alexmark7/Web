@@ -1,7 +1,7 @@
 # Broad watercolor river with miniature village details
 
-- [watercolor-river.webp](watercolor-river.webp): 2172 × 724, transparent WebP, quality 0.9. Broad, sinuous blue water and soft natural banks.
-- [watercolor-river-hamlets.webp](watercolor-river-hamlets.webp): 768 × 256, three distinct transparent square vignettes. Each is displayed at only 18–32px, independently of the river's width, so the houses and trees remain tiny relative to the mountains.
+- [watercolor-river.webp](../../assets/scenery/watercolor-river.webp): 2172 × 724, transparent WebP, quality 0.9. Broad, sinuous blue water and soft natural banks.
+- [watercolor-river-hamlets.webp](../../assets/scenery/watercolor-river-hamlets.webp): 768 × 256, three distinct transparent square vignettes. Each is displayed at only 18–32px, independently of the river's width, so the houses and trees remain tiny relative to the mountains.
 - Both paintings were created with the built-in imagegen tool, then encoded as WebP with transparency preserved.
 - The village vignettes are anchored on the dry far bank and central island, clear of the water.
 - Six faint blue-tinted brush strokes and pigment blooms reuse the existing ink artwork around the banks, helping the river blend into the paper.

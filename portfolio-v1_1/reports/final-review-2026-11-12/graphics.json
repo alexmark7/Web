@@ -1,0 +1,11 @@
+{
+  "browser": "159.0",
+  "captured": "Follow-up read after about:support finished populating in the same isolated-launch setup",
+  "graphics": [
+    "Compositing\tWebRender",
+    "WebGL 1 Driver Renderer\tNVIDIA Corporation -- NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2",
+    "WebGL 1 Driver Version\t3.2.0 NVIDIA 615.71.09",
+    "WebGL 2 Driver Renderer\tNVIDIA Corporation -- NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2",
+    "WebGL 2 Driver Version\t3.2.0 NVIDIA 615.71.09"
+  ]
+}
