@@ -1018,6 +1018,10 @@ main h1,
   padding-bottom: 40px;
 }
 
+.home-introduction + .section {
+  padding-top: 36px;
+}
+
 .home-introduction-text {
   max-width: 960px;
 }
