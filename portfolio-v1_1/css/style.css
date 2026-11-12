@@ -12,6 +12,8 @@
   --color-border-strong: rgba(235, 235, 235, 0.5);
   --color-surface: rgba(0, 0, 0, 0.18);
   --color-surface-hover: rgba(42, 39, 32, 0.25);
+  --color-card-surface: rgba(8, 11, 16, 0.72);
+  --color-card-surface-hover: rgba(14, 18, 24, 0.82);
 }
 
 /* Light mode colours */
@@ -25,6 +27,8 @@
   --color-border-strong: rgba(32, 32, 32, 0.38);
   --color-surface: rgba(255, 255, 255, 0.34);
   --color-surface-hover: rgba(255, 255, 255, 0.42);
+  --color-card-surface: rgba(250, 248, 243, 0.82);
+  --color-card-surface-hover: rgba(250, 248, 243, 0.9);
 }
 
 /* Background and layout */
@@ -898,14 +902,23 @@ hr.top-divider {
   font-size: 1.1rem;
 }
 
-/* All surfaces keep their tint; reserve live frost for the main content panels.
-   Small and nested filters add backdrop work as they enter the viewport. */
+/* Keep surface tints; reserve panel blur for the CV and profile picture. */
 .blurred-box,
 .button {
   background-color: var(--color-surface);
 }
 
-.blurred-box:not(.website-code, .website-step-skills, .website-picture, .game-choice) {
+/* Theme-matched pigment keeps unblurred cards readable over the scenery. */
+.selected-project-box,
+.project-box,
+.information-box,
+.contact-box {
+  background-color: var(--color-card-surface);
+}
+
+.cv-skills.blurred-box,
+.cv-extra-information.blurred-box,
+.profile-box.blurred-box {
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -1058,7 +1071,7 @@ hr.top-divider {
 .selected-project-box:hover,
 .selected-project-box:focus-visible {
   border-color: var(--color-text-bright);
-  background-color: var(--color-surface-hover);
+  background-color: var(--color-card-surface-hover);
 }
 
 .selected-project-box span {
@@ -1073,7 +1086,7 @@ hr.top-divider {
 .about-introduction {
   display: grid;
   grid-template-columns: minmax(0px, 640px) minmax(250px, 340px);
-  gap: clamp(32px, 3.4vw, 48px);
+  gap: clamp(32px, 5vw, 80px);
   justify-content: start;
   align-items: start;
   padding-top: 18px;
@@ -1271,7 +1284,7 @@ hr.top-divider {
 .project-skill-list li {
   padding: 4px 8px;
   border: 1px solid var(--color-border);
-  background-color: var(--color-surface);
+  background-color: var(--color-card-surface);
   color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.7rem;
@@ -1284,151 +1297,151 @@ hr.top-divider {
 /* Dark-mode badge colours */
 li.skill-html {
   border-color: #e34f26;
-  background-color: #17080499;
+  background-color: #170804d9;
   color: #f06a43;
 }
 
 li.skill-css {
   border-color: #2965f1;
-  background-color: #040a1899;
+  background-color: #040a18d9;
   color: #5d87ee;
 }
 
 li.skill-javascript {
   border-color: #f7df1e;
-  background-color: #14120299;
+  background-color: #141202d9;
   color: #f7df1e;
 }
 
 li.skill-java {
   border-color: #e76f00;
-  background-color: #170b0099;
+  background-color: #170b00d9;
   color: #f18a2a;
 }
 
 li.skill-git {
   border-color: #f05032;
-  background-color: #18080599;
+  background-color: #180805d9;
   color: #f06a50;
 }
 
 li.skill-linux {
   border-color: #fcc624;
-  background-color: #19140499;
+  background-color: #191404d9;
   color: #ffd95a;
 }
 
 li.skill-windows {
   border-color: #0078d4;
-  background-color: #000e1999;
+  background-color: #000e19d9;
   color: #46a9ee;
 }
 
 li.skill-networking {
   border-color: #00a99d;
-  background-color: #00141399;
+  background-color: #001413d9;
   color: #42d2c7;
 }
 
 li.skill-pc-hardware {
   border-color: #00b8f0;
-  background-color: #00161d99;
+  background-color: #00161dd9;
   color: #45d0f7;
 }
 
 li.skill-embedded-hardware {
   border-color: #398a5a;
-  background-color: #0a170e99;
+  background-color: #0a170ed9;
   color: #77c98c;
 }
 
 li.skill-vscode {
   border-color: #007acc;
-  background-color: #000f1899;
+  background-color: #000f18d9;
   color: #40aeea;
 }
 
 li.skill-intellij {
   border-color: #fe315d;
-  background-color: #19050999;
+  background-color: #190509d9;
   color: #ff6b89;
 }
 
 li.skill-jetbrains {
   border-color: #a855f7;
-  background-color: #140a1e99;
+  background-color: #140a1ed9;
   color: #c58af9;
 }
 
 li.skill-ai-tools {
   border-color: #c057f7;
-  background-color: #16081d99;
+  background-color: #16081dd9;
   color: #df9eff;
 }
 
 li.skill-local-ai-tools {
   border-color: #28c7b7;
-  background-color: #041b1999;
+  background-color: #041b19d9;
   color: #5ee3d5;
 }
 
 li.skill-excel {
   border-color: #217346;
-  background-color: #05100a99;
+  background-color: #05100ad9;
   color: #45a873;
 }
 
 li.skill-business-central {
   border-color: #7354a3;
-  background-color: #100c1799;
+  background-color: #100c17d9;
   color: #a387cd;
 }
 
 li.skill-superoffice {
   border-color: #dc3b3b;
-  background-color: #16060699;
+  background-color: #160606d9;
   color: #e66c6c;
 }
 
 li.skill-salesforce {
   border-color: #00a1e0;
-  background-color: #00101699;
+  background-color: #001016d9;
   color: #3bc3f7;
 }
 
 li.skill-sap {
   border-color: #0a6ed1;
-  background-color: #010b1599;
+  background-color: #010b15d9;
   color: #4b9ce8;
 }
 
 li.skill-photoshop {
   border-color: #31a8ff;
-  background-color: #05111a99;
+  background-color: #05111ad9;
   color: #65bdff;
 }
 
 li.skill-premiere {
   border-color: #9999ff;
-  background-color: #0f0f1a99;
+  background-color: #0f0f1ad9;
   color: #b6b6ff;
 }
 
 li.skill-illustrator {
   border-color: #ff9a00;
-  background-color: #1a0f0099;
+  background-color: #1a0f00d9;
   color: #ffb23e;
 }
 
 li.skill-adobe {
   border-color: #ed2224;
-  background-color: #18030499;
+  background-color: #180304d9;
   color: #f05b5d;
 }
 
-/* Vivid glass badges keep their colour over the painted scenery. */
+/* Denser badge colours stay readable over the painted scenery without blur. */
 html[data-theme="light"] :is(.skill-list, .project-skill-list) li {
-  background-color: var(--color-surface);
+  background-color: var(--color-card-surface);
   color: var(--color-text-bright);
   font-weight: 600;
 }
@@ -1436,145 +1449,145 @@ html[data-theme="light"] :is(.skill-list, .project-skill-list) li {
 html[data-theme="light"] li.skill-html {
   color: #792909;
   border-color: #df542a;
-  background-color: #ff824775;
+  background-color: #ff8247b8;
 }
 
 html[data-theme="light"] li.skill-css {
   color: #163e85;
   border-color: #3569d9;
-  background-color: #68a0ff75;
+  background-color: #68a0ffb8;
 }
 
 html[data-theme="light"] li.skill-javascript {
   color: #5d4900;
   border-color: #b59100;
-  background-color: #ffdb2480;
+  background-color: #ffdb24c2;
 }
 
 html[data-theme="light"] li.skill-java {
   color: #723907;
   border-color: #d87517;
-  background-color: #ffab4375;
+  background-color: #ffab43b8;
 }
 
 html[data-theme="light"] li.skill-git {
   color: #812815;
   border-color: #e15538;
-  background-color: #ff785d75;
+  background-color: #ff785db8;
 }
 
 html[data-theme="light"] li.skill-linux {
   color: #5e4300;
   border-color: #bd8b00;
-  background-color: #ffd34380;
+  background-color: #ffd343c2;
 }
 
 html[data-theme="light"] li.skill-windows {
   color: #064a7a;
   border-color: #137dc5;
-  background-color: #62bdff75;
+  background-color: #62bdffb8;
 }
 
 html[data-theme="light"] li.skill-networking {
   color: #005448;
   border-color: #009b8c;
-  background-color: #38d9bb75;
+  background-color: #38d9bbb8;
 }
 
 html[data-theme="light"] li.skill-pc-hardware {
   color: #005368;
   border-color: #039bc0;
-  background-color: #52d8f475;
+  background-color: #52d8f4b8;
 }
 
 html[data-theme="light"] li.skill-embedded-hardware {
   color: #1d512c;
   border-color: #388951;
-  background-color: #72d48c75;
+  background-color: #72d48cb8;
 }
 
 html[data-theme="light"] li.skill-vscode {
   color: #064a73;
   border-color: #087fbf;
-  background-color: #5abbff75;
+  background-color: #5abbffb8;
 }
 
 html[data-theme="light"] li.skill-intellij {
   color: #811b3c;
   border-color: #db3c69;
-  background-color: #ff82b275;
+  background-color: #ff82b2b8;
 }
 
 html[data-theme="light"] li.skill-jetbrains {
   color: #59267f;
   border-color: #9950d1;
-  background-color: #bf91ff75;
+  background-color: #bf91ffb8;
 }
 
 html[data-theme="light"] li.skill-ai-tools {
   color: #682076;
   border-color: #ad48ca;
-  background-color: #dc88f775;
+  background-color: #dc88f7b8;
 }
 
 html[data-theme="light"] li.skill-local-ai-tools {
   color: #005143;
   border-color: #0b9e87;
-  background-color: #42dbbd75;
+  background-color: #42dbbdb8;
 }
 
 html[data-theme="light"] li.skill-excel {
   color: #194b2a;
   border-color: #287c49;
-  background-color: #6ad38c75;
+  background-color: #6ad38cb8;
 }
 
 html[data-theme="light"] li.skill-business-central {
   color: #4d306f;
   border-color: #7d58a8;
-  background-color: #b799ee75;
+  background-color: #b799eeb8;
 }
 
 html[data-theme="light"] li.skill-superoffice {
   color: #7c2020;
   border-color: #cc4242;
-  background-color: #ff868175;
+  background-color: #ff8681b8;
 }
 
 html[data-theme="light"] li.skill-salesforce {
   color: #005066;
   border-color: #0397c6;
-  background-color: #68d0ff75;
+  background-color: #68d0ffb8;
 }
 
 html[data-theme="light"] li.skill-sap {
   color: #133f78;
   border-color: #2274c8;
-  background-color: #80adff75;
+  background-color: #80adffb8;
 }
 
 html[data-theme="light"] li.skill-photoshop {
   color: #064b75;
   border-color: #258ad0;
-  background-color: #79ceff75;
+  background-color: #79ceffb8;
 }
 
 html[data-theme="light"] li.skill-premiere {
   color: #45347d;
   border-color: #8070cf;
-  background-color: #b1a0ff75;
+  background-color: #b1a0ffb8;
 }
 
 html[data-theme="light"] li.skill-illustrator {
   color: #633e00;
   border-color: #d48a12;
-  background-color: #ffbf4380;
+  background-color: #ffbf43c2;
 }
 
 html[data-theme="light"] li.skill-adobe {
   color: #81192f;
   border-color: #dd343b;
-  background-color: #ff859c75;
+  background-color: #ff859cb8;
 }
 
 /*  Projects page */
