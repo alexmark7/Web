@@ -1,0 +1,250 @@
+[
+  {
+    "pass": true,
+    "message": "Legacy 5,000-star cache cleared"
+  },
+  {
+    "pass": true,
+    "message": "Reduced-motion stars remain completely static for one second",
+    "details": {
+      "count": 409
+    }
+  },
+  {
+    "pass": true,
+    "message": "Reduced-motion mode has no changing star classes"
+  },
+  {
+    "pass": true,
+    "message": "Long case study scroll retains bounded static star coverage",
+    "details": [
+      {
+        "y": 0,
+        "height": 17671,
+        "pool": 409,
+        "visible": 274,
+        "changing": 0
+      },
+      {
+        "y": 3318,
+        "height": 17671,
+        "pool": 547,
+        "visible": 277,
+        "changing": 0
+      },
+      {
+        "y": 8296,
+        "height": 18012,
+        "pool": 547,
+        "visible": 278,
+        "changing": 0
+      },
+      {
+        "y": 14392,
+        "height": 18012,
+        "pool": 547,
+        "visible": 278,
+        "changing": 0
+      },
+      {
+        "y": 16932,
+        "height": 18012,
+        "pool": 409,
+        "visible": 274,
+        "changing": 0
+      },
+      {
+        "y": 11852,
+        "height": 18698,
+        "pool": 547,
+        "visible": 278,
+        "changing": 0
+      },
+      {
+        "y": 1762,
+        "height": 18698,
+        "pool": 547,
+        "visible": 278,
+        "changing": 0
+      },
+      {
+        "y": 0,
+        "height": 18698,
+        "pool": 409,
+        "visible": 274,
+        "changing": 0
+      }
+    ]
+  },
+  {
+    "pass": true,
+    "message": "case study dark all small/nested/button filters absent",
+    "details": {
+      "count": 99,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "case study dark large card blur is 6px",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "Light theme removes star pool"
+  },
+  {
+    "pass": true,
+    "message": "case study light all small/nested/button filters absent",
+    "details": {
+      "count": 99,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "case study light large card blur is 6px",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "case study light cards have exactly one shadow",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "Normal motion resumes with at most six concurrent star changes",
+    "details": {
+      "mutatedSamples": 276,
+      "peakClasses": 3,
+      "peakAnimations": 5,
+      "pool": 409,
+      "hidden": false
+    }
+  },
+  {
+    "pass": true,
+    "message": "Enabling reduced motion cancels active star animations immediately"
+  },
+  {
+    "pass": true,
+    "message": "Returning to Home does not retain a case-study-sized star field",
+    "details": {
+      "count": 383,
+      "height": 1518,
+      "cache": null
+    }
+  },
+  {
+    "pass": true,
+    "message": "Home dark all small/nested/button filters absent",
+    "details": {
+      "count": 29,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "Home dark large card blur is 6px",
+    "details": [
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "none"
+      },
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "none"
+      }
+    ]
+  },
+  {
+    "pass": true,
+    "message": "Home light all small/nested/button filters absent",
+    "details": {
+      "count": 29,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "Home light large card blur is 6px",
+    "details": [
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "rgba(0, 0, 0, 0.07) 0px 5px 18px 0px"
+      },
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "rgba(0, 0, 0, 0.07) 0px 5px 18px 0px"
+      }
+    ]
+  },
+  {
+    "pass": true,
+    "message": "Home light cards have exactly one shadow",
+    "details": [
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "rgba(0, 0, 0, 0.07) 0px 5px 18px 0px"
+      },
+      {
+        "classes": "selected-project-box blurred-box",
+        "blur": "blur(6px)",
+        "shadow": "rgba(0, 0, 0, 0.07) 0px 5px 18px 0px"
+      }
+    ]
+  },
+  {
+    "pass": true,
+    "message": "browser games dark all small/nested/button filters absent",
+    "details": {
+      "count": 8,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "browser games dark large card blur is 6px",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "browser games light all small/nested/button filters absent",
+    "details": {
+      "count": 8,
+      "failures": []
+    }
+  },
+  {
+    "pass": true,
+    "message": "browser games light large card blur is 6px",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "browser games light cards have exactly one shadow",
+    "details": []
+  },
+  {
+    "pass": true,
+    "message": "Printed CV disables card blur and shadows",
+    "details": {
+      "print": true,
+      "cards": [
+        {
+          "blur": "none",
+          "shadow": "none"
+        },
+        {
+          "blur": "none",
+          "shadow": "none"
+        }
+      ]
+    }
+  }
+]

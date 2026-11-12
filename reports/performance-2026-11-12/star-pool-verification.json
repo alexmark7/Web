@@ -1,0 +1,266 @@
+{
+  "browser": "159.0",
+  "evidence": [
+    {
+      "name": "home",
+      "theme": "dark",
+      "count": 387,
+      "visible": 274,
+      "peak": 387,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "activity",
+      "maxActive": 6,
+      "pulses": 18
+    },
+    {
+      "name": "projects",
+      "theme": "dark",
+      "count": 411,
+      "visible": 274,
+      "peak": 411,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 3116,
+      "errors": []
+    },
+    {
+      "name": "case-study-top",
+      "theme": "dark",
+      "count": 411,
+      "visible": 274,
+      "peak": 411,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 19811,
+      "errors": []
+    },
+    {
+      "name": "case-scroll-3000",
+      "theme": "dark",
+      "count": 550,
+      "visible": 276,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 3000,
+      "height": 19811,
+      "errors": []
+    },
+    {
+      "name": "case-scroll-9000",
+      "theme": "dark",
+      "count": 550,
+      "visible": 277,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 9000,
+      "height": 19702,
+      "errors": []
+    },
+    {
+      "name": "case-scroll-18000",
+      "theme": "dark",
+      "count": 550,
+      "visible": 276,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 18000,
+      "height": 19702,
+      "errors": []
+    },
+    {
+      "name": "case-scroll-12000",
+      "theme": "dark",
+      "count": 550,
+      "visible": 277,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 12000,
+      "height": 19702,
+      "errors": []
+    },
+    {
+      "name": "case-scroll-0",
+      "theme": "dark",
+      "count": 411,
+      "visible": 274,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 19702,
+      "errors": []
+    },
+    {
+      "name": "home-after-case",
+      "theme": "dark",
+      "count": 387,
+      "visible": 274,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "hidden",
+      "theme": "dark",
+      "count": 387,
+      "visible": 274,
+      "peak": 550,
+      "pulseTimers": 0,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "hidden",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "resumed",
+      "theme": "dark",
+      "count": 387,
+      "visible": 274,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "light",
+      "theme": "light",
+      "count": 0,
+      "visible": 0,
+      "peak": 550,
+      "pulseTimers": 0,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "dark-again",
+      "theme": "dark",
+      "count": 387,
+      "visible": 274,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1526,
+      "errors": []
+    },
+    {
+      "name": "resize-390",
+      "theme": "dark",
+      "count": 65,
+      "visible": 43,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 2258,
+      "errors": []
+    },
+    {
+      "name": "resize-2560",
+      "theme": "dark",
+      "count": 343,
+      "visible": 298,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1665,
+      "errors": []
+    },
+    {
+      "name": "resize-1440",
+      "theme": "dark",
+      "count": 257,
+      "visible": 172,
+      "peak": 550,
+      "pulseTimers": 1,
+      "delays": [
+        200
+      ],
+      "legacy": null,
+      "visibility": "visible",
+      "scroll": 0,
+      "height": 1505,
+      "errors": []
+    }
+  ]
+}

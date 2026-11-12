@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "stage": "wide top",
+      "width": 3840,
+      "height": 2160,
+      "y": 0,
+      "count": 447,
+      "visible": 298
+    },
+    {
+      "stage": "wide 0.25",
+      "width": 3840,
+      "height": 2160,
+      "y": 3878,
+      "count": 597,
+      "visible": 301
+    },
+    {
+      "stage": "wide 0.5",
+      "width": 3840,
+      "height": 2160,
+      "y": 7890,
+      "count": 597,
+      "visible": 300
+    },
+    {
+      "stage": "wide 0.85",
+      "width": 3840,
+      "height": 2160,
+      "y": 13702,
+      "count": 596,
+      "visible": 300
+    },
+    {
+      "stage": "mobile middle",
+      "width": 390,
+      "height": 844,
+      "y": 11567,
+      "count": 88,
+      "visible": 45
+    },
+    {
+      "stage": "mobile light",
+      "width": 390,
+      "height": 844,
+      "y": 11567,
+      "count": 0,
+      "visible": 0
+    }
+  ]
+}

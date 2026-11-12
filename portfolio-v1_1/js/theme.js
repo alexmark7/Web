@@ -9,6 +9,57 @@
   let transitionTimer = 0;
   let activeTransition = null;
   let requestedTheme = null;
+  let requestNumber = 0;
+  const imageFolder = new URL("../images/", document.currentScript.src);
+  const sceneryLoads = new Map();
+  const sceneryImages = new Map();
+  const sceneryScriptsReady = document.readyState === "complete" ? Promise.resolve()
+    : new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve, { once: true }));
+  const paintings = [
+    "watercolor-sun", "watercolor-mountains-connected", "watercolor-river",
+    "watercolor-river-details", "watercolor-river-forest", "watercolor-cherry-tree-solid",
+    "watercolor-ink-splatter", "watercolor-ink-stroke", "watercolor-cloud",
+    "watercolor-cloud-02", "watercolor-cloud-03", "watercolor-cloud-04",
+    "watercolor-cloud-05", "watercolor-cloud-06", "watercolor-cloud-07",
+  ];
+
+  function prepareLightScenery(priority = "low") {
+    const density = window.devicePixelRatio > 1 ? "@2x" : "";
+    const files = paintings.map(name => `optimized/${name}${density}.webp`);
+    files.push("distant-birds.svg");
+    // A later button press can raise the priority of an idle preload.
+    for (const file of files) {
+      if (sceneryImages.has(file) && priority === "high") {
+        sceneryImages.get(file).fetchPriority = priority;
+      }
+    }
+    if (!sceneryLoads.has(density)) {
+      const loading = files.map(file => {
+        const image = new Image();
+        sceneryImages.set(file, image);
+        image.decoding = "async";
+        image.fetchPriority = priority;
+        image.src = new URL(file, imageFolder).href;
+        if (image.decode) return image.decode();
+        return image.complete ? Promise.resolve() : new Promise(resolve => {
+          image.onload = image.onerror = resolve;
+        });
+      });
+      // One missing decorative image must not prevent switching themes.
+      sceneryLoads.set(density, Promise.allSettled(loading));
+    }
+    return sceneryLoads.get(density).then(async () => {
+      // Deferred scenery scripts must exist before the initial light reveal.
+      await sceneryScriptsReady;
+      try {
+        await document.querySelector(".watercolor-river")?.prepareScenery?.();
+      } catch {
+        // Missing decorative artwork must not prevent switching themes.
+      }
+      page.dataset.sceneryReady = "true";
+      updateButton();
+    });
+  }
 
   function isTheme(value) {
     return value === "light" || value === "dark";
@@ -23,30 +74,43 @@
     if (!button) return;
 
     const nextTheme = page.dataset.theme === "light" ? "dark" : "light";
-    const label = `Switch to ${nextTheme} mode`;
+    const waiting = requestedTheme === "light" && page.dataset.theme !== "light"
+      && !page.hasAttribute("data-scenery-ready");
+    const label = waiting ? "Loading light mode; click to cancel" : `Switch to ${nextTheme} mode`;
 
     button.setAttribute("aria-label", label);
+    button.setAttribute("aria-busy", String(waiting));
     button.title = label;
   }
 
-  function applyTheme(theme) {
+  async function applyTheme(theme) {
     const changed = page.dataset.theme !== theme;
+    const number = ++requestNumber;
     requestedTheme = theme;
     window.clearTimeout(transitionTimer);
     if (activeTransition) activeTransition.skipTransition();
     activeTransition = null;
+    page.classList.remove("theme-changing", "theme-snapshot");
+    updateButton();
 
     const update = () => {
-      if (requestedTheme !== theme) return;
+      if (number !== requestNumber) return;
       const actuallyChanged = page.dataset.theme !== theme;
       page.dataset.theme = theme;
       updateButton();
       if (actuallyChanged) document.dispatchEvent(new Event("portfolio-theme-change"));
     };
 
-    if (!changed || document.readyState === "loading"
-      || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      page.classList.remove("theme-changing", "theme-snapshot");
+    if (!changed || document.readyState === "loading") {
+      update();
+      if (theme === "light") prepareLightScenery("high");
+      return;
+    }
+
+    // Keep the current theme visible until the next snapshot has all its artwork.
+    if (theme === "light") await prepareLightScenery("high");
+    if (number !== requestNumber) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       update();
       return;
     }
@@ -69,7 +133,7 @@
       update();
       transitionTimer = window.setTimeout(() => {
         page.classList.remove("theme-changing");
-      }, 200);
+      }, 260);
     }
   }
 
@@ -84,6 +148,11 @@
   applyTheme(savedTheme || preferredTheme());
 
   document.addEventListener("DOMContentLoaded", () => {
+    // Warm the light scene after the page's essential resources get a head start.
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(() => prepareLightScenery(), { timeout: 1500 });
+    } else window.setTimeout(() => prepareLightScenery(), 500);
+
     const button = document.querySelector(".theme-toggle");
     if (!button) return;
 

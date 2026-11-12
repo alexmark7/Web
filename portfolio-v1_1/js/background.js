@@ -26,44 +26,10 @@
   const tree = document.createElement("div");
   tree.className = "watercolor-cherry-tree";
   tree.setAttribute("aria-hidden", "true");
-  const river = document.createElement("div");
+  // Keep the moon and other scenery available if this optional painter fails to load.
+  const river = window.createPortfolioRiverScene?.(background) || document.createElement("canvas");
   river.className = "watercolor-river";
   river.setAttribute("aria-hidden", "true");
-  // Keep the buildings and trees tiny independently of the water's width.
-  for (const [index, left, top] of [[0, 36.4, 47.65], [1, 47.9, 55.39], [2, 71.8, 57.32]]) {
-    const hamlet = document.createElement("span");
-    hamlet.className = `river-hamlet river-hamlet--${index + 1}`;
-    hamlet.style.left = `${left}%`;
-    hamlet.style.top = `${top}%`;
-    river.append(hamlet);
-  }
-  // The ground anchors follow dry banks, with irregular gaps between groves.
-  for (const [index, left, top, size] of [
-    [0, 18, 43, 0.8], [1, 24, 44, 1], [2, 31, 49, 0.85],
-    [1, 40, 50, 0.9], [0, 49, 43, 1], [2, 57, 42, 0.8],
-    [0, 65, 53, 0.95], [1, 76, 55, 0.85], [2, 85, 51, 1],
-    [1, 94, 48, 0.8], [2, 28, 75, 1], [0, 42, 77, 0.85],
-    [1, 60, 73, 1], [2, 80, 77, 0.9],
-  ]) {
-    const grove = document.createElement("span");
-    grove.className = `river-trees river-trees--${index + 1}`;
-    grove.style.left = `${left}%`;
-    grove.style.top = `${top}%`;
-    grove.style.setProperty("--grove-size", size);
-    river.append(grove);
-  }
-  for (const [index, left, top, width, rotation] of [
-    [0, 22, 40, 9, -12], [1, 32, 80, 12, 8], [2, 49, 34, 7, 28],
-    [3, 64, 43, 12, -7], [4, 72, 76, 6, -34], [5, 85, 67, 11, 11],
-  ]) {
-    const pigment = document.createElement("span");
-    pigment.className = `river-pigment ${index % 2 ? "river-pigment--stroke" : "river-pigment--splotch"}`;
-    pigment.style.left = `${left}%`;
-    pigment.style.top = `${top}%`;
-    pigment.style.width = `${width}%`;
-    pigment.style.setProperty("--pigment-rotation", `${rotation}deg`);
-    river.append(pigment);
-  }
   const sunMist = document.createElement("div");
   sunMist.className = "sun-mist";
   sunMist.setAttribute("aria-hidden", "true");
@@ -249,335 +215,296 @@
   measureSun();
 })();
 
-/* ASCII star background */
+/* A bounded star field follows the viewport in document coordinates. */
 (() => {
   "use strict";
 
   const display = document.getElementById("ascii-stars");
   if (!display) return;
 
-  // Star size, spacing and timing.
   const SETTINGS = {
     characters: [".", ":", "*", "+"],
-    pulseMilliseconds: 45,
-    changesPerPulse: 2,
     pixelsPerStar: 7500,
+    maximumStars: 600,
+    pulseMilliseconds: 200,
+    maximumActiveChanges: 6,
+    minimumRepeatMilliseconds: 2000,
     minimumSize: 10,
     maximumSize: 13,
     minimumOpacity: 0.42,
     maximumOpacity: 0.95,
     brightnessChange: 0.35,
-    moveChance: 0.7,
+    moveChance: 0.25,
     fadeMilliseconds: 580,
     hiddenMilliseconds: 100,
-    minimumMoveDistance: 0.25,
-    minimumRepeatMilliseconds: 2000,
+    transitionMilliseconds: 550,
   };
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const savedBackgroundKey = "portfolio-star-background";
-  let stars = [];
+  const stars = new Map();
+  const details = new WeakMap();
+  const activeChanges = new Set();
   let pulseTimer = 0;
-  let builtWidth = 0;
-  let builtHeight = 0;
-  let nextStarIndex = 0;
-  let spaceBetweenStars = 0;
-  let placementRandom = startingRandom();
-  const changeTimers = new Set();
-  const lastChanged = new WeakMap();
+  let scrollFrame = 0;
+  let spacing = 0;
+  let areaWidth = 0;
+  let areaHeight = 0;
+  let viewportHeight = 0;
+  let margin = 0;
+  let windowStart = 0;
+  let windowEnd = 0;
   let previousChange = null;
+
+  // Old versions saved an entire document's stars. Regenerate the same seeded
+  // pattern instead of restoring or serializing thousands of decorative nodes.
+  try { window.sessionStorage.removeItem("portfolio-star-background"); } catch {}
 
   function randomBetween(minimum, maximum, random = Math.random) {
     return minimum + random() * (maximum - minimum);
   }
 
-  // Use a seeded generator so new stars keep the same starting pattern.
-  function startingRandom() {
-    let number = 2026;
+  // Each row has its own seed, so revisiting an area restores its pattern
+  // without generating all the rows between the page top and the viewport.
+  function startingRandom(index) {
+    let number = Math.imul(index + 1, 0x9e3779b1) ^ 2026;
+    number = Math.imul(number ^ (number >>> 16), 0x85ebca6b);
+    number = Math.imul(number ^ (number >>> 13), 0xc2b2ae35);
+    number = (number ^ (number >>> 16)) >>> 0;
     return () => {
-      number = (number * 1664525 + 1013904223) % 4294967296;
+      number = (Math.imul(number, 1664525) + 1013904223) >>> 0;
       return number / 4294967296;
     };
   }
 
-  function randomCharacter(random = Math.random) {
-    const index = Math.floor(random() * SETTINGS.characters.length);
-    return SETTINGS.characters[index];
+  function canAnimate() {
+    return document.documentElement.dataset.theme === "dark"
+      && !document.hidden && !reducedMotion.matches;
   }
 
-  // Moves a star within the visible part of the page, away from its old position.
-  function moveStar(star) {
-    const oldLeft = Number.parseFloat(star.style.left);
-    const oldTop = Number.parseFloat(star.style.top);
-    const width = display.clientWidth;
-    const height = display.clientHeight;
-    const topEdge = Math.max(8, window.scrollY + 8);
-    const bottomEdge = Math.max(topEdge, Math.min(height - 8, window.scrollY + window.innerHeight - 8));
-    const minimumDistance = Math.min(window.innerWidth, window.innerHeight)
-      * SETTINGS.minimumMoveDistance;
-    let left;
-    let top;
-    let attempts = 0;
+  function cancelChange(star) {
+    const state = details.get(star);
+    for (const timer of state.timers) window.clearTimeout(timer);
+    state.timers.clear();
+    const wasActive = activeChanges.delete(star);
+    star.classList.remove("is-changing");
+    if (wasActive) {
+      // Finish any CSS fade too, so a quick pause/resume cannot overlap old
+      // fades with a newly scheduled set of twinkles.
+      for (const animation of star.getAnimations()) animation.cancel();
+    }
+  }
 
-    do {
-      left = randomBetween(1, 99);
-      top = randomBetween(topEdge, bottomEdge);
-      attempts++;
-    } while (
-      Number.isFinite(oldLeft)
-      && Number.isFinite(oldTop)
-      && Math.hypot(
-        ((left - oldLeft) / 100) * width,
-        top - oldTop,
-      ) < minimumDistance
-      && attempts < 20
-    );
-
-    star.style.left = `${left.toFixed(2)}%`;
-    star.style.top = `${top.toFixed(1)}px`;
+  function clearPool() {
+    for (const star of stars.values()) cancelChange(star);
+    stars.clear();
+    if (display.childElementCount) display.replaceChildren();
+    windowStart = 0;
+    windowEnd = 0;
+    previousChange = null;
   }
 
   function changeAppearance(star, random = Math.random) {
-    star.textContent = randomCharacter(random);
+    const state = details.get(star);
+    star.textContent = SETTINGS.characters[Math.floor(random() * SETTINGS.characters.length)];
     star.style.fontSize = `${randomBetween(SETTINGS.minimumSize, SETTINGS.maximumSize, random).toFixed(1)}px`;
-    star.style.setProperty(
-      "--star-opacity",
-      randomBetween(SETTINGS.minimumOpacity, SETTINGS.maximumOpacity, random).toFixed(2),
-    );
+    state.opacity = randomBetween(SETTINGS.minimumOpacity, SETTINGS.maximumOpacity, random);
+    star.style.setProperty("--star-opacity", state.opacity.toFixed(2));
   }
 
-  function createStar(top, random) {
+  function createStar(index) {
+    const random = startingRandom(index);
     const star = document.createElement("span");
+    const state = {
+      index,
+      left: randomBetween(1, 99, random),
+      top: 8 + (index + random()) * spacing,
+      opacity: 0,
+      lastChanged: 0,
+      timers: new Set(),
+    };
+    details.set(star, state);
     star.className = "ascii-star";
-    star.style.left = `${randomBetween(1, 99, random).toFixed(2)}%`;
-    star.style.top = `${top.toFixed(1)}px`;
+    star.style.left = `${state.left.toFixed(2)}%`;
+    star.style.top = `${state.top.toFixed(1)}px`;
     changeAppearance(star, random);
     return star;
   }
 
-  // Saves the current stars so another page can continue with the same pattern.
-  function saveStars() {
-    try {
-      const savedStars = stars.map((star) => ({
-        left: star.style.left,
-        top: star.style.top,
-        character: star.textContent,
-        size: star.style.fontSize,
-        opacity: star.style.getPropertyValue("--star-opacity"),
-        changedAt: lastChanged.get(star) || 0,
-      }));
-      window.sessionStorage.setItem(savedBackgroundKey, JSON.stringify({
-        width: builtWidth,
-        height: builtHeight,
-        spaceBetweenStars,
-        nextStarIndex,
-        stars: savedStars,
-        previousChange,
-      }));
-    } catch {
-      // The background still works if the browser does not allow session storage.
+  function refreshPool(force = false) {
+    if (document.documentElement.dataset.theme !== "dark" || document.hidden || !spacing) return;
+    const visibleTop = Math.max(8, Math.min(window.scrollY + 8, areaHeight - 8));
+    const visibleBottom = Math.max(visibleTop,
+      Math.min(areaHeight - 8, window.scrollY + viewportHeight - 8));
+    // Recycle offscreen rows in batches, rather than changing the DOM for each
+    // trackpad pixel. Half a viewport on either side keeps new rows out of sight.
+    if (!force
+      && (windowStart <= 8 || visibleTop >= windowStart + margin * 0.25)
+      && (windowEnd >= areaHeight - 8 || visibleBottom <= windowEnd - margin * 0.25)) return;
+
+    const start = Math.max(8, visibleTop - margin);
+    const end = Math.min(areaHeight - 8, visibleBottom + margin);
+    const first = Math.max(0, Math.floor((start - 8) / spacing));
+    const last = Math.min(first + SETTINGS.maximumStars, Math.ceil((end - 8) / spacing));
+    for (const [index, star] of stars) {
+      if (index >= first && index < last) continue;
+      cancelChange(star);
+      star.remove();
+      stars.delete(index);
     }
-  }
-
-  // Restores stars saved by the previous page in this browser tab.
-  function restoreStars() {
-    try {
-      const saved = JSON.parse(window.sessionStorage.getItem(savedBackgroundKey));
-      if (!saved || !Array.isArray(saved.stars) || !saved.stars.length) return false;
-
-      const height = display.clientHeight;
-      const group = document.createDocumentFragment();
-      stars = [];
-      display.replaceChildren();
-
-      for (const savedStar of saved.stars) {
-        const top = Number.parseFloat(savedStar.top);
-        if (!Number.isFinite(top) || top < 0) continue;
-        const star = document.createElement("span");
-        star.className = "ascii-star";
-        star.style.left = savedStar.left;
-        star.style.top = savedStar.top;
-        star.style.fontSize = savedStar.size;
-        star.style.setProperty("--star-opacity", savedStar.opacity);
-        star.textContent = SETTINGS.characters.includes(savedStar.character)
-          ? savedStar.character : ".";
-        if (Number.isFinite(savedStar.changedAt)) lastChanged.set(star, savedStar.changedAt);
-        stars.push(star);
-        group.append(star);
-      }
-
-      display.append(group);
-      builtWidth = display.clientWidth;
-      // Keep stars below a shorter page, ready for another longer page.
-      builtHeight = Number(saved.height) || height;
-      spaceBetweenStars = Number(saved.spaceBetweenStars) > 0
-        ? Number(saved.spaceBetweenStars) : SETTINGS.pixelsPerStar / Math.max(Number(saved.width) || builtWidth, 1);
-      nextStarIndex = Number.isInteger(saved.nextStarIndex) && saved.nextStarIndex >= 0
-        ? saved.nextStarIndex : Math.max(0, Math.floor((builtHeight - 8) / spaceBetweenStars));
-      placementRandom = startingRandom();
-      // Move the repeatable number generator to the point used for new stars.
-      for (let index = 0; index < nextStarIndex * 5; index++) placementRandom();
-      previousChange = saved.previousChange || null;
-      if (height > builtHeight) addStars();
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  function clearChangeTimers() {
-    for (const timer of changeTimers) window.clearTimeout(timer);
-    changeTimers.clear();
-    for (const star of stars) star.classList.remove("is-changing");
-  }
-
-  function addStars() {
-    const height = display.clientHeight;
     const group = document.createDocumentFragment();
-
-    // Add stars to new space without moving the stars that are already there.
-    while ((nextStarIndex + 1) * spaceBetweenStars <= height - 8) {
-      const top = (nextStarIndex + placementRandom()) * spaceBetweenStars;
-      const star = createStar(top, placementRandom);
-      stars.push(star);
+    for (let index = first; index < last; index++) {
+      if (stars.has(index)) continue;
+      const star = createStar(index);
+      stars.set(index, star);
       group.append(star);
-      nextStarIndex++;
     }
-
     display.append(group);
-    builtHeight = height;
+    windowStart = start;
+    windowEnd = end;
   }
 
-  function startStars() {
-    stars = [];
-    nextStarIndex = 0;
-    previousChange = null;
-    builtWidth = display.clientWidth;
-    spaceBetweenStars = SETTINGS.pixelsPerStar / Math.max(builtWidth, 1);
-    placementRandom = startingRandom();
-    display.replaceChildren();
-    addStars();
-  }
-
-  function updateStarArea() {
-    const width = display.clientWidth;
-    const height = display.clientHeight;
-
-    if (width <= 0 || height <= 0) return;
-    // Percentage positions already fit the new width. Do not restart the pattern.
-    builtWidth = width;
-    // Keep stars beyond a shorter page ready for the next longer page.
-    if (height > builtHeight) addStars();
-  }
-
-  function changeStar(star) {
-    // A disappearing star always returns in a different random place.
-    star.classList.add("is-changing");
-    const fadeTimer = window.setTimeout(() => {
-      changeTimers.delete(fadeTimer);
-      moveStar(star);
-      changeAppearance(star);
-
-      // Keeps the star hidden for a moment before it fades in elsewhere.
-      const showTimer = window.setTimeout(() => {
-        changeTimers.delete(showTimer);
-        star.classList.remove("is-changing");
-      }, SETTINGS.hiddenMilliseconds);
-      changeTimers.add(showTimer);
-    }, SETTINGS.fadeMilliseconds);
-    changeTimers.add(fadeTimer);
-  }
-
-  // Changes a star's brightness while keeping it in the same place.
-  function twinkleStar(star) {
-    const current = Number.parseFloat(star.style.getPropertyValue("--star-opacity"));
-    const minimum = Math.max(SETTINGS.minimumOpacity, current - SETTINGS.brightnessChange);
-    const maximum = Math.min(SETTINGS.maximumOpacity, current + SETTINGS.brightnessChange);
-    star.style.setProperty("--star-opacity", randomBetween(minimum, maximum).toFixed(2));
+  function schedulePool() {
+    if (scrollFrame || document.hidden || document.documentElement.dataset.theme !== "dark") return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = 0;
+      refreshPool();
+      schedulePulse();
+    });
   }
 
   function schedulePulse() {
-    window.clearTimeout(pulseTimer);
-    pulseTimer = 0;
-    if (document.documentElement.dataset.theme !== "dark"
-      || document.hidden || reducedMotion.matches) return;
-    pulseTimer = window.setTimeout(flicker, SETTINGS.pulseMilliseconds);
+    if (!pulseTimer && stars.size && canAnimate()) {
+      pulseTimer = window.setTimeout(flicker, SETTINGS.pulseMilliseconds);
+    }
+  }
+
+  function updateStarArea() {
+    if (document.documentElement.dataset.theme !== "dark") {
+      pause();
+      clearPool();
+      return;
+    }
+    if (document.hidden) return;
+    const width = display.clientWidth;
+    const height = display.clientHeight;
+    if (width <= 0 || height <= 16) return;
+    viewportHeight = window.innerHeight;
+    margin = viewportHeight * 0.5;
+    // Density remains unchanged at ordinary sizes; the cap also bounds work
+    // on large/high-resolution screens, regardless of document length.
+    const nextSpacing = Math.max(SETTINGS.pixelsPerStar / width,
+      (viewportHeight + 2 * margin) / (SETTINGS.maximumStars - 2));
+    if (spacing !== nextSpacing) clearPool();
+    spacing = nextSpacing;
+    areaWidth = width;
+    areaHeight = height;
+    refreshPool(true);
+    schedulePulse();
+  }
+
+  function after(star, delay, action) {
+    const state = details.get(star);
+    const timer = window.setTimeout(() => {
+      state.timers.delete(timer);
+      if (stars.get(state.index) === star && canAnimate()) action();
+    }, delay);
+    state.timers.add(timer);
+  }
+
+  function moveStar(star) {
+    const state = details.get(star);
+    const oldLeft = state.left;
+    const minimumDistance = Math.min(areaWidth, viewportHeight) * 0.25;
+    let attempts = 0;
+    do {
+      state.left = randomBetween(1, 99);
+    } while (Math.abs((state.left - oldLeft) / 100 * areaWidth) < minimumDistance && ++attempts < 20);
+    // Keep a relocated star in its owned row so recycling an offscreen row
+    // can never remove a star that moved into the visible part of another row.
+    state.top = 8 + (state.index + Math.random()) * spacing;
+    star.style.left = `${state.left.toFixed(2)}%`;
+    star.style.top = `${state.top.toFixed(1)}px`;
+  }
+
+  function changeStar(star) {
+    star.classList.add("is-changing");
+    after(star, SETTINGS.fadeMilliseconds, () => {
+      moveStar(star);
+      changeAppearance(star);
+      after(star, SETTINGS.hiddenMilliseconds, () => {
+        star.classList.remove("is-changing");
+        after(star, SETTINGS.transitionMilliseconds, () => activeChanges.delete(star));
+      });
+    });
+  }
+
+  function twinkleStar(star) {
+    const state = details.get(star);
+    state.opacity = randomBetween(
+      Math.max(SETTINGS.minimumOpacity, state.opacity - SETTINGS.brightnessChange),
+      Math.min(SETTINGS.maximumOpacity, state.opacity + SETTINGS.brightnessChange));
+    star.style.setProperty("--star-opacity", state.opacity.toFixed(2));
+    after(star, SETTINGS.transitionMilliseconds, () => activeChanges.delete(star));
   }
 
   function flicker() {
-    if (document.documentElement.dataset.theme !== "dark"
-      || document.hidden || reducedMotion.matches) return;
-    const now = Date.now();
-    const firstVisible = window.scrollY;
-    const lastVisible = firstVisible + window.innerHeight;
-    const availableStars = stars.filter((star) => {
-      const top = Number.parseFloat(star.style.top);
-      const timeSinceChange = now - (lastChanged.get(star) || 0);
-      return top >= firstVisible && top <= lastVisible
-        && !star.classList.contains("is-changing")
-        && timeSinceChange >= SETTINGS.minimumRepeatMilliseconds;
-    });
-    // Start two changes in different parts of the visible screen.
-    for (let index = 0; index < SETTINGS.changesPerPulse && availableStars.length; index++) {
-      const spreadOut = previousChange
-        ? availableStars.filter((star) => {
-          const left = Number.parseFloat(star.style.left);
-          const top = Number.parseFloat(star.style.top);
-          return Math.abs(left - previousChange.left) >= 30
-            || Math.abs(top - previousChange.top) >= window.innerHeight * 0.3;
-        })
-        : availableStars;
-      const choices = spreadOut.length ? spreadOut : availableStars;
-      const star = choices[Math.floor(Math.random() * choices.length)];
-      availableStars.splice(availableStars.indexOf(star), 1);
-      previousChange = {
-        left: Number.parseFloat(star.style.left),
-        top: Number.parseFloat(star.style.top),
-      };
-      lastChanged.set(star, now);
-      if (Math.random() < SETTINGS.moveChance) changeStar(star);
-      else twinkleStar(star);
+    pulseTimer = 0;
+    if (!canAnimate()) return;
+    if (activeChanges.size < SETTINGS.maximumActiveChanges) {
+      const now = Date.now();
+      const firstVisible = window.scrollY;
+      const lastVisible = firstVisible + viewportHeight;
+      const available = [...stars.values()].filter(star => {
+        const state = details.get(star);
+        return state.top >= firstVisible && state.top <= lastVisible
+          && !activeChanges.has(star)
+          && now - state.lastChanged >= SETTINGS.minimumRepeatMilliseconds;
+      });
+      const spreadOut = previousChange ? available.filter(star => {
+        const state = details.get(star);
+        return Math.abs(state.left - previousChange.left) >= 30
+          || Math.abs(state.top - previousChange.top) >= viewportHeight * 0.3;
+      }) : available;
+      const choices = spreadOut.length ? spreadOut : available;
+      if (choices.length) {
+        const star = choices[Math.floor(Math.random() * choices.length)];
+        const state = details.get(star);
+        state.lastChanged = now;
+        previousChange = { left: state.left, top: state.top };
+        activeChanges.add(star);
+        if (Math.random() < SETTINGS.moveChance) changeStar(star);
+        else twinkleStar(star);
+      }
     }
-
     schedulePulse();
   }
 
   function pause() {
     window.clearTimeout(pulseTimer);
+    window.cancelAnimationFrame(scrollFrame);
     pulseTimer = 0;
-    clearChangeTimers();
+    scrollFrame = 0;
+    for (const star of activeChanges) cancelChange(star);
   }
 
-  // Images and other content can make the page taller after the first stars are placed.
+  window.addEventListener("scroll", schedulePool, { passive: true });
+  window.addEventListener("resize", updateStarArea, { passive: true });
+  window.addEventListener("load", updateStarArea);
+  window.addEventListener("pageshow", updateStarArea);
+  window.addEventListener("pagehide", pause);
   document.addEventListener("portfolio-page-change", updateStarArea);
-  if ("ResizeObserver" in window) {
-    new ResizeObserver(updateStarArea).observe(display);
-  } else {
-    window.addEventListener("resize", updateStarArea, { passive: true });
-    window.addEventListener("load", updateStarArea);
-  }
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) pause();
-    else schedulePulse();
-  });
-
-  reducedMotion.addEventListener("change", () => {
-    pause();
-    schedulePulse();
-  });
-
   document.addEventListener("portfolio-theme-change", () => {
     pause();
-    schedulePulse();
+    updateStarArea();
   });
-
-  window.addEventListener("pagehide", () => {
-    saveStars();
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pause();
+    else updateStarArea();
+  });
+  reducedMotion.addEventListener("change", () => {
     pause();
+    updateStarArea();
   });
-  window.addEventListener("pageshow", schedulePulse);
-
-  if (!restoreStars()) startStars();
-  schedulePulse();
+  if ("ResizeObserver" in window) new ResizeObserver(updateStarArea).observe(display);
+  updateStarArea();
 })();

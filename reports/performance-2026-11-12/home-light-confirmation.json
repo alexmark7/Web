@@ -1,0 +1,1224 @@
+{
+  "date": "2026-11-12T08:58:06.263Z",
+  "browser": "159.0",
+  "results": [
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 0,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3203.34,
+      "callbacks": 453,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 59,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 1,
+      "base": 7,
+      "cpuMs": 2300,
+      "cpuMsPerSec": 714.2018689825122,
+      "elapsed": 3220.3780189999998,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2220
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570674,
+          "name": "Web Content",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 0,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.34,
+      "callbacks": 445,
+      "medianInterval": 7,
+      "p95Interval": 8,
+      "maxInterval": 15,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 4800,
+      "cpuMsPerSec": 1490.1072866877746,
+      "elapsed": 3221.244566000001,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 3410
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 20
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1360
+        },
+        {
+          "pid": 3571029,
+          "name": "Web Content",
+          "ms": 10
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 0,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.34,
+      "callbacks": 451,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 44,
+      "intervalsOver25ms": 2,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 1110,
+      "cpuMsPerSec": 345.0685354840744,
+      "elapsed": 3216.7522850000005,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1020
+        },
+        {
+          "pid": 3570674,
+          "name": "Web Content",
+          "ms": 10
+        },
+        {
+          "pid": 3570845,
+          "name": "Privileged Cont",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 70
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 0,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.34,
+      "callbacks": 454,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 55,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 1,
+      "base": 7,
+      "cpuMs": 3030,
+      "cpuMsPerSec": 942.3078045700673,
+      "elapsed": 3215.5098209999996,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1810
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1210
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 0,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.34,
+      "callbacks": 458,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 18,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 690,
+      "cpuMsPerSec": 214.5482214972631,
+      "elapsed": 3216.0602179999987,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 630
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 0,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3203.34,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 9,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2340,
+      "cpuMsPerSec": 727.7619391398001,
+      "elapsed": 3215.3371509999997,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1180
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1150
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 0,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3206.34,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 8,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2440,
+      "cpuMsPerSec": 758.7222651746265,
+      "elapsed": 3215.9330389999996,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2380
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 15
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 0,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3205.34,
+      "callbacks": 450,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 35,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 5590,
+      "cpuMsPerSec": 1736.2962116417018,
+      "elapsed": 3219.4967440000037,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 4390
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1190
+        }
+      ],
+      "processCountBefore": 15,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 1,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3205.3399999999965,
+      "callbacks": 459,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 14,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2270,
+      "cpuMsPerSec": 705.9069848693856,
+      "elapsed": 3215.7211199999947,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2210
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 1,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.3399999999965,
+      "callbacks": 459,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 14,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 4300,
+      "cpuMsPerSec": 1337.1907534142576,
+      "elapsed": 3215.6967799999984,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 3100
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570845,
+          "name": "Privileged Cont",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1180
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 1,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3206.3399999999965,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 8,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 680,
+      "cpuMsPerSec": 211.3644390688379,
+      "elapsed": 3217.1920829999945,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 620
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 1,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3205.3399999999965,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 9,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2310,
+      "cpuMsPerSec": 717.9720027793462,
+      "elapsed": 3217.3956519999992,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1170
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1130
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 1,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3201.3399999999965,
+      "callbacks": 460,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 8,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 1090,
+      "cpuMsPerSec": 339.6655290537868,
+      "elapsed": 3209.0392070000016,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1030
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 1,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3202.3399999999965,
+      "callbacks": 459,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 14,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2840,
+      "cpuMsPerSec": 884.0064856530303,
+      "elapsed": 3212.6461130000025,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1720
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1110
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 1,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3203.3399999999965,
+      "callbacks": 460,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 14,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2150,
+      "cpuMsPerSec": 669.0440698547752,
+      "elapsed": 3213.540178999996,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2090
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 13
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 1,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3201.3399999999965,
+      "callbacks": 430,
+      "medianInterval": 7,
+      "p95Interval": 9,
+      "maxInterval": 87,
+      "intervalsOver25ms": 3,
+      "intervalsOver50ms": 1,
+      "base": 7,
+      "cpuMs": 4420,
+      "cpuMsPerSec": 1376.1851501018948,
+      "elapsed": 3211.7771360000042,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 3160
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1250
+        }
+      ],
+      "processCountBefore": 13,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 2,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3201.3399999999965,
+      "callbacks": 456,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 33,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 650,
+      "cpuMsPerSec": 202.43760539758173,
+      "elapsed": 3210.865880000005,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 590
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "backdrop",
+      "rep": 2,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 0,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3200.3399999999965,
+      "callbacks": 452,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 57,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 1,
+      "base": 7,
+      "cpuMs": 2210,
+      "cpuMsPerSec": 688.3667822246347,
+      "elapsed": 3210.497742000007,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1130
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1070
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 2,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.3399999999965,
+      "callbacks": 459,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 14,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2490,
+      "cpuMsPerSec": 772.7995005041174,
+      "elapsed": 3222.0517719999916,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2420
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 70
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "box",
+      "rep": 2,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 0,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3203.3399999999965,
+      "callbacks": 437,
+      "medianInterval": 7,
+      "p95Interval": 8,
+      "maxInterval": 37,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 4630,
+      "cpuMsPerSec": 1439.5567223415972,
+      "elapsed": 3216.26784700001,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 3280
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1340
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 2,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3204.3399999999965,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 9,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2280,
+      "cpuMsPerSec": 709.3344385709654,
+      "elapsed": 3214.280706000005,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 2210
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 10
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 60
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "baseline",
+      "rep": 2,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 32,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3201.3399999999965,
+      "callbacks": 461,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 8,
+      "intervalsOver25ms": 0,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 4180,
+      "cpuMsPerSec": 1300.0898039831357,
+      "elapsed": 3215.1625119999953,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 3000
+        },
+        {
+          "pid": 3570579,
+          "name": "WebExtensions",
+          "ms": 20
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1160
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 2,
+      "phase": "idle",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3206.3399999999965,
+      "callbacks": 457,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 36,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 900,
+      "cpuMsPerSec": 279.8351875714495,
+      "elapsed": 3216.178807999997,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 850
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 50
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    },
+    {
+      "page": "index",
+      "theme": "light",
+      "focus": ".skill-groups",
+      "variant": "badges",
+      "rep": 2,
+      "phase": "scroll",
+      "visible": {
+        "backdrops": 6,
+        "boxes": 5,
+        "y": 446.4333190917969,
+        "stars": 389
+      },
+      "duration": 3201.3399999999965,
+      "callbacks": 452,
+      "medianInterval": 7,
+      "p95Interval": 7,
+      "maxInterval": 31,
+      "intervalsOver25ms": 1,
+      "intervalsOver50ms": 0,
+      "base": 7,
+      "cpuMs": 2860,
+      "cpuMsPerSec": 890.2815706690989,
+      "elapsed": 3212.4668130000064,
+      "stateBefore": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "stateAfter": {
+        "visibility": "visible",
+        "focus": true
+      },
+      "processDeltas": [
+        {
+          "pid": 3570234,
+          "name": "firefox",
+          "ms": 1720
+        },
+        {
+          "pid": 3570951,
+          "name": "Isolated Web Co",
+          "ms": 1140
+        }
+      ],
+      "processCountBefore": 12,
+      "processCountAfter": 12
+    }
+  ]
+}

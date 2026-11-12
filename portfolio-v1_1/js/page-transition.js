@@ -97,7 +97,7 @@
       fadeSettings(item, appearing)
     ]);
 
-    // Fade box background colours and borders, without changing the blur or position.
+    // Keep panel tints and frost steady while their borders and words fade.
     for (const part of contentParts()) {
       for (const item of [part, ...part.querySelectorAll("*")]) {
         // These already fade with their words, so do not fade them twice.
@@ -110,14 +110,6 @@
             && style[`border${side}Style`] !== "none") {
             visible[`border${side}Color`] = style[`border${side}Color`];
             hidden[`border${side}Color`] = "transparent";
-          }
-        }
-        if (item.matches(".blurred-box, .button")) {
-          visible.backgroundColor = style.backgroundColor;
-          hidden.backgroundColor = "transparent";
-          if (style.boxShadow !== "none") {
-            visible.boxShadow = style.boxShadow;
-            hidden.boxShadow = "none";
           }
         }
         if (!Object.keys(visible).length) continue;

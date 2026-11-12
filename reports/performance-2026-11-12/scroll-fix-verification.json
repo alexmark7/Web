@@ -1,0 +1,195 @@
+{
+  "browser": "159.0",
+  "results": [
+    {
+      "cfg": {
+        "page": "index",
+        "theme": "light",
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "state": {
+        "theme": "light",
+        "viewport": [
+          1920,
+          1080,
+          1
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(4px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [
+          "blur(12px)"
+        ],
+        "sunAnimation": "sun-follow-scenery, sun-sway",
+        "cloudAnimation": "cloud-drift",
+        "moonTop": 0,
+        "resourcesDuringScroll": 0,
+        "y": 446.4333190917969
+      }
+    },
+    {
+      "cfg": {
+        "page": "index",
+        "theme": "dark",
+        "width": 1920,
+        "height": 1080,
+        "dpr": 1
+      },
+      "state": {
+        "theme": "dark",
+        "viewport": [
+          1920,
+          1080,
+          1
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(8px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [
+          "blur(12px)"
+        ],
+        "sunAnimation": "none",
+        "cloudAnimation": "none",
+        "moonTop": 104.43333435058594,
+        "resourcesDuringScroll": 0,
+        "y": 446.4333190917969
+      }
+    },
+    {
+      "cfg": {
+        "page": "projects",
+        "theme": "light",
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "state": {
+        "theme": "light",
+        "viewport": [
+          1440,
+          1000,
+          1
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(4px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [
+          "blur(12px)"
+        ],
+        "sunAnimation": "sun-follow-scenery, sun-sway",
+        "cloudAnimation": "cloud-drift",
+        "moonTop": 0,
+        "resourcesDuringScroll": 0,
+        "y": 520
+      }
+    },
+    {
+      "cfg": {
+        "page": "portfolio-website",
+        "theme": "light",
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "state": {
+        "theme": "light",
+        "viewport": [
+          1440,
+          1000,
+          1
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(4px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [],
+        "sunAnimation": "sun-follow-scenery, sun-sway",
+        "cloudAnimation": "cloud-drift",
+        "moonTop": 0,
+        "resourcesDuringScroll": 0,
+        "y": 520
+      }
+    },
+    {
+      "cfg": {
+        "page": "index",
+        "theme": "light",
+        "width": 390,
+        "height": 844,
+        "dpr": 2
+      },
+      "state": {
+        "theme": "light",
+        "viewport": [
+          390,
+          844,
+          2
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(4px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [
+          "blur(12px)"
+        ],
+        "sunAnimation": "sun-follow-scenery, sun-sway",
+        "cloudAnimation": "cloud-drift",
+        "moonTop": 0,
+        "resourcesDuringScroll": 0,
+        "y": 520
+      }
+    },
+    {
+      "cfg": {
+        "page": "cv",
+        "theme": "dark",
+        "width": 1440,
+        "height": 1000,
+        "dpr": 1
+      },
+      "state": {
+        "theme": "dark",
+        "viewport": [
+          1440,
+          1000,
+          1
+        ],
+        "overflow": false,
+        "sceneryReady": "true",
+        "sceneDraws": 0,
+        "navFilters": [
+          "blur(8px)"
+        ],
+        "smallBlur": [],
+        "mainFilters": [
+          "blur(12px)"
+        ],
+        "sunAnimation": "none",
+        "cloudAnimation": "none",
+        "moonTop": 95.60000610351562,
+        "resourcesDuringScroll": 0,
+        "y": 520
+      }
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 /* Main colours */
 :root {
+  --page-gutter: clamp(5vw, calc(15vw - 37.5px), 10vw);
+  --sun-size: clamp(200px, 36vw, 456px);
+  --section-heading-size: clamp(1.9rem, calc(1.5rem + 0.9vw), 2.5rem);
   --color-background: #000;
   --color-text: rgb(255, 255, 255);
   --color-text-muted: #d1d3d2;
@@ -17,7 +20,7 @@
   --color-text: #070a08;
   --color-text-muted: #101512;
   --color-text-bright: #000;
-  --color-navbar-background: rgba(250, 248, 243, 0.82);
+  --color-navbar-background: rgba(250, 248, 243, 0.28);
   --color-border: rgba(32, 32, 32, 0.19);
   --color-border-strong: rgba(32, 32, 32, 0.38);
   --color-surface: rgba(255, 255, 255, 0.34);
@@ -47,7 +50,7 @@ body {
   background: var(--color-background);
   margin: 0px;
   /* Side spacing grows from 5% to 10% as the screen gets wider. */
-  padding: 0px clamp(5vw, calc(15vw - 37.5px), 10vw);
+  padding: 0px var(--page-gutter);
   cursor: default;
 
   font-family: "IBM Plex Sans", Arial, sans-serif;
@@ -58,7 +61,6 @@ body {
 /* The background follows the document, not just the viewport. */
 .background {
   --mountain-width: clamp(640px, 88vw, 1200px);
-  --sun-size: clamp(200px, 36vw, 456px);
   --cloud-clearance: 96px;
   --sun-top: max(calc(var(--cloud-clearance) + 16px), 10vh);
   --sun-sway: clamp(1.5px, 0.28vw, 4px);
@@ -69,6 +71,12 @@ body {
   overflow: hidden;
   pointer-events: none;
   background: var(--color-background);
+  transition: opacity 240ms ease;
+}
+
+/* Reveal the light artwork together once its images have been decoded. */
+html[data-theme="light"]:not([data-scenery-ready]) .background {
+  opacity: 0;
 }
 
 /* A silver moon in the open night sky, above the distant stars. */
@@ -107,82 +115,26 @@ html[data-theme="light"] .night-moon {
   bottom: -8vh;
   width: var(--mountain-width);
   aspect-ratio: 3 / 2;
-  --mountain-paint: url("../images/watercolor-mountains-extended.webp");
-  /* Build up the pigment while retaining the painting's feathered edges. */
-  background:
-    var(--mountain-paint) center / contain no-repeat,
-    var(--mountain-paint) center / contain no-repeat,
-    var(--mountain-paint) center / contain no-repeat;
+  --mountain-paint: image-set(url("../images/optimized/watercolor-mountains-connected.webp") 1x, url("../images/optimized/watercolor-mountains-connected@2x.webp") 2x);
+  /* Three pigment washes are already combined in the exported image. */
+  background: var(--mountain-paint) center / contain no-repeat;
   opacity: 1;
   transform: translate3d(0, calc(-1 * var(--mountain-rise, 0px)), 0);
 }
 
-/* The stream leaves the mountain basin and flows horizontally off the right edge. */
+/* Water, tiny bank details and woodland are painted into one canvas.
+   Its renderer keeps tree scale tied to the mountains and fills below the bank. */
 .watercolor-river {
-  --river-drop: clamp(38px, 4vw, 64px);
-  --river-width: clamp(800px, 112vw, 2200px);
-  --river-height: calc(var(--mountain-width) * 0.15);
   display: none;
   position: fixed;
   z-index: 0;
-  left: 12vw;
-  /* Keep the shallow, distant stream centred at the mountain's basin. */
-  bottom: calc(8vh - var(--river-drop) + var(--river-width) / 12 - var(--river-height) / 2);
-  width: var(--river-width);
-  height: var(--river-height);
-  /* Foreshorten the water into the distance; details keep their own proportions. */
-  background: url("../images/watercolor-river.webp") center / 100% 100% no-repeat;
-  -webkit-mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 0.35) 8%, #000 24%);
-  mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 0.35) 8%, #000 24%);
-  opacity: 0.82;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+  opacity: 1;
   pointer-events: none;
   transform: translate3d(0, calc(-1 * var(--mountain-rise, 0px)), 0);
-}
-
-.river-hamlet {
-  position: absolute;
-  z-index: 2;
-  width: clamp(18px, 2.1vw, 32px);
-  aspect-ratio: 1;
-  background: url("../images/watercolor-river-hamlets.webp") 0 0 / 300% 100% no-repeat;
-  transform: translate(-50%, -76%);
-  opacity: 0.86;
-}
-
-.river-hamlet--2 { background-position: 50% 0; }
-.river-hamlet--3 { background-position: 100% 0; }
-
-.river-trees {
-  position: absolute;
-  z-index: 2;
-  width: calc(clamp(20px, 2.2vw, 34px) * var(--grove-size));
-  aspect-ratio: 1;
-  background: url("../images/watercolor-river-trees.webp") 0 0 / 300% 100% no-repeat;
-  transform: translate(-50%, -80%);
-  opacity: 0.88;
-}
-
-.river-trees--2 { background-position: 50% 0; }
-.river-trees--3 { background-position: 100% 0; }
-
-/* Blue pigment bleeds around the banks, matching the colour of the water. */
-.river-pigment {
-  position: absolute;
-  z-index: 1;
-  opacity: 0.11;
-  transform: translate(-50%, -50%) rotate(var(--pigment-rotation));
-  filter: brightness(0) invert(48%) sepia(17%) saturate(1133%) hue-rotate(160deg) blur(0.6px);
-}
-
-.river-pigment--stroke {
-  aspect-ratio: 3 / 1;
-  background: url("../images/watercolor-ink-stroke.webp") center / contain no-repeat;
-}
-
-.river-pigment--splotch {
-  aspect-ratio: 1;
-  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
-  opacity: 0.075;
 }
 
 /* Original watercolor pigment keeps the sun's edge and colour gently uneven. */
@@ -196,7 +148,7 @@ html[data-theme="light"] .night-moon {
   width: var(--sun-size);
   height: var(--sun-size);
   transform: translate3d(-50%, calc(-1 * var(--mountain-rise, 0px)), 0);
-  background: url("../images/watercolor-sun.webp") center / contain no-repeat;
+  background: image-set(url("../images/optimized/watercolor-sun.webp") 1x, url("../images/optimized/watercolor-sun@2x.webp") 2x) center / contain no-repeat;
   opacity: 0.96;
 }
 
@@ -209,7 +161,7 @@ html[data-theme="light"] .night-moon {
   top: calc(var(--sun-top) + var(--sun-size) * 0.2);
   width: calc(var(--sun-size) * 1.8);
   height: calc(var(--sun-size) * 0.3);
-  background: url("../images/watercolor-cloud-06.webp") center / 100% 100% no-repeat;
+  background: image-set(url("../images/optimized/watercolor-cloud-06.webp") 1x, url("../images/optimized/watercolor-cloud-06@2x.webp") 2x) center / 100% 100% no-repeat;
   filter: grayscale(1) brightness(1.65) blur(3px);
   opacity: 0.5;
   pointer-events: none;
@@ -284,7 +236,7 @@ html[data-theme="light"] .night-moon {
 
 .ink-splotch {
   aspect-ratio: 1;
-  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
+  background: image-set(url("../images/optimized/watercolor-ink-splatter.webp") 1x, url("../images/optimized/watercolor-ink-splatter@2x.webp") 2x) center / contain no-repeat;
 }
 
 .ink-splotch--top-left {
@@ -294,12 +246,12 @@ html[data-theme="light"] .night-moon {
 
 .ink-stroke {
   aspect-ratio: 3 / 1;
-  background: url("../images/watercolor-ink-stroke.webp") center / contain no-repeat;
+  background: image-set(url("../images/optimized/watercolor-ink-stroke.webp") 1x, url("../images/optimized/watercolor-ink-stroke@2x.webp") 2x) center / contain no-repeat;
 }
 
 .ink-wash {
   aspect-ratio: 1;
-  background: url("../images/watercolor-ink-splatter.webp") center / contain no-repeat;
+  background: image-set(url("../images/optimized/watercolor-ink-splatter.webp") 1x, url("../images/optimized/watercolor-ink-splatter@2x.webp") 2x) center / contain no-repeat;
   filter: blur(2px) sepia(0.2);
 }
 
@@ -313,9 +265,9 @@ html[data-theme="light"] .night-moon {
   bottom: calc(var(--tree-size) * -0.24);
   width: var(--tree-size);
   aspect-ratio: 1;
-  background: url("../images/watercolor-cherry-tree.webp") center / contain no-repeat;
+  background: image-set(url("../images/optimized/watercolor-cherry-tree-solid.webp") 1x, url("../images/optimized/watercolor-cherry-tree-solid@2x.webp") 2x) center / contain no-repeat;
   pointer-events: none;
-  opacity: 0.72;
+  opacity: 1;
 }
 
 /* Eight clouds fill the sky independently of the rising sun. */
@@ -331,7 +283,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--01 {
-  --cloud-image: url("../images/watercolor-cloud.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud.webp") 1x, url("../images/optimized/watercolor-cloud@2x.webp") 2x);
   --cloud-left: 72%;
   --cloud-top: 54%;
   --cloud-width: 38vw;
@@ -341,7 +293,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--02 {
-  --cloud-image: url("../images/watercolor-cloud-02.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-02.webp") 1x, url("../images/optimized/watercolor-cloud-02@2x.webp") 2x);
   --cloud-left: -9%;
   --cloud-top: 10%;
   --cloud-width: 34vw;
@@ -351,7 +303,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--03 {
-  --cloud-image: url("../images/watercolor-cloud-03.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-03.webp") 1x, url("../images/optimized/watercolor-cloud-03@2x.webp") 2x);
   --cloud-left: 58%;
   --cloud-top: 8%;
   --cloud-width: 31vw;
@@ -361,7 +313,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--04 {
-  --cloud-image: url("../images/watercolor-cloud-04.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-04.webp") 1x, url("../images/optimized/watercolor-cloud-04@2x.webp") 2x);
   --cloud-left: 8%;
   --cloud-top: 24%;
   --cloud-width: 28vw;
@@ -371,7 +323,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--05 {
-  --cloud-image: url("../images/watercolor-cloud-05.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-05.webp") 1x, url("../images/optimized/watercolor-cloud-05@2x.webp") 2x);
   --cloud-left: 43%;
   --cloud-top: 36%;
   --cloud-width: 38vw;
@@ -381,7 +333,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--06 {
-  --cloud-image: url("../images/watercolor-cloud-06.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-06.webp") 1x, url("../images/optimized/watercolor-cloud-06@2x.webp") 2x);
   --cloud-left: 29%;
   --cloud-top: 12%;
   --cloud-width: 42vw;
@@ -391,7 +343,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--07 {
-  --cloud-image: url("../images/watercolor-cloud-07.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-07.webp") 1x, url("../images/optimized/watercolor-cloud-07@2x.webp") 2x);
   --cloud-left: 24%;
   --cloud-top: 30%;
   --cloud-width: 30vw;
@@ -401,7 +353,7 @@ html[data-theme="light"] .night-moon {
 }
 
 .watercolor-cloud--08 {
-  --cloud-image: url("../images/watercolor-cloud-04.webp");
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-04.webp") 1x, url("../images/optimized/watercolor-cloud-04@2x.webp") 2x);
   --cloud-left: 76%;
   --cloud-top: 38%;
   --cloud-width: 28vw;
@@ -425,6 +377,13 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 
 /* Independent horizontal motion keeps the sun gently swaying even when idle. */
 @media (prefers-reduced-motion: no-preference) {
+  /* Firefox can still snap images at 0.01deg (Mozilla bug 2069657).
+     This small angle keeps slow movement above that rounding threshold. */
+  html[data-theme="light"] .background::after,
+  html[data-theme="light"] .watercolor-cloud {
+    rotate: 0.1deg;
+  }
+
   html[data-theme="light"] .background::after {
     animation: sun-sway var(--sun-sway-duration) ease-in-out infinite alternate;
     will-change: transform, translate;
@@ -516,11 +475,6 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
     bottom: -6vh;
   }
 
-  .watercolor-river {
-    left: 10vw;
-    opacity: 0.72;
-  }
-
   .watercolor-cloud {
     width: clamp(150px, var(--cloud-width), 260px);
     opacity: calc(var(--cloud-opacity) * 0.9);
@@ -577,10 +531,6 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
     left: -8vw;
   }
 
-  .watercolor-river {
-    --river-drop: 12px;
-    bottom: calc(-4vh - var(--river-drop) + var(--river-width) / 12 - var(--river-height) / 2);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -744,19 +694,9 @@ a {
   align-items: center;
 
   background: var(--color-navbar-background);
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 300ms ease,
-    -webkit-backdrop-filter 300ms ease,
-    backdrop-filter 300ms ease,
-    border-bottom-color 450ms ease;
+  transition: background-color 300ms ease;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-}
-
-/* navbar.js adds this after scrolling. */
-.top-navbar.scrolled {
-  border-bottom-color: var(--color-border);
 }
 
 .portfolio-name {
@@ -894,6 +834,12 @@ main h1,
   font-weight: 600;
 }
 
+.section-heading h2,
+.cv-section > h2 {
+  font-size: var(--section-heading-size);
+  letter-spacing: -0.02em;
+}
+
 .role-line,
 .project-number {
   color: var(--color-text-bright);
@@ -926,9 +872,9 @@ main h1,
   }
 }
 
-/* Shared divider */
+/* Spacing and heading scale separate sections without cutting across the art. */
 .top-divider {
-  border-top: 1px solid var(--color-border);
+  border-top: 0;
 }
 
 hr.top-divider {
@@ -952,12 +898,16 @@ hr.top-divider {
   font-size: 1.1rem;
 }
 
-/* Frosted panels and buttons share the same blur in both themes. */
+/* All surfaces keep their tint; reserve live frost for the main content panels.
+   Small and nested filters add backdrop work as they enter the viewport. */
 .blurred-box,
 .button {
   background-color: var(--color-surface);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+}
+
+.blurred-box:not(.website-code, .website-step-skills, .website-picture, .game-choice) {
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 
 .button-group {
@@ -1044,13 +994,15 @@ hr.top-divider {
 
 .skill-groups {
   display: grid;
+  width: 100%;
+  max-width: 960px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 28px;
+  gap: 28px 24px;
+  align-items: start;
 }
 
 .skill-group {
-  padding-left: 20px;
-  border-left: 1px solid var(--color-border);
+  min-width: 0;
 }
 
 .skill-group h3 {
@@ -1075,6 +1027,20 @@ hr.top-divider {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+}
+
+.selected-projects-grid,
+.project-boxes {
+  width: 100%;
+  max-width: 860px;
+}
+
+/* Leave an open strip of sky beside the project cards on wide screens. */
+@media (min-width: 1100px) {
+  .selected-projects-grid,
+  .project-boxes {
+    max-width: min(860px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px));
+  }
 }
 
 .selected-project-box {
@@ -1106,8 +1072,9 @@ hr.top-divider {
 
 .about-introduction {
   display: grid;
-  grid-template-columns: minmax(0px, 1fr) minmax(250px, 0.45fr);
-  gap: 60px;
+  grid-template-columns: minmax(0px, 640px) minmax(250px, 340px);
+  gap: clamp(32px, 3.4vw, 48px);
+  justify-content: start;
   align-items: start;
   padding-top: 18px;
   padding-bottom: 40px;
@@ -1221,6 +1188,11 @@ hr.top-divider {
 
 .cv-entry {
   padding: 24px 0px;
+}
+
+/* Clearer rules separate entries in both work experience and education. */
+.cv-section .cv-entry + .cv-entry {
+  border-top: 1px solid var(--color-border-strong);
 }
 
 .cv-entry > :last-child {
@@ -1639,7 +1611,6 @@ html[data-theme="light"] li.skill-adobe {
   min-width: 0;
   flex-direction: column;
   padding: 24px;
-  border-left: 1px solid var(--color-border);
 }
 
 .project-skill-list {
@@ -1701,7 +1672,8 @@ html[data-theme="light"] li.skill-adobe {
 .website-step h2,
 .website-thanks h2 {
   font-family: "Chakra Petch", "IBM Plex Sans", Arial, sans-serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: var(--section-heading-size);
+  letter-spacing: -0.02em;
 }
 
 .website-step > p {
@@ -1796,7 +1768,6 @@ html[data-theme="light"] li.skill-adobe {
 .website-picture-label {
   margin: -12px -12px 12px;
   padding: 12px;
-  border-bottom: 1px solid var(--color-border);
   color: var(--color-text-bright);
   font-family: "Courier New", monospace;
   font-size: 0.75rem;
@@ -2137,11 +2108,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
     align-self: stretch;
   }
 
-  .project-details {
-    border-top: 1px solid var(--color-border);
-    border-left: 0px;
-  }
-
   .cv-extra-information {
     position: static;
   }
@@ -2275,17 +2241,14 @@ html[data-theme="light"] :is(.top-navbar nav a, .role-line, .project-number, .fo
 
 html[data-theme="light"] .top-navbar {
   background: transparent;
-  border-bottom-color: transparent;
-  -webkit-backdrop-filter: blur(0px);
-  backdrop-filter: blur(0px);
+  /* Keep the same filter at the top and while scrolling; only fade its tint. */
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 
-/* Scrolling adds a uniform frosted bar and its divider. */
+/* A light veil keeps navigation readable while the painting shows through. */
 html[data-theme="light"] .top-navbar.scrolled {
   background: var(--color-navbar-background);
-  border-bottom-color: #000;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
 }
 
 .top-navbar .portfolio-name,
@@ -2306,6 +2269,10 @@ html[data-theme="light"] .top-navbar.scrolled {
   color: var(--color-text-muted);
   cursor: pointer;
   transition: color 200ms ease;
+}
+
+.theme-toggle[aria-busy="true"] {
+  cursor: progress;
 }
 
 /* Keep this hidden until the click handler is ready. */
@@ -2397,9 +2364,13 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
   .top-divider, .project-details, .theme-toggle
 ) {
   transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
+    background-color 240ms ease,
+    color 240ms ease,
+    border-color 240ms ease;
+}
+
+:root.theme-changing:not(.theme-snapshot) .background {
+  animation: theme-fade 240ms ease-out both;
 }
 
 /* Crossfade two snapshots instead of repainting every colour each frame. */
@@ -2418,7 +2389,7 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
 }
 
 ::view-transition-new(root) {
-  animation: theme-fade 160ms ease-out both;
+  animation: theme-fade 240ms ease-out both;
   mix-blend-mode: normal;
 }
 
@@ -2449,6 +2420,14 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
   :root.theme-changing,
   :root.theme-changing * {
     transition: none;
+  }
+
+  .background {
+    transition: none;
+  }
+
+  :root.theme-changing .background {
+    animation: none;
   }
 
   .project-preview {
@@ -2486,39 +2465,13 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
   }
 }
 
-/* Light mode dividers */
-html[data-theme="light"] .top-divider {
-  border-top-color: #000;
-}
-
-html[data-theme="light"] .website-picture-label {
-  border-bottom-color: #000;
-}
-
-html[data-theme="light"] .skill-group,
-html[data-theme="light"] .project-details {
-  border-left-color: #000;
-}
-
-html[data-theme="light"] .project-details {
-  border-top-color: #000;
-}
-
-/* Translucent badges and social buttons reveal stronger frost in both themes. */
-:is(.skill-list li, .project-skill-list li, .footer-socials a) {
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
-}
-
 /* Light mode shadows */
 html[data-theme="light"] .game-choice:is(:hover, :focus-visible, [aria-pressed="true"]) {
   background-color: var(--color-surface);
 }
 
 html[data-theme="light"] .blurred-box {
-  box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.05),
-    0 12px 28px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
 }
 
 html[data-theme="light"] .button {
@@ -2528,9 +2481,7 @@ html[data-theme="light"] .button {
 html[data-theme="light"] :is(
   .selected-project-box, .game-choice
 ):is(:hover, :focus-visible) {
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.06),
-    0 16px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 7px 22px rgba(0, 0, 0, 0.1);
 }
 
 /* Keep a printed CV readable in either theme. */
@@ -2589,8 +2540,8 @@ html[data-theme="light"] :is(
   .footer-socials a {
     background: #fff !important;
     box-shadow: none !important;
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
 
   .skill-list li,

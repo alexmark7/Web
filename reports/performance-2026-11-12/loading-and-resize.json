@@ -1,0 +1,2164 @@
+{
+  "date": "2026-11-12T08:58:39.255Z",
+  "browser": "159.0",
+  "results": [
+    {
+      "page": "index",
+      "theme": "light",
+      "height": 1526,
+      "stars": 389,
+      "dom": 614,
+      "scene": [
+        {
+          "start": 202,
+          "duration": 95,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 319,
+          "duration": 2,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 372,
+          "duration": 1,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 303,
+          "duration": 0,
+          "paintTime": 303,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/index.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 326,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 2,
+          "domainLookupEnd": 2,
+          "connectStart": 2,
+          "connectEnd": 2,
+          "secureConnectionStart": 0,
+          "requestStart": 2,
+          "finalResponseHeadersStart": 3,
+          "firstInterimResponseStart": 0,
+          "responseStart": 3,
+          "responseEnd": 4,
+          "transferSize": 9896,
+          "encodedBodySize": 9596,
+          "decodedBodySize": 9596,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 66,
+          "domContentLoadedEventStart": 202,
+          "domContentLoadedEventEnd": 299,
+          "domComplete": 326,
+          "loadEventStart": 326,
+          "loadEventEnd": 326,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 10,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 10,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/home-scroll.js",
+          "encodedBodySize": 353,
+          "transferSize": 653,
+          "duration": 13,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 13,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 13,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 14,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 14,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 13,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 13,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 108,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 108,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 108,
+          "initiatorType": "img"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 138,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 88,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 83,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 83,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 83,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 84,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 84,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 87,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 84,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 87,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 85,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 88,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 86,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 88,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 86,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 89,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 90,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 216,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 2,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 78,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 31,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 78,
+          "initiatorType": "other"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    },
+    {
+      "page": "projects",
+      "theme": "light",
+      "height": 3116,
+      "stars": 795,
+      "dom": 1184,
+      "scene": [
+        {
+          "start": 78,
+          "duration": 29,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 131,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 146,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 117,
+          "duration": 0,
+          "paintTime": 117,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/projects.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 138,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 0,
+          "domainLookupEnd": 0,
+          "connectStart": 0,
+          "connectEnd": 1,
+          "secureConnectionStart": 0,
+          "requestStart": 1,
+          "finalResponseHeadersStart": 5,
+          "firstInterimResponseStart": 0,
+          "responseStart": 5,
+          "responseEnd": 6,
+          "transferSize": 24233,
+          "encodedBodySize": 23933,
+          "decodedBodySize": 23933,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 40,
+          "domContentLoadedEventStart": 78,
+          "domContentLoadedEventEnd": 110,
+          "domComplete": 138,
+          "loadEventStart": 138,
+          "loadEventEnd": 138,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 13,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 14,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 14,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 15,
+          "initiatorType": "script"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 46,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 18,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 14,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 18,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 15,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 18,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 16,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 17,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 2,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 76,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 2,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 28,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 30,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 48,
+          "initiatorType": "other"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    },
+    {
+      "page": "cv",
+      "theme": "light",
+      "height": 2947,
+      "stars": 795,
+      "dom": 1122,
+      "scene": [
+        {
+          "start": 70,
+          "duration": 27,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 123,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 142,
+          "duration": 1,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 108,
+          "duration": 0,
+          "paintTime": 108,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/cv.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 129,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 0,
+          "domainLookupEnd": 0,
+          "connectStart": 0,
+          "connectEnd": 0,
+          "secureConnectionStart": 0,
+          "requestStart": 0,
+          "finalResponseHeadersStart": 1,
+          "firstInterimResponseStart": 0,
+          "responseStart": 1,
+          "responseEnd": 11,
+          "transferSize": 14946,
+          "encodedBodySize": 14646,
+          "decodedBodySize": 14646,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 30,
+          "domContentLoadedEventStart": 70,
+          "domContentLoadedEventEnd": 98,
+          "domComplete": 129,
+          "loadEventStart": 129,
+          "loadEventEnd": 129,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 8,
+          "initiatorType": "link"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 37,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 9,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 9,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 9,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 9,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 1,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 1,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 1,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 78,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 1,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 32,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 25,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 47,
+          "initiatorType": "other"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    },
+    {
+      "page": "about-me",
+      "theme": "light",
+      "height": 1606,
+      "stars": 795,
+      "dom": 990,
+      "scene": [
+        {
+          "start": 60,
+          "duration": 25,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 109,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 129,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 94,
+          "duration": 0,
+          "paintTime": 94,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/about-me.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 115,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 0,
+          "domainLookupEnd": 0,
+          "connectStart": 0,
+          "connectEnd": 0,
+          "secureConnectionStart": 0,
+          "requestStart": 0,
+          "finalResponseHeadersStart": 1,
+          "firstInterimResponseStart": 0,
+          "responseStart": 1,
+          "responseEnd": 2,
+          "transferSize": 8699,
+          "encodedBodySize": 8399,
+          "decodedBodySize": 8399,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 19,
+          "domContentLoadedEventStart": 60,
+          "domContentLoadedEventEnd": 87,
+          "domComplete": 115,
+          "loadEventStart": 115,
+          "loadEventEnd": 115,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 7,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 9,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 9,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/profile-headshot-340.webp",
+          "encodedBodySize": 22210,
+          "transferSize": 22510,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 36,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 1,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 2,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 85,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 1,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 44,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 43,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 53,
+          "initiatorType": "other"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    },
+    {
+      "page": "portfolio-website",
+      "theme": "light",
+      "height": 19834,
+      "stars": 5075,
+      "dom": 6009,
+      "scene": [
+        {
+          "start": 91,
+          "duration": 45,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 254,
+          "duration": 2,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 256,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 171,
+          "duration": 0,
+          "paintTime": 171,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/portfolio-website.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 242,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 0,
+          "domainLookupEnd": 0,
+          "connectStart": 0,
+          "connectEnd": 0,
+          "secureConnectionStart": 0,
+          "requestStart": 1,
+          "finalResponseHeadersStart": 1,
+          "firstInterimResponseStart": 0,
+          "responseStart": 1,
+          "responseEnd": 11,
+          "transferSize": 65356,
+          "encodedBodySize": 65056,
+          "decodedBodySize": 65056,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 32,
+          "domContentLoadedEventStart": 91,
+          "domContentLoadedEventEnd": 144,
+          "domComplete": 242,
+          "loadEventStart": 242,
+          "loadEventEnd": 242,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 6,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 6,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 6,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 6,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 35,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 7,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 9,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 1,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 70,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 1,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 37,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 37,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/portfolio-first-home.png",
+          "encodedBodySize": 22009,
+          "transferSize": 22309,
+          "duration": 2,
+          "initiatorType": "img"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    },
+    {
+      "page": "browser-game",
+      "theme": "light",
+      "height": 1173,
+      "stars": 5075,
+      "dom": 5282,
+      "scene": [
+        {
+          "start": 123,
+          "duration": 24,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 248,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 248,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "paint": [
+        {
+          "name": "first-contentful-paint",
+          "entryType": "paint",
+          "startTime": 212,
+          "duration": 0,
+          "paintTime": 212,
+          "presentationTime": null
+        }
+      ],
+      "nav": [
+        {
+          "name": "http://127.0.0.1:8765/browser-game.html",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 247,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.0",
+          "workerStart": 0,
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0,
+          "domainLookupStart": 0,
+          "domainLookupEnd": 0,
+          "connectStart": 1,
+          "connectEnd": 1,
+          "secureConnectionStart": 0,
+          "requestStart": 1,
+          "finalResponseHeadersStart": 1,
+          "firstInterimResponseStart": 0,
+          "responseStart": 1,
+          "responseEnd": 11,
+          "transferSize": 9811,
+          "encodedBodySize": 9511,
+          "decodedBodySize": 9511,
+          "responseStatus": 200,
+          "contentType": "text/html",
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 37,
+          "domContentLoadedEventStart": 123,
+          "domContentLoadedEventEnd": 155,
+          "domComplete": 247,
+          "loadEventStart": 247,
+          "loadEventEnd": 247,
+          "type": "navigate",
+          "redirectCount": 0
+        }
+      ],
+      "resources": [
+        {
+          "name": "http://127.0.0.1:8765/js/theme.js",
+          "encodedBodySize": 6887,
+          "transferSize": 7187,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/page-transition.js",
+          "encodedBodySize": 14610,
+          "transferSize": 14910,
+          "duration": 8,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/navbar.js",
+          "encodedBodySize": 430,
+          "transferSize": 730,
+          "duration": 10,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/background.js",
+          "encodedBodySize": 21966,
+          "transferSize": 22266,
+          "duration": 11,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/game-selector.js",
+          "encodedBodySize": 1934,
+          "transferSize": 2234,
+          "duration": 11,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/ufo.js",
+          "encodedBodySize": 20630,
+          "transferSize": 20930,
+          "duration": 11,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/css/style.css",
+          "encodedBodySize": 54930,
+          "transferSize": 55230,
+          "duration": 9,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/js/river-scene.js",
+          "encodedBodySize": 15984,
+          "transferSize": 16284,
+          "duration": 11,
+          "initiatorType": "script"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/instagram-icon.svg",
+          "encodedBodySize": 313,
+          "transferSize": 613,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/linkedin-icon.svg",
+          "encodedBodySize": 341,
+          "transferSize": 641,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/github-icon.svg",
+          "encodedBodySize": 629,
+          "transferSize": 929,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+          "encodedBodySize": 0,
+          "transferSize": 300,
+          "duration": 42,
+          "initiatorType": "link"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-sun.webp",
+          "encodedBodySize": 34030,
+          "transferSize": 34330,
+          "duration": 0,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-mountains-connected.webp",
+          "encodedBodySize": 65828,
+          "transferSize": 66128,
+          "duration": 2,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river.webp",
+          "encodedBodySize": 26404,
+          "transferSize": 26704,
+          "duration": 2,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-details.webp",
+          "encodedBodySize": 3490,
+          "transferSize": 3790,
+          "duration": 2,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-river-forest.webp",
+          "encodedBodySize": 49170,
+          "transferSize": 49470,
+          "duration": 3,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-stroke.webp",
+          "encodedBodySize": 32314,
+          "transferSize": 32614,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cherry-tree-solid.webp",
+          "encodedBodySize": 38118,
+          "transferSize": 38418,
+          "duration": 4,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud.webp",
+          "encodedBodySize": 14876,
+          "transferSize": 15176,
+          "duration": 5,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-ink-splatter.webp",
+          "encodedBodySize": 11128,
+          "transferSize": 11428,
+          "duration": 6,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-04.webp",
+          "encodedBodySize": 21744,
+          "transferSize": 22044,
+          "duration": 7,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-02.webp",
+          "encodedBodySize": 15198,
+          "transferSize": 15498,
+          "duration": 8,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-03.webp",
+          "encodedBodySize": 18868,
+          "transferSize": 19168,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-07.webp",
+          "encodedBodySize": 26428,
+          "transferSize": 26728,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-05.webp",
+          "encodedBodySize": 29478,
+          "transferSize": 29778,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/optimized/watercolor-cloud-06.webp",
+          "encodedBodySize": 22064,
+          "transferSize": 22364,
+          "duration": 10,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/distant-birds.svg",
+          "encodedBodySize": 748,
+          "transferSize": 1048,
+          "duration": 11,
+          "initiatorType": "img"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/favicon.svg",
+          "encodedBodySize": 401,
+          "transferSize": 701,
+          "duration": 86,
+          "initiatorType": "other"
+        },
+        {
+          "name": "http://127.0.0.1:8765/images/moon-surface.jpg",
+          "encodedBodySize": 114419,
+          "transferSize": 114719,
+          "duration": 1,
+          "initiatorType": "image"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "encodedBodySize": 45712,
+          "transferSize": 46012,
+          "duration": 27,
+          "initiatorType": "other"
+        },
+        {
+          "name": "https://fonts.gstatic.com/s/chakrapetch/v13/cIflMapbsEk7TDLdtEz1BwkeQI51R5_F.woff2",
+          "encodedBodySize": 9968,
+          "transferSize": 10268,
+          "duration": 27,
+          "initiatorType": "other"
+        }
+      ],
+      "supported": [
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource"
+      ]
+    }
+  ],
+  "resizes": [
+    {
+      "size": [
+        390,
+        844,
+        2
+      ],
+      "scene": [
+        {
+          "start": 248,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 248,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 1057,
+          "duration": 106,
+          "w": 390,
+          "h": 844,
+          "dpr": 2
+        },
+        {
+          "start": 1101,
+          "duration": 62,
+          "w": 390,
+          "h": 844,
+          "dpr": 2
+        }
+      ],
+      "canvas": [
+        780,
+        378
+      ]
+    },
+    {
+      "size": [
+        1920,
+        1080,
+        2
+      ],
+      "scene": [
+        {
+          "start": 1057,
+          "duration": 106,
+          "w": 390,
+          "h": 844,
+          "dpr": 2
+        },
+        {
+          "start": 1101,
+          "duration": 62,
+          "w": 390,
+          "h": 844,
+          "dpr": 2
+        },
+        {
+          "start": 1347,
+          "duration": 95,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 2
+        },
+        {
+          "start": 1448,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 2
+        }
+      ],
+      "canvas": [
+        3840,
+        674
+      ]
+    },
+    {
+      "size": [
+        1910,
+        1070,
+        2
+      ],
+      "scene": [
+        {
+          "start": 1347,
+          "duration": 95,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 2
+        },
+        {
+          "start": 1448,
+          "duration": 0,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 2
+        },
+        {
+          "start": 1605,
+          "duration": 97,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 2
+        },
+        {
+          "start": 1708,
+          "duration": 0,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 2
+        }
+      ],
+      "canvas": [
+        3820,
+        670
+      ]
+    },
+    {
+      "size": [
+        1920,
+        1080,
+        1
+      ],
+      "scene": [
+        {
+          "start": 1605,
+          "duration": 97,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 2
+        },
+        {
+          "start": 1708,
+          "duration": 0,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 2
+        },
+        {
+          "start": 1878,
+          "duration": 29,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 1913,
+          "duration": 1,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        }
+      ],
+      "canvas": [
+        1920,
+        337
+      ]
+    },
+    {
+      "size": [
+        1910,
+        1070,
+        1
+      ],
+      "scene": [
+        {
+          "start": 1878,
+          "duration": 29,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 1913,
+          "duration": 1,
+          "w": 1920,
+          "h": 1080,
+          "dpr": 1
+        },
+        {
+          "start": 2070,
+          "duration": 39,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 1
+        },
+        {
+          "start": 2114,
+          "duration": 0,
+          "w": 1910,
+          "h": 1070,
+          "dpr": 1
+        }
+      ],
+      "canvas": [
+        1910,
+        335
+      ]
+    }
+  ]
+}
