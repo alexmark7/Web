@@ -1015,11 +1015,11 @@ main h1,
   display: flex;
   align-items: center;
   padding-top: 18px;
-  padding-bottom: 40px;
+  padding-bottom: 16px;
 }
 
 .home-introduction + .section {
-  padding-top: 36px;
+  padding-top: 16px;
 }
 
 .home-introduction-text {
@@ -2146,10 +2146,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 
   .about-introduction {
     gap: 40px;
-    padding-bottom: 30px;
-  }
-
-  .home-introduction {
     padding-bottom: 30px;
   }
 
