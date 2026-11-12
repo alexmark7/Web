@@ -942,6 +942,7 @@ main h1,
 /* Theme-matched pigment keeps unblurred cards readable over the scenery. */
 .selected-project-box,
 .project-box,
+.website-picture,
 .information-box,
 .contact-box,
 .cv-skills,
@@ -1278,10 +1279,8 @@ main h1,
   font-size: 0.75rem;
 }
 
-/* CV sidebar */
+/* Keep the long CV sidebar in normal flow so every item stays reachable. */
 .cv-extra-information {
-  position: sticky;
-  top: 105px;
   padding: 22px;
   border: 1px solid var(--color-border);
 }
@@ -2170,10 +2169,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
     padding: 16px;
     align-self: center;
   }
-
-  .cv-extra-information {
-    position: static;
-  }
 }
 
 /* Phone layout */
@@ -2561,10 +2556,6 @@ html[data-theme="light"] :is(
 
   .footer {
     max-width: none;
-  }
-
-  .cv-extra-information {
-    position: static;
   }
 
   .blurred-box,
