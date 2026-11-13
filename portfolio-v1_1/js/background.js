@@ -140,8 +140,12 @@
   document.addEventListener("visibilitychange", () => { if (!document.hidden) updateMoonPhase(); });
   window.addEventListener("pageshow", updateMoonPhase);
 
-  const nativeScroll = CSS.supports("animation-timeline", "scroll()")
+  const viewport = window.portfolioViewport;
+  const nativeScrollSupported = CSS.supports("animation-timeline", "scroll()")
     && CSS.supports("animation-range", "0px 100px");
+  // Root scroll timelines change range when mobile bars move. Use the same
+  // stable measurements as the painting for the mobile scroll fallback.
+  const usesNativeScroll = () => nativeScrollSupported && !viewport.mobile;
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let frame = 0;
   let scrollRange = 0;
@@ -185,7 +189,7 @@
 
   function updateSun() {
     frame = 0;
-    if (nativeScroll) return;
+    if (usesNativeScroll()) return;
     const scroll = Math.max(0, window.scrollY);
     if (document.documentElement.dataset.theme !== "light") {
       const moonRise = reducedMotion.matches ? 0 : Math.min(scroll * 0.12, moonExitDistance);
@@ -205,13 +209,13 @@
   }
 
   function scheduleSun() {
-    if (!frame) frame = window.requestAnimationFrame(updateSun);
+    if (!usesNativeScroll() && !frame) frame = window.requestAnimationFrame(updateSun);
   }
 
   function measureSun() {
     // Read layout only when the page size changes, rather than during scrolling.
-    scrollRange = document.documentElement.scrollHeight - window.innerHeight;
-    mountainDistance = window.innerHeight * 0.04;
+    scrollRange = document.documentElement.scrollHeight - viewport.height;
+    mountainDistance = viewport.height * 0.04;
     // Start fully below the viewport, then rise faster early in the scroll and
     // settle gently into the foreground as the visitor approaches the footer.
     const treeSize = Number.parseFloat(getComputedStyle(tree).width) || 0;
@@ -219,16 +223,16 @@
     tree.style.setProperty("--tree-travel", `${treeTravel}px`);
     const navbar = document.querySelector(".top-navbar");
     background.style.setProperty("--cloud-clearance", `${(navbar?.getBoundingClientRect().height || 76) + 16}px`);
-    if (!nativeScroll && document.documentElement.dataset.theme !== "light") {
+    if (!usesNativeScroll() && document.documentElement.dataset.theme !== "light") {
       const moonStyle = getComputedStyle(moon);
       moonExitDistance = Number.parseFloat(moonStyle.top) + Number.parseFloat(moonStyle.width) + 24;
     }
-    placeInk(window.innerHeight);
-    if (!nativeScroll) scheduleSun();
+    placeInk(viewport.height);
+    scheduleSun();
   }
 
-  if (!nativeScroll) window.addEventListener("scroll", scheduleSun, { passive: true });
-  window.addEventListener("resize", measureSun, { passive: true });
+  window.addEventListener("scroll", scheduleSun, { passive: true });
+  document.addEventListener("portfolio-viewport-change", measureSun);
   window.addEventListener("load", measureSun);
   window.addEventListener("pageshow", measureSun);
   document.addEventListener("portfolio-page-change", measureSun);
@@ -417,7 +421,7 @@
     const width = display.clientWidth;
     const height = display.clientHeight;
     if (width <= 0 || height <= 16) return;
-    viewportHeight = window.innerHeight;
+    viewportHeight = window.portfolioViewport.height;
     margin = viewportHeight * 0.5;
     // Density remains unchanged at ordinary sizes; the cap also bounds work
     // on large/high-resolution screens, regardless of document length.
@@ -517,7 +521,7 @@
   }
 
   window.addEventListener("scroll", schedulePool, { passive: true });
-  window.addEventListener("resize", updateStarArea, { passive: true });
+  document.addEventListener("portfolio-viewport-change", updateStarArea);
   window.addEventListener("load", updateStarArea);
   window.addEventListener("pageshow", updateStarArea);
   window.addEventListener("pagehide", pause);

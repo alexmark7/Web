@@ -37,8 +37,12 @@
 
   function measureScene(background) {
     const width = Math.max(1, document.documentElement.clientWidth);
-    const height = Math.max(1, window.innerHeight);
-    const short = window.matchMedia("(max-height: 650px)").matches;
+    const height = Math.max(1, window.portfolioViewport.height);
+    // Native app bars can expose more space than the initial large viewport.
+    // Paint below it in advance without moving or rescaling the visible scene.
+    const coverageHeight = window.portfolioViewport.mobile
+      ? Math.max(height, window.screen.height) : height;
+    const short = document.documentElement.hasAttribute("data-scenery-short");
     const mobile = window.matchMedia("(max-width: 600px)").matches;
     const mountain = getComputedStyle(background, "::before");
     const mountainWidth = Number.parseFloat(mountain.width)
@@ -56,7 +60,7 @@
       width,
       height,
       top,
-      sceneHeight: Math.max(1, height * 1.04 + 2 - top),
+      sceneHeight: Math.max(1, coverageHeight + height * 0.04 + 2 - top),
       mountainWidth,
       mountainLeft,
       riverLeft: width * (mobile ? 0.10 : 0.12),
@@ -161,7 +165,7 @@
 
   function drawForestMist(context, image, geometry) {
     if (!image) return;
-    const { width, mountainWidth, riverHeight, sceneHeight } = geometry;
+    const { width, height, top, mountainWidth, riverHeight } = geometry;
     const mist = makeLayer(image.naturalWidth, image.naturalHeight, 1);
     mist.context.drawImage(image, 0, 0);
     mist.context.globalCompositeOperation = "source-in";
@@ -184,7 +188,8 @@
     mist.context.restore();
 
     const bankY = riverHeight * 0.60;
-    const depth = sceneHeight - bankY;
+    // Overscan extends the forest below the screen, not the mist composition.
+    const depth = height * 1.04 + 2 - top - bankY;
     const paintWidth = Math.min(width * 0.78, mountainWidth * 0.90);
     const paintHeight = Math.min(paintWidth * 0.12, Math.max(18, depth * 0.40));
     const wisps = width <= 600 ? [
@@ -307,6 +312,7 @@
     let pendingKey = "";
     let paintedKey = "";
     let pending = Promise.resolve();
+    let resizeTimer = 0;
 
     canvas.prepareScenery = () => {
       const geometry = measureScene(background);
@@ -356,10 +362,22 @@
     };
 
     const refreshVisibleScene = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = 0;
       if (document.documentElement.dataset.theme === "light") canvas.prepareScenery().catch(() => {});
     };
-    window.addEventListener("resize", refreshVisibleScene, { passive: true });
+    // Keep the existing painting during a resize gesture. The expensive forest
+    // composite only needs the final size; explicit theme preparation stays immediate.
+    document.addEventListener("portfolio-viewport-change", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(refreshVisibleScene, 120);
+    });
     document.addEventListener("portfolio-theme-change", refreshVisibleScene);
+    window.addEventListener("pagehide", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = 0;
+    });
+    window.addEventListener("pageshow", refreshVisibleScene);
     return canvas;
   };
 })();

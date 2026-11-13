@@ -1,0 +1,124 @@
+{
+  "date": "2026-11-13",
+  "browser": "Headless Microsoft Edge",
+  "viewport": {
+    "passed": true,
+    "scenarioCount": 15,
+    "runtimeErrors": 0,
+    "failures": [],
+    "scenarios": [
+      "mobile-light-index",
+      "mobile-expanded-bottom-coverage",
+      "mobile-light-projects",
+      "mobile-light-cv",
+      "mobile-light-about-me",
+      "mobile-light-portfolio-website",
+      "mobile-light-browser-game",
+      "mobile-dark-index",
+      "mobile-portrait-650-threshold",
+      "mobile-SPA-projects",
+      "mobile-SPA-cv",
+      "mobile-SPA-browser-game",
+      "mobile-width-orientation",
+      "desktop-height-native",
+      "desktop-height-JS-fallback"
+    ]
+  },
+  "animationStress": {
+    "passed": true,
+    "scenarioCount": 21,
+    "runtimeErrors": 0,
+    "failures": [],
+    "scenarios": [
+      "stress-idle-scroll-light-index",
+      "stress-idle-scroll-light-projects",
+      "stress-idle-scroll-light-cv",
+      "stress-idle-scroll-light-about-me",
+      "stress-idle-scroll-light-portfolio-website",
+      "stress-idle-scroll-light-browser-game",
+      "stress-idle-scroll-dark-index",
+      "stress-idle-scroll-dark-projects",
+      "stress-idle-scroll-dark-cv",
+      "stress-idle-scroll-dark-about-me",
+      "stress-idle-scroll-dark-portfolio-website",
+      "stress-idle-scroll-dark-browser-game",
+      "stress-rapid-theme-toggles",
+      "stress-rapid-SPA-history",
+      "stress-live-reduced-motion",
+      "stress-tab-freeze-pagehide-pageshow",
+      "stress-mobile-4x-CPU",
+      "stress-snake-landscape-667x375",
+      "stress-snake-landscape-640x360",
+      "stress-desktop-DPR2-resize-burst",
+      "stress-desktop-DPR-only-change"
+    ]
+  },
+  "resizeBurst": {
+    "requestedChanges": 15,
+    "density": 2,
+    "beforePaints": 13,
+    "afterPaints": 1
+  },
+  "landscapeSnake": [
+    {
+      "name": "stress-snake-landscape-667x375",
+      "before": {
+        "width": 667,
+        "height": 375,
+        "boardWidth": 0,
+        "boardHeight": 0,
+        "pixelWidth": 4,
+        "pixelHeight": 4,
+        "exit": {
+          "top": 38.984375,
+          "bottom": 87.390625
+        }
+      },
+      "after": {
+        "width": 667,
+        "height": 375,
+        "boardWidth": 178,
+        "boardHeight": 178,
+        "pixelWidth": 360,
+        "pixelHeight": 360,
+        "exit": {
+          "top": 35,
+          "bottom": 83.40625
+        }
+      }
+    },
+    {
+      "name": "stress-snake-landscape-640x360",
+      "before": {
+        "width": 640,
+        "height": 360,
+        "boardWidth": 0,
+        "boardHeight": 0,
+        "pixelWidth": 4,
+        "pixelHeight": 4,
+        "exit": {
+          "top": 38.984375,
+          "bottom": 87.390625
+        }
+      },
+      "after": {
+        "width": 640,
+        "height": 360,
+        "boardWidth": 178,
+        "boardHeight": 178,
+        "pixelWidth": 360,
+        "pixelHeight": 360,
+        "exit": {
+          "top": 35,
+          "bottom": 83.40625
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Emulated touch/viewport; not a physical iPhone or mobile GPU test.",
+    "External fonts blocked; no field performance/FPS claim.",
+    "CDP density change emitted no media/resize notifications; explicit resize verified canvas resolution update.",
+    "Actual freeze/resume tested; pagehide/pageshow restoration events simulated."
+  ]
+}

@@ -1,5 +1,6 @@
 /* Main colours */
 :root {
+  --scenery-height: 100vh;
   --page-gutter: clamp(5vw, calc(15vw - 37.5px), 10vw);
   --sun-size: clamp(200px, 36vw, 456px);
   --tree-size: clamp(220px, 28vw, 420px);
@@ -68,7 +69,7 @@ body {
 .background {
   --mountain-width: clamp(640px, 88vw, 1200px);
   --cloud-clearance: 96px;
-  --sun-top: max(calc(var(--cloud-clearance) + 16px), 10vh);
+  --sun-top: max(calc(var(--cloud-clearance) + 16px), calc(var(--scenery-height) * 0.1));
   --sun-sway: clamp(1.5px, 0.28vw, 4px);
   --sun-sway-duration: 10s;
   position: absolute;
@@ -118,7 +119,7 @@ html[data-theme="light"] .night-moon {
   position: fixed;
   z-index: 0;
   left: -8vw;
-  bottom: -8vh;
+  top: calc(var(--scenery-height) * 1.08 - var(--mountain-width) * 2 / 3);
   width: var(--mountain-width);
   aspect-ratio: 3 / 2;
   --mountain-paint: image-set(url("../images/optimized/watercolor-mountains-defined-ridge.webp") 1x, url("../images/optimized/watercolor-mountains-defined-ridge@2x.webp") 2x);
@@ -187,6 +188,8 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   inset: 0;
+  bottom: auto;
+  height: var(--scenery-height);
   /* Sun (2), mist (3), then foreground clouds (4). */
   z-index: 4;
   overflow: hidden;
@@ -204,7 +207,7 @@ html[data-theme="light"] .night-moon {
   position: fixed;
   z-index: 1;
   left: 54%;
-  top: 32vh;
+  top: calc(var(--scenery-height) * 0.32);
   width: clamp(160px, 20vw, 260px);
   aspect-ratio: 12 / 5;
   background: url("../images/distant-birds.svg") center / contain no-repeat;
@@ -214,7 +217,7 @@ html[data-theme="light"] .night-moon {
 
 .distant-birds--top-right {
   left: 78%;
-  top: max(calc(var(--cloud-clearance) + 12px), 16vh);
+  top: max(calc(var(--cloud-clearance) + 12px), calc(var(--scenery-height) * 0.16));
   width: clamp(120px, 14vw, 200px);
   transform: rotate(-7deg);
 }
@@ -223,7 +226,7 @@ html[data-theme="light"] .night-moon {
   /* Let the mountain painting obscure the birds along its skyline. */
   z-index: -1;
   left: 8%;
-  top: 47vh;
+  top: calc(var(--scenery-height) * 0.47);
   width: clamp(130px, 16vw, 220px);
   transform: scaleX(-1) rotate(7deg);
 }
@@ -233,6 +236,8 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   inset: 0;
+  bottom: auto;
+  height: var(--scenery-height);
   z-index: -2;
   overflow: hidden;
   pointer-events: none;
@@ -261,7 +266,7 @@ html[data-theme="light"] .night-moon {
 
 .ink-splotch--top-left {
   margin-left: clamp(-100px, -6vw, -22px);
-  margin-top: clamp(48px, 7vh, 72px);
+  margin-top: clamp(48px, calc(var(--scenery-height) * 0.07), 72px);
 }
 
 .ink-stroke {
@@ -281,7 +286,7 @@ html[data-theme="light"] .night-moon {
   position: fixed;
   z-index: 5;
   right: calc(var(--tree-size) * 0.4 + 12px);
-  bottom: calc(var(--tree-size) * -0.24);
+  top: calc(var(--scenery-height) - var(--tree-size) * 0.76);
   width: var(--tree-size);
   aspect-ratio: 1;
   background: image-set(url("../images/optimized/watercolor-cherry-tree-solid.webp") 1x, url("../images/optimized/watercolor-cherry-tree-solid@2x.webp") 2x) center / contain no-repeat;
@@ -414,31 +419,31 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 /* Let the browser keep the scenery attached to scrolling on its compositor thread. */
 @supports (animation-timeline: scroll()) and (animation-range: 0px 100px) {
   @media (prefers-reduced-motion: no-preference) {
-    html:not([data-theme="light"]) .night-moon {
+    html:not([data-stable-viewport]):not([data-theme="light"]) .night-moon {
       animation: moon-rise 1s linear both;
       animation-timeline: scroll(root block);
       /* Same gentle speed on short and long pages, until the glow leaves the sky. */
       animation-range: 0px calc((var(--moon-top) + var(--moon-size) + 24px) / 0.12);
     }
 
-    html[data-theme="light"] .background::after {
+    html[data-theme="light"]:not([data-stable-viewport]) .background::after {
       animation: sun-follow-scenery 1s linear both, sun-sway var(--sun-sway-duration) ease-in-out infinite alternate;
       animation-timeline: scroll(root block), auto;
       animation-range: normal, normal;
     }
 
-    html[data-theme="light"] .sun-mist {
+    html[data-theme="light"]:not([data-stable-viewport]) .sun-mist {
       animation: sun-follow-scenery 1s linear both;
       animation-timeline: scroll(root block);
     }
 
-    html[data-theme="light"] .background::before,
-    html[data-theme="light"] .watercolor-river {
+    html[data-theme="light"]:not([data-stable-viewport]) .background::before,
+    html[data-theme="light"]:not([data-stable-viewport]) .watercolor-river {
       animation: mountain-drift 1s linear both;
       animation-timeline: scroll(root block);
     }
 
-    html[data-theme="light"] .watercolor-cherry-tree {
+    html[data-theme="light"]:not([data-stable-viewport]) .watercolor-cherry-tree {
       /* Keep a gentle scroll speed at the end instead of flattening to a crawl.
          The JS fallback uses the same curve and preserves both endpoints. */
       animation: tree-rise 1s cubic-bezier(0.333333, 0.666667, 0.666667, 0.9) both;
@@ -454,7 +459,7 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 
 @keyframes sun-follow-scenery {
   from { transform: translate3d(-50%, 0, 0); }
-  to { transform: translate3d(-50%, -4vh, 0); }
+  to { transform: translate3d(-50%, calc(var(--scenery-height) * -0.04), 0); }
 }
 
 @keyframes sun-sway {
@@ -464,7 +469,7 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 
 @keyframes mountain-drift {
   from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(0, -4vh, 0); }
+  to { transform: translate3d(0, calc(var(--scenery-height) * -0.04), 0); }
 }
 
 @keyframes tree-rise {
@@ -509,7 +514,7 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 
   .background::before {
     left: -150px;
-    bottom: -6vh;
+    top: calc(var(--scenery-height) * 1.06 - var(--mountain-width) * 2 / 3);
   }
 
   .watercolor-cloud {
@@ -543,41 +548,38 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 
   .distant-birds {
     left: 62%;
-    top: 40vh;
+    top: calc(var(--scenery-height) * 0.4);
     width: 120px;
     opacity: 0.54;
   }
 
   .distant-birds--top-right {
     left: 70%;
-    top: max(calc(var(--cloud-clearance) + 12px), 16vh);
+    top: max(calc(var(--cloud-clearance) + 12px), calc(var(--scenery-height) * 0.16));
     width: 96px;
   }
 
   .distant-birds--middle-left {
     left: 3%;
-    top: 46vh;
+    top: calc(var(--scenery-height) * 0.46);
     width: 100px;
   }
 }
 
 /* A shallower mountain keeps open sky available on short landscape screens. */
-@media (max-height: 650px) {
-  .background {
-    --mountain-width: min(88vw, 100vh);
-  }
+html[data-scenery-short] .background {
+  --mountain-width: min(88vw, var(--scenery-height));
+}
 
-  .background::before {
-    bottom: -12vh;
-    left: -8vw;
-  }
-
+html[data-scenery-short] .background::before {
+  top: calc(var(--scenery-height) * 1.12 - var(--mountain-width) * 2 / 3);
+  left: -8vw;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .watercolor-cherry-tree {
     position: absolute;
-    top: max(100vh, calc(100% - var(--tree-size) * 0.76));
+    top: max(var(--scenery-height), calc(100% - var(--tree-size) * 0.76));
     bottom: auto;
     transform: translate3d(0, 0, 0);
     will-change: auto;
@@ -850,7 +852,7 @@ a {
 
 /* Leave room for the fixed navbar. */
 main {
-  min-height: calc(100vh - 170px);
+  min-height: calc(var(--scenery-height) - 170px);
   padding-top: 110px;
   padding-bottom: 60px;
 }
@@ -2273,8 +2275,8 @@ html[data-theme="light"] .snake-dialog {
   .snake-state { padding: 12px; }
 }
 
-@media (max-height: 520px) and (min-width: 701px) {
-  .snake-board { width: min(100%, calc(100dvh - 285px)); }
+@media (max-height: 520px) and (orientation: landscape) {
+  .snake-board { width: min(100%, max(180px, calc(100dvh - 285px))); }
   .snake-topbar { margin-bottom: 10px; padding-bottom: 10px; }
   .snake-topbar h2 { font-size: 1.5rem; }
   .snake-state-cherry { display: none; }

@@ -3,6 +3,7 @@
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const viewport = window.portfolioViewport;
   const ufo = document.createElement("div");
   ufo.className = "ascii-ufo";
   ufo.setAttribute("aria-hidden", "true");
@@ -72,15 +73,15 @@
 
   function farOutsideScreen(x, y) {
     return x < -120 || x > window.innerWidth + 120
-      || y < -120 || y > window.innerHeight + 120;
+      || y < -120 || y > viewport.height + 120;
   }
 
   // Keep return targets away from the edges.
   function pointInsideScreen(point) {
-    const margin = Math.min(60, window.innerWidth / 4, window.innerHeight / 4);
+    const margin = Math.min(60, window.innerWidth / 4, viewport.height / 4);
     return {
       x: Math.max(margin, Math.min(window.innerWidth - margin, point.x)),
-      y: Math.max(margin, Math.min(window.innerHeight - margin, point.y)),
+      y: Math.max(margin, Math.min(viewport.height - margin, point.y)),
     };
   }
 
@@ -208,7 +209,7 @@
 
   function planFlight() {
     const width = window.innerWidth;
-    const height = window.innerHeight;
+    const height = viewport.height;
     const sideways = Math.random() < 0.5;
     const fromStart = Math.random() < 0.5;
     const length = sideways ? width : height;
@@ -266,7 +267,7 @@
   function continueFlight() {
     const nextFlight = planFlight();
     const speed = Math.hypot(velocityX, velocityY) || 1;
-    const ahead = Math.min(window.innerWidth, window.innerHeight) * 0.3;
+    const ahead = Math.min(window.innerWidth, viewport.height) * 0.3;
     nextFlight.points[0] = { x: currentX, y: currentY };
     nextFlight.points[1] = pointInsideScreen({
       x: currentX + velocityX / speed * ahead,
@@ -427,7 +428,7 @@
     const releaseSpeed = Math.hypot(velocityX, velocityY);
     // An off-screen throw must come back into view before it can fly away.
     let needsToReturn = currentX < 0 || currentX > window.innerWidth
-      || currentY < 0 || currentY > window.innerHeight;
+      || currentY < 0 || currentY > viewport.height;
     if (releaseSpeed < 70) {
       // With no throw, keep its old direction and build up getaway speed.
       const before = pointOnFlight(currentFlight, Math.max(0, flightProgress - 0.01));
@@ -448,7 +449,7 @@
 
       const keepFlying = returningCharacters > 0 || now < keepFlyingUntil;
       const insideScreen = currentX >= 0 && currentX <= window.innerWidth
-        && currentY >= 0 && currentY <= window.innerHeight;
+        && currentY >= 0 && currentY <= viewport.height;
       if ((keepFlying && !insideScreen)
         || (farOutsideScreen(currentX, currentY) && flightProgress < 0.8)) needsToReturn = true;
       if (insideScreen) needsToReturn = false;
@@ -530,10 +531,10 @@
     stopFlight();
     scheduleFlight();
   });
-  window.addEventListener("resize", () => {
+  document.addEventListener("portfolio-viewport-change", () => {
     stopFlight();
     scheduleFlight();
-  }, { passive: true });
+  });
   window.addEventListener("pagehide", stopFlight);
   window.addEventListener("pageshow", scheduleFlight);
 
