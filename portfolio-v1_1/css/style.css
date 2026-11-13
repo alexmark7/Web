@@ -1,6 +1,7 @@
 /* Main colours */
 :root {
   --scenery-height: 100vh;
+  --navbar-height: 76px;
   --page-gutter: clamp(5vw, calc(15vw - 37.5px), 10vw);
   --sun-size: clamp(200px, 36vw, 456px);
   --tree-size: clamp(220px, 28vw, 420px);
@@ -44,6 +45,7 @@ html {
   color-scheme: dark;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
+  scroll-padding-top: calc(var(--navbar-height) + 12px);
   /* Stop touch and trackpad gestures from bouncing beyond the page edges. */
   overscroll-behavior-y: none;
 
@@ -61,7 +63,7 @@ body {
   cursor: default;
 
   font-family: "IBM Plex Sans", Arial, sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 
@@ -777,7 +779,7 @@ a {
 .top-navbar nav a {
   position: relative;
   display: inline-flex;
-  min-width: 24px;
+  min-width: 44px;
   min-height: 44px;
   align-items: center;
   justify-content: center;
@@ -853,7 +855,7 @@ a {
 /* Leave room for the fixed navbar. */
 main {
   min-height: calc(var(--scenery-height) - 170px);
-  padding-top: 110px;
+  padding-top: calc(var(--navbar-height) + 34px);
   padding-bottom: 60px;
 }
 
@@ -865,7 +867,7 @@ main [tabindex="-1"]:focus {
 
 /* Anchor targets must clear the navbar too. */
 main [id] {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 16px;
 }
 
 h1,
@@ -879,6 +881,7 @@ h1,
 h2,
 h3 {
   line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 /* Give paragraphs and longer lists room to breathe in both themes. */
@@ -932,6 +935,11 @@ main h1,
 }
 
 /* Keyboard focus */
+:where(a, button, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-text-bright);
+  outline-offset: 4px;
+}
+
 .top-navbar a:focus-visible,
 .button:focus-visible,
 .selected-project-box:focus-visible,
@@ -954,6 +962,7 @@ main h1,
 /* Theme-matched pigment keeps unblurred cards readable over the scenery. */
 .selected-project-box,
 .project-box,
+.game-choice,
 .website-picture,
 .information-box,
 .contact-box,
@@ -1379,139 +1388,139 @@ main h1,
 /* Dark-mode badge colours */
 li.skill-html {
   border-color: #ce5b3b;
-  background-color: #150906d9;
+  background-color: #120805;
   color: #ec7754;
 }
 
 li.skill-css {
   border-color: #3f6edb;
-  background-color: #060b16d9;
+  background-color: #050913;
   color: #6b90eb;
 }
 
 li.skill-javascript {
   border-color: #dfcc36;
-  background-color: #121104d9;
+  background-color: #0f0e03;
   color: #f2de34;
 }
 
 li.skill-java {
   border-color: #ce7019;
-  background-color: #150b02d9;
+  background-color: #120902;
   color: #ed933e;
 }
 
 li.skill-git {
   border-color: #db5e47;
-  background-color: #160907d9;
+  background-color: #130806;
   color: #ec7760;
 }
 
 li.skill-linux {
   border-color: #e4ba3c;
-  background-color: #171306d9;
+  background-color: #141005;
   color: #f9d868;
 }
 
 li.skill-windows {
   border-color: #1775bd;
-  background-color: #020e16d9;
+  background-color: #020c13;
   color: #57aeeb;
 }
 
 li.skill-networking {
   border-color: #13968d;
-  background-color: #021211d9;
+  background-color: #020f0e;
   color: #53d2c8;
 }
 
 li.skill-pc-hardware {
   border-color: #1aaad6;
-  background-color: #03141ad9;
+  background-color: #031116;
   color: #56d0f3;
 }
 
 li.skill-embedded-hardware {
   border-color: #42815c;
-  background-color: #0b160ed9;
+  background-color: #09130c;
   color: #82ca94;
 }
 
 li.skill-vscode {
   border-color: #1676b6;
-  background-color: #020e16d9;
+  background-color: #020c13;
   color: #51b2e7;
 }
 
 li.skill-jetbrains {
   border-color: #a867e5;
-  background-color: #140c1cd9;
+  background-color: #110a18;
   color: #c693f4;
 }
 
 li.skill-ai-tools {
   border-color: #bb69e5;
-  background-color: #150a1bd9;
+  background-color: #120917;
   color: #dda4fa;
 }
 
 li.skill-local-ai-tools {
   border-color: #39b6a9;
-  background-color: #061917d9;
+  background-color: #051514;
   color: #6ce1d5;
 }
 
 li.skill-excel {
   border-color: #2a6a47;
-  background-color: #060f0ad9;
+  background-color: #050d09;
   color: #56ad7e;
 }
 
 li.skill-business-central {
   border-color: #755d9a;
-  background-color: #100d16d9;
+  background-color: #0e0b13;
   color: #a990ce;
 }
 
 li.skill-superoffice {
   border-color: #ca4d4d;
-  background-color: #140808d9;
+  background-color: #110707;
   color: #e37878;
 }
 
 li.skill-salesforce {
   border-color: #1996c7;
-  background-color: #020f14d9;
+  background-color: #020d11;
   color: #4dc5f3;
 }
 
 li.skill-sap {
   border-color: #206ebb;
-  background-color: #030b13d9;
+  background-color: #030910;
   color: #5ba3e5;
 }
 
 li.skill-photoshop {
   border-color: #48a4e8;
-  background-color: #071118d9;
+  background-color: #060e14;
   color: #72c0fa;
 }
 
 li.skill-premiere {
   border-color: #a4a4f4;
-  background-color: #101019d9;
+  background-color: #0e0e15;
   color: #b9b9fa;
 }
 
 li.skill-illustrator {
   border-color: #e3941c;
-  background-color: #170f03d9;
+  background-color: #140d03;
   color: #f9b650;
 }
 
 li.skill-adobe {
   border-color: #d7383a;
-  background-color: #160506d9;
+  background-color: #130405;
   color: #ec696b;
 }
 
@@ -1525,139 +1534,139 @@ html[data-theme="light"] :is(.skill-list, .project-skill-list) li {
 html[data-theme="light"] li.skill-html {
   color: #792909;
   border-color: #cb5f3e;
-  background-color: #f79f74b8;
+  background-color: #f8b897;
 }
 
 html[data-theme="light"] li.skill-css {
   color: #163e85;
   border-color: #4770c7;
-  background-color: #8eb5f6b8;
+  background-color: #acc8f5;
 }
 
 html[data-theme="light"] li.skill-javascript {
   color: #5d4900;
   border-color: #a18514;
-  background-color: #f5dc5ac2;
+  background-color: #f6e37f;
 }
 
 html[data-theme="light"] li.skill-java {
   color: #723907;
   border-color: #c3762c;
-  background-color: #f7bb71b8;
+  background-color: #f8cc95;
 }
 
 html[data-theme="light"] li.skill-git {
   color: #812815;
   border-color: #ce614b;
-  background-color: #f89884b8;
+  background-color: #f9b3a3;
 }
 
 html[data-theme="light"] li.skill-linux {
   color: #5e4300;
   border-color: #a88115;
-  background-color: #f7d771c2;
+  background-color: #f8df90;
 }
 
 html[data-theme="light"] li.skill-windows {
   color: #064a7a;
   border-color: #2779b1;
-  background-color: #8ac9f6b8;
+  background-color: #a9d6f5;
 }
 
 html[data-theme="light"] li.skill-networking {
   color: #005448;
   border-color: #118a7e;
-  background-color: #69dac3b8;
+  background-color: #91e2d0;
 }
 
 html[data-theme="light"] li.skill-pc-hardware {
   color: #005368;
   border-color: #188eab;
-  background-color: #7ddbedb8;
+  background-color: #a0e3ef;
 }
 
 html[data-theme="light"] li.skill-embedded-hardware {
   color: #1d512c;
   border-color: #418054;
-  background-color: #94d8a4b8;
+  background-color: #b0e1ba;
 }
 
 html[data-theme="light"] li.skill-vscode {
   color: #064a73;
   border-color: #1c79ab;
-  background-color: #84c7f6b8;
+  background-color: #a5d5f5;
 }
 
 html[data-theme="light"] li.skill-jetbrains {
   color: #59267f;
   border-color: #975ec3;
-  background-color: #cdacf8b8;
+  background-color: #dac1f7;
 }
 
 html[data-theme="light"] li.skill-ai-tools {
   color: #682076;
   border-color: #a556bc;
-  background-color: #e0a5f2b8;
+  background-color: #e7bcf2;
 }
 
 html[data-theme="light"] li.skill-local-ai-tools {
   color: #005143;
   border-color: #1b8e7c;
-  background-color: #70dbc5b8;
+  background-color: #96e3d2;
 }
 
 html[data-theme="light"] li.skill-excel {
   color: #194b2a;
   border-color: #31734b;
-  background-color: #8ed7a4b8;
+  background-color: #ace0ba;
 }
 
 html[data-theme="light"] li.skill-business-central {
   color: #4d306f;
   border-color: #7e619f;
-  background-color: #c7b1ecb8;
+  background-color: #d5c5ee;
 }
 
 html[data-theme="light"] li.skill-superoffice {
   color: #7c2020;
   border-color: #bd5151;
-  background-color: #f9a49fb8;
+  background-color: #f9bbb6;
 }
 
 html[data-theme="light"] li.skill-salesforce {
   color: #005066;
   border-color: #188cb1;
-  background-color: #8ed7f6b8;
+  background-color: #ace0f5;
 }
 
 html[data-theme="light"] li.skill-sap {
   color: #133f78;
   border-color: #3474b6;
-  background-color: #a0bff7b8;
+  background-color: #b9cff6;
 }
 
 html[data-theme="light"] li.skill-photoshop {
   color: #064b75;
   border-color: #3887bd;
-  background-color: #9bd6f7b8;
+  background-color: #b5dff6;
 }
 
 html[data-theme="light"] li.skill-premiere {
   color: #45347d;
   border-color: #877ac5;
-  background-color: #c3b7f9b8;
+  background-color: #d2c9f7;
 }
 
 html[data-theme="light"] li.skill-illustrator {
   color: #633e00;
   border-color: #bf8527;
-  background-color: #f7c971c2;
+  background-color: #f8d490;
 }
 
 html[data-theme="light"] li.skill-adobe {
   color: #81192f;
   border-color: #ca474c;
-  background-color: #f9a3b2b8;
+  background-color: #f9bbc4;
 }
 
 /*  Projects page */
@@ -1775,6 +1784,7 @@ html[data-theme="light"] li.skill-adobe {
 
 /* Wrap long code examples instead of adding horizontal scrolling on phones. */
 .website-code {
+  background-color: rgba(16, 20, 25, 0.94);
   max-width: 100%;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -1895,6 +1905,8 @@ html[data-theme="light"] li.skill-adobe {
 }
 
 .game-choice {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1927,12 +1939,12 @@ html[data-theme="light"] li.skill-adobe {
 .game-choice:focus-visible {
   transform: translateY(-4px);
   border-color: var(--color-text-bright);
-  background-color: var(--color-surface-hover);
+  background-color: var(--color-card-surface-hover);
 }
 
 .game-choice[aria-pressed="true"] {
   border-color: var(--color-text-bright);
-  background-color: var(--color-surface-hover);
+  background-color: var(--color-card-surface-hover);
 }
 
 .game-action {
@@ -1949,25 +1961,34 @@ html[data-theme="light"] li.skill-adobe {
 
 @media (prefers-reduced-motion: no-preference) {
   .game-action.is-visible .game-button-entry {
-    animation: game-button-reveal 350ms ease-out;
+    animation: game-button-reveal 350ms ease-out both;
   }
 }
 
 @keyframes game-button-reveal {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(12px); }
+  to { transform: translateY(0); }
 }
 
 .game-play-button {
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
   min-width: 220px;
   padding: 17px 36px;
   font-size: 1rem;
   visibility: hidden;
   opacity: 0;
-  transition:
-    background-color 200ms ease,
-    border-color 200ms ease,
-    color 200ms ease;
+  background-color: var(--game-button-background, var(--color-background));
+  border-color: var(--game-button-background, var(--color-border-strong));
+  color: var(--game-button-foreground, var(--color-text-bright));
+  /* Reveal only moves the wrapper. Never tween from a pale hidden-button tint. */
+  transition: none;
+}
+
+.game-action .game-play-button:not(:disabled):is(:hover, :focus-visible) {
+  background-color: var(--game-button-hover);
+  border-color: var(--game-button-hover);
+  color: var(--game-button-foreground);
 }
 
 .game-action.is-visible .game-play-button {
@@ -1980,145 +2001,128 @@ html[data-theme="light"] li.skill-adobe {
 }
 
 /* Match the status button to the selected game. */
-.game-action[data-game="Pong"] .game-play-button {
-  border-color: #5d87ee;
-  background-color: rgba(93, 135, 238, 0.18);
-  color: #5d87ee;
+.game-action[data-game="Pong"] {
+  --game-button-background: #5d87ee;
+  --game-button-hover: #7397f2;
+  --game-button-foreground: #071021;
 }
 
-.game-action[data-game="Space Defender"] .game-play-button {
-  border-color: #f18a2a;
-  background-color: rgba(241, 138, 42, 0.18);
-  color: #f18a2a;
+.game-action[data-game="Space Defender"] {
+  --game-button-background: #f18a2a;
+  --game-button-hover: #f7a653;
+  --game-button-foreground: #1c1005;
 }
 
-.game-action[data-game="Snake"] .game-play-button {
-  border-color: #77c98c;
-  background-color: rgba(119, 201, 140, 0.18);
-  color: #77c98c;
+.game-action[data-game="Snake"] {
+  --game-button-background: #77c98c;
+  --game-button-hover: #94d6a4;
+  --game-button-foreground: #07150c;
 }
 
-/* Snake stays in a dialog above the running landscape, without backdrop blur. */
+/* Snake plays over the landscape with a border around its reachable cells. */
 html.snake-open {
   overflow: hidden;
 }
 
 html.snake-open main,
-html.snake-open .footer {
+html.snake-open .game-action .game-play-button,
+html.snake-open .footer,
+html.snake-open .top-navbar,
+html.snake-open .ascii-ufo {
   visibility: hidden;
 }
 
 .snake-dialog {
-  --snake-board: #0b1611;
-  --snake-grid: #1b2a22;
+  --snake-grid: rgba(180, 206, 155, 0.12);
   --snake-body: #81ad82;
   --snake-head: #b4ce9b;
   --snake-eye: #112018;
-  --snake-panel: rgba(8, 11, 16, 0.96);
-  --snake-state: rgba(8, 11, 16, 0.86);
-  width: min(940px, calc(100vw - 32px));
+  --snake-outline: rgba(0, 0, 0, 0.6);
+  --snake-panel: rgba(8, 11, 16, 0.94);
+  --snake-gutter: clamp(12px, 3vw, 36px);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
   max-width: none;
-  max-height: calc(100dvh - 32px);
-  padding: 24px;
-  border: 1px solid var(--color-border-strong);
-  background: var(--snake-panel);
+  max-height: none;
+  margin: 0;
+  padding: max(12px, env(safe-area-inset-top)) max(var(--snake-gutter), env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(var(--snake-gutter), env(safe-area-inset-left));
+  border: 0;
+  background: transparent;
   color: var(--color-text);
   font: inherit;
-  box-shadow: 0 12px 36px rgb(0 0 0 / 0.22);
+  overflow: hidden;
   overscroll-behavior: contain;
 }
 
+.snake-dialog[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
 html[data-theme="light"] .snake-dialog {
-  --snake-board: #f1efe5;
-  --snake-grid: #dddccf;
+  --snake-grid: rgba(49, 93, 64, 0.13);
   --snake-body: #5e895d;
   --snake-head: #315d40;
   --snake-eye: #f5f3e6;
-  --snake-panel: rgba(250, 248, 243, 0.96);
-  --snake-state: rgba(250, 248, 243, 0.86);
+  --snake-outline: rgba(250, 248, 243, 0.75);
+  --snake-panel: rgba(250, 248, 243, 0.94);
 }
 
 .snake-dialog::backdrop {
-  background: rgb(0 0 0 / 0.24);
+  background: transparent;
+}
+
+.snake-topbar,
+.snake-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .snake-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: var(--snake-panel);
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: 20px;
 }
 
 .snake-topbar h2 {
   margin: 0;
-  font-family: "Chakra Petch", "IBM Plex Sans", sans-serif;
-  font-size: 2rem;
+  font: 700 1.2rem "Courier New", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.snake-eyebrow {
-  margin: 0 0 4px;
-  font: 700 0.75rem "Courier New", monospace;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.snake-actions .button {
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
 }
 
 .snake-exit {
   flex-shrink: 0;
-  gap: 12px;
+  gap: 10px;
 }
 
 .snake-exit span {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1;
 }
 
-.snake-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 28px;
-  align-items: start;
-}
-
 .snake-play-area {
+  position: relative;
   min-width: 0;
-}
-
-.snake-stats {
+  min-height: 0;
+  padding-top: 48px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 0 0 14px;
-}
-
-.snake-stats dt {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font: 700 0.75rem "Courier New", monospace;
-  text-transform: uppercase;
-}
-
-.snake-stats dd {
-  margin: 6px 0 0;
-  font: 600 1.7rem "Chakra Petch", sans-serif;
-  font-variant-numeric: tabular-nums;
+  place-items: center;
 }
 
 .snake-board {
   position: relative;
-  width: min(100%, calc(100dvh - 310px));
-  max-width: 520px;
-  aspect-ratio: 1;
-  margin-inline: auto;
   border: 1px solid var(--color-border-strong);
-  background: var(--snake-board);
+  background: transparent;
   touch-action: none;
 }
 
@@ -2133,13 +2137,43 @@ html[data-theme="light"] .snake-dialog {
   outline-offset: 3px;
 }
 
+.snake-stats {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  width: 100%;
+  height: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0;
+  pointer-events: none;
+}
+
+.snake-stats > div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.snake-stats dt {
+  font: 700 0.8rem "Courier New", monospace;
+  text-transform: uppercase;
+}
+
+.snake-stats dd {
+  margin: 0;
+  font: 600 1.6rem "Chakra Petch", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
 .snake-state {
   position: absolute;
-  inset: 0;
+  inset: 48px 0 0;
   display: grid;
   place-items: center;
-  padding: 20px;
-  background: var(--snake-state);
+  padding: 8px;
   text-align: center;
 }
 
@@ -2148,7 +2182,13 @@ html[data-theme="light"] .snake-dialog {
 }
 
 .snake-state-content {
-  max-width: 30ch;
+  width: min(100%, 380px);
+  max-height: 100%;
+  padding: clamp(16px, 2.5vw, 28px);
+  border: 1px solid var(--color-border-strong);
+  background: var(--snake-panel);
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 .snake-state h3 {
@@ -2170,33 +2210,46 @@ html[data-theme="light"] .snake-dialog {
 .snake-game-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 14px;
+  justify-content: center;
+  gap: 16px;
+  min-height: 24px;
 }
 
 .snake-game-controls p,
-.snake-score-note,
-.snake-how-to p {
+.snake-score-note {
   margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.55;
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
-.snake-game-controls .button:disabled,
+.snake-help-touch {
+  display: none;
+}
+
+.snake-actions .button:disabled,
 .snake-touch-controls button:disabled {
   opacity: 0.45;
   cursor: default;
 }
 
-.snake-scoreboard h3 {
-  margin-bottom: 8px;
-  font: 600 1.3rem "Chakra Petch", sans-serif;
+.snake-scoreboard {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  text-align: left;
+}
+
+.snake-scoreboard summary {
+  cursor: pointer;
+  font: 700 0.8rem "Courier New", monospace;
+}
+
+.snake-scoreboard .snake-score-note {
+  margin-top: 10px;
 }
 
 .snake-scoreboard table {
   width: 100%;
-  margin: 18px 0 12px;
+  margin: 12px 0;
   border-collapse: collapse;
   font: 700 0.8rem "Courier New", monospace;
   font-variant-numeric: tabular-nums;
@@ -2205,7 +2258,7 @@ html[data-theme="light"] .snake-dialog {
 
 .snake-scoreboard th,
 .snake-scoreboard td {
-  padding: 10px 4px;
+  padding: 8px 4px;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -2213,27 +2266,11 @@ html[data-theme="light"] .snake-dialog {
   text-align: left;
 }
 
-.snake-how-to {
-  margin-top: 28px;
-}
-
-.snake-how-to h4 {
-  margin: 0 0 12px;
-  font: 700 0.8rem "Courier New", monospace;
-  text-transform: uppercase;
-}
-
-.snake-how-to p + p {
-  margin-top: 12px;
-}
-
 .snake-touch-controls {
   display: none;
-  grid-template-columns: repeat(3, 48px);
-  grid-template-areas: ". up ." "left down right";
+  grid-template-columns: repeat(4, 44px);
   justify-content: center;
-  gap: 5px;
-  margin-top: 14px;
+  gap: 6px;
 }
 
 .snake-touch-controls button {
@@ -2252,35 +2289,40 @@ html[data-theme="light"] .snake-dialog {
 }
 
 .snake-touch-controls button:focus-visible {
-  outline: 2px solid var(--color-text-bright);
+  outline: 2px solid var(--snake-head);
   outline-offset: 2px;
 }
 
-.snake-touch-controls [data-direction="up"] { grid-area: up; }
-.snake-touch-controls [data-direction="left"] { grid-area: left; }
-.snake-touch-controls [data-direction="down"] { grid-area: down; }
-.snake-touch-controls [data-direction="right"] { grid-area: right; }
-
 @media (pointer: coarse), (max-width: 600px) {
   .snake-touch-controls { display: grid; }
+  .snake-game-controls { justify-content: space-between; }
+  .snake-game-controls p { max-width: 10ch; }
+  .snake-help-keyboard { display: none; }
+  .snake-help-touch { display: inline; }
 }
 
-@media (max-width: 700px) {
-  .snake-dialog { padding: 18px; }
-  .snake-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-  .snake-scoreboard { padding-top: 20px; border-top: 1px solid var(--color-border); }
-  .snake-board { width: min(100%, calc(100dvh - 395px)); }
-  .snake-topbar { margin-bottom: 16px; padding-bottom: 14px; }
-  .snake-game-controls p { max-width: 23ch; text-align: right; }
-  .snake-state { padding: 12px; }
+@media (max-width: 400px) {
+  .snake-actions { gap: 6px; }
+  .snake-actions .button { padding-inline: 12px; }
+  .snake-game-controls p { font-size: 0.7rem; }
 }
 
 @media (max-height: 520px) and (orientation: landscape) {
-  .snake-board { width: min(100%, max(180px, calc(100dvh - 285px))); }
-  .snake-topbar { margin-bottom: 10px; padding-bottom: 10px; }
-  .snake-topbar h2 { font-size: 1.5rem; }
+  .snake-dialog[open] { gap: 6px; }
+  .snake-state-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px 16px;
+    width: min(100%, 560px);
+    padding: 12px 18px;
+    text-align: left;
+  }
   .snake-state-cherry { display: none; }
-  .snake-state p { margin-bottom: 10px; font-size: 0.75rem; }
+  .snake-state h3 { margin: 0; font-size: 1.2rem; }
+  .snake-state p { margin: 0; font-size: 0.8rem; }
+  .snake-state .snake-start { grid-column: 2; grid-row: 1 / span 2; padding: 12px 16px; }
+  .snake-scoreboard { grid-column: 1 / -1; margin-top: 0; }
 }
 
 /*  Footer */
@@ -2500,7 +2542,7 @@ html[data-theme="light"] .footer-socials a:focus-visible {
   }
 
   main {
-    padding-top: 100px;
+    padding-top: calc(var(--navbar-height) + 24px);
     padding-bottom: 48px;
   }
 
@@ -2518,11 +2560,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 
   .section.selected-projects {
     margin-top: 0px;
-  }
-
-  /* Keep space for all four page links and the theme button. */
-  .portfolio-name {
-    display: none;
   }
 
   .skill-groups,
@@ -2679,27 +2716,27 @@ html[data-theme="light"] .ascii-ufo {
 
 /* A translucent dark surface keeps syntax colours readable. */
 html[data-theme="light"] .website-code {
-  background-color: rgba(16, 20, 25, 0.88);
+  background-color: rgba(16, 20, 25, 0.94);
   color: #f1f2f2;
 }
 
 /* Game button colours in light mode */
-html[data-theme="light"] .game-action[data-game="Pong"] .game-play-button {
-  border-color: #2854b0;
-  background-color: rgba(40, 84, 176, 0.1);
-  color: #2854b0;
+html[data-theme="light"] .game-action[data-game="Pong"] {
+  --game-button-background: #2854b0;
+  --game-button-hover: #1e438f;
+  --game-button-foreground: #fff;
 }
 
-html[data-theme="light"] .game-action[data-game="Space Defender"] .game-play-button {
-  border-color: #974600;
-  background-color: rgba(151, 70, 0, 0.1);
-  color: #974600;
+html[data-theme="light"] .game-action[data-game="Space Defender"] {
+  --game-button-background: #974600;
+  --game-button-hover: #7c3800;
+  --game-button-foreground: #fff;
 }
 
-html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
-  border-color: #28633b;
-  background-color: rgba(40, 99, 59, 0.1);
-  color: #28633b;
+html[data-theme="light"] .game-action[data-game="Snake"] {
+  --game-button-background: #28633b;
+  --game-button-hover: #204f30;
+  --game-button-foreground: #fff;
 }
 
 /* Short colour transitions for browsers without snapshot crossfades. */
@@ -2748,20 +2785,66 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
 }
 
 /* Mobile navbar */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   .top-navbar {
-    grid-template-columns: 44px minmax(0px, 1fr) 44px;
-    padding-inline: 12px;
+    grid-template-columns: minmax(0, 1fr) 44px;
+    height: auto;
+    min-height: 76px;
+    column-gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .top-navbar .portfolio-name {
+    display: none;
+  }
+
+  .top-navbar .theme-toggle {
+    grid-column: 2;
+    grid-row: 1;
   }
 
   .top-navbar nav {
-    min-width: 0px;
-    gap: clamp(6px, 2vw, 12px);
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(8px, 3vw, 28px);
   }
 
   .top-navbar nav a {
-    font-size: clamp(0.75rem, 2.4vw, 0.85rem);
+    min-width: 44px;
+    min-height: 44px;
+    padding-inline: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
   }
+
+  .top-navbar nav a:hover span {
+    transform: none;
+  }
+
+  .top-navbar nav.nav-paired-rows {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    justify-content: center;
+    column-gap: clamp(16px, 4vw, 24px);
+  }
+
+  .top-navbar nav.nav-paired-rows a[aria-current]::after {
+    bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .top-navbar { padding-inline: 8px; }
+  .top-navbar nav { justify-content: space-between; gap: 5px; }
+}
+
+@media (max-width: 360px) {
+  .top-navbar { padding-inline: 4px; column-gap: 6px; }
 }
 
 /* Reduced motion */
@@ -2815,10 +2898,6 @@ html[data-theme="light"] .game-action[data-game="Snake"] .game-play-button {
 }
 
 /* Light mode shadows */
-html[data-theme="light"] .game-choice:is(:hover, :focus-visible, [aria-pressed="true"]) {
-  background-color: var(--color-surface);
-}
-
 html[data-theme="light"] .blurred-box {
   box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
 }

@@ -49,7 +49,7 @@
     gameAction.dataset.game = choice.value;
     gamePlayButton.disabled = !playable;
     gamePlayButton.textContent = playable ? "Play Snake" : "Coming soon";
-    gamePlayButton.setAttribute("aria-label", playable ? "Open Snake" : `${choice.value} is coming soon`);
+    gamePlayButton.setAttribute("aria-label", playable ? "Play Snake" : `Coming soon: ${choice.value}`);
     gameAction.classList.add("is-visible");
     if (status) {
       status.classList.add("visually-hidden");

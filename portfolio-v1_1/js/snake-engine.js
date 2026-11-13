@@ -9,20 +9,22 @@ const directions = {
 const sameCell = (a, b) => a.x === b.x && a.y === b.y;
 
 function placeCherry(game, random) {
-  const occupied = new Set(game.snake.map(cell => cell.y * game.size + cell.x));
+  const occupied = new Set(game.snake.map(cell => cell.y * game.columns + cell.x));
   const empty = [];
-  for (let y = 0; y < game.size; y++) {
-    for (let x = 0; x < game.size; x++) {
-      if (!occupied.has(y * game.size + x)) empty.push({ x, y });
+  for (let y = 0; y < game.rows; y++) {
+    for (let x = 0; x < game.columns; x++) {
+      if (!occupied.has(y * game.columns + x)) empty.push({ x, y });
     }
   }
   return empty.length ? empty[Math.floor(random() * empty.length)] : null;
 }
 
-export function createGame(random = Math.random) {
+export function createGame(random = Math.random, { columns = GRID_SIZE, rows = GRID_SIZE } = {}) {
+  const x = Math.floor(columns / 2);
+  const y = Math.floor(rows / 2);
   const game = {
-    size: GRID_SIZE,
-    snake: [{ x: 7, y: 10 }, { x: 6, y: 10 }, { x: 5, y: 10 }],
+    columns, rows,
+    snake: [{ x, y }, { x: x - 1, y }, { x: x - 2, y }],
     direction: "right", turns: [], cherry: null,
     score: 0, cherries: 0, status: "ready",
   };
@@ -48,7 +50,7 @@ export function stepGame(game, random = Math.random) {
   const eating = game.cherry && sameCell(head, game.cherry);
   // On an ordinary move the tail vacates its square at the same time.
   const body = eating ? game.snake : game.snake.slice(0, -1);
-  if (head.x < 0 || head.y < 0 || head.x >= game.size || head.y >= game.size
+  if (head.x < 0 || head.y < 0 || head.x >= game.columns || head.y >= game.rows
     || body.some(cell => sameCell(cell, head))) {
     game.status = "over";
     return "collision";
