@@ -1,10 +1,12 @@
 /* Main colours */
 :root {
   --scenery-height: 100vh;
+  --scenery-mobile: 0;
+  --scenery-short: 0;
   --navbar-height: 76px;
   --page-gutter: clamp(5vw, calc(15vw - 37.5px), 10vw);
   --sun-size: clamp(200px, 36vw, 456px);
-  --tree-size: clamp(220px, 28vw, 420px);
+  --tree-size: calc(200px * var(--scenery-mobile) + clamp(220px, 28vw, 420px) * (1 - var(--scenery-mobile)));
   --section-heading-size: clamp(1.9rem, calc(1.5rem + 0.9vw), 2.5rem);
   --color-background: #000;
   --color-text: rgb(255, 255, 255);
@@ -69,7 +71,10 @@ body {
 
 /* The background follows the document, not just the viewport. */
 .background {
-  --mountain-width: clamp(640px, 88vw, 1200px);
+  --mountain-normal-width: calc(760px * var(--scenery-mobile) + clamp(640px, 88vw, 1200px) * (1 - var(--scenery-mobile)));
+  --mountain-width: calc(var(--mountain-normal-width) * (1 - var(--scenery-short)) + min(88vw, var(--scenery-height)) * var(--scenery-short));
+  --mountain-left: calc(-150px * var(--scenery-mobile) - 8vw * (1 - var(--scenery-mobile)));
+  --mountain-floor: calc((1.08 - 0.02 * var(--scenery-mobile)) * (1 - var(--scenery-short)) + 1.12 * var(--scenery-short));
   --cloud-clearance: 96px;
   --sun-top: max(calc(var(--cloud-clearance) + 16px), calc(var(--scenery-height) * 0.1));
   --sun-sway: clamp(1.5px, 0.28vw, 4px);
@@ -95,7 +100,7 @@ html[data-theme="light"]:not([data-scenery-ready]) .background {
   position: fixed;
   z-index: 2;
   top: var(--moon-top);
-  right: calc(25% - var(--moon-size) * 0.5);
+  right: calc(25% - 5% * var(--scenery-mobile) - var(--moon-size) * 0.5);
   width: var(--moon-size);
   height: var(--moon-size);
   pointer-events: none;
@@ -120,8 +125,8 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   z-index: 0;
-  left: -8vw;
-  top: calc(var(--scenery-height) * 1.08 - var(--mountain-width) * 2 / 3);
+  left: calc(var(--mountain-left) * (1 - var(--scenery-short)) - 8vw * var(--scenery-short));
+  top: calc(var(--scenery-height) * var(--mountain-floor) - var(--mountain-width) * 2 / 3);
   width: var(--mountain-width);
   aspect-ratio: 3 / 2;
   --mountain-paint: image-set(url("../images/optimized/watercolor-mountains-defined-ridge.webp") 1x, url("../images/optimized/watercolor-mountains-defined-ridge@2x.webp") 2x);
@@ -210,30 +215,30 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   z-index: 1;
-  left: 54%;
-  top: calc(var(--scenery-height) * 0.32);
-  width: clamp(160px, 20vw, 260px);
+  left: calc(54% + 8% * var(--scenery-mobile));
+  top: calc(var(--scenery-height) * (0.32 + 0.08 * var(--scenery-mobile)));
+  width: calc(clamp(160px, 20vw, 260px) * (1 - var(--scenery-mobile)) + 120px * var(--scenery-mobile));
   aspect-ratio: 12 / 5;
   background: url("../images/distant-birds.svg") center / contain no-repeat;
-  opacity: 0.62;
+  opacity: calc(0.62 - 0.08 * var(--scenery-mobile));
   pointer-events: none;
   /* Drift more slowly than the clouds, preserving each flock's rotation. */
   translate: 0 calc(-1 * var(--bird-rise, 0px));
 }
 
 .distant-birds--top-right {
-  left: 78%;
+  left: calc(78% - 8% * var(--scenery-mobile));
   top: max(calc(var(--cloud-clearance) + 12px), calc(var(--scenery-height) * 0.16));
-  width: clamp(120px, 14vw, 200px);
+  width: calc(clamp(120px, 14vw, 200px) * (1 - var(--scenery-mobile)) + 96px * var(--scenery-mobile));
   transform: rotate(-7deg);
 }
 
 .distant-birds--middle-left {
   /* Let the mountain painting obscure the birds along its skyline. */
   z-index: -1;
-  left: 8%;
-  top: calc(var(--scenery-height) * 0.47);
-  width: clamp(130px, 16vw, 220px);
+  left: calc(8% - 5% * var(--scenery-mobile));
+  top: calc(var(--scenery-height) * (0.47 - 0.01 * var(--scenery-mobile)));
+  width: calc(clamp(130px, 16vw, 220px) * (1 - var(--scenery-mobile)) + 100px * var(--scenery-mobile));
   transform: scaleX(-1) rotate(7deg);
 }
 
@@ -257,12 +262,13 @@ html[data-theme="light"] .night-moon {
   position: absolute;
   left: var(--ink-left);
   width: var(--ink-size);
-  opacity: var(--ink-opacity);
+  opacity: calc(var(--ink-opacity) * (1 - 0.2 * var(--scenery-mobile)));
   transform: translate(-50%, -50%) rotate(var(--ink-rotation)) scaleX(var(--ink-flip));
 }
 
 .ink-splotch {
   aspect-ratio: 1;
+  width: calc(var(--ink-size) * (1 - var(--scenery-mobile)) + clamp(35px, calc(var(--ink-size) * 0.55), 85px) * var(--scenery-mobile));
   background: image-set(url("../images/optimized/watercolor-ink-splatter.webp") 1x, url("../images/optimized/watercolor-ink-splatter@2x.webp") 2x) center / contain no-repeat;
 }
 
@@ -277,11 +283,13 @@ html[data-theme="light"] .night-moon {
 
 .ink-stroke {
   aspect-ratio: 3 / 1;
+  width: calc(var(--ink-size) * (1 - var(--scenery-mobile)) + clamp(180px, calc(var(--ink-size) * 0.55), 300px) * var(--scenery-mobile));
   background: image-set(url("../images/optimized/watercolor-ink-stroke.webp") 1x, url("../images/optimized/watercolor-ink-stroke@2x.webp") 2x) center / contain no-repeat;
 }
 
 .ink-wash {
   aspect-ratio: 1;
+  width: calc(var(--ink-size) * (1 - var(--scenery-mobile)) + clamp(160px, calc(var(--ink-size) * 0.55), 280px) * var(--scenery-mobile));
   background: image-set(url("../images/optimized/watercolor-ink-wash.webp") 1x, url("../images/optimized/watercolor-ink-wash@2x.webp") 2x) center / contain no-repeat;
 }
 
@@ -290,7 +298,7 @@ html[data-theme="light"] .night-moon {
   display: none;
   position: fixed;
   z-index: 5;
-  right: calc(var(--tree-size) * 0.4 + 12px);
+  right: calc(var(--tree-size) * (0.4 - 0.85 * var(--scenery-mobile)) + 12px - 4px * var(--scenery-mobile));
   top: calc(var(--scenery-height) - var(--tree-size) * 0.76);
   width: var(--tree-size);
   aspect-ratio: 1;
@@ -305,10 +313,10 @@ html[data-theme="light"] .night-moon {
   position: absolute;
   top: max(var(--cloud-clearance), var(--cloud-top));
   left: var(--cloud-left);
-  width: clamp(180px, var(--cloud-width), 620px);
+  width: calc(clamp(180px, var(--cloud-width), 620px) * (1 - var(--scenery-mobile)) + clamp(150px, var(--cloud-width), 260px) * var(--scenery-mobile));
   aspect-ratio: 3 / 1;
   background: var(--cloud-image) center / contain no-repeat;
-  opacity: var(--cloud-opacity);
+  opacity: calc(var(--cloud-opacity) * (1 - 0.1 * var(--scenery-mobile)));
   transform: translate3d(-12%, 0, 0);
 }
 
@@ -396,12 +404,12 @@ html[data-theme="light"] .night-moon {
 /* A small, rounded cloud fills the open sky below and left of the sun. */
 .watercolor-cloud--09 {
   --cloud-image: image-set(url("../images/optimized/watercolor-cloud-03.webp") 1x, url("../images/optimized/watercolor-cloud-03@2x.webp") 2x);
-  --cloud-left: calc(75% - var(--sun-size) * 0.58);
-  --cloud-top: calc(var(--sun-top) + var(--sun-size) + 54px);
+  --cloud-left: clamp(45%, calc(77vw - 192px), 61%);
+  --cloud-top: clamp(42%, calc(34% + 16vw), 58%);
+  --cloud-width: 15vw;
   --cloud-opacity: 0.62;
   --cloud-duration: 68s;
   --cloud-delay: -24s;
-  width: clamp(150px, calc(var(--sun-size) * 0.46), 210px);
 }
 
 /* Separate exports preserve the soft mist/ink at phone scale without live filters. */
@@ -598,82 +606,10 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
   to { transform: translate3d(12%, 0, 0); }
 }
 
-/* Keep the left-hand scenery out of the narrow reading column. */
-@media (max-width: 600px) {
-  .background {
-    --mountain-width: 760px;
-  }
-
-  .night-moon {
-    right: calc(20% - var(--moon-size) * 0.5);
-  }
-
-  .background::before {
-    left: -150px;
-    top: calc(var(--scenery-height) * 1.06 - var(--mountain-width) * 2 / 3);
-  }
-
-  .watercolor-cloud {
-    width: clamp(150px, var(--cloud-width), 260px);
-    opacity: calc(var(--cloud-opacity) * 0.9);
-  }
-
-  .watercolor-cloud--09 {
-    width: clamp(106px, 29vw, 140px);
-  }
-
-  .ink-splotch {
-    width: clamp(35px, calc(var(--ink-size) * 0.55), 85px);
-  }
-
-  .ink-stroke {
-    width: clamp(180px, calc(var(--ink-size) * 0.55), 300px);
-  }
-
-  .ink-wash {
-    width: clamp(160px, calc(var(--ink-size) * 0.55), 280px);
-  }
-
-  .ink-mark {
-    opacity: calc(var(--ink-opacity) * 0.8);
-  }
-
-  :root {
-    --tree-size: 200px;
-  }
-
-  .watercolor-cherry-tree {
-    right: calc(var(--tree-size) * -0.45 + 8px);
-  }
-
-  .distant-birds {
-    left: 62%;
-    top: calc(var(--scenery-height) * 0.4);
-    width: 120px;
-    opacity: 0.54;
-  }
-
-  .distant-birds--top-right {
-    left: 70%;
-    top: max(calc(var(--cloud-clearance) + 12px), calc(var(--scenery-height) * 0.16));
-    width: 96px;
-  }
-
-  .distant-birds--middle-left {
-    left: 3%;
-    top: calc(var(--scenery-height) * 0.46);
-    width: 100px;
-  }
-}
-
-/* A shallower mountain keeps open sky available on short landscape screens. */
-html[data-scenery-short] .background {
-  --mountain-width: min(88vw, var(--scenery-height));
-}
-
-html[data-scenery-short] .background::before {
-  top: calc(var(--scenery-height) * 1.12 - var(--mountain-width) * 2 / 3);
-  left: -8vw;
+/* Keep this small cloud continuous across the mobile layout boundary. */
+.watercolor-cloud--09 {
+  width: clamp(106px, max(min(29vw, 140px), var(--cloud-width)), 310px);
+  opacity: var(--cloud-opacity);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -836,6 +772,7 @@ a {
 /* ----------------------------------------------------------------------------------------- */
 
 .top-navbar {
+  --navbar-gutter: max(clamp(4px, calc(2.5vw - 4px), 12px), min(4vw, calc(16vw - 144px)));
   position: fixed;
   top: 0px;
   left: 0px;
@@ -843,7 +780,7 @@ a {
 
   width: 100%;
   height: 76px;
-  padding: 0px 4vw;
+  padding: 0px var(--navbar-gutter);
 
   display: grid;
   grid-template-columns: minmax(0px, 1fr) auto minmax(0px, 1fr);
@@ -879,7 +816,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(18px, 4.5vw, 38px);
+  gap: clamp(8px, calc(5vw - 12px), 38px);
 }
 
 .top-navbar nav a {
@@ -894,7 +831,7 @@ a {
   color: var(--color-text-muted);
   font-family: "Courier New", monospace;
   font-size: 0.9rem;
-  font-weight: lighter;
+  font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 200ms ease;
@@ -961,8 +898,8 @@ a {
 /* Leave room for the fixed navbar. */
 main {
   min-height: calc(var(--scenery-height) - 170px);
-  padding-top: calc(var(--navbar-height) + 34px);
-  padding-bottom: 60px;
+  padding-top: calc(var(--navbar-height) + clamp(24px, calc(5vw - 6px), 34px));
+  padding-bottom: clamp(48px, calc(6vw + 12px), 60px);
 }
 
 /* Focus moves here after navigation; interactive elements keep their outlines. */
@@ -1020,7 +957,7 @@ main h1,
 .page-heading {
   max-width: 760px;
   padding-top: 18px;
-  margin-bottom: 55px;
+  margin-bottom: clamp(44px, calc(5.5vw + 11px), 55px);
 }
 
 .page-heading h1,
@@ -1120,11 +1057,11 @@ main h1,
 }
 
 .section {
-  padding-top: 60px;
+  padding-top: clamp(48px, calc(6vw + 12px), 60px);
 }
 
 .section + .section {
-  margin-top: 40px;
+  margin-top: clamp(32px, calc(4vw + 8px), 40px);
 }
 
 .section-heading {
@@ -1150,11 +1087,13 @@ main h1,
 }
 
 .section.selected-projects {
-  margin-top: 8px;
+  margin-top: clamp(0px, calc(4vw - 24px), 8px);
 }
 
 .home-introduction-text {
-  max-width: 960px;
+  min-width: 0;
+  width: 100%;
+  max-width: clamp(540px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px), 720px);
 }
 
 .home-introduction-text h1 {
@@ -1181,7 +1120,7 @@ main h1,
   display: grid;
   width: 100%;
   max-width: 960px;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: 28px 24px;
   align-items: start;
 }
@@ -1210,26 +1149,15 @@ main h1,
 
 .selected-projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 20px;
 }
 
 .selected-projects-grid,
 .project-boxes {
   width: 100%;
-  max-width: 860px;
-}
-
-/* Leave an open strip of sky beside the project cards on wide screens. */
-@media (min-width: 1100px) {
-  .home-introduction-text {
-    max-width: min(720px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px));
-  }
-
-  .selected-projects-grid,
-  .project-boxes {
-    max-width: min(860px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px));
-  }
+  /* Reserve sky gradually instead of narrowing cards as the screen gets wider. */
+  max-width: clamp(540px, calc(75vw - var(--sun-size) / 2 - var(--page-gutter) - 32px), 860px);
 }
 
 .selected-project-box {
@@ -1264,21 +1192,16 @@ main h1,
 .about-introduction {
   display: grid;
   grid-template-columns: minmax(0px, 640px) minmax(250px, 340px);
-  gap: clamp(32px, 5vw, 80px);
+  gap: clamp(32px, calc(20vw - 160px), 224px);
+  row-gap: 40px;
   justify-content: start;
   align-items: start;
   padding-top: 18px;
-  padding-bottom: 40px;
+  padding-bottom: clamp(30px, 5vw, 40px);
 }
 
 .about-introduction-text {
   max-width: 720px;
-}
-
-@media (min-width: 1200px) {
-  .about-introduction {
-    column-gap: clamp(80px, calc(20vw - 160px), 224px);
-  }
 }
 
 .profile-box {
@@ -1352,9 +1275,9 @@ main h1,
 .cv-skills {
   display: grid;
   grid-template-columns: repeat(2, minmax(0px, 1fr));
-  gap: 40px;
+  gap: clamp(24px, calc(8vw - 24px), 40px);
   padding: 22px;
-  margin-bottom: 55px;
+  margin-bottom: clamp(44px, calc(5.5vw + 11px), 55px);
   border: 1px solid var(--color-border);
 }
 
@@ -1370,7 +1293,7 @@ main h1,
 .cv-columns {
   display: grid;
   grid-template-columns: minmax(0px, 2fr) minmax(240px, 0.8fr);
-  gap: 60px;
+  gap: clamp(40px, calc(10vw - 36px), 60px);
   align-items: start;
 }
 
@@ -1412,7 +1335,8 @@ main h1,
 
 .cv-entry-heading {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 0 24px;
   align-items: baseline;
   justify-content: space-between;
 }
@@ -2460,7 +2384,7 @@ html[data-theme="light"] .snake-dialog {
   grid-template-areas:
     "navigation projects socials"
     "info info info";
-  max-width: calc(100vw - var(--page-gutter) - var(--tree-size) * 1.4 - 24px);
+  max-width: calc(100vw - var(--page-gutter) - var(--tree-size) * (1.4 - 0.85 * var(--scenery-mobile)) - 24px + 4px * var(--scenery-mobile));
   gap: 24px 30px;
   align-items: start;
   justify-content: start;
@@ -2612,12 +2536,12 @@ html[data-theme="light"] .footer-socials a:focus-visible {
 /* Keep links to the left of the tree on smaller screens too. */
 @media (max-width: 950px) {
   .footer {
-    grid-template-columns: minmax(70px, 130px) minmax(100px, 220px);
+    grid-template-columns: minmax(60px, 130px) minmax(90px, 220px);
     grid-template-areas:
       "navigation projects"
       "socials socials"
       "info info";
-    column-gap: 24px;
+    column-gap: clamp(12px, calc(6vw - 24px), 24px);
   }
 }
 
@@ -2630,15 +2554,6 @@ html[data-theme="light"] .footer-socials a:focus-visible {
   .about-introduction,
   .cv-columns {
     grid-template-columns: 1fr;
-  }
-
-  .about-introduction {
-    gap: 40px;
-    padding-bottom: 30px;
-  }
-
-  .cv-columns {
-    gap: 40px;
   }
 
   .information-boxes {
@@ -2665,48 +2580,8 @@ html[data-theme="light"] .footer-socials a:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  main {
-    padding-top: calc(var(--navbar-height) + 24px);
-    padding-bottom: 48px;
-  }
-
-  .page-heading {
-    margin-bottom: 44px;
-  }
-
-  .section {
-    padding-top: 48px;
-  }
-
-  .section + .section {
-    margin-top: 32px;
-  }
-
-  .section.selected-projects {
-    margin-top: 0px;
-  }
-
-  .skill-groups,
-  .selected-projects-grid {
-    grid-template-columns: 1fr;
-  }
-
   .cv-skills {
     grid-template-columns: 1fr;
-    gap: 24px;
-    margin-bottom: 44px;
-  }
-
-  .cv-entry-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0px;
-  }
-
-  .footer {
-    grid-template-columns: minmax(60px, 0.8fr) minmax(90px, 1.2fr);
-    max-width: calc(100vw - var(--page-gutter) - var(--tree-size) * 0.55 - 20px);
-    column-gap: 12px;
   }
 }
 
@@ -2911,11 +2786,14 @@ html[data-theme="light"] .game-action[data-game="Snake"] {
 /* Mobile navbar */
 @media (max-width: 900px) {
   .top-navbar {
+    --navbar-gap: clamp(6px, 2vw, 8px);
     grid-template-columns: minmax(0, 1fr) 44px;
     height: auto;
     min-height: 76px;
-    column-gap: 8px;
-    padding: 8px 12px;
+    column-gap: var(--navbar-gap);
+    padding: 8px var(--navbar-gutter);
+    /* Balance the toggle while space allows, then release room for phone links. */
+    padding-inline-start: calc(var(--navbar-gutter) + clamp(0px, calc(100vw - 400px), 52px));
   }
 
   .top-navbar .portfolio-name {
@@ -2934,14 +2812,13 @@ html[data-theme="light"] .game-action[data-game="Snake"] {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    gap: clamp(8px, 3vw, 28px);
   }
 
   .top-navbar nav a {
     min-width: 44px;
     min-height: 44px;
     padding-inline: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     line-height: 1.35;
   }
@@ -2960,15 +2837,6 @@ html[data-theme="light"] .game-action[data-game="Snake"] {
   .top-navbar nav.nav-paired-rows a[aria-current]::after {
     bottom: 0;
   }
-}
-
-@media (max-width: 600px) {
-  .top-navbar { padding-inline: 8px; }
-  .top-navbar nav { justify-content: space-between; gap: 5px; }
-}
-
-@media (max-width: 360px) {
-  .top-navbar { padding-inline: 4px; column-gap: 6px; }
 }
 
 /* Reduced motion */

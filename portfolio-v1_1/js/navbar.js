@@ -4,6 +4,7 @@
   if (!navbar) return;
   const navigation = navbar.querySelector("nav");
   const links = [...navigation.querySelectorAll("a")];
+  const themeToggle = navbar.querySelector(".theme-toggle");
 
   function updateNavbar() {
     navbar.classList.toggle("scrolled", window.scrollY > 0);
@@ -22,10 +23,18 @@
       const border = Number.parseFloat(style.borderLeftWidth) + Number.parseFloat(style.borderRightWidth);
       return total + Math.max(Number.parseFloat(style.minWidth) || 0, text + padding + border);
     }, gap * (links.length - 1));
+    // Measure the available header space rather than the rendered nav width:
+    // a compact two-row nav must be able to expand back to a single row.
+    const navbarStyle = getComputedStyle(navbar);
+    const availableWidth = navbar.clientWidth
+      - Number.parseFloat(navbarStyle.paddingLeft)
+      - Number.parseFloat(navbarStyle.paddingRight)
+      - (themeToggle?.getBoundingClientRect().width || 0)
+      - (Number.parseFloat(navbarStyle.columnGap) || 0);
     // Keep the last two links together whenever the complete row cannot fit.
     navigation.classList.toggle("nav-paired-rows",
       window.matchMedia("(max-width: 900px)").matches
-        && requiredWidth > navigation.getBoundingClientRect().width);
+        && requiredWidth > availableWidth);
     const height = Math.ceil(navbar.getBoundingClientRect().height);
     const value = `${height}px`;
     if (document.documentElement.style.getPropertyValue("--navbar-height") !== value) {

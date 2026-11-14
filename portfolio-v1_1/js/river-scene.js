@@ -5,6 +5,7 @@
   const imageDirectory = new URL("../images/optimized/", document.currentScript.src);
   const decodedImages = new Map();
   const clamp = (minimum, value, maximum) => Math.max(minimum, Math.min(value, maximum));
+  const mix = (start, end, amount) => start + (end - start) * amount;
 
   function loadPainting(name, density) {
     const url = new URL(`${name}${density > 1 ? "@2x" : ""}.webp`, imageDirectory).href;
@@ -54,18 +55,21 @@
     // Paint below it in advance without moving or rescaling the visible scene.
     const coverageHeight = window.portfolioViewport.mobile
       ? Math.max(height, window.screen.height) : height;
-    const short = document.documentElement.hasAttribute("data-scenery-short");
-    const mobile = window.matchMedia("(max-width: 600px)").matches;
+    const scenery = getComputedStyle(background);
+    const mobileBlend = clamp(0, Number.parseFloat(scenery.getPropertyValue("--scenery-mobile")) || 0, 1);
+    const shortBlend = clamp(0, Number.parseFloat(scenery.getPropertyValue("--scenery-short")) || 0, 1);
+    const layoutWidth = window.innerWidth || width;
     const mountain = getComputedStyle(background, "::before");
+    const normalWidth = mix(clamp(640, layoutWidth * 0.88, 1200), 760, mobileBlend);
     const mountainWidth = Number.parseFloat(mountain.width)
-      || (short ? Math.min(width * 0.88, height) : mobile ? 760 : clamp(640, width * 0.88, 1200));
+      || mix(normalWidth, Math.min(layoutWidth * 0.88, height), shortBlend);
     const measuredLeft = Number.parseFloat(mountain.left);
     const mountainLeft = Number.isFinite(measuredLeft)
-      ? measuredLeft : mobile && !short ? -150 : width * -0.08;
+      ? measuredLeft : mix(mix(layoutWidth * -0.08, -150, mobileBlend), layoutWidth * -0.08, shortBlend);
     const designWidth = clamp(800, width * 1.12, 2200);
     const riverHeight = mountainWidth * 0.15;
-    const drop = short ? 12 : clamp(38, width * 0.04, 64);
-    const bottom = (short ? height * -0.04 : height * 0.08)
+    const drop = mix(clamp(38, width * 0.04, 64), 12, shortBlend);
+    const bottom = height * mix(0.08, -0.04, shortBlend)
       - drop + designWidth / 12 - riverHeight / 2;
     const top = height - bottom - riverHeight;
     // Match the shared CSS sources even when the canvas uses a lower cap.
@@ -80,7 +84,8 @@
       sceneHeight: Math.max(1, coverageHeight + height * 0.04 + 2 - top),
       mountainWidth,
       mountainLeft,
-      riverLeft: width * (mobile ? 0.10 : 0.12),
+      mobileBlend,
+      riverLeft: width * mix(0.12, 0.10, mobileBlend),
       riverWidth: Math.max(designWidth, width * 0.88 + 32),
       riverHeight,
       density: sceneryDensity(width),
@@ -184,7 +189,7 @@
 
   function drawForestMist(context, image, geometry) {
     if (!image) return;
-    const { width, height, top, mountainWidth, riverHeight } = geometry;
+    const { width, height, top, mountainWidth, riverHeight, mobileBlend } = geometry;
     const mist = makeLayer(image.naturalWidth, image.naturalHeight, 1);
     mist.context.drawImage(image, 0, 0);
     mist.context.globalCompositeOperation = "source-in";
@@ -211,13 +216,16 @@
     const depth = height * 1.04 + 2 - top - bankY;
     const paintWidth = Math.min(width * 0.78, mountainWidth * 0.90);
     const paintHeight = Math.min(paintWidth * 0.12, Math.max(18, depth * 0.40));
-    const wisps = width <= 600 ? [
-      [-0.12, 0.10, 1, 1.15, 0.16, false, -1.1],
-      [0.42, 0.50, 0.84, 1, 0.12, true, 1.5],
-    ] : [
-      [0.04, 0.06, 0.92, 1.10, 0.17, false, -1.2],
-      [0.59, 0.29, 0.88, 1.05, 0.15, true, 1.7],
-      [0.18, 0.65, 0.70, 1, 0.10, true, -1.8],
+    // The same wisps slide and soften between layouts; none abruptly appear
+    // or change position when the viewport crosses the old phone breakpoint.
+    const wisps = [
+      [mix(0.04, -0.12, mobileBlend), mix(0.06, 0.10, mobileBlend),
+        mix(0.92, 1, mobileBlend), mix(1.10, 1.15, mobileBlend),
+        mix(0.17, 0.16, mobileBlend), false, mix(-1.2, -1.1, mobileBlend)],
+      [mix(0.59, 0.42, mobileBlend), mix(0.29, 0.50, mobileBlend),
+        mix(0.88, 0.84, mobileBlend), mix(1.05, 1, mobileBlend),
+        mix(0.15, 0.12, mobileBlend), true, mix(1.7, 1.5, mobileBlend)],
+      [0.18, 0.65, 0.70, 1, 0.10 * (1 - mobileBlend), true, -1.8],
     ];
 
     // Tint existing tree pixels rather than making the woodland transparent.
@@ -225,6 +233,7 @@
     context.save();
     context.globalCompositeOperation = "source-atop";
     for (const [x, y, scaleX, scaleY, opacity, reverse, angle] of wisps) {
+      if (!opacity) continue;
       const w = paintWidth * scaleX;
       const h = paintHeight * scaleY;
       context.save();

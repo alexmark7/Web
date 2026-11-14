@@ -45,6 +45,14 @@
       resolution.addEventListener("change", scheduleMeasure);
     }
     page.style.setProperty("--scenery-height", `${height}px`);
+    // Scenery adapts continuously instead of jumping at the phone or short-
+    // landscape breakpoints. Share these weights with CSS and the river painter.
+    const layoutWidth = window.innerWidth || width;
+    const mobileBlend = Math.max(0, Math.min(1, (768 - layoutWidth) / 168));
+    const shortHeight = Math.max(0, Math.min(1, (750 - height) / 100));
+    const landscape = Math.max(0, Math.min(1, (layoutWidth / height - 1) / 0.2));
+    page.style.setProperty("--scenery-mobile", mobileBlend.toFixed(6));
+    page.style.setProperty("--scenery-short", (shortHeight * landscape).toFixed(6));
     page.toggleAttribute("data-stable-viewport", mobile);
     page.toggleAttribute("data-scenery-short", width > height && height <= 650);
     document.dispatchEvent(new Event("portfolio-viewport-change"));

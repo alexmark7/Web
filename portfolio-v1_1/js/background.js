@@ -154,6 +154,7 @@
   let treeTravel = 0;
   let inkHeight = 0;
   let inkWidth = 0;
+  let inkCount = 0;
 
   function placeInk(height) {
     if (Math.abs(height - inkHeight) < 1 && inkWidth === window.innerWidth) return;
@@ -165,7 +166,10 @@
       seed = (seed * 1664525 + 1013904223) >>> 0;
       return seed / 4294967296;
     };
-    const count = Math.min(52, Math.max(26, Math.round(inkWidth * height / 32000)));
+    // Keep the initial composition when resizing, rather than redistributing
+    // every mark whenever the viewport area crosses a density threshold.
+    if (!inkCount) inkCount = Math.min(52, Math.max(26, Math.round(inkWidth * height / 32000)));
+    const count = inkCount;
     const marks = document.createDocumentFragment();
     for (let index = 0; index < count; index++) {
       const mark = document.createElement("span");
@@ -431,7 +435,17 @@
     // on large/high-resolution screens, regardless of document length.
     const nextSpacing = Math.max(SETTINGS.pixelsPerStar / width,
       (viewportHeight + 2 * margin) / (SETTINGS.maximumStars - 2));
-    if (spacing !== nextSpacing) clearPool();
+    if (spacing && spacing !== nextSpacing) {
+      // Preserve each live star and its twinkle while its owned row scales
+      // with the viewport. Only rows outside the new window need recycling.
+      const ratio = nextSpacing / spacing;
+      for (const star of stars.values()) {
+        const state = details.get(star);
+        state.top = 8 + (state.top - 8) * ratio;
+        star.style.top = `${state.top.toFixed(1)}px`;
+      }
+      if (previousChange) previousChange.top = 8 + (previousChange.top - 8) * ratio;
+    }
     spacing = nextSpacing;
     areaWidth = width;
     areaHeight = height;

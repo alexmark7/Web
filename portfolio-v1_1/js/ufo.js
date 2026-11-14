@@ -531,10 +531,8 @@
     stopFlight();
     scheduleFlight();
   });
-  document.addEventListener("portfolio-viewport-change", () => {
-    stopFlight();
-    scheduleFlight();
-  });
+  // A route keeps its coordinates until it finishes, so resizing neither
+  // hides the UFO nor restarts its countdown. The next route uses the new viewport.
   window.addEventListener("pagehide", stopFlight);
   window.addEventListener("pageshow", scheduleFlight);
 
