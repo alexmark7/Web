@@ -1954,20 +1954,36 @@ html[data-theme="light"] li.skill-adobe {
   margin-top: 42px;
 }
 
-/* Reveal once per selection; switching games keeps the same animation. */
+/* Animate selection changes in both directions, without replaying on game switches. */
 .game-button-entry {
   display: inline-block;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+.game-action.is-visible .game-button-entry {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .game-action.is-visible .game-button-entry {
-    animation: game-button-reveal 350ms ease-out both;
+  .game-button-entry {
+    transition:
+      opacity 180ms ease-in,
+      transform 180ms ease-in,
+      visibility 0s linear 180ms;
   }
-}
 
-@keyframes game-button-reveal {
-  from { transform: translateY(12px); }
-  to { transform: translateY(0); }
+  .game-action.is-visible .game-button-entry {
+    transition:
+      opacity 350ms ease-out,
+      transform 350ms ease-out,
+      visibility 0s;
+  }
 }
 
 .game-play-button {
@@ -1976,24 +1992,26 @@ html[data-theme="light"] li.skill-adobe {
   min-width: 220px;
   padding: 17px 36px;
   font-size: 1rem;
-  visibility: hidden;
-  opacity: 0;
   background-color: var(--game-button-background, var(--color-background));
   border-color: var(--game-button-background, var(--color-border-strong));
   color: var(--game-button-foreground, var(--color-text-bright));
-  /* Reveal only moves the wrapper. Never tween from a pale hidden-button tint. */
+  /* Use the selected colour immediately on reveal; crossfade only on game switches. */
   transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .game-action.is-switching .game-play-button {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
 }
 
 .game-action .game-play-button:not(:disabled):is(:hover, :focus-visible) {
   background-color: var(--game-button-hover);
   border-color: var(--game-button-hover);
   color: var(--game-button-foreground);
-}
-
-.game-action.is-visible .game-play-button {
-  visibility: visible;
-  opacity: 1;
 }
 
 .game-play-button:disabled {

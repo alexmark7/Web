@@ -354,7 +354,7 @@ class SnakeGame {
 export async function openSnakeGame(trigger) {
   if (activeGame) return;
   await spriteReady;
-  if (!trigger.isConnected || trigger.closest("#game-action")?.dataset.game !== "Snake" || activeGame) return;
+  if (!trigger.isConnected || trigger.disabled || trigger.closest("#game-action")?.dataset.game !== "Snake" || activeGame) return;
   activeGame = new SnakeGame(trigger);
   activeGame.open();
 }

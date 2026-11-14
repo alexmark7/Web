@@ -20,7 +20,7 @@
       try {
         const { openSnakeGame } = await import(snakeModuleUrl.href);
         // Navigation may have replaced this page while the module loaded.
-        if (gamePlayButton.isConnected && gameAction.dataset.game === "Snake") await openSnakeGame(gamePlayButton);
+        if (gamePlayButton.isConnected && !gamePlayButton.disabled && gameAction.dataset.game === "Snake") await openSnakeGame(gamePlayButton);
       } catch {
         if (status?.isConnected) {
           status.classList.remove("visually-hidden");
@@ -35,16 +35,19 @@
 
     // Clicking away from the cards clears the selection.
     if (!choice) {
-      if (gameAction.contains(event.target)) return;
       for (const card of gameChoices) card.setAttribute("aria-pressed", "false");
       gameAction.classList.remove("is-visible");
-      delete gameAction.dataset.game;
+      // Keep the colour while fading out, but make the action inactive immediately.
+      gamePlayButton.disabled = true;
       gamePlayButton.removeAttribute("aria-label");
       if (status) { status.textContent = ""; status.classList.add("visually-hidden"); }
       return;
     }
 
     for (const card of gameChoices) card.setAttribute("aria-pressed", String(card === choice));
+    const switching = gameAction.classList.contains("is-visible")
+      && (gameAction.dataset.game !== choice.value || gameAction.classList.contains("is-switching"));
+    gameAction.classList.toggle("is-switching", switching);
     const playable = choice.value === "Snake";
     gameAction.dataset.game = choice.value;
     gamePlayButton.disabled = !playable;
