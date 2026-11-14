@@ -216,6 +216,8 @@ html[data-theme="light"] .night-moon {
   background: url("../images/distant-birds.svg") center / contain no-repeat;
   opacity: 0.62;
   pointer-events: none;
+  /* Drift more slowly than the clouds, preserving each flock's rotation. */
+  translate: 0 calc(-1 * var(--bird-rise, 0px));
 }
 
 .distant-birds--top-right {
@@ -447,6 +449,12 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
       animation-range: 0px calc(var(--scenery-height) / 0.07);
     }
 
+    html[data-theme="light"]:not([data-stable-viewport]) .distant-birds {
+      animation: bird-rise 1s linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px calc(var(--scenery-height) / 0.05);
+    }
+
     html[data-theme="light"]:not([data-stable-viewport]) .background::before,
     html[data-theme="light"]:not([data-stable-viewport]) .watercolor-river {
       animation: mountain-drift 1s linear both;
@@ -485,6 +493,11 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 @keyframes cloud-rise {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(0, calc(-1 * var(--scenery-height)), 0); }
+}
+
+@keyframes bird-rise {
+  from { translate: 0 0; }
+  to { translate: 0 calc(-1 * var(--scenery-height)); }
 }
 
 @keyframes tree-rise {
@@ -602,6 +615,10 @@ html[data-scenery-short] .background::before {
 
   .night-moon {
     transform: translate3d(0, 0, 0);
+  }
+
+  .distant-birds {
+    translate: none;
   }
 
   .watercolor-clouds {
