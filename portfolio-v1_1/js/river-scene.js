@@ -35,6 +35,18 @@
     return { canvas, context };
   }
 
+  function sceneryDensity(width) {
+    const cores = navigator.hardwareConcurrency || 0;
+    const memory = navigator.deviceMemory || 0;
+    // These optional hints select a conservative cap, never a guessed FPS.
+    // Small screens need fewer backing pixels for the same watercolor detail.
+    const limited = (cores > 0 && cores <= 4) || (memory > 0 && memory <= 4);
+    const veryLimited = (cores > 0 && cores <= 2) || (memory > 0 && memory <= 2);
+    const compact = width <= 1024 || window.portfolioViewport.mobile;
+    const cap = veryLimited ? 1 : compact || limited ? 1.5 : 2;
+    return clamp(1, window.devicePixelRatio || 1, cap);
+  }
+
   function measureScene(background) {
     const width = Math.max(1, document.documentElement.clientWidth);
     const height = Math.max(1, window.portfolioViewport.height);
@@ -56,6 +68,11 @@
     const bottom = (short ? height * -0.04 : height * 0.08)
       - drop + designWidth / 12 - riverHeight / 2;
     const top = height - bottom - riverHeight;
+    // Match the shared CSS sources even when the canvas uses a lower cap.
+    // Keep these variants in the geometry key for monitor/zoom changes too.
+    const inkDensity = window.devicePixelRatio > 1 ? 2 : 1;
+    const cloudDensity = window.matchMedia("(max-width: 600px) and (max-resolution: 2dppx)").matches
+      ? 1 : inkDensity;
     return {
       width,
       height,
@@ -66,7 +83,9 @@
       riverLeft: width * (mobile ? 0.10 : 0.12),
       riverWidth: Math.max(designWidth, width * 0.88 + 32),
       riverHeight,
-      density: clamp(1, window.devicePixelRatio || 1, 2),
+      density: sceneryDensity(width),
+      inkDensity,
+      cloudDensity,
     };
   }
 
@@ -335,9 +354,9 @@
           loadPainting("watercolor-river", geometry.density),
           loadPainting("watercolor-river-forest-autumn", geometry.density),
           loadPainting("watercolor-river-details", geometry.density),
-          loadPainting("watercolor-ink-stroke", geometry.density),
-          loadPainting("watercolor-ink-splatter", geometry.density),
-          loadPainting("watercolor-cloud-06", geometry.density),
+          loadPainting("watercolor-ink-stroke", geometry.inkDensity),
+          loadPainting("watercolor-ink-splatter", geometry.inkDensity),
+          loadPainting("watercolor-cloud-06", geometry.cloudDensity),
         ]);
         if (request !== generation) return pending;
         const painting = makeLayer(geometry.width, geometry.sceneHeight, geometry.density);

@@ -13,15 +13,19 @@
   const imageFolder = new URL("../images/", document.currentScript.src);
   const sceneryLoads = new Map();
   const sceneryImages = new Map();
+  // At these sizes the smaller cloud, sun and tree exports already cover DPR 2.
+  const compactPaintings = window.matchMedia("(max-width: 600px) and (max-resolution: 2dppx)");
+  const phonePaintings = window.matchMedia("(max-width: 600px)");
   let moonLoad = null;
   const sceneryScriptsReady = document.readyState === "complete" ? Promise.resolve()
     : new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve, { once: true }));
   const paintings = [
-    "watercolor-sun", "watercolor-mountains-defined-ridge", "watercolor-river",
-    "watercolor-river-details", "watercolor-river-forest-autumn", "watercolor-cherry-tree-solid",
+    // The river renderer loads its own sources at its chosen canvas density.
+    "watercolor-sun", "watercolor-mountains-defined-ridge", "watercolor-cherry-tree-solid",
     "watercolor-ink-splatter", "watercolor-ink-splatter-02", "watercolor-ink-stroke", "watercolor-cloud",
     "watercolor-cloud-02", "watercolor-cloud-03", "watercolor-cloud-04",
     "watercolor-cloud-05", "watercolor-cloud-06", "watercolor-cloud-07",
+    "watercolor-sun-mist", "watercolor-sun-mist-lower", "watercolor-ink-wash",
   ];
 
   function prepareDarkScenery() {
@@ -43,18 +47,23 @@
     return moonLoad;
   }
 
-  function prepareLightScenery(priority = "low") {
+  function loadLightPaintings(priority = "low") {
     const density = window.devicePixelRatio > 1 ? "@2x" : "";
-    const files = paintings.map(name => `optimized/${name}${density}.webp`);
+    const files = paintings.map(name => {
+      const smallEnough = compactPaintings.matches && (name.startsWith("watercolor-cloud")
+        || name === "watercolor-sun" || name === "watercolor-cherry-tree-solid");
+      const phoneEffect = phonePaintings.matches && (name.startsWith("watercolor-sun-mist")
+        || name === "watercolor-ink-wash");
+      return `optimized/${name}${phoneEffect ? "-phone" : ""}${smallEnough ? "" : density}.webp`;
+    });
     files.push("distant-birds.svg");
-    // A later button press can raise the priority of an idle preload.
-    for (const file of files) {
-      if (sceneryImages.has(file) && priority === "high") {
-        sceneryImages.get(file).fetchPriority = priority;
+    const loading = files.map(file => {
+      // Reuse individual files across viewport/density changes and intent warming.
+      if (sceneryLoads.has(file)) {
+        if (priority === "high") sceneryImages.get(file).fetchPriority = priority;
+        return sceneryLoads.get(file);
       }
-    }
-    if (!sceneryLoads.has(density)) {
-      const loading = files.map(file => {
+      const ready = (() => {
         const image = new Image();
         sceneryImages.set(file, image);
         image.decoding = "async";
@@ -64,18 +73,27 @@
         return image.complete ? Promise.resolve() : new Promise(resolve => {
           image.onload = image.onerror = resolve;
         });
-      });
-      // One missing decorative image must not prevent switching themes.
-      sceneryLoads.set(density, Promise.allSettled(loading));
-    }
-    return sceneryLoads.get(density).then(async () => {
-      // Deferred scenery scripts must exist before the initial light reveal.
-      await sceneryScriptsReady;
+      })();
+      sceneryLoads.set(file, ready);
+      return ready;
+    });
+    // One missing decorative image must not prevent switching themes.
+    return Promise.allSettled(loading);
+  }
+
+  function prepareLightScenery(priority = "high") {
+    // Fetch the canvas sources alongside the sky, without preparing either on
+    // an ordinary dark visit. Deferred scripts must exist before painting.
+    const riverReady = sceneryScriptsReady.then(async () => {
+      if (requestedTheme !== "light") return;
       try {
         await document.querySelector(".watercolor-river")?.prepareScenery?.();
       } catch {
         // Missing decorative artwork must not prevent switching themes.
       }
+    });
+    return Promise.all([loadLightPaintings(priority), riverReady]).then(() => {
+      if (requestedTheme !== "light") return;
       page.dataset.sceneryReady = "true";
       updateButton();
     });
@@ -94,8 +112,7 @@
     if (!button) return;
 
     const nextTheme = page.dataset.theme === "light" ? "dark" : "light";
-    const waiting = requestedTheme === "light" && page.dataset.theme !== "light"
-      && !page.hasAttribute("data-scenery-ready");
+    const waiting = requestedTheme === "light" && page.dataset.theme !== "light";
     const label = waiting ? "Loading light mode; click to cancel" : `Switch to ${nextTheme} mode`;
 
     button.setAttribute("aria-label", label);
@@ -170,13 +187,21 @@
   applyTheme(savedTheme || preferredTheme());
 
   document.addEventListener("DOMContentLoaded", () => {
-    // Warm the light scene after the page's essential resources get a head start.
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(() => prepareLightScenery(), { timeout: 1500 });
-    } else window.setTimeout(() => prepareLightScenery(), 500);
-
     const button = document.querySelector(".theme-toggle");
     if (!button) return;
+
+    // Only warm images when the user approaches the toggle. Leave the forest
+    // unbuilt until light mode is requested, and avoid speculation on costly links.
+    const warmLightPaintings = () => {
+      const connection = navigator.connection;
+      if (page.dataset.theme === "light" || connection?.saveData
+        || /(^|-)2g$/.test(connection?.effectiveType || "")) return;
+      loadLightPaintings();
+    };
+    button.addEventListener("pointerenter", event => {
+      if (event.pointerType !== "touch") warmLightPaintings();
+    });
+    button.addEventListener("focus", warmLightPaintings);
 
     button.addEventListener("click", () => {
       // A quick second click may arrive before the first crossfade updates the page.

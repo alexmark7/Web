@@ -12,7 +12,7 @@
   distantClouds.className = "watercolor-clouds watercolor-clouds--behind";
   distantClouds.setAttribute("aria-hidden", "true");
   // Each cloud has its own painted silhouette, placement and drift speed.
-  for (let index = 1; index <= 8; index++) {
+  for (let index = 1; index <= 9; index++) {
     const cloud = document.createElement("span");
     cloud.className = `watercolor-cloud watercolor-cloud--${String(index).padStart(2, "0")}`;
     // The broad middle cloud passes behind the sun; the others pass in front.

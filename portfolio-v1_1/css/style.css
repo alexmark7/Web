@@ -167,11 +167,11 @@ html[data-theme="light"] .night-moon {
   position: fixed;
   z-index: 3;
   left: calc(75% + var(--sun-size) * 0.05);
-  top: calc(var(--sun-top) + var(--sun-size) * 0.2);
-  width: calc(var(--sun-size) * 1.8);
-  height: calc(var(--sun-size) * 0.3);
-  background: image-set(url("../images/optimized/watercolor-cloud-06.webp") 1x, url("../images/optimized/watercolor-cloud-06@2x.webp") 2x) center / 100% 100% no-repeat;
-  filter: grayscale(1) brightness(1.65) blur(3px);
+  /* Exports include 9px of feathering on each edge; keep the pigment aligned. */
+  top: calc(var(--sun-top) + var(--sun-size) * 0.2 - 9px);
+  width: calc(var(--sun-size) * 1.8 + 18px);
+  height: calc(var(--sun-size) * 0.3 + 18px);
+  background: image-set(url("../images/optimized/watercolor-sun-mist.webp") 1x, url("../images/optimized/watercolor-sun-mist@2x.webp") 2x) center / 100% 100% no-repeat;
   opacity: 0.4;
   pointer-events: none;
   transform: translate3d(-50%, calc(-1 * var(--mountain-rise, 0px)), 0);
@@ -181,9 +181,10 @@ html[data-theme="light"] .night-moon {
    Keep the upper veil's painted texture and soft, hazy treatment. */
 .sun-mist--lower {
   left: calc(75% - var(--sun-size) * 0.3);
-  top: calc(var(--sun-top) + var(--sun-size) * 0.72);
-  width: calc(var(--sun-size) * 1.05);
-  height: calc(var(--sun-size) * 0.18);
+  top: calc(var(--sun-top) + var(--sun-size) * 0.72 - 9px);
+  width: calc(var(--sun-size) * 1.05 + 18px);
+  height: calc(var(--sun-size) * 0.18 + 18px);
+  background-image: image-set(url("../images/optimized/watercolor-sun-mist-lower.webp") 1x, url("../images/optimized/watercolor-sun-mist-lower@2x.webp") 2x);
 }
 
 .watercolor-clouds {
@@ -281,8 +282,7 @@ html[data-theme="light"] .night-moon {
 
 .ink-wash {
   aspect-ratio: 1;
-  background: image-set(url("../images/optimized/watercolor-ink-splatter.webp") 1x, url("../images/optimized/watercolor-ink-splatter@2x.webp") 2x) center / contain no-repeat;
-  filter: blur(2px) sepia(0.2);
+  background: image-set(url("../images/optimized/watercolor-ink-wash.webp") 1x, url("../images/optimized/watercolor-ink-wash@2x.webp") 2x) center / contain no-repeat;
 }
 
 /* The tree starts below the screen and rises with scroll progress. */
@@ -300,7 +300,7 @@ html[data-theme="light"] .night-moon {
   transform: translate3d(0, var(--tree-offset, var(--tree-travel, calc(var(--tree-size) * 0.8 + 8px))), 0);
 }
 
-/* Eight clouds fill the sky independently of the rising sun. */
+/* Nine clouds fill the sky independently of the rising sun. */
 .watercolor-cloud {
   position: absolute;
   top: max(var(--cloud-clearance), var(--cloud-top));
@@ -391,6 +391,74 @@ html[data-theme="light"] .night-moon {
   --cloud-duration: 54s;
   --cloud-delay: -24s;
   scale: -1 1;
+}
+
+/* A small, rounded cloud fills the open sky below and left of the sun. */
+.watercolor-cloud--09 {
+  --cloud-image: image-set(url("../images/optimized/watercolor-cloud-03.webp") 1x, url("../images/optimized/watercolor-cloud-03@2x.webp") 2x);
+  --cloud-left: calc(75% - var(--sun-size) * 0.58);
+  --cloud-top: calc(var(--sun-top) + var(--sun-size) + 54px);
+  --cloud-opacity: 0.62;
+  --cloud-duration: 68s;
+  --cloud-delay: -24s;
+  width: clamp(150px, calc(var(--sun-size) * 0.46), 210px);
+}
+
+/* Separate exports preserve the soft mist/ink at phone scale without live filters. */
+@media (max-width: 600px) {
+  .sun-mist {
+    background-image: image-set(url("../images/optimized/watercolor-sun-mist-phone.webp") 1x, url("../images/optimized/watercolor-sun-mist-phone@2x.webp") 2x);
+  }
+
+  .sun-mist--lower {
+    background-image: image-set(url("../images/optimized/watercolor-sun-mist-lower-phone.webp") 1x, url("../images/optimized/watercolor-sun-mist-lower-phone@2x.webp") 2x);
+  }
+
+  .ink-wash {
+    background-image: image-set(url("../images/optimized/watercolor-ink-wash-phone.webp") 1x, url("../images/optimized/watercolor-ink-wash-phone@2x.webp") 2x);
+  }
+}
+
+/* These exports cover the rendered phone sizes at up to DPR 2. Keep the
+   mountain sharp and let DPR 3 phones retain the larger sky/tree images. */
+@media (max-width: 600px) and (max-resolution: 2dppx) {
+  .background::after {
+    background-image: url("../images/optimized/watercolor-sun.webp");
+  }
+
+  .watercolor-cherry-tree {
+    background-image: url("../images/optimized/watercolor-cherry-tree-solid.webp");
+  }
+
+  .watercolor-cloud--01 {
+    --cloud-image: url("../images/optimized/watercolor-cloud.webp");
+  }
+
+  .watercolor-cloud--02 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-02.webp");
+  }
+
+  .watercolor-cloud--03,
+  .watercolor-cloud--09 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-03.webp");
+  }
+
+  .watercolor-cloud--04,
+  .watercolor-cloud--08 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-04.webp");
+  }
+
+  .watercolor-cloud--05 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-05.webp");
+  }
+
+  .watercolor-cloud--06 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-06.webp");
+  }
+
+  .watercolor-cloud--07 {
+    --cloud-image: url("../images/optimized/watercolor-cloud-07.webp");
+  }
 }
 
 html[data-theme="light"] .background::before,
@@ -548,6 +616,10 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
   .watercolor-cloud {
     width: clamp(150px, var(--cloud-width), 260px);
     opacity: calc(var(--cloud-opacity) * 0.9);
+  }
+
+  .watercolor-cloud--09 {
+    width: clamp(106px, 29vw, 140px);
   }
 
   .ink-splotch {
