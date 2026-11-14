@@ -196,6 +196,7 @@ html[data-theme="light"] .night-moon {
   z-index: 4;
   overflow: hidden;
   pointer-events: none;
+  transform: translate3d(0, calc(-1 * var(--cloud-rise, 0px)), 0);
 }
 
 /* The middle cloud sits between the mountains and sun. */
@@ -439,6 +440,13 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
       animation-timeline: scroll(root block);
     }
 
+    html[data-theme="light"]:not([data-stable-viewport]) .watercolor-clouds {
+      animation: cloud-rise 1s linear both;
+      animation-timeline: scroll(root block);
+      /* Rise 7px per 100px scrolled, stopping once the layer is off screen. */
+      animation-range: 0px calc(var(--scenery-height) / 0.07);
+    }
+
     html[data-theme="light"]:not([data-stable-viewport]) .background::before,
     html[data-theme="light"]:not([data-stable-viewport]) .watercolor-river {
       animation: mountain-drift 1s linear both;
@@ -472,6 +480,11 @@ html[data-theme="light"] :is(.watercolor-clouds, .watercolor-ink, .watercolor-ch
 @keyframes mountain-drift {
   from { transform: translate3d(0, 0, 0); }
   to { transform: translate3d(0, calc(var(--scenery-height) * -0.04), 0); }
+}
+
+@keyframes cloud-rise {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, calc(-1 * var(--scenery-height)), 0); }
 }
 
 @keyframes tree-rise {
@@ -588,6 +601,10 @@ html[data-scenery-short] .background::before {
   }
 
   .night-moon {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .watercolor-clouds {
     transform: translate3d(0, 0, 0);
   }
 

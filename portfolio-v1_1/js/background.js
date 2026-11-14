@@ -201,6 +201,8 @@
     const mountainRise = reducedMotion.matches ? 0 : progress * mountainDistance;
     // Sun, mist, mountains and river stay together; horizontal sway remains CSS-driven.
     background.style.setProperty("--mountain-rise", `${mountainRise}px`);
+    const cloudRise = reducedMotion.matches ? 0 : Math.min(scroll * 0.07, viewport.height);
+    background.style.setProperty("--cloud-rise", `${cloudRise}px`);
     const remaining = 1 - progress;
     // Match the CSS curve: the same early rise, with less stalling near the footer.
     const treeOffset = reducedMotion.matches ? 0
